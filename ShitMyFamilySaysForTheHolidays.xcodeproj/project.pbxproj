@@ -1,0 +1,446 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		22E7872F6D2EF3F008E3E6AD /* Pods_ShitMyFamilySaysForTheHolidays.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13534857A2A02BCB056B3017 /* Pods_ShitMyFamilySaysForTheHolidays.framework */; };
+		F92DBED81FBB8D4000B4566F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DBED71FBB8D4000B4566F /* LoginViewController.swift */; };
+		F92DBEDA1FBB8D5300B4566F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DBED91FBB8D5300B4566F /* User.swift */; };
+		F96AA6011FBAB4F4001E7CCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96AA6001FBAB4F4001E7CCD /* AppDelegate.swift */; };
+		F96AA6061FBAB4F4001E7CCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F96AA6041FBAB4F4001E7CCD /* Main.storyboard */; };
+		F96AA6081FBAB4F4001E7CCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F96AA6071FBAB4F4001E7CCD /* Assets.xcassets */; };
+		F96AA60B1FBAB4F4001E7CCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F96AA6091FBAB4F4001E7CCD /* LaunchScreen.storyboard */; };
+		F96AA6131FBAB91E001E7CCD /* BingoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96AA6121FBAB91E001E7CCD /* BingoViewController.swift */; };
+		F96AA6151FBAB999001E7CCD /* BingoCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96AA6141FBAB999001E7CCD /* BingoCollectionViewLayout.swift */; };
+		F96C58041FBB5A3B00D49481 /* BingoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C58031FBB5A3B00D49481 /* BingoCollectionCell.swift */; };
+		F96C58061FBB69F600D49481 /* BingoGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C58051FBB69F600D49481 /* BingoGame.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		13534857A2A02BCB056B3017 /* Pods_ShitMyFamilySaysForTheHolidays.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShitMyFamilySaysForTheHolidays.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CEE58B8585F5A9DA23CA9D4 /* Pods-ShitMyFamilySaysForTheHolidays.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShitMyFamilySaysForTheHolidays.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShitMyFamilySaysForTheHolidays/Pods-ShitMyFamilySaysForTheHolidays.debug.xcconfig"; sourceTree = "<group>"; };
+		DFD8F2990906148AA5B43893 /* Pods-ShitMyFamilySaysForTheHolidays.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShitMyFamilySaysForTheHolidays.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShitMyFamilySaysForTheHolidays/Pods-ShitMyFamilySaysForTheHolidays.release.xcconfig"; sourceTree = "<group>"; };
+		F92DBED71FBB8D4000B4566F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F92DBED91FBB8D5300B4566F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F96AA5FD1FBAB4F4001E7CCD /* ShitMyFamilySaysForTheHolidays.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShitMyFamilySaysForTheHolidays.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F96AA6001FBAB4F4001E7CCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F96AA6051FBAB4F4001E7CCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F96AA6071FBAB4F4001E7CCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F96AA60A1FBAB4F4001E7CCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F96AA60C1FBAB4F4001E7CCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F96AA6121FBAB91E001E7CCD /* BingoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoViewController.swift; sourceTree = "<group>"; };
+		F96AA6141FBAB999001E7CCD /* BingoCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoCollectionViewLayout.swift; sourceTree = "<group>"; };
+		F96C58031FBB5A3B00D49481 /* BingoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoCollectionCell.swift; sourceTree = "<group>"; };
+		F96C58051FBB69F600D49481 /* BingoGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoGame.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F96AA5FA1FBAB4F4001E7CCD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22E7872F6D2EF3F008E3E6AD /* Pods_ShitMyFamilySaysForTheHolidays.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08B4A7B238B211AE941333FA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5CEE58B8585F5A9DA23CA9D4 /* Pods-ShitMyFamilySaysForTheHolidays.debug.xcconfig */,
+				DFD8F2990906148AA5B43893 /* Pods-ShitMyFamilySaysForTheHolidays.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		AD3B93713703626E06F1E3B4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				13534857A2A02BCB056B3017 /* Pods_ShitMyFamilySaysForTheHolidays.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F92DBEDB1FBBA0C100B4566F /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				F96C58051FBB69F600D49481 /* BingoGame.swift */,
+				F92DBED91FBB8D5300B4566F /* User.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		F92DBEDC1FBBA0D000B4566F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F92DBED71FBB8D4000B4566F /* LoginViewController.swift */,
+				F96AA6121FBAB91E001E7CCD /* BingoViewController.swift */,
+				F96C58031FBB5A3B00D49481 /* BingoCollectionCell.swift */,
+				F96AA6141FBAB999001E7CCD /* BingoCollectionViewLayout.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F96AA5F41FBAB4F4001E7CCD = {
+			isa = PBXGroup;
+			children = (
+				F96AA5FF1FBAB4F4001E7CCD /* ShitMyFamilySaysForTheHolidays */,
+				F96AA5FE1FBAB4F4001E7CCD /* Products */,
+				08B4A7B238B211AE941333FA /* Pods */,
+				AD3B93713703626E06F1E3B4 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F96AA5FE1FBAB4F4001E7CCD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F96AA5FD1FBAB4F4001E7CCD /* ShitMyFamilySaysForTheHolidays.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F96AA5FF1FBAB4F4001E7CCD /* ShitMyFamilySaysForTheHolidays */ = {
+			isa = PBXGroup;
+			children = (
+				F96AA6001FBAB4F4001E7CCD /* AppDelegate.swift */,
+				F92DBEDC1FBBA0D000B4566F /* Views */,
+				F92DBEDB1FBBA0C100B4566F /* Objects */,
+				F96AA6071FBAB4F4001E7CCD /* Assets.xcassets */,
+				F96AA6041FBAB4F4001E7CCD /* Main.storyboard */,
+				F96AA6091FBAB4F4001E7CCD /* LaunchScreen.storyboard */,
+				F96AA60C1FBAB4F4001E7CCD /* Info.plist */,
+			);
+			path = ShitMyFamilySaysForTheHolidays;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F96AA5FC1FBAB4F4001E7CCD /* ShitMyFamilySaysForTheHolidays */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F96AA60F1FBAB4F4001E7CCD /* Build configuration list for PBXNativeTarget "ShitMyFamilySaysForTheHolidays" */;
+			buildPhases = (
+				07D07E517315976D61667383 /* [CP] Check Pods Manifest.lock */,
+				F96AA5F91FBAB4F4001E7CCD /* Sources */,
+				F96AA5FA1FBAB4F4001E7CCD /* Frameworks */,
+				F96AA5FB1FBAB4F4001E7CCD /* Resources */,
+				C68D4FFB6F696BEA654551A5 /* [CP] Embed Pods Frameworks */,
+				8A3EDCE4ECFC91EB7569289B /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShitMyFamilySaysForTheHolidays;
+			productName = ShitMyFamilySaysForTheHolidays;
+			productReference = F96AA5FD1FBAB4F4001E7CCD /* ShitMyFamilySaysForTheHolidays.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F96AA5F51FBAB4F4001E7CCD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0910;
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = michaelodere;
+				TargetAttributes = {
+					F96AA5FC1FBAB4F4001E7CCD = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = F96AA5F81FBAB4F4001E7CCD /* Build configuration list for PBXProject "ShitMyFamilySaysForTheHolidays" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F96AA5F41FBAB4F4001E7CCD;
+			productRefGroup = F96AA5FE1FBAB4F4001E7CCD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F96AA5FC1FBAB4F4001E7CCD /* ShitMyFamilySaysForTheHolidays */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F96AA5FB1FBAB4F4001E7CCD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F96AA60B1FBAB4F4001E7CCD /* LaunchScreen.storyboard in Resources */,
+				F96AA6081FBAB4F4001E7CCD /* Assets.xcassets in Resources */,
+				F96AA6061FBAB4F4001E7CCD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		07D07E517315976D61667383 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ShitMyFamilySaysForTheHolidays-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8A3EDCE4ECFC91EB7569289B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShitMyFamilySaysForTheHolidays/Pods-ShitMyFamilySaysForTheHolidays-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C68D4FFB6F696BEA654551A5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ShitMyFamilySaysForTheHolidays/Pods-ShitMyFamilySaysForTheHolidays-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/PusherSwift/PusherSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PusherSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShitMyFamilySaysForTheHolidays/Pods-ShitMyFamilySaysForTheHolidays-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F96AA5F91FBAB4F4001E7CCD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F92DBED81FBB8D4000B4566F /* LoginViewController.swift in Sources */,
+				F96C58041FBB5A3B00D49481 /* BingoCollectionCell.swift in Sources */,
+				F96AA6131FBAB91E001E7CCD /* BingoViewController.swift in Sources */,
+				F92DBEDA1FBB8D5300B4566F /* User.swift in Sources */,
+				F96C58061FBB69F600D49481 /* BingoGame.swift in Sources */,
+				F96AA6151FBAB999001E7CCD /* BingoCollectionViewLayout.swift in Sources */,
+				F96AA6011FBAB4F4001E7CCD /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F96AA6041FBAB4F4001E7CCD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F96AA6051FBAB4F4001E7CCD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F96AA6091FBAB4F4001E7CCD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F96AA60A1FBAB4F4001E7CCD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F96AA60D1FBAB4F4001E7CCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F96AA60E1FBAB4F4001E7CCD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F96AA6101FBAB4F4001E7CCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CEE58B8585F5A9DA23CA9D4 /* Pods-ShitMyFamilySaysForTheHolidays.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8FX99Z8DDE;
+				INFOPLIST_FILE = ShitMyFamilySaysForTheHolidays/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.michaelodere.ShitMyFamilySaysForTheHolidays;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F96AA6111FBAB4F4001E7CCD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DFD8F2990906148AA5B43893 /* Pods-ShitMyFamilySaysForTheHolidays.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8FX99Z8DDE;
+				INFOPLIST_FILE = ShitMyFamilySaysForTheHolidays/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.michaelodere.ShitMyFamilySaysForTheHolidays;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F96AA5F81FBAB4F4001E7CCD /* Build configuration list for PBXProject "ShitMyFamilySaysForTheHolidays" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F96AA60D1FBAB4F4001E7CCD /* Debug */,
+				F96AA60E1FBAB4F4001E7CCD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F96AA60F1FBAB4F4001E7CCD /* Build configuration list for PBXNativeTarget "ShitMyFamilySaysForTheHolidays" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F96AA6101FBAB4F4001E7CCD /* Debug */,
+				F96AA6111FBAB4F4001E7CCD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F96AA5F51FBAB4F4001E7CCD /* Project object */;
+}
