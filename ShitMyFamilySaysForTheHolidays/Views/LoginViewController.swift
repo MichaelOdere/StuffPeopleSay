@@ -7,40 +7,68 @@
 //
 
 import UIKit
-import PusherSwift
 
-class LoginViewController:UIViewController{
-    var pusher:Pusher!
+class LoginViewController:UIViewController, UITextFieldDelegate{
+    var pushManager:PusherManager!
+    var loadView:UIActivityIndicatorView!
     
     @IBOutlet var loginButton: UIButton!
-    @IBOutlet var usernameTextfirled: UITextField!
+    @IBOutlet var usernameTextField: UITextField!
     
     override func viewDidLoad() {
-        print("view did load")
-        let options = PusherClientOptions(
-            host: .cluster("us2")
-        )
+       
         
-        pusher = Pusher(
-                key: "988d2b3b6aac9c80268b",
-                options: options
-        )
+        pushManager = PusherManager()
+       
+        usernameTextField.delegate = self
+
+        loginButton.isEnabled = false
+        loginButton.layer.opacity = 0.5
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         
-        // subscribe to channel and bind to event
-        let channel = pusher.subscribe("my-channel")
+//        if userLoggedIn{
+//            let sb = UIStoryboard(name: "Main", bundle: nil)
+//            let vc = sb.instantiateViewController(withIdentifier: "BingoController") as! BingoViewController
+//
+//            vc.pushManager = pushManager
+//            present(vc, animated: true, completion: {self.loadView.removeFromSuperview()})
+//        }
         
-        let _ = channel.bind(eventName: "my-event", callback: { (data: Any?) -> Void in
-            if let data = data as? [String : AnyObject] {
-                if let message = data["message"] as? String {
-                    print("message")
-                    print(message)
-                }
-            }
-        })
+    }
+    
+    @IBAction func usernameTextFieldEditChanged(_ sender: Any) {
+        if (usernameTextField.text?.isEmpty)!{
+            loginButton.isEnabled = false
+            loginButton.layer.opacity = 0.5
+        }else{
+            loginButton.isEnabled = true
+            loginButton.layer.opacity = 1
+            
+        }
+    }
+    
+    @IBAction func Login(_ sender: Any) {
+       
         
-        pusher.connect()
-                
+        
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "BingoController") as! BingoViewController
+        
+        vc.pushManager = pushManager
+        present(vc, animated: true, completion: nil)
+        self.usernameTextField.text = ""
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     
+    
+
+
 }

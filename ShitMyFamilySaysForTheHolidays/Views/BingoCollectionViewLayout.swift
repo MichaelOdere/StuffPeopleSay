@@ -69,14 +69,9 @@ import UIKit
             cache.append(attributes)
             
             // Updates the collection view content height
-            contentHeight = frame.maxY
+            contentHeight = max(contentHeight,frame.maxY)
         }
         
-//        contentHeight = contentWidth
-        print("content height \(contentHeight)")
-        print("content width \(contentWidth)")
-        print("cell width \(cellWidth)")
-        print("cell height \(cellHeight)")
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {

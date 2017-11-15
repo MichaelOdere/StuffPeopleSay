@@ -10,6 +10,7 @@ import UIKit
 
 class BingoViewController:UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
     var game:BingoGame!
+    var pushManager:PusherManager!
     
     @IBOutlet var collectionView: UICollectionView!
 

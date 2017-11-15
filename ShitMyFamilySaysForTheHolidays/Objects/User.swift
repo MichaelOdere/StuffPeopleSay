@@ -9,8 +9,13 @@
 import Foundation
 
 class User{
-    var name:String!
     var id:String!
-    
+    var name:String!
+    var cardsActiveCount:Int!
+    init(id: String, name: String, cardsActiveCount:Int) {
+        self.id = id
+        self.name = name
+        self.cardsActiveCount = cardsActiveCount
+    }
 }
 

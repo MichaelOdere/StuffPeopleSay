@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		22E7872F6D2EF3F008E3E6AD /* Pods_ShitMyFamilySaysForTheHolidays.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13534857A2A02BCB056B3017 /* Pods_ShitMyFamilySaysForTheHolidays.framework */; };
+		F90B4B7A1FBBA232002FEBF0 /* PusherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90B4B791FBBA232002FEBF0 /* PusherManager.swift */; };
 		F92DBED81FBB8D4000B4566F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DBED71FBB8D4000B4566F /* LoginViewController.swift */; };
 		F92DBEDA1FBB8D5300B4566F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DBED91FBB8D5300B4566F /* User.swift */; };
+		F95B17151FBBBBEF00AA000B /* CardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B17141FBBBBEF00AA000B /* CardStore.swift */; };
+		F95B17171FBBBBF400AA000B /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B17161FBBBBF400AA000B /* Card.swift */; };
 		F96AA6011FBAB4F4001E7CCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96AA6001FBAB4F4001E7CCD /* AppDelegate.swift */; };
 		F96AA6061FBAB4F4001E7CCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F96AA6041FBAB4F4001E7CCD /* Main.storyboard */; };
 		F96AA6081FBAB4F4001E7CCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F96AA6071FBAB4F4001E7CCD /* Assets.xcassets */; };
@@ -24,8 +27,11 @@
 		13534857A2A02BCB056B3017 /* Pods_ShitMyFamilySaysForTheHolidays.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShitMyFamilySaysForTheHolidays.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CEE58B8585F5A9DA23CA9D4 /* Pods-ShitMyFamilySaysForTheHolidays.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShitMyFamilySaysForTheHolidays.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShitMyFamilySaysForTheHolidays/Pods-ShitMyFamilySaysForTheHolidays.debug.xcconfig"; sourceTree = "<group>"; };
 		DFD8F2990906148AA5B43893 /* Pods-ShitMyFamilySaysForTheHolidays.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShitMyFamilySaysForTheHolidays.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShitMyFamilySaysForTheHolidays/Pods-ShitMyFamilySaysForTheHolidays.release.xcconfig"; sourceTree = "<group>"; };
+		F90B4B791FBBA232002FEBF0 /* PusherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PusherManager.swift; sourceTree = "<group>"; };
 		F92DBED71FBB8D4000B4566F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F92DBED91FBB8D5300B4566F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F95B17141FBBBBEF00AA000B /* CardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStore.swift; sourceTree = "<group>"; };
+		F95B17161FBBBBF400AA000B /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		F96AA5FD1FBAB4F4001E7CCD /* ShitMyFamilySaysForTheHolidays.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShitMyFamilySaysForTheHolidays.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F96AA6001FBAB4F4001E7CCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F96AA6051FBAB4F4001E7CCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -70,8 +76,11 @@
 		F92DBEDB1FBBA0C100B4566F /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				F96C58051FBB69F600D49481 /* BingoGame.swift */,
 				F92DBED91FBB8D5300B4566F /* User.swift */,
+				F96C58051FBB69F600D49481 /* BingoGame.swift */,
+				F90B4B791FBBA232002FEBF0 /* PusherManager.swift */,
+				F95B17161FBBBBF400AA000B /* Card.swift */,
+				F95B17141FBBBBEF00AA000B /* CardStore.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -248,11 +257,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F90B4B7A1FBBA232002FEBF0 /* PusherManager.swift in Sources */,
 				F92DBED81FBB8D4000B4566F /* LoginViewController.swift in Sources */,
 				F96C58041FBB5A3B00D49481 /* BingoCollectionCell.swift in Sources */,
 				F96AA6131FBAB91E001E7CCD /* BingoViewController.swift in Sources */,
 				F92DBEDA1FBB8D5300B4566F /* User.swift in Sources */,
 				F96C58061FBB69F600D49481 /* BingoGame.swift in Sources */,
+				F95B17151FBBBBEF00AA000B /* CardStore.swift in Sources */,
+				F95B17171FBBBBF400AA000B /* Card.swift in Sources */,
 				F96AA6151FBAB999001E7CCD /* BingoCollectionViewLayout.swift in Sources */,
 				F96AA6011FBAB4F4001E7CCD /* AppDelegate.swift in Sources */,
 			);
