@@ -5,14 +5,16 @@ import Foundation
 struct Game {
 
     let gameId: String
-    let status: String
+    var status: String
     var cards: [Card]
     let name: String
     let userId: String
-    let users: [String]
+    var users: [User]
 }
 extension Game {
     init?(json: [String: Any]) {
+        
+        print(json)
         guard let gameId = json["gameId"] as? String,
             let status = json["status"] as? String,
             let boards = json["boards"] as? [String:Any],
@@ -31,13 +33,19 @@ extension Game {
                 allCards.append(card)
             }
         }
+        var allUsers:[User] = []
+        for u in users {
+            if let user = User(json: u){
+                allUsers.append(user)
+            }
+        }
 
         self.gameId = gameId
         self.status = status
         self.cards = allCards
         self.name = name
         self.userId = userId
-        self.users = []
+        self.users = allUsers
     }
 }
 

@@ -23,6 +23,21 @@ class BingoGame{
         boardReset()
     }
     
+    func cardsToBoard(cards: [Card]){
+        
+        for index in 0..<cards.count{
+            if index > 24 {
+                break
+            }
+            let card = cards[index]
+            let x = index % 5
+            let y:Int = index / 5
+            
+            if card.active == 1{
+                board[x][y] = 1
+            }
+        }
+    }
     func checkVictory(x:Int, y: Int)->Bool{
         
         var victory = false

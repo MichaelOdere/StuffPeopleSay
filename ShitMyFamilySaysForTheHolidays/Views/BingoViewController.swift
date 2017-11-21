@@ -9,9 +9,11 @@
 import UIKit
 
 class BingoViewController:UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
-    var game:BingoGame!
+    var bingoGame:BingoGame!
+    var game:Game!
+    var apiManager:APIManager!
     var pushManager:PusherManager!
-    
+
     @IBOutlet var collectionView: UICollectionView!
 
     let arr = Array(0...24)
@@ -20,8 +22,8 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        game = BingoGame()
-        self.navigationController?.navigationBar.isHidden = false
+        bingoGame = BingoGame()
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -29,6 +31,22 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        //        playing , ended posibled statuses
+        if game.status.lowercased() != "playing"{
+            return
+        }
+        
+        if indexPath.row < game.cards.count{
+            let card = game.cards[indexPath.row]
+            self.apiManager.updateBoard(boardCardId: card.boardCardId)
+            if card.active == 0{
+                game.cards[indexPath.row].active = 1
+            }else{
+                game.cards[indexPath.row].active = 0
+            }
+        }
+        
         if let cell = collectionView.cellForItem(at: indexPath) as? BingoCollectionCell {
 
             let x = cell.xIndex!
@@ -37,20 +55,22 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
             if cell.pieceImage.image != nil{
                 cell.pieceImage.image = nil
                 
-                game.board[x][y] = 0
+                bingoGame.board[x][y] = 0
             }else{
                 let image = UIImage(named: "bingo_piece.png")
                 cell.pieceImage.image = image
                 cell.pieceImage.alpha = 0.6
            
-                game.board[x][y] = 1
+                bingoGame.board[x][y] = 1
             }
             
-            print(game.board)
-            if (game.checkVictory(x: x, y: y)){
+            print(bingoGame.board)
+            if (bingoGame.checkVictory(x: x, y: y)){
                
+                game.status = "ended"
+                self.apiManager.updateGame(gameId: game.gameId)
                 showAlert {
-                    self.game.boardReset()
+                    self.bingoGame.boardReset()
                     self.collectionView.reloadData()
 
                 }
@@ -76,15 +96,24 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BingoCell", for: indexPath) as! BingoCollectionCell
-        
+        let card = game.cards[indexPath.row]
         cell.backgroundColor = UIColor(red: 54/255.0, green: 80/255.0, blue: 98/255.0, alpha: 1.0)
     
-        cell.title.text = "This is my title"
-        cell.pieceImage.image = nil
+        cell.title.text = card.name
         
         cell.xIndex = indexPath.row / 5
         cell.yIndex = indexPath.row % 5
         
+        if card.active == 1{
+            let image = UIImage(named: "bingo_piece.png")
+            cell.pieceImage.image = image
+            cell.pieceImage.alpha = 0.6
+            bingoGame.board[cell.xIndex][cell.yIndex] = 1
+
+        }else{
+            cell.pieceImage.image = nil
+
+        }
         return cell
     }
     

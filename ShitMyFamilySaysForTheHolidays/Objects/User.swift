@@ -8,16 +8,30 @@
 
 import Foundation
 
-class User{
-    var id:String!
+struct User{
+    var userId:String!
     var name:String!
     var cardsActiveCount:Int!
-    init(id: String, name: String, cardsActiveCount:Int) {
-        self.id = id
+    init(userId: String, name: String, cardsActiveCount:Int) {
+        self.userId = userId
         self.name = name
         self.cardsActiveCount = cardsActiveCount
     }
     
-    
+}
+extension User {
+    init?(json: [String: Any]) {
+        guard let cards = json["cards"] as? Int,
+            let name = json["name"] as? String,
+            let userId = json["userId"] as? String
+        
+            else {
+                return nil
+        }
+        
+        self.cardsActiveCount = cards
+        self.name = name
+        self.userId = userId
+    }
 }
 

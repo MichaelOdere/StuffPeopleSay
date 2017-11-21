@@ -50,7 +50,7 @@ class APIManager{
         var request = URLRequest(url: url)
 
         request.addValue(token, forHTTPHeaderField: "Authorization")
-        request.addValue("1", forHTTPHeaderField: "SocketId")
+        request.addValue(socketId, forHTTPHeaderField: "SocketId")
         
         request.httpMethod = "GET"
         
@@ -66,13 +66,13 @@ class APIManager{
         
     }
 
-    func createGames(completionHandler: @escaping (Data?, Error?) -> Void) {
+    func createGame(completionHandler: @escaping (Data?, Error?) -> Void) {
         let url = URL(string: baseURL + "/games")!
         var request = URLRequest(url: url)
         
         request.addValue(token, forHTTPHeaderField: "Authorization")
-        request.addValue("1", forHTTPHeaderField: "SocketId")
-        
+        request.addValue(socketId, forHTTPHeaderField: "SocketId")
+
         request.httpMethod = "POST"
         
         let task = URLSession.shared.dataTask(with: request) {data, response, error in
@@ -87,8 +87,80 @@ class APIManager{
         
     }
 
-    // Create a game
+    func updateBoard(boardCardId: String){
+        let url = URL(string: baseURL + "/boards/" + boardCardId)!
+        var request = URLRequest(url: url)
+        
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        request.addValue(socketId, forHTTPHeaderField: "SocketId")
+        
+        request.httpMethod = "PUT"
+        
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            let json = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let dictionary = json as? [String: Any] {
+                print(dictionary)
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func updateGame(gameId: String){
+        
+    
+        let url = URL(string: baseURL + "/games/" + gameId )!
+        var request = URLRequest(url: url)
+        
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        request.addValue(socketId, forHTTPHeaderField: "SocketId")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        request.httpBody = "{\"winner\" : \"true\"}".data(using: .utf8)
+
+        request.httpMethod = "PUT"
+
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            let json = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let dictionary = json as? [String: Any] {
+                print(dictionary)
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func createCard(name: String){
+        let url = URL(string: baseURL + "/cards")!
+        var request = URLRequest(url: url)
+        
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        request.addValue(socketId, forHTTPHeaderField: "SocketId")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        request.httpBody = "{\"name\" : \"\(name)\"}".data(using: .utf8)
+        
+        request.httpMethod = "POST"
+        
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            let json = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let dictionary = json as? [String: Any] {
+                print(dictionary)
+            }
+        }
+        
+        task.resume()
+    }
+    
     // Update board
     // Update a game
-    // Create new card
 }

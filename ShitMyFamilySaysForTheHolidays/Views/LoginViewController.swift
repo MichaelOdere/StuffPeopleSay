@@ -76,7 +76,8 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
                 for (key, value) in dictionary {
                     if key == "token"{
                         self.apiManager.token = value as! String
-                        
+                        self.apiManager.socketId = "431.3973413"
+
                     }
                 }
                 
@@ -117,6 +118,7 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
             let navigationController = UINavigationController(rootViewController: vc)
 
             vc.games = self.games
+            vc.apiManager = self.apiManager
             self.present(navigationController, animated: true, completion: nil)
         }
     }
