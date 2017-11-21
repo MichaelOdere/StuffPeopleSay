@@ -17,5 +17,7 @@ class User{
         self.name = name
         self.cardsActiveCount = cardsActiveCount
     }
+    
+    
 }
 

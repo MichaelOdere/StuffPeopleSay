@@ -21,6 +21,7 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
         collectionView.delegate = self
         
         game = BingoGame()
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -62,10 +63,13 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
         let alert = UIAlertController(title: "Congratulations You Won!",
                                       message: "We're sorry you had to hear all that!!",
                                       preferredStyle: .alert)
+        
         let action = UIAlertAction(title: "I'm The Best", style: .default,
-                                   handler: nil)
+                                         handler: { (action) -> Void in
+                               completion()
+        })
         alert.addAction(action)
-        present(alert, animated: true, completion: completion)
+        present(alert, animated: true, completion: nil)
         
     }
     
