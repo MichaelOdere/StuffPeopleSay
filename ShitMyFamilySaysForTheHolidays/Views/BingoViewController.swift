@@ -15,13 +15,17 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
     var pushManager:PusherManager!
 
     @IBOutlet var collectionView: UICollectionView!
-
+    @IBOutlet weak var tableview: UITableView!
+    
     let arr = Array(0...24)
     
     override func viewDidLoad() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        
+
+        tableview.dataSource = self
+        tableview.delegate = self
+
         bingoGame = BingoGame()
         
     }
@@ -119,5 +123,22 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
     
     @IBAction func logoutNavBar(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+}
+extension BingoViewController: UITableViewDelegate, UITableViewDataSource{
+   
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("HERE IN TABLEVIEW")
+        return self.game.users.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let user =  self.game.users[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell")
+        
+        cell?.textLabel?.text = user.name
+        cell?.detailTextLabel?.text =  "Cards active: " + String(user.cardsActiveCount)
+        
+        return cell!
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CardStore{
+class GameStore{
     
     var deck:[Card]!
     

@@ -55,7 +55,6 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
 
         let add = UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-            print("Text field: \(textField?.text)")
             guard let cardText = textField?.text else {return}
             if !cardText.isEmpty{
                 self.apiManager.createCard(name: cardText)
