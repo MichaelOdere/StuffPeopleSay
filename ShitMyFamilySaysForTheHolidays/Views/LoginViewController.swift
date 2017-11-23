@@ -23,7 +23,7 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         pushManager = PusherManager()
         // If we have the tokens we can initialize here
-        apiManager = APIManager(token: nil, socketId: "1")
+        apiManager = APIManager()
 
         loadingView = UIActivityIndicatorView(frame: self.view.frame)
         loadingView.backgroundColor = UIColor.gray
@@ -46,48 +46,22 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
             let group = DispatchGroup()
             group.enter()
 
-            self.apiManager.getGames(completionHandler: { data, error in
-
-                guard let data = data else {
+            self.apiManager.getGames(completionHandler: { isLoggedIn, gameData, error in
+                
+                guard let gameData = gameData else {
                     print(error as Any)
                     return
                 }
+                
+                self.games = gameData
 
-                let json = try? JSONSerialization.jsonObject(with: data, options: [])
-
-                if let dictionary = json as? [String: Any] {
-                    
-                    if let message = dictionary["message"] as? String {
-                        print(message)
-
-                        if message == "Unauthorized"{
-                            self.userdefaults.removeObject(forKey: "token")
-                            self.loggedIn = false
-                        }
-                    }else{
-                        self.loggedIn = true
-                    }
-
-                    
-                    if let gamesData = dictionary["games"] as? [[String:Any]] {
-
-                        for b in gamesData{
-                            if let game = Game(json: b){
-                                self.games.append(game)
-                            }
-                        }
-                    }
-
-                    DispatchQueue.main.sync {
-                        self.loadingView.stopAnimating()
-                        self.loadingView.removeFromSuperview()
-                    }
-
-                    group.leave()
-
-
+                DispatchQueue.main.sync {
+                    self.loadingView.stopAnimating()
+                    self.loadingView.removeFromSuperview()
                 }
-
+                
+                group.leave()
+                
             })
 
             group.notify(queue: DispatchQueue.main){
@@ -104,60 +78,38 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
         
         group.enter()
         if !(emailTextField.text?.isEmpty)!{
-            apiManager.getUser(email: emailTextField.text!, completionHandler: { data, error in
+            apiManager.getUser(email: emailTextField.text!, completionHandler: { token, error in
                 
-            guard let data = data else {
+            guard let token = token else {
                 print(error as Any)
                 return
             }
             
-            let json = try? JSONSerialization.jsonObject(with: data, options: [])
-            
-            if let dictionary = json as? [String: Any] {
                 
-                
-                for (key, value) in dictionary {
-                    if key == "token"{
-                        self.userdefaults.set(value as! String, forKey: "token")
-                        self.userdefaults.set(self.emailTextField.text, forKey: "email")
-                        self.apiManager.token = value as! String
-                        self.apiManager.socketId = "431.3973413"
-                        self.loggedIn = true
-                    }
-                }
-                
-                self.apiManager.getGames(completionHandler: { data, error in
+
+                self.apiManager.getGames(completionHandler: { isLogedIn, gameData, error in
                     
-                    guard let data = data else {
+                    guard let gameData = gameData else {
                         print(error as Any)
                         return
                     }
                     
-                        let json = try? JSONSerialization.jsonObject(with: data, options: [])
+                    self.games = gameData
                     
-                        if let dictionary = json as? [String: Any] {
-                            let games = dictionary["games"] as? [[String:Any]]
+                    DispatchQueue.main.sync {
+                        self.userdefaults.set(token, forKey: "token")
+                        self.userdefaults.set(self.emailTextField.text, forKey: "email")
+                        self.loggedIn = true
 
-                            for b in games!{
-                                if let game = Game(json: b){
-                                    self.games.append(game)
-                                }
-                            }
-                            DispatchQueue.main.async {
-                                self.loadingView.stopAnimating()
-                                self.loadingView.removeFromSuperview()
-                            }
-                            
-                            group.leave()
-
-                            
-                        }
+                        self.loadingView.stopAnimating()
+                        self.loadingView.removeFromSuperview()
+                    }
+                    
+                    group.leave()
                     
                     })
-                }
-            
+                
             })
-        
         
         }
         
@@ -174,7 +126,7 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
     }
     
     func showGameScreen(){
-        if self.loggedIn{
+        if self.apiManager.isLoggedIn{
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "GamesTableView") as! GamesTableViewController
             let navigationController = UINavigationController(rootViewController: vc)
@@ -184,6 +136,8 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
             self.present(navigationController, animated: true, completion: nil)
         }
     }
+    
+    
     
     /*
      

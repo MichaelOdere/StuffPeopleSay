@@ -17,16 +17,16 @@ class APIManager{
 
     private let baseURL = "https://692188cd-b52e-4eef-8712-6b069331e1d9.now.sh"
 
-    init(token: String?, socketId: String) {
-        self.token = token
-        self.socketId = socketId
-
-        if token != nil{
-            isLoggedIn = true
-        }
-    }
+//    init(token: String?, socketId: String) {
+//        self.token = token
+//        self.socketId = socketId
+//
+//        if token != nil{
+//            isLoggedIn = true
+//        }
+//    }
     
-    func getUser(email:String, completionHandler: @escaping (Data?, Error?) -> Void) {
+    func getUser(email:String, completionHandler: @escaping (String?, Error?) -> Void) {
         
         let url = URL(string: baseURL + "/users/auth")!
         var request = URLRequest(url: url)
@@ -38,14 +38,26 @@ class APIManager{
                 completionHandler(nil, error)
                 return
             }
-            completionHandler(data, nil)
+            
+            let json = try? JSONSerialization.jsonObject(with: data, options: [])
+            
+            if let dictionary = json as? [String: Any] {
+                for (key, value) in dictionary {
+                    if key == "token"{
+
+                        self.token = value as! String
+                        self.socketId = "431.3973413"
+                    }
+                }
+                completionHandler(self.token, nil)
+            }
         }
         
         task.resume()
         
     }
     
-    func getGames(completionHandler: @escaping (Data?, Error?) -> Void) {
+    func getGames(completionHandler: @escaping (Bool?, [Game]?, Error?) -> Void) {
         let url = URL(string: baseURL + "/games")!
         var request = URLRequest(url: url)
 
@@ -56,12 +68,32 @@ class APIManager{
         
         let task = URLSession.shared.dataTask(with: request) {data, response, error in
             guard let data = data, error == nil else {
-                completionHandler(nil, error)
+                completionHandler(false, nil, error)
                 return
             }
-            completionHandler(data, nil)
+            
+            var games:[Game] = []
+            let json = try? JSONSerialization.jsonObject(with: data, options: [])
+            
+            if let dictionary = json as? [String: Any] {
+                
+                if !self.checkLoggedIn(dictionary: dictionary){
+                    completionHandler(false, [], nil)
+                    return
+                }
+                
+                
+                if let gamesData = dictionary["games"] as? [[String:Any]]{
+                    var games:[Game] = []
+                    for g in gamesData{
+                        if let game = Game(json: g){
+                            games.append(game)
+                        }
+                    }
+                completionHandler(true, games, nil)
+                }
+            }
         }
-        
         task.resume()
         
     }
@@ -161,6 +193,23 @@ class APIManager{
         task.resume()
     }
     
-    // Update board
-    // Update a game
+    func checkLoggedIn(dictionary: [String: Any])->Bool{
+        var loggedIn = false
+        let userdefaults = UserDefaults()
+        
+        if let message = dictionary["message"] as? String {
+    
+            if message == "Unauthorized"{
+                userdefaults.removeObject(forKey: "token")
+                loggedIn = false
+                self.isLoggedIn = false
+            }
+        }else{
+            loggedIn = true
+            self.isLoggedIn = true
+        }
+        
+        return loggedIn
+    }
+    
 }

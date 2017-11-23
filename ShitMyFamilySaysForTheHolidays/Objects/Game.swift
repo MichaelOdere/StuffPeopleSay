@@ -14,7 +14,6 @@ struct Game {
 extension Game {
     init?(json: [String: Any]) {
         
-        print(json)
         guard let gameId = json["gameId"] as? String,
             let status = json["status"] as? String,
             let boards = json["boards"] as? [String:Any],
