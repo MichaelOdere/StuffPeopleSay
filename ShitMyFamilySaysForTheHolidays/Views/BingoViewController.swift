@@ -10,7 +10,7 @@ import UIKit
 
 class BingoViewController:UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
     var bingoGame:BingoGame!
-    var game:Game!
+    var gameIndex:Int!
     var gameStore:GameStore!
     var pushManager:PusherManager!
 
@@ -39,6 +39,7 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
                                                object: nil)
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 25
     }
@@ -46,17 +47,17 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         //        playing , ended posibled statuses
-        if game.status.lowercased() != "playing"{
+        if self.gameStore.games[gameIndex].status.lowercased() != "playing"{
             return
         }
         
-        if indexPath.row < game.cards.count{
-            let card = game.cards[indexPath.row]
+        if indexPath.row < self.gameStore.games[gameIndex].cards.count{
+            let card = self.gameStore.games[gameIndex].cards[indexPath.row]
             self.gameStore.apiManager.updateBoard(boardCardId: card.boardCardId)
             if card.active == 0{
-                game.cards[indexPath.row].active = 1
+                self.gameStore.games[gameIndex].cards[indexPath.row].active = 1
             }else{
-                game.cards[indexPath.row].active = 0
+                self.gameStore.games[gameIndex].cards[indexPath.row].active = 0
             }
         }
         
@@ -79,8 +80,8 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
             
             if (bingoGame.checkVictory(x: x, y: y)){
                
-                game.status = "ended"
-                self.gameStore.apiManager.updateGame(gameId: game.gameId)
+                self.gameStore.games[gameIndex].status = "ended"
+                self.gameStore.apiManager.updateGame(gameId: self.gameStore.games[gameIndex].gameId)
                 showAlert {
                     self.bingoGame.boardReset()
                     self.collectionView.reloadData()
@@ -108,7 +109,7 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BingoCell", for: indexPath) as! BingoCollectionCell
-        let card = game.cards[indexPath.row]
+        let card = self.gameStore.games[gameIndex].cards[indexPath.row]
         cell.backgroundColor = UIColor(red: 54/255.0, green: 80/255.0, blue: 98/255.0, alpha: 1.0)
     
         cell.title.text = card.name
@@ -134,7 +135,7 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
     }
     
     @objc func didBecomeActive(){
-
+        var oldGameId = self.gameStore.games[gameIndex].gameId
         if self.gameStore.isLoggedIn{
             self.loadingView.startAnimating()
             self.view.addSubview(self.loadingView)
@@ -148,9 +149,9 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
             
             group.notify(queue: DispatchQueue.main){
                 
-                let g = self.gameStore.games.filter({ $0.gameId == self.game.gameId })
+                let g = self.gameStore.games.filter({ $0.gameId == oldGameId })
                 if g.first != nil{
-                    self.game = g.first
+                    self.gameStore.games[self.gameIndex] = g.first!
                 }
                 
                 self.tableview.reloadData()
@@ -168,12 +169,11 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
 extension BingoViewController: UITableViewDelegate, UITableViewDataSource{
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("HERE IN TABLEVIEW")
-        return self.game.users.count
+        return self.self.gameStore.games[gameIndex].users.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let user =  self.game.users[indexPath.row]
+        let user =  self.self.gameStore.games[gameIndex].users[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell")
         
         cell?.textLabel?.text = user.name

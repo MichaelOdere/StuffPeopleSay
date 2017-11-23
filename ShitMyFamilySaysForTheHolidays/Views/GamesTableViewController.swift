@@ -52,7 +52,9 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
         let vc = sb.instantiateViewController(withIdentifier: "BingoController") as! BingoViewController
         
         vc.gameStore = self.gameStore
-        vc.game = self.gameStore.games[indexPath.row]
+        vc.gameIndex = gameStore.games.index(where: { (item) -> Bool in
+            item.gameId == self.gameStore.games[indexPath.row].gameId
+        })
 
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -81,6 +83,23 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
     }
 
     @IBAction func newGame(_ sender: Any) {
+        let alert = UIAlertController(title: "Are you sure you want to Create a new game?",
+                                      message: nil,
+                                      preferredStyle: .actionSheet)
+        
+        let add = UIAlertAction(title: "Create", style: .default, handler: { [weak alert] (_) in
+            self.addNewGame()
+        })
+        alert.addAction(add)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    func addNewGame(){
         self.gameStore.apiManager.createGame(completionHandler: { data, error in
             
             guard let data = data else {

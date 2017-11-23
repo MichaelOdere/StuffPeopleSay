@@ -67,13 +67,15 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
             }
             
             DispatchQueue.main.sync {
-                self.loadingView.stopAnimating()
-                self.loadingView.removeFromSuperview()
-
+               
                 if login {
                     self.showGameScreen()
                     
                 }
+                self.loadingView.stopAnimating()
+                self.loadingView.removeFromSuperview()
+
+               
             }
         })
         
