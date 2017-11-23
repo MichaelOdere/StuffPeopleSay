@@ -134,19 +134,32 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
     }
     
     @objc func didBecomeActive(){
-        
-        print("active in bingo!")
+
         if self.gameStore.isLoggedIn{
             self.loadingView.startAnimating()
             self.view.addSubview(self.loadingView)
             
+            let group = DispatchGroup()
+            group.enter()
             self.gameStore.updateGames(completionHandler: { error in
+                group.leave()
+                
+            })
+            
+            group.notify(queue: DispatchQueue.main){
+                
+                let g = self.gameStore.games.filter({ $0.gameId == self.game.gameId })
+                if g.first != nil{
+                    self.game = g.first
+                }
+                
                 self.tableview.reloadData()
                 self.collectionView.reloadData()
-
+                
                 self.loadingView.stopAnimating()
                 self.loadingView.removeFromSuperview()
-            })
+            
+            }
             
         }
         

@@ -108,18 +108,24 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
     }
     
     @objc func didBecomeActive(){
-        print("active in table!")
 
         if self.gameStore.isLoggedIn{
             self.loadingView.startAnimating()
             self.view.addSubview(self.loadingView)
 
+            let group = DispatchGroup()
+            group.enter()
             self.gameStore.updateGames(completionHandler: { error in
+                group.leave()
+                
+            })
+            
+            group.notify(queue: DispatchQueue.main){
                 
                 self.loadingView.stopAnimating()
                 self.loadingView.removeFromSuperview()
                 self.tableview.reloadData()
-            })
+            }
             
         }
     
