@@ -15,43 +15,75 @@ class GameStore{
     var pushManager:PusherManager!
 
     // User Variables
-    var loggedIn:Bool!
+    var isLoggedIn:Bool!
     var userdefaults:UserDefaults!
 
     // All of the games
     var games:[Game]!
     
-    init(completion: @escaping (Bool?, Error?) -> Void ) {
+    // Return a bool indicating a login was successfull
+    init() {
         apiManager = APIManager()
         pushManager = PusherManager()
        
-        loggedIn = false
+        isLoggedIn = false
         userdefaults = UserDefaults()
        
         games = []
         
+    }
+    
+    func loginUserStart(completionHandler: @escaping (Bool?, Error?) -> Void){
        
         if userdefaults.string(forKey: "token") != nil{
             apiManager.token =  userdefaults.string(forKey: "token")
             apiManager.socketId = "431.3973413"
             
+            self.updateGames(completionHandler: { error in
+                
+                completionHandler(self.isLoggedIn, error)
+            })
+            
+        }else{
+            completionHandler(false, nil)
         }
-        
-        completion(loggedIn, nil)
     }
     
-    func updateGames(completion: @escaping (Error?) -> Void){
-        self.apiManager.getGames(completionHandler: { isLoggedin, gameData, error in
+    func loginUserEmail(email:String, completionHandler: @escaping (Bool?, Error?) -> Void){
+        
+        self.apiManager.getUser(email: email, completionHandler:  { (token, error) in
+            
+            guard let token = token else {
+                print(error as Any)
+                return
+            }
+            
+            self.userdefaults.set(token, forKey: "token")
+            self.userdefaults.set(email, forKey: "email")
+            
+            self.updateGames(completionHandler: { error in
+                
+                completionHandler(self.isLoggedIn, error)
+            })
+        })
+        
+    }
+    
+    func updateGames(completionHandler: @escaping (Error?) -> Void){
+        self.apiManager.getGames(completionHandler: { loggedIn, gameData, error in
             
             guard let gameData = gameData else {
                 print(error as Any)
                 return
             }
             
-            self.loggedIn = isLoggedin
+            self.isLoggedIn = loggedIn
             self.games = gameData
             
+            completionHandler(error)
         })
+        
+        
     }
     
 }

@@ -11,15 +11,20 @@ import UIKit
 class BingoViewController:UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
     var bingoGame:BingoGame!
     var game:Game!
-    var apiManager:APIManager!
+    var gameStore:GameStore!
     var pushManager:PusherManager!
+
+    var loadingView:UIActivityIndicatorView!
 
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet weak var tableview: UITableView!
     
-    let arr = Array(0...24)
-    
     override func viewDidLoad() {
+        
+        loadingView = UIActivityIndicatorView(frame: self.view.frame)
+        loadingView.backgroundColor = UIColor.gray
+        loadingView.layer.opacity = 0.8
+        
         collectionView.dataSource = self
         collectionView.delegate = self
 
@@ -28,10 +33,14 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
 
         bingoGame = BingoGame()
         
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(BingoViewController.didBecomeActive),
+                                               name: Notification.Name("didBecomeActive"),
+                                               object: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arr.count
+        return 25
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -43,7 +52,7 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
         
         if indexPath.row < game.cards.count{
             let card = game.cards[indexPath.row]
-            self.apiManager.updateBoard(boardCardId: card.boardCardId)
+            self.gameStore.apiManager.updateBoard(boardCardId: card.boardCardId)
             if card.active == 0{
                 game.cards[indexPath.row].active = 1
             }else{
@@ -68,11 +77,10 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
                 bingoGame.board[x][y] = 1
             }
             
-            print(bingoGame.board)
             if (bingoGame.checkVictory(x: x, y: y)){
                
                 game.status = "ended"
-                self.apiManager.updateGame(gameId: game.gameId)
+                self.gameStore.apiManager.updateGame(gameId: game.gameId)
                 showAlert {
                     self.bingoGame.boardReset()
                     self.collectionView.reloadData()
@@ -123,6 +131,25 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
     
     @IBAction func logoutNavBar(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func didBecomeActive(){
+        
+        print("active in bingo!")
+        if self.gameStore.isLoggedIn{
+            self.loadingView.startAnimating()
+            self.view.addSubview(self.loadingView)
+            
+            self.gameStore.updateGames(completionHandler: { error in
+                self.tableview.reloadData()
+                self.collectionView.reloadData()
+
+                self.loadingView.stopAnimating()
+                self.loadingView.removeFromSuperview()
+            })
+            
+        }
+        
     }
 }
 extension BingoViewController: UITableViewDelegate, UITableViewDataSource{

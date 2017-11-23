@@ -9,26 +9,38 @@
 import UIKit
 
 class GamesTableViewController:UIViewController, UITableViewDelegate, UITableViewDataSource{
+
+    var gameStore:GameStore!
     
-    var games:[Game] = []
-    var apiManager:APIManager!
+    var loadingView:UIActivityIndicatorView!
+
     @IBOutlet var tableview: UITableView!
     
     override func viewDidLoad() {
+        loadingView = UIActivityIndicatorView(frame: self.view.frame)
+        loadingView.backgroundColor = UIColor.gray
+        loadingView.layer.opacity = 0.8
+        
         tableview.delegate = self
         tableview.dataSource = self
+        
+        NotificationCenter.default.addObserver(self,
+                                                 selector: #selector(GamesTableViewController.didBecomeActive),
+                                                 name: Notification.Name("didBecomeActive"),
+                                                 object: nil)
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return games.count
+        return gameStore.games.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell")
         
-        cell?.textLabel?.text = games[indexPath.row].gameId
-        cell?.detailTextLabel?.text = games[indexPath.row].status
-        if games[indexPath.row].status.lowercased() == "ended"{
+        cell?.textLabel?.text = gameStore.games[indexPath.row].gameId
+        cell?.detailTextLabel?.text = gameStore.games[indexPath.row].status
+        if gameStore.games[indexPath.row].status.lowercased() == "ended"{
             cell?.backgroundColor = UIColor.green
         }
         
@@ -39,8 +51,8 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "BingoController") as! BingoViewController
         
-        vc.game = games[indexPath.row]
-        vc.apiManager = self.apiManager
+        vc.gameStore = self.gameStore
+        vc.game = self.gameStore.games[indexPath.row]
 
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -57,7 +69,7 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
             let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
             guard let cardText = textField?.text else {return}
             if !cardText.isEmpty{
-                self.apiManager.createCard(name: cardText)
+                self.gameStore.apiManager.createCard(name: cardText)
             }
         })
         alert.addAction(add)
@@ -69,7 +81,7 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
     }
 
     @IBAction func newGame(_ sender: Any) {
-        self.apiManager.createGame(completionHandler: { data, error in
+        self.gameStore.apiManager.createGame(completionHandler: { data, error in
             
             guard let data = data else {
                 print(error as Any)
@@ -81,18 +93,35 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
             if let dictionary = json as? [String: Any] {
                 print(dictionary)
                 if let game = Game(json: dictionary){
-                    self.games.insert(game, at: 0)
+                    self.gameStore.games.insert(game, at: 0)
                     print("New game added")
                 }
                 
-                print(self.games.count)
+                print(self.gameStore.games.count)
                 DispatchQueue.main.sync {
                     self.tableview.reloadData()
                 }
                 
-                
             }
             
         })
+    }
+    
+    @objc func didBecomeActive(){
+        print("active in table!")
+
+        if self.gameStore.isLoggedIn{
+            self.loadingView.startAnimating()
+            self.view.addSubview(self.loadingView)
+
+            self.gameStore.updateGames(completionHandler: { error in
+                
+                self.loadingView.stopAnimating()
+                self.loadingView.removeFromSuperview()
+                self.tableview.reloadData()
+            })
+            
+        }
+    
     }
 }

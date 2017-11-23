@@ -10,21 +10,10 @@ import Foundation
 
 class APIManager{
     
-    var isLoggedIn:Bool = false
-    
     var token:String!
     var socketId:String!
 
     private let baseURL = "https://692188cd-b52e-4eef-8712-6b069331e1d9.now.sh"
-
-//    init(token: String?, socketId: String) {
-//        self.token = token
-//        self.socketId = socketId
-//
-//        if token != nil{
-//            isLoggedIn = true
-//        }
-//    }
     
     func getUser(email:String, completionHandler: @escaping (String?, Error?) -> Void) {
         
@@ -202,11 +191,9 @@ class APIManager{
             if message == "Unauthorized"{
                 userdefaults.removeObject(forKey: "token")
                 loggedIn = false
-                self.isLoggedIn = false
             }
         }else{
             loggedIn = true
-            self.isLoggedIn = true
         }
         
         return loggedIn
