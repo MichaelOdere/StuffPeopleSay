@@ -154,6 +154,7 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
                     self.gameStore.games[self.gameIndex] = g.first!
                 }
                 
+                
                 self.tableview.reloadData()
                 self.collectionView.reloadData()
                 
