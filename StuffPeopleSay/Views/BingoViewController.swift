@@ -1,6 +1,6 @@
 //
 //  BingoViewController.swift
-//  ShitMyFamilySaysForTheHolidays
+//  StuffPeopleSay
 //
 //  Created by Michael Odere on 11/13/17.
 //  Copyright © 2017 michaelodere. All rights reserved.

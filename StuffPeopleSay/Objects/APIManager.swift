@@ -1,6 +1,6 @@
 //
 //  APIManager.swift
-//  ShitMyFamilySaysForTheHolidays
+//  StuffPeopleSay
 //
 //  Created by Michael Odere on 11/20/17.
 //  Copyright © 2017 michaelodere. All rights reserved.

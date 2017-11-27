@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		22E7872F6D2EF3F008E3E6AD /* Pods_ShitMyFamilySaysForTheHolidays.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13534857A2A02BCB056B3017 /* Pods_ShitMyFamilySaysForTheHolidays.framework */; };
+		21A460F98FF1CCF3F16E5B3F /* Pods_StuffPeopleSay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51FA5B8480CBA27CE3AE29CC /* Pods_StuffPeopleSay.framework */; };
 		F90B4B7A1FBBA232002FEBF0 /* PusherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90B4B791FBBA232002FEBF0 /* PusherManager.swift */; };
 		F92DBED81FBB8D4000B4566F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DBED71FBB8D4000B4566F /* LoginViewController.swift */; };
 		F92DBEDA1FBB8D5300B4566F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DBED91FBB8D5300B4566F /* User.swift */; };
@@ -27,15 +27,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		13534857A2A02BCB056B3017 /* Pods_ShitMyFamilySaysForTheHolidays.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShitMyFamilySaysForTheHolidays.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5CEE58B8585F5A9DA23CA9D4 /* Pods-ShitMyFamilySaysForTheHolidays.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShitMyFamilySaysForTheHolidays.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShitMyFamilySaysForTheHolidays/Pods-ShitMyFamilySaysForTheHolidays.debug.xcconfig"; sourceTree = "<group>"; };
-		DFD8F2990906148AA5B43893 /* Pods-ShitMyFamilySaysForTheHolidays.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShitMyFamilySaysForTheHolidays.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShitMyFamilySaysForTheHolidays/Pods-ShitMyFamilySaysForTheHolidays.release.xcconfig"; sourceTree = "<group>"; };
+		51FA5B8480CBA27CE3AE29CC /* Pods_StuffPeopleSay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StuffPeopleSay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		969F576DC84CC8784B284975 /* Pods-StuffPeopleSay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StuffPeopleSay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StuffPeopleSay/Pods-StuffPeopleSay.debug.xcconfig"; sourceTree = "<group>"; };
+		B82C6D91C9AF9E86158C2F3E /* Pods-StuffPeopleSay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StuffPeopleSay.release.xcconfig"; path = "Pods/Target Support Files/Pods-StuffPeopleSay/Pods-StuffPeopleSay.release.xcconfig"; sourceTree = "<group>"; };
 		F90B4B791FBBA232002FEBF0 /* PusherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PusherManager.swift; sourceTree = "<group>"; };
 		F92DBED71FBB8D4000B4566F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F92DBED91FBB8D5300B4566F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F95B17141FBBBBEF00AA000B /* GameStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStore.swift; sourceTree = "<group>"; };
 		F95B17161FBBBBF400AA000B /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		F96AA5FD1FBAB4F4001E7CCD /* ShitMyFamilySaysForTheHolidays.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShitMyFamilySaysForTheHolidays.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F96AA5FD1FBAB4F4001E7CCD /* StuffPeopleSay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StuffPeopleSay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F96AA6001FBAB4F4001E7CCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F96AA6051FBAB4F4001E7CCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F96AA6071FBAB4F4001E7CCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,7 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22E7872F6D2EF3F008E3E6AD /* Pods_ShitMyFamilySaysForTheHolidays.framework in Frameworks */,
+				21A460F98FF1CCF3F16E5B3F /* Pods_StuffPeopleSay.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,8 +65,8 @@
 		08B4A7B238B211AE941333FA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5CEE58B8585F5A9DA23CA9D4 /* Pods-ShitMyFamilySaysForTheHolidays.debug.xcconfig */,
-				DFD8F2990906148AA5B43893 /* Pods-ShitMyFamilySaysForTheHolidays.release.xcconfig */,
+				969F576DC84CC8784B284975 /* Pods-StuffPeopleSay.debug.xcconfig */,
+				B82C6D91C9AF9E86158C2F3E /* Pods-StuffPeopleSay.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -74,7 +74,7 @@
 		AD3B93713703626E06F1E3B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				13534857A2A02BCB056B3017 /* Pods_ShitMyFamilySaysForTheHolidays.framework */,
+				51FA5B8480CBA27CE3AE29CC /* Pods_StuffPeopleSay.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -108,7 +108,7 @@
 		F96AA5F41FBAB4F4001E7CCD = {
 			isa = PBXGroup;
 			children = (
-				F96AA5FF1FBAB4F4001E7CCD /* ShitMyFamilySaysForTheHolidays */,
+				F96AA5FF1FBAB4F4001E7CCD /* StuffPeopleSay */,
 				F96AA5FE1FBAB4F4001E7CCD /* Products */,
 				08B4A7B238B211AE941333FA /* Pods */,
 				AD3B93713703626E06F1E3B4 /* Frameworks */,
@@ -118,12 +118,12 @@
 		F96AA5FE1FBAB4F4001E7CCD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F96AA5FD1FBAB4F4001E7CCD /* ShitMyFamilySaysForTheHolidays.app */,
+				F96AA5FD1FBAB4F4001E7CCD /* StuffPeopleSay.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F96AA5FF1FBAB4F4001E7CCD /* ShitMyFamilySaysForTheHolidays */ = {
+		F96AA5FF1FBAB4F4001E7CCD /* StuffPeopleSay */ = {
 			isa = PBXGroup;
 			children = (
 				F96AA6001FBAB4F4001E7CCD /* AppDelegate.swift */,
@@ -134,15 +134,15 @@
 				F96AA6091FBAB4F4001E7CCD /* LaunchScreen.storyboard */,
 				F96AA60C1FBAB4F4001E7CCD /* Info.plist */,
 			);
-			path = ShitMyFamilySaysForTheHolidays;
+			path = StuffPeopleSay;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F96AA5FC1FBAB4F4001E7CCD /* ShitMyFamilySaysForTheHolidays */ = {
+		F96AA5FC1FBAB4F4001E7CCD /* StuffPeopleSay */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F96AA60F1FBAB4F4001E7CCD /* Build configuration list for PBXNativeTarget "ShitMyFamilySaysForTheHolidays" */;
+			buildConfigurationList = F96AA60F1FBAB4F4001E7CCD /* Build configuration list for PBXNativeTarget "StuffPeopleSay" */;
 			buildPhases = (
 				07D07E517315976D61667383 /* [CP] Check Pods Manifest.lock */,
 				F96AA5F91FBAB4F4001E7CCD /* Sources */,
@@ -155,9 +155,9 @@
 			);
 			dependencies = (
 			);
-			name = ShitMyFamilySaysForTheHolidays;
+			name = StuffPeopleSay;
 			productName = ShitMyFamilySaysForTheHolidays;
-			productReference = F96AA5FD1FBAB4F4001E7CCD /* ShitMyFamilySaysForTheHolidays.app */;
+			productReference = F96AA5FD1FBAB4F4001E7CCD /* StuffPeopleSay.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -176,7 +176,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F96AA5F81FBAB4F4001E7CCD /* Build configuration list for PBXProject "ShitMyFamilySaysForTheHolidays" */;
+			buildConfigurationList = F96AA5F81FBAB4F4001E7CCD /* Build configuration list for PBXProject "StuffPeopleSay" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -189,7 +189,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F96AA5FC1FBAB4F4001E7CCD /* ShitMyFamilySaysForTheHolidays */,
+				F96AA5FC1FBAB4F4001E7CCD /* StuffPeopleSay */,
 			);
 		};
 /* End PBXProject section */
@@ -219,7 +219,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ShitMyFamilySaysForTheHolidays-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-StuffPeopleSay-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -238,7 +238,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShitMyFamilySaysForTheHolidays/Pods-ShitMyFamilySaysForTheHolidays-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StuffPeopleSay/Pods-StuffPeopleSay-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C68D4FFB6F696BEA654551A5 /* [CP] Embed Pods Frameworks */ = {
@@ -247,7 +247,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ShitMyFamilySaysForTheHolidays/Pods-ShitMyFamilySaysForTheHolidays-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-StuffPeopleSay/Pods-StuffPeopleSay-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/PusherSwift/PusherSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -256,7 +256,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShitMyFamilySaysForTheHolidays/Pods-ShitMyFamilySaysForTheHolidays-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StuffPeopleSay/Pods-StuffPeopleSay-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -413,14 +413,14 @@
 		};
 		F96AA6101FBAB4F4001E7CCD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5CEE58B8585F5A9DA23CA9D4 /* Pods-ShitMyFamilySaysForTheHolidays.debug.xcconfig */;
+			baseConfigurationReference = 969F576DC84CC8784B284975 /* Pods-StuffPeopleSay.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8FX99Z8DDE;
-				INFOPLIST_FILE = ShitMyFamilySaysForTheHolidays/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/StuffPeopleSay/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.michaelodere.ShitMyFamilySaysForTheHolidays;
+				PRODUCT_BUNDLE_IDENTIFIER = com.michaelodere.StuffPeopleSay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -429,14 +429,14 @@
 		};
 		F96AA6111FBAB4F4001E7CCD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFD8F2990906148AA5B43893 /* Pods-ShitMyFamilySaysForTheHolidays.release.xcconfig */;
+			baseConfigurationReference = B82C6D91C9AF9E86158C2F3E /* Pods-StuffPeopleSay.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8FX99Z8DDE;
-				INFOPLIST_FILE = ShitMyFamilySaysForTheHolidays/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/StuffPeopleSay/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.michaelodere.ShitMyFamilySaysForTheHolidays;
+				PRODUCT_BUNDLE_IDENTIFIER = com.michaelodere.StuffPeopleSay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -446,7 +446,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F96AA5F81FBAB4F4001E7CCD /* Build configuration list for PBXProject "ShitMyFamilySaysForTheHolidays" */ = {
+		F96AA5F81FBAB4F4001E7CCD /* Build configuration list for PBXProject "StuffPeopleSay" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F96AA60D1FBAB4F4001E7CCD /* Debug */,
@@ -455,7 +455,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F96AA60F1FBAB4F4001E7CCD /* Build configuration list for PBXNativeTarget "ShitMyFamilySaysForTheHolidays" */ = {
+		F96AA60F1FBAB4F4001E7CCD /* Build configuration list for PBXNativeTarget "StuffPeopleSay" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F96AA6101FBAB4F4001E7CCD /* Debug */,
