@@ -11,7 +11,7 @@ import UIKit
 class BingoCollectionCell:UICollectionViewCell{
     
     @IBOutlet var title:UILabel!
-    @IBOutlet var pieceImage:UIImageView!
+    @IBOutlet var pieceView:UIView!
     
     var xIndex:Int!
     var yIndex:Int!

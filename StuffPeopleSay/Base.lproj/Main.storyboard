@@ -91,29 +91,26 @@
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a sentence lol" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PM-Lm-40i">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a sentence" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PM-Lm-40i">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" red="0.30123111605644226" green="0.80664354562759399" blue="0.93685764074325562" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yKa-3e-3Hq">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dqs-Kc-trm">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                </imageView>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </view>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="0PM-Lm-40i" firstAttribute="top" secondItem="SAL-fT-W6m" secondAttribute="top" id="2Sk-UH-try"/>
-                                            <constraint firstAttribute="trailing" secondItem="yKa-3e-3Hq" secondAttribute="trailing" id="C1r-V6-R21"/>
-                                            <constraint firstItem="yKa-3e-3Hq" firstAttribute="leading" secondItem="SAL-fT-W6m" secondAttribute="leading" id="RZK-uf-6Nb"/>
                                             <constraint firstItem="0PM-Lm-40i" firstAttribute="leading" secondItem="SAL-fT-W6m" secondAttribute="leading" id="W1G-Fx-Awp"/>
                                             <constraint firstAttribute="bottom" secondItem="0PM-Lm-40i" secondAttribute="bottom" id="ZYN-Sc-mHM"/>
-                                            <constraint firstItem="yKa-3e-3Hq" firstAttribute="top" secondItem="SAL-fT-W6m" secondAttribute="top" id="bMy-Bp-sD0"/>
-                                            <constraint firstAttribute="bottom" secondItem="yKa-3e-3Hq" secondAttribute="bottom" id="cUh-JK-32E"/>
                                             <constraint firstAttribute="trailing" secondItem="0PM-Lm-40i" secondAttribute="trailing" id="fHS-y5-HEo"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="pieceImage" destination="yKa-3e-3Hq" id="saV-e7-Beg"/>
+                                            <outlet property="pieceView" destination="dqs-Kc-trm" id="v7m-Wa-zJk"/>
                                             <outlet property="title" destination="0PM-Lm-40i" id="ve4-Cs-Jyb"/>
                                         </connections>
                                     </collectionViewCell>

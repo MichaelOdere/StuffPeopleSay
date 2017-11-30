@@ -15,6 +15,8 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
     var pushManager:PusherManager!
 
     var loadingView:UIActivityIndicatorView!
+    let pieceTransparency:CGFloat = 0.2
+    
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet weak var tableview: UITableView!
     
@@ -36,6 +38,7 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
                                                selector: #selector(BingoViewController.didBecomeActive),
                                                name: Notification.Name("didBecomeActive"),
                                                object: nil)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -63,15 +66,11 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
             let x = cell.xIndex!
             let y = cell.yIndex!
             
-            if cell.pieceImage.image != nil{
-                cell.pieceImage.image = nil
-                
+            if cell.pieceView.alpha != pieceTransparency{
+                cell.pieceView.alpha = 0.0
                 bingoGame.board[x][y] = 0
             }else{
-                let image = UIImage(named: "bingo_piece.png")
-                cell.pieceImage.image = image
-                cell.pieceImage.alpha = 0.6
-           
+                cell.pieceView.alpha = pieceTransparency
                 bingoGame.board[x][y] = 1
             }
             
@@ -114,16 +113,17 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
         cell.xIndex = indexPath.row / 5
         cell.yIndex = indexPath.row % 5
         
+        cell.pieceView.addSubview(makeDrawnImageView(frame: cell.frame))
+
         if card.active == 1{
-            let image = UIImage(named: "bingo_piece.png")
-            cell.pieceImage.image = image
-            cell.pieceImage.alpha = 0.6
+            cell.pieceView.alpha = pieceTransparency
             bingoGame.board[cell.xIndex][cell.yIndex] = 1
 
         }else{
-            cell.pieceImage.image = nil
-
+            cell.pieceView.alpha = 0.0
         }
+
+
         return cell
     }
     
@@ -132,7 +132,7 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
     }
     
     @objc func didBecomeActive(){
-        var oldGameId = self.gameStore.games[gameIndex].gameId
+        let oldGameId = self.gameStore.games[gameIndex].gameId
         if self.gameStore.isLoggedIn{
             self.loadingView.startAnimating()
             self.view.addSubview(self.loadingView)
@@ -163,6 +163,40 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
         }
         
     }
+    
+    
+    func makeDrawnImageView(frame:CGRect)->UIView{
+        
+        let moveView:UIView = UIView(frame: frame)
+        let width = frame.size.width * 4 / 5
+        let imageView:UIView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: width))
+        moveView.addSubview(imageView)
+       
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+
+        let widthConstraint = NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal,
+                                                 toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: width)
+        widthConstraint.isActive = true
+        let heightConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal,
+                                                  toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: width)
+        heightConstraint.isActive = true
+
+        let imageViewCenterX = NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: moveView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+        imageViewCenterX.isActive = true
+
+        let imageViewCenterY = NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: moveView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
+        imageViewCenterY.isActive = true
+
+        let image = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: width, height: width), cornerRadius: width)
+        let shape = CAShapeLayer()
+        shape.path = image.cgPath
+        shape.fillColor = UIColor.red.cgColor
+        shape.strokeColor = UIColor.black.cgColor
+        
+        imageView.layer.addSublayer(shape)
+
+        return imageView
+    }
 }
 
 extension BingoViewController: UITableViewDelegate, UITableViewDataSource{
@@ -181,3 +215,83 @@ extension BingoViewController: UITableViewDelegate, UITableViewDataSource{
         return cell!
     }
 }
+
+/*
+let moveImage:UIImageView = UIImageView(frame: cell.frame) //UIImageView(frame: cell.convert(cell.frame, to: self.view))
+let moveView:UIView = UIView(frame: cell.frame) //UIImageView(frame: cell.convert(cell.frame, to: self.view))
+let width = cell.frame.width * 4 / 5
+let moveImage = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: width, height: width), cornerRadius: width)
+let shape = CAShapeLayer()
+shape.path = moveImage.cgPath
+shape.fillColor = UIColor.red.cgColor
+shape.strokeColor = UIColor.black.cgColor
+
+moveView.layer.addSublayer(shape)
+//        print("1")
+//        print(moveImage.frame)
+moveView.frame.origin = makeOffScreenFrame(destination: cell.frame.origin)
+//        moveImage.image = gamePieceImage
+moveView.alpha = 1
+self.view.addSubview(moveView)
+//        print("2")
+//        print(moveView.frame)
+//        UIView.animate(withDuration: 1,
+//            delay: 0.4,
+//            usingSpringWithDamping: 0.3,
+//            initialSpringVelocity: 0.5,
+//            options: [],
+//            animations: {
+//                moveView.frame.origin.x += self.view.bounds.width
+//                moveView.alpha = cell.pieceImage.image == nil ? 0 : 0.2
+//        } ,completion: { (nil)   in
+//            cell.pieceImage.alpha = 0.2
+//            print("Complete")
+//            moveView.removeFromSuperview()
+//            print("3")
+//            print(moveView.frame)
+//        })
+*/
+
+
+//    func flashCellImage(cell: BingoCollectionCell){
+//        cell.pieceView.alpha = 1
+//        UIView.animate(withDuration: 0.5) {
+//            cell.pieceView.alpha = 0.2
+//        }
+//    }
+//
+//    func animateCell(cell: BingoCollectionCell){
+//
+//        if cell.pieceView == nil{
+//            return
+//        }
+//
+//        let moveView = makeDrawnImageView(frame: cell.frame)
+//        moveView.frame.origin = makeOffScreenFrame(destination: cell.frame.origin)
+//        self.view.addSubview(moveView)
+//        moveView.alpha = 0.0
+//
+//        UIView.animate(withDuration: 1,  delay: 0.4,
+//            usingSpringWithDamping: 0.3,
+//            initialSpringVelocity: 0.5,
+//            options: [],
+//        animations: {
+//            moveView.frame.origin.x += self.view.bounds.width
+//            moveView.alpha = 0.2
+//
+//        }, completion: { (nil)   in
+//            cell.pieceView = self.makeDrawnImageView(frame: cell.frame)
+//            moveView.removeFromSuperview()
+//
+//            cell.pieceView.backgroundColor = UIColor.purple
+//            print(cell.pieceView.alpha)
+//        })
+//    }
+//
+//    func makeOffScreenFrame(destination: CGPoint)->CGPoint{
+//        let x = destination.x - self.view.bounds.width
+//        let y = destination.y + self.collectionView.frame.origin.y
+//
+//        return CGPoint(x: x, y: y)
+//    }
+

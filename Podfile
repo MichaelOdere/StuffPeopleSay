@@ -6,5 +6,8 @@ target 'StuffPeopleSay' do
 
   # Pods for StuffPeopleSay
   pod 'PusherSwift'
+  pod 'ChameleonFramework', '~> 2.1'
+  pod 'SwiftyJSON', '~> 4.0'
+  pod 'Alamofire', '~> 4.5'
 
 end

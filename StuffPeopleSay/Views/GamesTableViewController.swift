@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class GamesTableViewController:UIViewController, UITableViewDelegate, UITableViewDataSource{
 
@@ -49,7 +50,7 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
         cell?.textLabel?.text = gameStore.games[indexPath.row].gameId
         cell?.detailTextLabel?.text = gameStore.games[indexPath.row].status
         if gameStore.games[indexPath.row].status.lowercased() == "ended"{
-            cell?.backgroundColor = UIColor.green
+            cell?.backgroundColor = UIColor.flatGreen()
         }
         
         return cell!
