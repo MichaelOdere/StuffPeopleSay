@@ -28,7 +28,7 @@ import UIKit
     override var collectionViewContentSize: CGSize {
         return CGSize(width: contentWidth, height: contentHeight)
     }
-    
+
     override func prepare() {
         guard cache.isEmpty == true, let collectionView = collectionView else {
             return
@@ -71,7 +71,7 @@ import UIKit
             // Updates the collection view content height
             contentHeight = max(contentHeight,frame.maxY)
         }
-        
+
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {

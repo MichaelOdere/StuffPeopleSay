@@ -23,12 +23,20 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
         
         tableview.delegate = self
         tableview.dataSource = self
-        
+
         NotificationCenter.default.addObserver(self,
                                                  selector: #selector(GamesTableViewController.didBecomeActive),
                                                  name: Notification.Name("didBecomeActive"),
                                                  object: nil)
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let selectionIndexPath = tableview.indexPathForSelectedRow {
+            tableview.deselectRow(at: selectionIndexPath, animated: animated)
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,6 +65,8 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
         })
 
         self.navigationController?.pushViewController(vc, animated: true)
+
+        
     }
     
     

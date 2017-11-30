@@ -15,7 +15,6 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
     var pushManager:PusherManager!
 
     var loadingView:UIActivityIndicatorView!
-
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet weak var tableview: UITableView!
     
@@ -39,14 +38,12 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
                                                object: nil)
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 25
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        //        playing , ended posibled statuses
         if self.gameStore.games[gameIndex].status.lowercased() != "playing"{
             return
         }
@@ -167,6 +164,7 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
         
     }
 }
+
 extension BingoViewController: UITableViewDelegate, UITableViewDataSource{
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
