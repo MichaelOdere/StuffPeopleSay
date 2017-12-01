@@ -10,23 +10,24 @@
 //
 //class BingoCollectionView: UICollectionView{
 //    
-//    var cards:[Card]?
+//    var deck:Deck = Deck(cards: [])
 //    let pieceTransparency:CGFloat = 0.2
 //    var bingoGame:BingoGame = BingoGame()
+//    var status:String =
 //
 //    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 25
+//        return min(deck.cards.count, 25)
 //    }
 //    
 //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //
-//        if indexPath.row < cards.count{
-//            let card = cards[indexPath.row]
+//        if indexPath.row < cards?.count{
+//            let card = cards![indexPath.row]
 //            self.gameStore.apiManager.updateBoard(boardCardId: card.boardCardId)
 //            if card.active == 0{
-//                self.gameStore.games[gameIndex].my.cards[indexPath.row].active = 1
+//                self.deck.cards[indexPath.row].active = 1
 //            }else{
-//                self.gameStore.games[gameIndex].my.cards[indexPath.row].active = 0
+//                self.deck.cards[indexPath.row].active = 0
 //            }
 //        }
 //        
@@ -82,37 +83,7 @@
 //        return cell
 //    }
 //    
-//    func makeDrawnImageView(frame:CGRect)->UIView{
-//        
-//        let moveView:UIView = UIView(frame: frame)
-//        let width = frame.size.width * 4 / 5
-//        let imageView:UIView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: width))
-//        moveView.addSubview(imageView)
-//        
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        let widthConstraint = NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal,
-//                                                 toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: width)
-//        widthConstraint.isActive = true
-//        let heightConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal,
-//                                                  toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: width)
-//        heightConstraint.isActive = true
-//        
-//        let imageViewCenterX = NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: moveView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
-//        imageViewCenterX.isActive = true
-//        
-//        let imageViewCenterY = NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: moveView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
-//        imageViewCenterY.isActive = true
-//        
-//        let image = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: width, height: width), cornerRadius: width)
-//        let shape = CAShapeLayer()
-//        shape.path = image.cgPath
-//        shape.fillColor = UIColor.red.cgColor
-//        shape.strokeColor = UIColor.black.cgColor
-//        
-//        imageView.layer.addSublayer(shape)
-//        
-//        return imageView
-//    }
+//    
 //}
-
+//
+//

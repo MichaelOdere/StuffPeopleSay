@@ -39,7 +39,6 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
                 print(error as Any)
                 return
             }
-
             
             group.leave()
             
@@ -78,12 +77,7 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
                
             }
         })
-        
-        
-    
     }
-    
-    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -110,68 +104,4 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
             self.emailTextField.text = gameStore.userdefaults.string(forKey: "email")
         }
     }
-    
-
-    
-    /*
-     
-     let games = dictionary["games"] as? [[String:Any]]
-     let boards = games![0]["boards"] as? [String:Any]
-     //                            let source = images[0]["source"] as? [String:Any],
-     //                            print(games)
-     print(boards)
-     //                            let d  = dictionary["games"] as? [String: Any]
-     //                            print(d)
-     //                            let s = d!["boards"]
-     //                            print(s)
-     
-     //                            for (key, value) in dictionary {
-     //                                print("Key \(key)")
-     //                                print("value \(value)")
-     //                            }
-     
-     
- 
-
-let group = DispatchGroup()
-
-group.enter()
-if !(emailTextField.text?.isEmpty)!{
-    self.gameStore.apiManager.getUser(email: emailTextField.text!, completionHandler: { token, error in
-        
-        guard let token = token else {
-            print(error as Any)
-            return
-        }
-        
-        
-        
-        self.gameStore.apiManager.getGames(completionHandler: { isLogedIn, gameData, error in
-            
-            guard let gameData = gameData else {
-                print(error as Any)
-                return
-            }
-            
-            self.gameStore.games = gameData
-            
-            DispatchQueue.main.sync {
-                self.gameStore.userdefaults.set(token, forKey: "token")
-                self.gameStore.userdefaults.set(self.emailTextField.text, forKey: "email")
-                self.gameStore.isLoggedIn = true
-                
-                self.loadingView.stopAnimating()
-                self.loadingView.removeFromSuperview()
-            }
-            
-            group.leave()
-            
-        })
-        
-    })
- 
- group.notify(queue: DispatchQueue.main){
- self.showGameScreen()
- }
-*/
 }

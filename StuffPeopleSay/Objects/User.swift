@@ -11,12 +11,12 @@ import Foundation
 struct User{
     var userId:String
     var name:String
-    var cards:[Card]
+    var deck:Deck
     var count:Int
-    init(userId: String, name: String, cards: [Card], count: Int) {
+    init(userId: String, name: String, deck: Deck, count: Int) {
         self.userId = userId
         self.name = name
-        self.cards = cards
+        self.deck = deck
         self.count = count
     }
     
@@ -32,16 +32,14 @@ extension User {
                 return nil
         }
         
-        var allCards:[Card] = []
-        for c in cardsData {
-            if let card = Card(json: c){
-                allCards.append(card)
-            }
+        if let tempDeck = Deck(json: cardsData){
+            self.deck = tempDeck
+        }else{
+            self.deck = Deck(cards: [])
         }
         
         self.name = name
         self.userId = userId
-        self.cards = allCards
         self.count = count
     }
 }

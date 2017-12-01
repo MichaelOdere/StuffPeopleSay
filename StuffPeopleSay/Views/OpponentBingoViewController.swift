@@ -31,7 +31,7 @@ class OpponentBingoViewController:UIViewController, UICollectionViewDelegate, UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BingoCell", for: indexPath) as! BingoCollectionCell
-        let card = user?.cards[indexPath.row]
+        let card = user?.deck.cards[indexPath.row]
         cell.backgroundColor = UIColor(red: 54/255.0, green: 80/255.0, blue: 98/255.0, alpha: 1.0)
         
         cell.title.text = card?.name

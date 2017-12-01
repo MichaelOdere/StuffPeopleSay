@@ -59,13 +59,13 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
             return
         }
         
-        if indexPath.row < self.gameStore.games[gameIndex].my.cards.count{
-            let card = self.gameStore.games[gameIndex].my.cards[indexPath.row]
+        if indexPath.row < self.gameStore.games[gameIndex].my.deck.cards.count{
+            let card = self.gameStore.games[gameIndex].my.deck.cards[indexPath.row]
             self.gameStore.apiManager.updateBoard(boardCardId: card.boardCardId)
             if card.active == 0{
-                self.gameStore.games[gameIndex].my.cards[indexPath.row].active = 1
+                self.gameStore.games[gameIndex].my.deck.cards[indexPath.row].active = 1
             }else{
-                self.gameStore.games[gameIndex].my.cards[indexPath.row].active = 0
+                self.gameStore.games[gameIndex].my.deck.cards[indexPath.row].active = 0
             }
         }
         
@@ -112,7 +112,7 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BingoCell", for: indexPath) as! BingoCollectionCell
-        let card = self.gameStore.games[gameIndex].my.cards[indexPath.row]
+        let card = self.gameStore.games[gameIndex].my.deck.cards[indexPath.row]
         cell.backgroundColor = UIColor(red: 54/255.0, green: 80/255.0, blue: 98/255.0, alpha: 1.0)
 
         cell.title.text = card.name
@@ -198,86 +198,3 @@ extension BingoViewController: UITableViewDelegate, UITableViewDataSource{
     
     
 }
-
-//extension UIView{
-//    override dra
-//}
-/*
-let moveImage:UIImageView = UIImageView(frame: cell.frame) //UIImageView(frame: cell.convert(cell.frame, to: self.view))
-let moveView:UIView = UIView(frame: cell.frame) //UIImageView(frame: cell.convert(cell.frame, to: self.view))
-let width = cell.frame.width * 4 / 5
-let moveImage = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: width, height: width), cornerRadius: width)
-let shape = CAShapeLayer()
-shape.path = moveImage.cgPath
-shape.fillColor = UIColor.red.cgColor
-shape.strokeColor = UIColor.black.cgColor
-
-moveView.layer.addSublayer(shape)
-//        print("1")
-//        print(moveImage.frame)
-moveView.frame.origin = makeOffScreenFrame(destination: cell.frame.origin)
-//        moveImage.image = gamePieceImage
-moveView.alpha = 1
-self.view.addSubview(moveView)
-//        print("2")
-//        print(moveView.frame)
-//        UIView.animate(withDuration: 1,
-//            delay: 0.4,
-//            usingSpringWithDamping: 0.3,
-//            initialSpringVelocity: 0.5,
-//            options: [],
-//            animations: {
-//                moveView.frame.origin.x += self.view.bounds.width
-//                moveView.alpha = cell.pieceImage.image == nil ? 0 : 0.2
-//        } ,completion: { (nil)   in
-//            cell.pieceImage.alpha = 0.2
-//            print("Complete")
-//            moveView.removeFromSuperview()
-//            print("3")
-//            print(moveView.frame)
-//        })
-*/
-
-
-//    func flashCellImage(cell: BingoCollectionCell){
-//        cell.pieceView.alpha = 1
-//        UIView.animate(withDuration: 0.5) {
-//            cell.pieceView.alpha = 0.2
-//        }
-//    }
-//
-//    func animateCell(cell: BingoCollectionCell){
-//
-//        if cell.pieceView == nil{
-//            return
-//        }
-//
-//        let moveView = makeDrawnImageView(frame: cell.frame)
-//        moveView.frame.origin = makeOffScreenFrame(destination: cell.frame.origin)
-//        self.view.addSubview(moveView)
-//        moveView.alpha = 0.0
-//
-//        UIView.animate(withDuration: 1,  delay: 0.4,
-//            usingSpringWithDamping: 0.3,
-//            initialSpringVelocity: 0.5,
-//            options: [],
-//        animations: {
-//            moveView.frame.origin.x += self.view.bounds.width
-//            moveView.alpha = 0.2
-//
-//        }, completion: { (nil)   in
-//            cell.pieceView = self.makeDrawnImageView(frame: cell.frame)
-//            moveView.removeFromSuperview()
-//
-//            cell.pieceView.backgroundColor = UIColor.purple
-//            print(cell.pieceView.alpha)
-//        })
-//    }
-//
-//    func makeOffScreenFrame(destination: CGPoint)->CGPoint{
-//        let x = destination.x - self.view.bounds.width
-//        let y = destination.y + self.collectionView.frame.origin.y
-//
-//        return CGPoint(x: x, y: y)
-//    }
-

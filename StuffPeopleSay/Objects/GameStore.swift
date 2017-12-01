@@ -84,7 +84,6 @@ class GameStore{
             completionHandler(error)
         })
         
-        
     }
-    
+        
 }
