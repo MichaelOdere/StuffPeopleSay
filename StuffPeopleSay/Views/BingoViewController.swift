@@ -40,6 +40,14 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
                                                object: nil)
         
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let selectionIndexPath = tableview.indexPathForSelectedRow {
+            tableview.deselectRow(at: selectionIndexPath, animated: animated)
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 25
@@ -51,13 +59,13 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
             return
         }
         
-        if indexPath.row < self.gameStore.games[gameIndex].cards.count{
-            let card = self.gameStore.games[gameIndex].cards[indexPath.row]
+        if indexPath.row < self.gameStore.games[gameIndex].my.cards.count{
+            let card = self.gameStore.games[gameIndex].my.cards[indexPath.row]
             self.gameStore.apiManager.updateBoard(boardCardId: card.boardCardId)
             if card.active == 0{
-                self.gameStore.games[gameIndex].cards[indexPath.row].active = 1
+                self.gameStore.games[gameIndex].my.cards[indexPath.row].active = 1
             }else{
-                self.gameStore.games[gameIndex].cards[indexPath.row].active = 0
+                self.gameStore.games[gameIndex].my.cards[indexPath.row].active = 0
             }
         }
         
@@ -81,7 +89,6 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
                 showAlert {
                     self.bingoGame.boardReset()
                     self.collectionView.reloadData()
-
                 }
                 
             }
@@ -105,15 +112,15 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BingoCell", for: indexPath) as! BingoCollectionCell
-        let card = self.gameStore.games[gameIndex].cards[indexPath.row]
+        let card = self.gameStore.games[gameIndex].my.cards[indexPath.row]
         cell.backgroundColor = UIColor(red: 54/255.0, green: 80/255.0, blue: 98/255.0, alpha: 1.0)
-    
+
         cell.title.text = card.name
         
         cell.xIndex = indexPath.row / 5
         cell.yIndex = indexPath.row % 5
         
-        cell.pieceView.addSubview(makeDrawnImageView(frame: cell.frame))
+        cell.pieceView.backgroundColor = UIColor.clear
 
         if card.active == 1{
             cell.pieceView.alpha = pieceTransparency
@@ -122,7 +129,6 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
         }else{
             cell.pieceView.alpha = 0.0
         }
-
 
         return cell
     }
@@ -151,7 +157,6 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
                     self.gameStore.games[self.gameIndex] = g.first!
                 }
                 
-                
                 self.tableview.reloadData()
                 self.collectionView.reloadData()
                 
@@ -163,40 +168,7 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
         }
         
     }
-    
-    
-    func makeDrawnImageView(frame:CGRect)->UIView{
-        
-        let moveView:UIView = UIView(frame: frame)
-        let width = frame.size.width * 4 / 5
-        let imageView:UIView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: width))
-        moveView.addSubview(imageView)
-       
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-
-        let widthConstraint = NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal,
-                                                 toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: width)
-        widthConstraint.isActive = true
-        let heightConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal,
-                                                  toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: width)
-        heightConstraint.isActive = true
-
-        let imageViewCenterX = NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: moveView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
-        imageViewCenterX.isActive = true
-
-        let imageViewCenterY = NSLayoutConstraint(item: imageView, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: moveView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
-        imageViewCenterY.isActive = true
-
-        let image = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: width, height: width), cornerRadius: width)
-        let shape = CAShapeLayer()
-        shape.path = image.cgPath
-        shape.fillColor = UIColor.red.cgColor
-        shape.strokeColor = UIColor.black.cgColor
-        
-        imageView.layer.addSublayer(shape)
-
-        return imageView
-    }
+   
 }
 
 extension BingoViewController: UITableViewDelegate, UITableViewDataSource{
@@ -210,12 +182,26 @@ extension BingoViewController: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell")
         
         cell?.textLabel?.text = user.name
-        cell?.detailTextLabel?.text =  "Cards active: " + String(user.cardsActiveCount)
+        cell?.detailTextLabel?.text =  "Cards active: " + String(user.count)
         
         return cell!
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "OpponentBingoViewController") as! OpponentBingoViewController
+        
+        vc.user = gameStore.games[gameIndex].users[indexPath.row]
+
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
 }
 
+//extension UIView{
+//    override dra
+//}
 /*
 let moveImage:UIImageView = UIImageView(frame: cell.frame) //UIImageView(frame: cell.convert(cell.frame, to: self.view))
 let moveView:UIView = UIView(frame: cell.frame) //UIImageView(frame: cell.convert(cell.frame, to: self.view))

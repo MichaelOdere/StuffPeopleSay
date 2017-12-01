@@ -63,7 +63,7 @@ class APIManager{
             
             var games:[Game] = []
             let json = try? JSONSerialization.jsonObject(with: data, options: [])
-            
+
             if let dictionary = json as? [String: Any] {
                 
                 if !self.checkLoggedIn(dictionary: dictionary){

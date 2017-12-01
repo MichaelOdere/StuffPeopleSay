@@ -21,6 +21,9 @@
 		F96AA6151FBAB999001E7CCD /* BingoCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96AA6141FBAB999001E7CCD /* BingoCollectionViewLayout.swift */; };
 		F96C58041FBB5A3B00D49481 /* BingoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C58031FBB5A3B00D49481 /* BingoCollectionCell.swift */; };
 		F96C58061FBB69F600D49481 /* BingoGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C58051FBB69F600D49481 /* BingoGame.swift */; };
+		F9DC7C941FD0C66A0097D4B5 /* BingoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC7C931FD0C66A0097D4B5 /* BingoCollectionView.swift */; };
+		F9DC7C961FD0C8370097D4B5 /* OpponentBingoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC7C951FD0C8370097D4B5 /* OpponentBingoViewController.swift */; };
+		F9DC7C9A1FD1259D0097D4B5 /* PieceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC7C991FD1259D0097D4B5 /* PieceView.swift */; };
 		F9E7B39A1FC3A63500B81872 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E7B3991FC3A63500B81872 /* APIManager.swift */; };
 		F9E7B39C1FC3D28E00B81872 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E7B39B1FC3D28E00B81872 /* Game.swift */; };
 		F9E7B39E1FC3E4F600B81872 /* GamesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E7B39D1FC3E4F600B81872 /* GamesTableViewController.swift */; };
@@ -45,6 +48,9 @@
 		F96AA6141FBAB999001E7CCD /* BingoCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoCollectionViewLayout.swift; sourceTree = "<group>"; };
 		F96C58031FBB5A3B00D49481 /* BingoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoCollectionCell.swift; sourceTree = "<group>"; };
 		F96C58051FBB69F600D49481 /* BingoGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoGame.swift; sourceTree = "<group>"; };
+		F9DC7C931FD0C66A0097D4B5 /* BingoCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoCollectionView.swift; sourceTree = "<group>"; };
+		F9DC7C951FD0C8370097D4B5 /* OpponentBingoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpponentBingoViewController.swift; sourceTree = "<group>"; };
+		F9DC7C991FD1259D0097D4B5 /* PieceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceView.swift; sourceTree = "<group>"; };
 		F9E7B3991FC3A63500B81872 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		F9E7B39B1FC3D28E00B81872 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		F9E7B39D1FC3E4F600B81872 /* GamesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesTableViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +92,7 @@
 				F96C58051FBB69F600D49481 /* BingoGame.swift */,
 				F90B4B791FBBA232002FEBF0 /* PusherManager.swift */,
 				F9E7B3991FC3A63500B81872 /* APIManager.swift */,
+				F9DC7C931FD0C66A0097D4B5 /* BingoCollectionView.swift */,
 				F95B17161FBBBBF400AA000B /* Card.swift */,
 				F9E7B39B1FC3D28E00B81872 /* Game.swift */,
 				F95B17141FBBBBEF00AA000B /* GameStore.swift */,
@@ -99,7 +106,9 @@
 				F92DBED71FBB8D4000B4566F /* LoginViewController.swift */,
 				F9E7B39D1FC3E4F600B81872 /* GamesTableViewController.swift */,
 				F96AA6121FBAB91E001E7CCD /* BingoViewController.swift */,
+				F9DC7C951FD0C8370097D4B5 /* OpponentBingoViewController.swift */,
 				F96C58031FBB5A3B00D49481 /* BingoCollectionCell.swift */,
+				F9DC7C991FD1259D0097D4B5 /* PieceView.swift */,
 				F96AA6141FBAB999001E7CCD /* BingoCollectionViewLayout.swift */,
 			);
 			path = Views;
@@ -273,14 +282,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				F90B4B7A1FBBA232002FEBF0 /* PusherManager.swift in Sources */,
+				F9DC7C961FD0C8370097D4B5 /* OpponentBingoViewController.swift in Sources */,
 				F92DBED81FBB8D4000B4566F /* LoginViewController.swift in Sources */,
 				F96C58041FBB5A3B00D49481 /* BingoCollectionCell.swift in Sources */,
 				F9E7B39C1FC3D28E00B81872 /* Game.swift in Sources */,
+				F9DC7C941FD0C66A0097D4B5 /* BingoCollectionView.swift in Sources */,
 				F96AA6131FBAB91E001E7CCD /* BingoViewController.swift in Sources */,
 				F9E7B39A1FC3A63500B81872 /* APIManager.swift in Sources */,
 				F92DBEDA1FBB8D5300B4566F /* User.swift in Sources */,
 				F96C58061FBB69F600D49481 /* BingoGame.swift in Sources */,
 				F95B17151FBBBBEF00AA000B /* GameStore.swift in Sources */,
+				F9DC7C9A1FD1259D0097D4B5 /* PieceView.swift in Sources */,
 				F95B17171FBBBBF400AA000B /* Card.swift in Sources */,
 				F9E7B39E1FC3E4F600B81872 /* GamesTableViewController.swift in Sources */,
 				F96AA6151FBAB999001E7CCD /* BingoCollectionViewLayout.swift in Sources */,

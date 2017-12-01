@@ -92,22 +92,25 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a sentence" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PM-Lm-40i">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <rect key="frame" x="5" y="5" width="40" height="40"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" red="0.30123111605644226" green="0.80664354562759399" blue="0.93685764074325562" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dqs-Kc-trm">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dqs-Kc-trm" customClass="PieceView" customModule="StuffPeopleSay" customModuleProvider="target">
+                                                    <rect key="frame" x="5" y="5" width="40" height="40"/>
                                                 </view>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="0PM-Lm-40i" firstAttribute="top" secondItem="SAL-fT-W6m" secondAttribute="top" id="2Sk-UH-try"/>
-                                            <constraint firstItem="0PM-Lm-40i" firstAttribute="leading" secondItem="SAL-fT-W6m" secondAttribute="leading" id="W1G-Fx-Awp"/>
-                                            <constraint firstAttribute="bottom" secondItem="0PM-Lm-40i" secondAttribute="bottom" id="ZYN-Sc-mHM"/>
-                                            <constraint firstAttribute="trailing" secondItem="0PM-Lm-40i" secondAttribute="trailing" id="fHS-y5-HEo"/>
+                                            <constraint firstAttribute="trailing" secondItem="dqs-Kc-trm" secondAttribute="trailing" constant="5" id="1cV-ez-Tye"/>
+                                            <constraint firstItem="0PM-Lm-40i" firstAttribute="top" secondItem="SAL-fT-W6m" secondAttribute="top" constant="5" id="5ru-pY-mCs"/>
+                                            <constraint firstAttribute="trailing" secondItem="0PM-Lm-40i" secondAttribute="trailing" constant="5" id="CHr-fD-td1"/>
+                                            <constraint firstAttribute="bottom" secondItem="dqs-Kc-trm" secondAttribute="bottom" constant="5" id="JbU-Pt-Ekn"/>
+                                            <constraint firstItem="dqs-Kc-trm" firstAttribute="leading" secondItem="SAL-fT-W6m" secondAttribute="leading" constant="5" id="boz-ek-tUS"/>
+                                            <constraint firstItem="0PM-Lm-40i" firstAttribute="leading" secondItem="SAL-fT-W6m" secondAttribute="leading" constant="5" id="jAh-o1-MA7"/>
+                                            <constraint firstItem="dqs-Kc-trm" firstAttribute="top" secondItem="SAL-fT-W6m" secondAttribute="top" constant="5" id="nKr-hu-33P"/>
+                                            <constraint firstAttribute="bottom" secondItem="0PM-Lm-40i" secondAttribute="bottom" constant="5" id="u7S-vv-pWG"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="pieceView" destination="dqs-Kc-trm" id="v7m-Wa-zJk"/>
@@ -175,6 +178,74 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sy3-xQ-Fcd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2172" y="268.51574212893553"/>
+        </scene>
+        <!--Opponent Bingo View Controller-->
+        <scene sceneID="Er5-fd-tHE">
+            <objects>
+                <viewController storyboardIdentifier="OpponentBingoViewController" id="GTY-QA-zaq" customClass="OpponentBingoViewController" customModule="StuffPeopleSay" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5fO-ht-Dcy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9VO-Le-3PC">
+                                <rect key="frame" x="0.0" y="64" width="375" height="375"/>
+                                <color key="backgroundColor" red="0.32218831780000001" green="0.41868555549999997" blue="0.48546141390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <collectionViewLayout key="collectionViewLayout" id="j8D-j5-bzd" customClass="BingoCollectionViewLayout" customModule="StuffPeopleSay" customModuleProvider="target"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BingoCell" id="tkb-rz-N14" customClass="BingoCollectionCell" customModule="StuffPeopleSay" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a sentence" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydD-aV-X85">
+                                                    <rect key="frame" x="5" y="5" width="40" height="40"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" red="0.30123111609999997" green="0.80664354559999996" blue="0.93685764069999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lln-MY-cGr" customClass="PieceView" customModule="StuffPeopleSay" customModuleProvider="target">
+                                                    <rect key="frame" x="5" y="5" width="40" height="40"/>
+                                                </view>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="ydD-aV-X85" secondAttribute="trailing" constant="5" id="5TI-4c-yjf"/>
+                                            <constraint firstItem="ydD-aV-X85" firstAttribute="top" secondItem="tkb-rz-N14" secondAttribute="top" constant="5" id="I6R-Co-1pJ"/>
+                                            <constraint firstAttribute="bottom" secondItem="lln-MY-cGr" secondAttribute="bottom" constant="5" id="On7-fL-dnX"/>
+                                            <constraint firstAttribute="trailing" secondItem="lln-MY-cGr" secondAttribute="trailing" constant="5" id="Z7X-zk-tfx"/>
+                                            <constraint firstItem="lln-MY-cGr" firstAttribute="leading" secondItem="tkb-rz-N14" secondAttribute="leading" constant="5" id="gcQ-uQ-SqO"/>
+                                            <constraint firstAttribute="bottom" secondItem="ydD-aV-X85" secondAttribute="bottom" constant="5" id="llN-42-Zv3"/>
+                                            <constraint firstItem="lln-MY-cGr" firstAttribute="top" secondItem="tkb-rz-N14" secondAttribute="top" constant="5" id="nTl-RV-6u4"/>
+                                            <constraint firstItem="ydD-aV-X85" firstAttribute="leading" secondItem="tkb-rz-N14" secondAttribute="leading" constant="5" id="q2L-ed-5nZ"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="pieceView" destination="lln-MY-cGr" id="OeJ-Sq-Y8c"/>
+                                            <outlet property="title" destination="ydD-aV-X85" id="yKq-m3-k5O"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="9VO-Le-3PC" firstAttribute="width" secondItem="9VO-Le-3PC" secondAttribute="height" multiplier="1:1" id="Wsp-Gs-Re2"/>
+                            <constraint firstItem="9VO-Le-3PC" firstAttribute="leading" secondItem="vip-bk-FyV" secondAttribute="leading" id="ZHp-j2-9rV"/>
+                            <constraint firstItem="9VO-Le-3PC" firstAttribute="top" secondItem="vip-bk-FyV" secondAttribute="top" id="pxQ-c1-XR8"/>
+                            <constraint firstItem="9VO-Le-3PC" firstAttribute="centerX" secondItem="5fO-ht-Dcy" secondAttribute="centerX" id="wQR-cd-fJc"/>
+                            <constraint firstItem="9VO-Le-3PC" firstAttribute="trailing" secondItem="vip-bk-FyV" secondAttribute="trailing" id="zIV-pc-BCL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vip-bk-FyV"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="collectionView" destination="9VO-Le-3PC" id="3f4-fq-JE7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JVu-Sb-T9l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2901.5999999999999" y="268.51574212893553"/>
         </scene>
         <!--Games-->
         <scene sceneID="lzu-KL-BQL">

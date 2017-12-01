@@ -1,4 +1,4 @@
-
+    
 
 import Foundation
 
@@ -6,10 +6,8 @@ struct Game {
 
     let gameId: String
     var status: String
-    var cards: [Card]
-    let name: String
-    let userId: String
-    var users: [User]
+    var my:     User
+    var users:  [User]
 }
 extension Game {
     init?(json: [String: Any]) {
@@ -18,20 +16,12 @@ extension Game {
             let status = json["status"] as? String,
             let boards = json["boards"] as? [String:Any],
             let users = boards["users"] as? [[String: Any]],
-            let my = boards["my"] as? [String: Any],
-            let cardsData = my["cards"] as? [[String: Any]],
-            let name = my["name"] as? String,
-            let userId = my["userId"] as? String
+            let my = boards["my"] as? [String: Any]
             else {
                 return nil
         }
 
-        var allCards:[Card] = []
-        for c in cardsData {
-            if let card = Card(json: c){
-                allCards.append(card)
-            }
-        }
+   
         var allUsers:[User] = []
         for u in users {
             if let user = User(json: u){
@@ -39,11 +29,14 @@ extension Game {
             }
         }
 
+        guard let myUser = User(json: my) else {
+            print("My user was nil")
+            return nil
+            
+        }
         self.gameId = gameId
         self.status = status
-        self.cards = allCards
-        self.name = name
-        self.userId = userId
+        self.my = myUser
         self.users = allUsers
     }
 }
