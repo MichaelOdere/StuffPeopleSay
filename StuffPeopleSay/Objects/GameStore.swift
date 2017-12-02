@@ -1,11 +1,3 @@
-//
-//  CardStore.swift
-//  StuffPeopleSay
-//
-//  Created by Michael Odere on 11/14/17.
-//  Copyright © 2017 michaelodere. All rights reserved.
-//
-
 import Foundation
 import SwiftyJSON
 
@@ -20,7 +12,7 @@ class GameStore{
     var userdefaults:UserDefaults!
 
     // All of the games
-    var games:[Game]!
+    var games:[Game]
     
     // Return a bool indicating a login was successfull
     init() {

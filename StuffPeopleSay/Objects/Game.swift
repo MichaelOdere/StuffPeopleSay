@@ -1,5 +1,3 @@
-    
-
 import Foundation
 
 struct Game {
@@ -39,5 +37,6 @@ extension Game {
         self.my = myUser
         self.users = allUsers
     }
+    
 }
 

@@ -1,11 +1,3 @@
-//
-//  Deck.swift
-//  StuffPeopleSay
-//
-//  Created by Michael Odere on 12/1/17.
-//  Copyright © 2017 michaelodere. All rights reserved.
-//
-
 import Foundation
 
 class Deck{

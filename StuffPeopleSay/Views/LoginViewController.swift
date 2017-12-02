@@ -1,11 +1,3 @@
-//
-//  LoginViewController.swift
-//  StuffPeopleSay
-//
-//  Created by Michael Odere on 11/14/17.
-//  Copyright © 2017 michaelodere. All rights reserved.
-//
-
 import UIKit
 import Foundation
 
@@ -73,7 +65,6 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
                 }
                 self.loadingView.stopAnimating()
                 self.loadingView.removeFromSuperview()
-
                
             }
         })
@@ -94,8 +85,6 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
             self.present(navigationController, animated: true, completion: nil)
         }
         
-        
-        
     }
     
     func updateEmailTextField(){
@@ -104,4 +93,5 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
             self.emailTextField.text = gameStore.userdefaults.string(forKey: "email")
         }
     }
+    
 }

@@ -1,15 +1,7 @@
-//
-//  BingoViewController.swift
-//  StuffPeopleSay
-//
-//  Created by Michael Odere on 11/13/17.
-//  Copyright © 2017 michaelodere. All rights reserved.
-//
-
 import UIKit
 
-class BingoViewController:UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
-    var bingoGame:BingoGame!
+class BingoViewController:UIViewController{
+    var bingoGame:BingoGame = BingoGame()
     var gameIndex:Int!
     var gameStore:GameStore!
     var pushManager:PusherManager!
@@ -17,22 +9,28 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
     var loadingView:UIActivityIndicatorView!
     let pieceTransparency:CGFloat = 0.2
     
-    @IBOutlet var collectionView: UICollectionView!
+    var bingoDataSource:BingoCollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableview: UITableView!
     
     override func viewDidLoad() {
-        
+
         loadingView = UIActivityIndicatorView(frame: self.view.frame)
         loadingView.backgroundColor = UIColor.gray
         loadingView.layer.opacity = 0.8
         
-        collectionView.dataSource = self
-        collectionView.delegate = self
+        bingoDataSource = BingoCollectionView()
+
+        bingoDataSource.didSelectRow = didSelectRow(card:cell:)
+        bingoDataSource.bingoGame = bingoGame
+        bingoDataSource.deck = gameStore.games[gameIndex].my.deck
+
+        collectionView.dataSource = bingoDataSource
+        collectionView.delegate = bingoDataSource
 
         tableview.dataSource = self
         tableview.delegate = self
 
-        bingoGame = BingoGame()
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(BingoViewController.didBecomeActive),
@@ -49,92 +47,50 @@ class BingoViewController:UIViewController, UICollectionViewDataSource, UICollec
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 25
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+    func didSelectRow(card: Card, cell: BingoCollectionCell) {
+
         if self.gameStore.games[gameIndex].status.lowercased() != "playing"{
             return
         }
-        
-        if indexPath.row < self.gameStore.games[gameIndex].my.deck.cards.count{
-            let card = self.gameStore.games[gameIndex].my.deck.cards[indexPath.row]
-            self.gameStore.apiManager.updateBoard(boardCardId: card.boardCardId)
-            if card.active == 0{
-                self.gameStore.games[gameIndex].my.deck.cards[indexPath.row].active = 1
-            }else{
-                self.gameStore.games[gameIndex].my.deck.cards[indexPath.row].active = 0
-            }
-        }
-        
-        if let cell = collectionView.cellForItem(at: indexPath) as? BingoCollectionCell {
 
-            let x = cell.xIndex!
-            let y = cell.yIndex!
-            
-            if cell.pieceView.alpha != pieceTransparency{
-                cell.pieceView.alpha = 0.0
-                bingoGame.board[x][y] = 0
-            }else{
-                cell.pieceView.alpha = pieceTransparency
-                bingoGame.board[x][y] = 1
-            }
-            
-            if (bingoGame.checkVictory(x: x, y: y)){
-               
-                self.gameStore.games[gameIndex].status = "ended"
-                self.gameStore.apiManager.updateGame(gameId: self.gameStore.games[gameIndex].gameId)
-                showAlert {
-                    self.bingoGame.boardReset()
-                    self.collectionView.reloadData()
-                }
-                
-            }
+        self.gameStore.apiManager.updateBoard(boardCardId: card.boardCardId)
+        
+        let x = cell.xIndex!
+        let y = cell.yIndex!
+
+        if card.active == 1{
+            cell.pieceView.alpha = 0.0
+            bingoGame.board[x][y] = 0
+        }else{
+            cell.pieceView.alpha = pieceTransparency
+            bingoGame.board[x][y] = 1
         }
+        
+        if (bingoGame.checkVictory(x: x, y: y)){
+
+            self.gameStore.games[gameIndex].status = "ended"
+            self.gameStore.apiManager.updateGame(gameId: self.gameStore.games[gameIndex].gameId)
+            showAlert {
+                self.bingoGame.boardReset()
+                self.collectionView.reloadData()
+            }
+
+        }
+        
     }
-    
+
     func showAlert(completion: @escaping ()->()){
         let alert = UIAlertController(title: "Congratulations You Won!",
                                       message: "We're sorry you had to hear all that!!",
                                       preferredStyle: .alert)
-        
+
         let action = UIAlertAction(title: "I'm The Best", style: .default,
                                          handler: { (action) -> Void in
                                completion()
         })
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BingoCell", for: indexPath) as! BingoCollectionCell
-        let card = self.gameStore.games[gameIndex].my.deck.cards[indexPath.row]
-        cell.backgroundColor = UIColor(red: 54/255.0, green: 80/255.0, blue: 98/255.0, alpha: 1.0)
-
-        cell.title.text = card.name
-        
-        cell.xIndex = indexPath.row / 5
-        cell.yIndex = indexPath.row % 5
-        
-        cell.pieceView.backgroundColor = UIColor.clear
-
-        if card.active == 1{
-            cell.pieceView.alpha = pieceTransparency
-            bingoGame.board[cell.xIndex][cell.yIndex] = 1
-
-        }else{
-            cell.pieceView.alpha = 0.0
-        }
-
-        return cell
-    }
-    
-    @IBAction func logoutNavBar(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func didBecomeActive(){
