@@ -1,4 +1,5 @@
 import UIKit
+import SwiftyJSON
 import ChameleonFramework
 
 class GamesTableViewController:UIViewController, UITableViewDelegate, UITableViewDataSource{
@@ -110,21 +111,22 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
                 return
             }
             
-            let json = try? JSONSerialization.jsonObject(with: data, options: [])
-            
-            if let dictionary = json as? [String: Any] {
-                print(dictionary)
-                if let game = Game(json: dictionary){
+            do {
+                var games:[Game] = []
+                let json = try JSON(data: data)
+                if let game = Game(json: json){
                     self.gameStore.games.insert(game, at: 0)
                     print("New game added")
                 }
                 
-                print(self.gameStore.games.count)
-                DispatchQueue.main.sync {
-                    self.tableview.reloadData()
-                }
-                
+            } catch {
+                print(error)
             }
+            
+            DispatchQueue.main.sync {
+                self.tableview.reloadData()
+            }
+                
             
         })
     }

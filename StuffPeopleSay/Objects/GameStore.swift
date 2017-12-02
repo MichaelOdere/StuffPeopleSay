@@ -1,5 +1,4 @@
 import Foundation
-import SwiftyJSON
 
 class GameStore{
     
@@ -26,6 +25,7 @@ class GameStore{
         
     }
     
+    // Login when there is a token saved
     func loginUserStart(completionHandler: @escaping (Bool?, Error?) -> Void){
        
         if userdefaults.string(forKey: "token") != nil{
@@ -42,6 +42,7 @@ class GameStore{
         }
     }
     
+    // Login when there is no token saved
     func loginUserEmail(email:String, completionHandler: @escaping (Bool?, Error?) -> Void){
         
         self.apiManager.getUser(email: email, completionHandler:  { (token, error) in

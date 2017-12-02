@@ -1,4 +1,5 @@
 import Foundation
+import SwiftyJSON
 
 class APIManager{
     
@@ -53,30 +54,35 @@ class APIManager{
                 return
             }
             
-            var games:[Game] = []
             let json = try? JSONSerialization.jsonObject(with: data, options: [])
-
-            if let dictionary = json as? [String: Any] {
-                
+            
+            if let dictionary = json as? [String: Data] {
+                print("inside dict")
                 if !self.checkLoggedIn(dictionary: dictionary){
                     completionHandler(false, [], nil)
                     return
                 }
-                
-                
-                if let gamesData = dictionary["games"] as? [[String:Any]]{
-                    var games:[Game] = []
-                    for g in gamesData{
-                        if let game = Game(json: g){
-                            games.append(game)
-                        }
-                    }
-                completionHandler(true, games, nil)
-                }
             }
+            
+            do {
+                var games:[Game] = []
+                let json = try JSON(data: data)
+                var jsonArr:[JSON] = json["games"].arrayValue
+                for g in jsonArr{
+                    if let game = Game(json: g){
+                        games.append(game)
+                    }
+                }
+                completionHandler(true, games, nil)
+
+             } catch {
+
+                print(error)
+                completionHandler(true, [], nil)
+             }
+        
         }
         task.resume()
-        
     }
 
     func createGame(completionHandler: @escaping (Data?, Error?) -> Void) {
