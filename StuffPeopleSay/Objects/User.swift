@@ -1,10 +1,11 @@
 import Foundation
+import SwiftyJSON
 
 struct User{
-    var userId:String
-    var name:String
-    var deck:Deck
-    var count:Int
+    var userId: String
+    var name: String
+    var deck: Deck
+    var count: Int
     init(userId: String, name: String, deck: Deck, count: Int) {
         self.userId = userId
         self.name = name
@@ -14,25 +15,38 @@ struct User{
     
 }
 extension User {
-    init?(json: [String: Any]) {
-        guard let cardsData = json["cards"] as? [[String: Any]],
-            let name = json["name"] as? String,
-            let userId = json["userId"] as? String,
-            let count = json["count"] as? Int
+    init?(json: JSON) {
 
-            else {
-                return nil
+        guard let name = json["name"].string else {
+            print("Error parsing user object for key: name")
+            return nil
         }
         
+        guard let userId = json["userId"].string else {
+            print("Error parsing user object for key: userId")
+            return nil
+        }
+        
+        guard let count = json["count"].int else {
+            print("Error parsing user object for key: count")
+            return nil
+        }
+        
+        guard let cardsData = json["cards"].array else {
+            print("Error parsing user object for key: user")
+            return nil
+        }
+
+        self.name = name
+        self.userId = userId
+        self.count = count
+
         if let tempDeck = Deck(json: cardsData){
             self.deck = tempDeck
         }else{
             self.deck = Deck(cards: [])
         }
-        
-        self.name = name
-        self.userId = userId
-        self.count = count
+
     }
 }
 

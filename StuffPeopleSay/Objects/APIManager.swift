@@ -3,8 +3,8 @@ import SwiftyJSON
 
 class APIManager{
     
-    var token:String!
-    var socketId:String!
+    var token:String = ""
+    var socketId:String = ""
 
     private let baseURL = "https://692188cd-b52e-4eef-8712-6b069331e1d9.now.sh"
     
@@ -54,20 +54,29 @@ class APIManager{
                 return
             }
             
-            let json = try? JSONSerialization.jsonObject(with: data, options: [])
-            
-            if let dictionary = json as? [String: Data] {
-                print("inside dict")
-                if !self.checkLoggedIn(dictionary: dictionary){
+//            let json = try? JSONSerialization.jsonObject(with: data, options: [])
+//
+//            if let dictionary = json as? [String: Any] {
+//                print("inside dict")
+//                if !self.checkLoggedIn(dictionary: dictionary){
+//                    print("User is not logged in")
+//                    completionHandler(false, [], nil)
+//                    return
+//                }
+//            }
+//
+            do {
+                let json = try JSON(data: data)
+               
+                if !self.checkLoggedIn(json: json){
                     completionHandler(false, [], nil)
                     return
                 }
-            }
-            
-            do {
+                
                 var games:[Game] = []
-                let json = try JSON(data: data)
-                var jsonArr:[JSON] = json["games"].arrayValue
+               
+                let jsonArr:[JSON] = json["games"].arrayValue
+
                 for g in jsonArr{
                     if let game = Game(json: g){
                         games.append(game)
@@ -180,21 +189,17 @@ class APIManager{
         task.resume()
     }
     
-    func checkLoggedIn(dictionary: [String: Any])->Bool{
-        var loggedIn = false
+    func checkLoggedIn(json: JSON)->Bool{
+
         let userdefaults = UserDefaults()
         
-        if let message = dictionary["message"] as? String {
-    
-            if message == "Unauthorized"{
-                userdefaults.removeObject(forKey: "token")
-                loggedIn = false
-            }
-        }else{
-            loggedIn = true
+        if let message = json["message"].string {
+            print("User recieved message from login attempt: \(message)")
+            userdefaults.removeObject(forKey: "token")
+            return false
         }
         
-        return loggedIn
+        return true
     }
     
 }

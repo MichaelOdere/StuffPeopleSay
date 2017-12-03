@@ -1,4 +1,5 @@
 import Foundation
+import SwiftyJSON
 
 class Deck{
     
@@ -10,7 +11,8 @@ class Deck{
     }
 }
 extension Deck {
-    convenience init?(json: [[String: Any]]) {
+    convenience init?(json: [JSON]) {
+        
         var allCards:[Card] = []
         for c in json {
             if let card = Card(json: c){
@@ -19,6 +21,6 @@ extension Deck {
         }
         
         self.init(cards: allCards)
-
+       
     }
 }

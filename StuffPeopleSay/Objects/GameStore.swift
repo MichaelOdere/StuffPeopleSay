@@ -27,11 +27,12 @@ class GameStore{
     
     // Login when there is a token saved
     func loginUserStart(completionHandler: @escaping (Bool?, Error?) -> Void){
-       
+        print("Attempting loggin in user with a saved token....")
+
         if userdefaults.string(forKey: "token") != nil{
-            apiManager.token =  userdefaults.string(forKey: "token")
+            apiManager.token =  userdefaults.string(forKey: "token")!
             apiManager.socketId = "431.3973413"
-            
+
             self.updateGames(completionHandler: { error in
                 
                 completionHandler(self.isLoggedIn, error)
@@ -44,7 +45,7 @@ class GameStore{
     
     // Login when there is no token saved
     func loginUserEmail(email:String, completionHandler: @escaping (Bool?, Error?) -> Void){
-        
+        print("Attempting loggin in user with no saved token....")
         self.apiManager.getUser(email: email, completionHandler:  { (token, error) in
             
             guard let token = token else {
