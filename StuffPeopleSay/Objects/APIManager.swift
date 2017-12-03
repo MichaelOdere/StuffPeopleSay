@@ -54,17 +54,6 @@ class APIManager{
                 return
             }
             
-//            let json = try? JSONSerialization.jsonObject(with: data, options: [])
-//
-//            if let dictionary = json as? [String: Any] {
-//                print("inside dict")
-//                if !self.checkLoggedIn(dictionary: dictionary){
-//                    print("User is not logged in")
-//                    completionHandler(false, [], nil)
-//                    return
-//                }
-//            }
-//
             do {
                 let json = try JSON(data: data)
                

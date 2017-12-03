@@ -5,7 +5,7 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
     
     var gameStore:GameStore!
     
-    var loadingView:UIActivityIndicatorView!
+    var loadingView:LoadingView!
 
     @IBOutlet var loginButton: UIButton!
     @IBOutlet var emailTextField: UITextField!
@@ -13,9 +13,9 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
 
     override func viewDidLoad() {
 
-        loadingView = UIActivityIndicatorView(frame: self.view.frame)
-        loadingView.backgroundColor = UIColor.gray
-        loadingView.layer.opacity = 0.8
+        loadingView = LoadingView(frame: self.view.frame)
+//        loadingView.backgroundColor = UIColor.gray
+//        loadingView.layer.opacity = 0.8
         self.loadingView.startAnimating()
         self.view.addSubview(self.loadingView)
         
@@ -35,14 +35,16 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
             
             group.leave()
             
-            if login {
-                self.showGameScreen()
-            }
+           
         })
         
         group.notify(queue: DispatchQueue.main){
-            self.loadingView.stopAnimating()
-            self.loadingView.removeFromSuperview()
+            if self.gameStore.isLoggedIn {
+                self.showGameScreen{
+                    self.loadingView.stopAnimating()
+                    self.loadingView.removeFromSuperview()
+                }
+            }
           
         }
         
@@ -51,24 +53,27 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
     @IBAction func Login(_ sender: Any?) {
         loadingView.startAnimating()
         self.view.addSubview(loadingView)
+        let group = DispatchGroup()
+        group.enter()
         
         self.gameStore.loginUserEmail(email: self.emailTextField.text!, completionHandler: { login, error in
             guard let login = login else {
                 print(error as Any)
                 return
             }
-            
-            DispatchQueue.main.sync {
-               
-                if login {
-                    self.showGameScreen()
-                    
-                }
-                self.loadingView.stopAnimating()
-                self.loadingView.removeFromSuperview()
-               
-            }
+
+            group.leave()
         })
+        
+        group.notify(queue: DispatchQueue.main){
+            if self.gameStore.isLoggedIn {
+                self.showGameScreen {
+                    self.loadingView.stopAnimating()
+                    self.loadingView.removeFromSuperview()
+                }
+                
+            }
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -78,14 +83,15 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
         return true
     }
     
-    func showGameScreen(){
+    func showGameScreen(completionHandler: @escaping () -> Void){
         if self.gameStore.isLoggedIn{
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "GamesTableView") as! GamesTableViewController
             let navigationController = UINavigationController(rootViewController: vc)
             
             vc.gameStore = self.gameStore
-            self.present(navigationController, animated: true, completion: nil)
+            self.present(navigationController, animated: true, completion: completionHandler)
+//            completionHandler()
         }
         
     }
