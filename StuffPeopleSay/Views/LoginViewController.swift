@@ -21,7 +21,8 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
         
         emailTextField.delegate = self
         self.updateEmailTextField()
-        
+        emailTextField.returnKeyType = UIReturnKeyType.done
+
         let group = DispatchGroup()
         group.enter()
         
@@ -47,7 +48,7 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
         
     }
     
-    @IBAction func Login(_ sender: Any) {
+    @IBAction func Login(_ sender: Any?) {
         loadingView.startAnimating()
         self.view.addSubview(loadingView)
         
@@ -72,6 +73,8 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        Login(nil)
+        
         return true
     }
     
