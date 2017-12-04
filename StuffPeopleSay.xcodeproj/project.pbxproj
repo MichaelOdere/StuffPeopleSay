@@ -89,17 +89,54 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F9066D9B1FD5D7CC003BF133 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				F95B17141FBBBBEF00AA000B /* GameStore.swift */,
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
+		F9066D9C1FD5D7D9003BF133 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				F9E7B3991FC3A63500B81872 /* APIManager.swift */,
+				F90B4B791FBBA232002FEBF0 /* PusherManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		F9066D9D1FD5D801003BF133 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				F99A2F781FD4AA3000B2CEC6 /* LoadingView.swift */,
+				F9DC7C931FD0C66A0097D4B5 /* BingoCollectionView.swift */,
+				F96AA6141FBAB999001E7CCD /* BingoCollectionViewLayout.swift */,
+				F96C58031FBB5A3B00D49481 /* BingoCollectionCell.swift */,
+				F9DC7C991FD1259D0097D4B5 /* PieceView.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		F9066D9E1FD5D808003BF133 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F92DBED71FBB8D4000B4566F /* LoginViewController.swift */,
+				F9E7B39D1FC3E4F600B81872 /* GamesTableViewController.swift */,
+				F96AA6121FBAB91E001E7CCD /* BingoViewController.swift */,
+				F9DC7C951FD0C8370097D4B5 /* OpponentBingoViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		F92DBEDB1FBBA0C100B4566F /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				F96C58051FBB69F600D49481 /* BingoGame.swift */,
-				F90B4B791FBBA232002FEBF0 /* PusherManager.swift */,
-				F9E7B3991FC3A63500B81872 /* APIManager.swift */,
-				F95B17141FBBBBEF00AA000B /* GameStore.swift */,
 				F9E7B39B1FC3D28E00B81872 /* Game.swift */,
 				F92DBED91FBB8D5300B4566F /* User.swift */,
 				F9341C0E1FD1ECA0009CD301 /* Deck.swift */,
 				F95B17161FBBBBF400AA000B /* Card.swift */,
+				F96C58051FBB69F600D49481 /* BingoGame.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -107,15 +144,8 @@
 		F92DBEDC1FBBA0D000B4566F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F99A2F781FD4AA3000B2CEC6 /* LoadingView.swift */,
-				F92DBED71FBB8D4000B4566F /* LoginViewController.swift */,
-				F9E7B39D1FC3E4F600B81872 /* GamesTableViewController.swift */,
-				F96AA6121FBAB91E001E7CCD /* BingoViewController.swift */,
-				F9DC7C951FD0C8370097D4B5 /* OpponentBingoViewController.swift */,
-				F96C58031FBB5A3B00D49481 /* BingoCollectionCell.swift */,
-				F9DC7C991FD1259D0097D4B5 /* PieceView.swift */,
-				F96AA6141FBAB999001E7CCD /* BingoCollectionViewLayout.swift */,
-				F9DC7C931FD0C66A0097D4B5 /* BingoCollectionView.swift */,
+				F9066D9D1FD5D801003BF133 /* CustomViews */,
+				F9066D9E1FD5D808003BF133 /* ViewControllers */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -143,6 +173,8 @@
 			children = (
 				F96AA6001FBAB4F4001E7CCD /* AppDelegate.swift */,
 				F92DBEDC1FBBA0D000B4566F /* Views */,
+				F9066D9C1FD5D7D9003BF133 /* Managers */,
+				F9066D9B1FD5D7CC003BF133 /* Stores */,
 				F92DBEDB1FBBA0C100B4566F /* Objects */,
 				F96AA6071FBAB4F4001E7CCD /* Assets.xcassets */,
 				F96AA6041FBAB4F4001E7CCD /* Main.storyboard */,
