@@ -6,14 +6,12 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
 
     var gameStore:GameStore!
     
-    var loadingView:UIActivityIndicatorView!
+    var loadingView:LoadingView!
 
     @IBOutlet var tableview: UITableView!
     
     override func viewDidLoad() {
-        loadingView = UIActivityIndicatorView(frame: self.view.frame)
-        loadingView.backgroundColor = UIColor.gray
-        loadingView.layer.opacity = 0.8
+        loadingView = LoadingView(frame: self.view.frame)
         
         tableview.delegate = self
         tableview.dataSource = self
@@ -112,7 +110,7 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
             }
             
             do {
-                var games:[Game] = []
+//                var games:[Game] = []
                 let json = try JSON(data: data)
                 if let game = Game(json: json){
                     self.gameStore.games.insert(game, at: 0)

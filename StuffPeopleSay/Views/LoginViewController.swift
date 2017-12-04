@@ -12,10 +12,8 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
     @IBOutlet var passwordTextField: UITextField!
 
     override func viewDidLoad() {
-
         loadingView = LoadingView(frame: self.view.frame)
-//        loadingView.backgroundColor = UIColor.gray
-//        loadingView.layer.opacity = 0.8
+
         self.loadingView.startAnimating()
         self.view.addSubview(self.loadingView)
         
@@ -40,12 +38,13 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
         
         group.notify(queue: DispatchQueue.main){
             if self.gameStore.isLoggedIn {
+                print("user was logged in" )
                 self.showGameScreen{
-                    self.loadingView.stopAnimating()
                     self.loadingView.removeFromSuperview()
                 }
+            }else{
+                self.loadingView.removeFromSuperview()
             }
-          
         }
         
     }
@@ -71,7 +70,9 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
                     self.loadingView.stopAnimating()
                     self.loadingView.removeFromSuperview()
                 }
-                
+            }else{
+                self.loadingView.stopAnimating()
+                self.loadingView.removeFromSuperview()
             }
         }
     }
@@ -88,16 +89,13 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "GamesTableView") as! GamesTableViewController
             let navigationController = UINavigationController(rootViewController: vc)
-            
             vc.gameStore = self.gameStore
-            self.present(navigationController, animated: true, completion: completionHandler)
-//            completionHandler()
+            self.present(navigationController, animated: false, completion: completionHandler)
         }
         
     }
     
     func updateEmailTextField(){
-        
         if gameStore.userdefaults.string(forKey: "email") != nil{
             self.emailTextField.text = gameStore.userdefaults.string(forKey: "email")
         }

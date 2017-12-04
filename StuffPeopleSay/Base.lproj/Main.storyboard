@@ -68,7 +68,7 @@
             </objects>
             <point key="canvasLocation" x="-738.39999999999998" y="268.51574212893553"/>
         </scene>
-        <!--Bingo View Controller-->
+        <!--Board-->
         <scene sceneID="BnT-wt-Jeo">
             <objects>
                 <viewController storyboardIdentifier="BingoController" id="23r-n0-Oz3" customClass="BingoViewController" customModule="StuffPeopleSay" customModuleProvider="target" sceneMemberID="viewController">
@@ -170,6 +170,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xmM-h8-7J1"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Board" id="epa-3S-6uc"/>
                     <connections>
                         <outlet property="collectionView" destination="rbX-6n-psL" id="Ycl-Pj-QZx"/>
                         <outlet property="tableview" destination="Dkt-vH-aYf" id="Axc-GB-vas"/>

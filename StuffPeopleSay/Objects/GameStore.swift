@@ -30,8 +30,9 @@ class GameStore{
         print("Attempting loggin in user with a saved token....")
 
         if userdefaults.string(forKey: "token") != nil{
+            print("found token")
             apiManager.token =  userdefaults.string(forKey: "token")!
-            apiManager.socketId = "431.3973413"
+            apiManager.socketId = "4313973413"
 
             self.updateGames(completionHandler: { error in
                 
@@ -39,6 +40,7 @@ class GameStore{
             })
             
         }else{
+            print("no token")
             completionHandler(false, nil)
         }
     }
