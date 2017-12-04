@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		21A460F98FF1CCF3F16E5B3F /* Pods_StuffPeopleSay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51FA5B8480CBA27CE3AE29CC /* Pods_StuffPeopleSay.framework */; };
+		F9066DA21FD5F637003BF133 /* GameViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9066DA11FD5F637003BF133 /* GameViewCell.swift */; };
 		F90B4B7A1FBBA232002FEBF0 /* PusherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90B4B791FBBA232002FEBF0 /* PusherManager.swift */; };
 		F92DBED81FBB8D4000B4566F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DBED71FBB8D4000B4566F /* LoginViewController.swift */; };
 		F92DBEDA1FBB8D5300B4566F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DBED91FBB8D5300B4566F /* User.swift */; };
@@ -35,6 +36,7 @@
 		51FA5B8480CBA27CE3AE29CC /* Pods_StuffPeopleSay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StuffPeopleSay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		969F576DC84CC8784B284975 /* Pods-StuffPeopleSay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StuffPeopleSay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StuffPeopleSay/Pods-StuffPeopleSay.debug.xcconfig"; sourceTree = "<group>"; };
 		B82C6D91C9AF9E86158C2F3E /* Pods-StuffPeopleSay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StuffPeopleSay.release.xcconfig"; path = "Pods/Target Support Files/Pods-StuffPeopleSay/Pods-StuffPeopleSay.release.xcconfig"; sourceTree = "<group>"; };
+		F9066DA11FD5F637003BF133 /* GameViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewCell.swift; sourceTree = "<group>"; };
 		F90B4B791FBBA232002FEBF0 /* PusherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PusherManager.swift; sourceTree = "<group>"; };
 		F92DBED71FBB8D4000B4566F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F92DBED91FBB8D5300B4566F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				F99A2F781FD4AA3000B2CEC6 /* LoadingView.swift */,
+				F9066DA11FD5F637003BF133 /* GameViewCell.swift */,
 				F9DC7C931FD0C66A0097D4B5 /* BingoCollectionView.swift */,
 				F96AA6141FBAB999001E7CCD /* BingoCollectionViewLayout.swift */,
 				F96C58031FBB5A3B00D49481 /* BingoCollectionCell.swift */,
@@ -322,6 +325,7 @@
 				F90B4B7A1FBBA232002FEBF0 /* PusherManager.swift in Sources */,
 				F9DC7C961FD0C8370097D4B5 /* OpponentBingoViewController.swift in Sources */,
 				F92DBED81FBB8D4000B4566F /* LoginViewController.swift in Sources */,
+				F9066DA21FD5F637003BF133 /* GameViewCell.swift in Sources */,
 				F96C58041FBB5A3B00D49481 /* BingoCollectionCell.swift in Sources */,
 				F9E7B39C1FC3D28E00B81872 /* Game.swift in Sources */,
 				F9DC7C941FD0C66A0097D4B5 /* BingoCollectionView.swift in Sources */,

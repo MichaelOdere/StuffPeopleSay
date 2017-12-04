@@ -6,7 +6,7 @@ struct User{
     var name: String
     var deck: Deck
     var count: Int
-    init(userId: String, name: String, deck: Deck, count: Int) {
+    init(userId: String, name: String,deck: Deck, count: Int) {
         self.userId = userId
         self.name = name
         self.deck = deck
@@ -46,7 +46,6 @@ extension User {
         }else{
             self.deck = Deck(cards: [])
         }
-
     }
 }
 

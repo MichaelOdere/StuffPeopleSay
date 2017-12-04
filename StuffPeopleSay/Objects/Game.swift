@@ -48,6 +48,27 @@ extension Game {
 
     }
     
+    func getOpponents()->String{
+        var opponentsText = ""
+        
+        switch self.users.count {
+            case 0:
+                opponentsText = "No Opponents"
+            case 1:
+                opponentsText = self.users[0].name
+            case 2:
+                opponentsText = self.users[0].name + " & " + self.users[1].name
+            case 3:
+                opponentsText = self.users[0].name + ", " + self.users[1].name + ", & " + self.users[2].name
+            default:
+                opponentsText = self.users[0].name + ", " + self.users[1].name + ", & " + String(self.users.count - 2) + " Opponents"
+        }
+        
+        if opponentsText.count > 42{
+            opponentsText = String(self.users.count) + " Opponents"
+
+        }
+
+        return opponentsText
+    }
 }
-
-

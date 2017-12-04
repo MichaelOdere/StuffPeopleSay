@@ -36,15 +36,19 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell") as! GameViewCell
         
-        cell?.textLabel?.text = gameStore.games[indexPath.row].gameId
-        cell?.detailTextLabel?.text = gameStore.games[indexPath.row].status
-        if gameStore.games[indexPath.row].status.lowercased() == "ended"{
-            cell?.backgroundColor = UIColor.flatGreen()
-        }
+        let game = gameStore.games[indexPath.row]
+        cell.deckTypeLabel.text = "Los Angeles"
+        cell.oppponentsLabel.text = game.getOpponents()
+        cell.statusLabel.text = game.status
+//        cell?.textLabel?.text = gameStore.games[indexPath.row].gameId
+//        cell?.detailTextLabel?.text = gameStore.games[indexPath.row].status
+//        if gameStore.games[indexPath.row].status.lowercased() == "ended"{
+//            cell?.backgroundColor = UIColor.flatGreen()
+//        }
         
-        return cell!
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

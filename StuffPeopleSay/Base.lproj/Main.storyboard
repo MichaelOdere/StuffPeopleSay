@@ -292,13 +292,73 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="558"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="GameCell" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="GameCell" id="igy-Q5-XsB">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="GameCell" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="GameCell" rowHeight="90" id="igy-Q5-XsB" customClass="GameViewCell" customModule="StuffPeopleSay" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="igy-Q5-XsB" id="19b-ci-A7L">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="89.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQC-cO-J0N">
+                                                    <rect key="frame" x="5" y="5" width="337" height="80"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A Deck" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kh3-vz-ZTG">
+                                                            <rect key="frame" x="83" y="6" width="63" height="24"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="highlightedColor" red="0.41083532571792603" green="0.26198208332061768" blue="0.26040953397750854" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FInished" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nlt-51-AA1">
+                                                            <rect key="frame" x="17" y="32" width="52" height="16"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhz-Dt-rHY" userLabel="StatusView">
+                                                            <rect key="frame" x="0.0" y="32" width="16" height="16"/>
+                                                            <color key="backgroundColor" red="0.14377222999018668" green="1" blue="0.22654146061994851" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="lhz-Dt-rHY" secondAttribute="height" multiplier="1:1" id="Mqy-17-zRD"/>
+                                                                <constraint firstAttribute="width" constant="16" id="lzF-53-Au7"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" text="David Odere and Allison Sayerstad" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBc-gf-4DD">
+                                                            <rect key="frame" x="83" y="52" width="254" height="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="textColor" red="0.46661311388015747" green="0.46669745445251465" blue="0.46660774946212769" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="lhz-Dt-rHY" firstAttribute="top" secondItem="Nlt-51-AA1" secondAttribute="top" id="11C-eg-uQy"/>
+                                                        <constraint firstItem="lhz-Dt-rHY" firstAttribute="leading" secondItem="NQC-cO-J0N" secondAttribute="leading" id="54M-xP-SIb"/>
+                                                        <constraint firstItem="gBc-gf-4DD" firstAttribute="top" secondItem="kh3-vz-ZTG" secondAttribute="bottom" constant="22" id="5jh-Co-wRz"/>
+                                                        <constraint firstAttribute="trailing" secondItem="gBc-gf-4DD" secondAttribute="trailing" id="FBY-ZN-CXO"/>
+                                                        <constraint firstAttribute="bottom" secondItem="gBc-gf-4DD" secondAttribute="bottom" constant="11" id="Fzh-0k-L8W"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Nlt-51-AA1" secondAttribute="trailing" constant="268" id="Gsb-Vs-han"/>
+                                                        <constraint firstItem="gBc-gf-4DD" firstAttribute="leading" secondItem="NQC-cO-J0N" secondAttribute="leading" constant="83" id="HIS-IB-SbE"/>
+                                                        <constraint firstItem="Nlt-51-AA1" firstAttribute="leading" secondItem="lhz-Dt-rHY" secondAttribute="trailing" constant="1" id="KnW-Um-AEh"/>
+                                                        <constraint firstItem="Nlt-51-AA1" firstAttribute="centerY" secondItem="NQC-cO-J0N" secondAttribute="centerY" id="cHV-Ns-uSy"/>
+                                                        <constraint firstItem="kh3-vz-ZTG" firstAttribute="top" secondItem="NQC-cO-J0N" secondAttribute="top" constant="6" id="oxa-vE-DhR"/>
+                                                        <constraint firstItem="lhz-Dt-rHY" firstAttribute="centerY" secondItem="NQC-cO-J0N" secondAttribute="centerY" id="tgK-vy-SaQ"/>
+                                                        <constraint firstItem="kh3-vz-ZTG" firstAttribute="leading" secondItem="NQC-cO-J0N" secondAttribute="leading" constant="83" id="viC-DV-r03"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="NQC-cO-J0N" firstAttribute="leading" secondItem="19b-ci-A7L" secondAttribute="leading" constant="5" id="7Cg-NE-y7d"/>
+                                                <constraint firstAttribute="bottom" secondItem="NQC-cO-J0N" secondAttribute="bottom" constant="5" id="QLt-Ro-hfk"/>
+                                                <constraint firstAttribute="trailing" secondItem="NQC-cO-J0N" secondAttribute="trailing" id="iWa-F6-fxu"/>
+                                                <constraint firstItem="NQC-cO-J0N" firstAttribute="top" secondItem="19b-ci-A7L" secondAttribute="top" constant="5" id="x84-gf-RmV"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="deckTypeLabel" destination="kh3-vz-ZTG" id="RTi-4i-cTg"/>
+                                            <outlet property="oppponentsLabel" destination="gBc-gf-4DD" id="u8d-T7-Q7b"/>
+                                            <outlet property="statusLabel" destination="Nlt-51-AA1" id="b6I-CW-b7S"/>
+                                            <outlet property="statusVIew" destination="lhz-Dt-rHY" id="yGv-LE-L7d"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
