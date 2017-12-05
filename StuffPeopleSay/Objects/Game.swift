@@ -71,4 +71,15 @@ extension Game {
 
         return opponentsText
     }
+    
+    func getSatusColor()->UIColor{
+        switch self.status {
+        case "Playing":
+            return UIColor.green
+        case "Ended":
+            return UIColor.red
+        default:
+            return UIColor.green
+        }
+    }
 }

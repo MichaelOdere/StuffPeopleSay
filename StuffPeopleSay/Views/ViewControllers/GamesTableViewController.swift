@@ -42,12 +42,8 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
         cell.deckTypeLabel.text = "Los Angeles"
         cell.oppponentsLabel.text = game.getOpponents()
         cell.statusLabel.text = game.status
-//        cell?.textLabel?.text = gameStore.games[indexPath.row].gameId
-//        cell?.detailTextLabel?.text = gameStore.games[indexPath.row].status
-//        if gameStore.games[indexPath.row].status.lowercased() == "ended"{
-//            cell?.backgroundColor = UIColor.flatGreen()
-//        }
-        
+        cell.statusView.backgroundColor = game.getSatusColor()
+        cell.statusView.layer.cornerRadius = cell.statusView.frame.width / 2
         return cell
     }
     
