@@ -4,12 +4,12 @@ import SwiftyJSON
 struct User{
     var userId: String
     var name: String
-    var deck: Deck
+    var boards: [Deck] = []
     var count: Int
-    init(userId: String, name: String,deck: Deck, count: Int) {
+    init(userId:String, name:String, boards:[Deck], count:Int) {
         self.userId = userId
         self.name = name
-        self.deck = deck
+        self.boards = boards
         self.count = count
     }
     
@@ -42,10 +42,11 @@ extension User {
         self.count = count
 
         if let tempDeck = Deck(json: cardsData){
-            self.deck = tempDeck
-        }else{
-            self.deck = Deck(cards: [])
+            self.boards.append(tempDeck)
         }
+//        else{
+//            self.deck = Deck(cards: [])
+//        }
     }
 }
 

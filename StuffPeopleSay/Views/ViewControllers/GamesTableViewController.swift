@@ -49,18 +49,15 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "BingoController") as! BingoViewController
-        
-        vc.gameStore = self.gameStore
-        vc.gameIndex = gameStore.games.index(where: { (item) -> Bool in
-            item.gameId == self.gameStore.games[indexPath.row].gameId
-        })
+        let vc = sb.instantiateViewController(withIdentifier: "BoardCollectionViewController") as! BoardCollectionViewController
 
+        vc.game = self.gameStore.games[indexPath.row]
+        vc.apiManager = self.gameStore.apiManager
+        
         self.navigationController?.pushViewController(vc, animated: true)
 
         
     }
-    
     
     @IBAction func newCard(_ sender: Any) {
         let alert = UIAlertController(title: "Type in the card you'd like to add",
@@ -110,7 +107,7 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
             }
             
             do {
-//                var games:[Game] = []
+
                 let json = try JSON(data: data)
                 if let game = Game(json: json){
                     self.gameStore.games.insert(game, at: 0)
@@ -153,3 +150,15 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
     
     }
 }
+
+/*
+let sb = UIStoryboard(name: "Main", bundle: nil)
+let vc = sb.instantiateViewController(withIdentifier: "BingoController") as! BingoViewController
+
+vc.gameStore = self.gameStore
+vc.gameIndex = gameStore.games.index(where: { (item) -> Bool in
+    item.gameId == self.gameStore.games[indexPath.row].gameId
+})
+
+self.navigationController?.pushViewController(vc, animated: true)
+*/

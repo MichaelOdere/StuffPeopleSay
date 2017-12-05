@@ -1,15 +1,23 @@
 import Foundation
 import SwiftyJSON
-struct Game {
 
-    let gameId: String
+class Game {
+
+    var gameId: String
     var status: String
     var my: User
     var users: [User]
+    
+    init(gameId:String, status:String, my:User, users:[User]) {
+        self.gameId = gameId
+        self.status = status
+        self.my = my
+        self.users = users
+    }
 }
 
 extension Game {
-    init?(json: JSON) {
+    convenience init?(json: JSON) {
 
         guard let gameId = json["gameId"].string else {
             print("Error parsing game object for key: gameId")
@@ -41,10 +49,7 @@ extension Game {
             }
         }
         
-        self.gameId = gameId
-        self.status = status
-        self.my = myUser
-        self.users = allUsers
+        self.init(gameId: gameId, status: status, my: myUser, users: allUsers)
 
     }
     

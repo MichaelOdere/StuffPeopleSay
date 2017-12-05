@@ -2,11 +2,13 @@ import UIKit
 
 class BingoViewController:UIViewController{
     var bingoGame:BingoGame = BingoGame()
-    var gameIndex:Int!
-    var gameStore:GameStore!
-    var pushManager:PusherManager!
+    var users:[User]!
+    var deck:Deck!
+    var status:String!
+    var gameId:String!
+    var apiManager:APIManager!
 
-    var loadingView:UIActivityIndicatorView!
+    var loadingView:LoadingView!
     let pieceTransparency:CGFloat = 0.2
     
     var bingoDataSource:BingoCollectionView!
@@ -15,15 +17,13 @@ class BingoViewController:UIViewController{
     
     override func viewDidLoad() {
 
-        loadingView = UIActivityIndicatorView(frame: self.view.frame)
-        loadingView.backgroundColor = UIColor.gray
-        loadingView.layer.opacity = 0.8
+        loadingView = LoadingView(frame: self.view.frame)
         
         bingoDataSource = BingoCollectionView()
 
         bingoDataSource.didSelectRow = didSelectRow(card:cell:)
         bingoDataSource.bingoGame = bingoGame
-        bingoDataSource.deck = gameStore.games[gameIndex].my.deck
+        bingoDataSource.deck = self.deck
 
         collectionView.dataSource = bingoDataSource
         collectionView.delegate = bingoDataSource
@@ -49,11 +49,11 @@ class BingoViewController:UIViewController{
     
     func didSelectRow(card: Card, cell: BingoCollectionCell) {
 
-        if self.gameStore.games[gameIndex].status.lowercased() != "playing"{
+        if self.self.status.lowercased() != "playing"{
             return
         }
 
-        self.gameStore.apiManager.updateBoard(boardCardId: card.boardCardId)
+        self.apiManager.updateBoard(boardCardId: card.boardCardId)
         
         let x = cell.xIndex!
         let y = cell.yIndex!
@@ -68,8 +68,8 @@ class BingoViewController:UIViewController{
         
         if (bingoGame.checkVictory(x: x, y: y)){
 
-            self.gameStore.games[gameIndex].status = "ended"
-            self.gameStore.apiManager.updateGame(gameId: self.gameStore.games[gameIndex].gameId)
+            self.status = "ended"
+            self.apiManager.updateGame(gameId: self.gameId)
             showAlert {
                 self.bingoGame.boardReset()
                 self.collectionView.reloadData()
@@ -93,48 +93,49 @@ class BingoViewController:UIViewController{
 
     }
     
+    // for this to work need to change updateGames to physically update each game instead of wiping the games
     @objc func didBecomeActive(){
-        let oldGameId = self.gameStore.games[gameIndex].gameId
-        if self.gameStore.isLoggedIn{
-            self.loadingView.startAnimating()
-            self.view.addSubview(self.loadingView)
-            
-            let group = DispatchGroup()
-            group.enter()
-            self.gameStore.updateGames(completionHandler: { error in
-                group.leave()
-                
-            })
-            
-            group.notify(queue: DispatchQueue.main){
-                
-                let g = self.gameStore.games.filter({ $0.gameId == oldGameId })
-                if g.first != nil{
-                    self.gameStore.games[self.gameIndex] = g.first!
-                }
-                
-                self.tableview.reloadData()
-                self.collectionView.reloadData()
-                
-                self.loadingView.stopAnimating()
-                self.loadingView.removeFromSuperview()
-            
-            }
-            
-        }
-        
+//        let oldGameId = self.game.gameId
+//        if self.gameStore.isLoggedIn{
+//            self.loadingView.startAnimating()
+//            self.view.addSubview(self.loadingView)
+//
+//            let group = DispatchGroup()
+//            group.enter()
+//            self.gameStore.updateGames(completionHandler: { error in
+//                group.leave()
+//
+//            })
+//
+//            group.notify(queue: DispatchQueue.main){
+//
+//                let g = self.gameStore.games.filter({ $0.gameId == oldGameId })
+//                if g.first != nil{
+//                    self.gameStore.games[self.gameIndex] = g.first!
+//                }
+//
+//                self.tableview.reloadData()
+//                self.collectionView.reloadData()
+//
+//                self.loadingView.stopAnimating()
+//                self.loadingView.removeFromSuperview()
+//
+//            }
+//
+//        }
+//
+//    }
+        print("active!")
     }
-   
 }
-
 extension BingoViewController: UITableViewDelegate, UITableViewDataSource{
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.self.gameStore.games[gameIndex].users.count
+        return self.self.users.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let user =  self.self.gameStore.games[gameIndex].users[indexPath.row]
+        let user =  self.self.users[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell")
         
         cell?.textLabel?.text = user.name
@@ -147,7 +148,7 @@ extension BingoViewController: UITableViewDelegate, UITableViewDataSource{
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "OpponentBingoViewController") as! OpponentBingoViewController
         
-        vc.user = gameStore.games[gameIndex].users[indexPath.row]
+        vc.user = self.users[indexPath.row]
 
         self.navigationController?.pushViewController(vc, animated: true)
     }
