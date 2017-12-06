@@ -304,6 +304,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="collectionView" destination="ZQk-Pr-Epg" id="Gmi-nA-CBM"/>
+                        <segue destination="23r-n0-Oz3" kind="show" identifier="ShowBoards" id="084-pi-gTQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IA1-D1-NNT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -508,6 +509,7 @@
                     <navigationItem key="navigationItem" title="Games" id="2mv-9y-AGz"/>
                     <connections>
                         <outlet property="tableview" destination="j2L-Dk-lam" id="N90-X8-BVk"/>
+                        <segue destination="UQy-lW-wdQ" kind="show" identifier="ShowBoards" id="Zlh-Wi-738"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j4Q-aX-7mf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -525,10 +527,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
+                        <outlet property="delegate" destination="pBk-Y1-TNH" id="z6K-b4-Kq9"/>
                         <segue destination="muM-I1-wH0" kind="relationship" relationship="rootViewController" id="7RB-aE-hLj"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Kw-dW-CQG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="pBk-Y1-TNH" customClass="ZoomTransitioningDelegate" customModule="StuffPeopleSay" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="454" y="269"/>
         </scene>

@@ -110,6 +110,7 @@
 			children = (
 				F9E7B3991FC3A63500B81872 /* APIManager.swift */,
 				F90B4B791FBBA232002FEBF0 /* PusherManager.swift */,
+				F9792C5D1FD75D4400ADE88C /* ZoomTransitioningDelegate.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -148,7 +149,6 @@
 				F9341C0E1FD1ECA0009CD301 /* Deck.swift */,
 				F95B17161FBBBBF400AA000B /* Card.swift */,
 				F96C58051FBB69F600D49481 /* BingoGame.swift */,
-				F9792C5D1FD75D4400ADE88C /* ZoomTransitioningDelegate.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
