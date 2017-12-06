@@ -20,7 +20,9 @@ class BoardCollectionViewController:UIViewController, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "boardCell", for: indexPath) as! BoardCollectionViewCell
         
-        cell.titleLabel.text =  game.my.name
+        let cardCount = game.my.getCardsActive(index: indexPath.row)
+        let cardString = cardCount == 1 ? "card" : "cards"
+        cell.titleLabel.text = String(cardCount) + " \(cardString) active"
         cell.bingoDataSource.deck = game.my.boards[indexPath.row]
         cell.setDelegation()
 

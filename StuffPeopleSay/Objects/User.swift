@@ -13,6 +13,19 @@ struct User{
         self.count = count
     }
     
+    func getCardsActive(index: Int)->Int{
+       
+        let deck = self.boards[index]
+        
+        var count = 0
+        for card in deck.cards{
+            if card.active == 1{
+                count += 1
+            }
+        }
+        
+        return count
+    }
 }
 extension User {
     init?(json: JSON) {
@@ -44,9 +57,8 @@ extension User {
         if let tempDeck = Deck(json: cardsData){
             self.boards.append(tempDeck)
         }
-//        else{
-//            self.deck = Deck(cards: [])
-//        }
+
     }
+    
 }
 
