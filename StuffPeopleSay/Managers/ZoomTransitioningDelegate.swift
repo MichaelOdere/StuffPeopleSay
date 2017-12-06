@@ -18,20 +18,25 @@ class ZoomTransitioningDelegate:NSObject{
     
     typealias ZoomingViews = (collectionView: UICollectionView, imageView: UIView)
     
-    func configureViews(for state: TransitionState, containerView: UIView, backgroundViewController: UIViewController, viewsInBackground: ZoomingViews, viewsInForeground: ZoomingViews, snapshotViews: ZoomingViews){
+    func configureViews(for state: TransitionState, containerView: UIView, backgroundViewController: UIViewController, foregroundViewController: UIViewController, viewsInBackground: ZoomingViews, viewsInForeground: ZoomingViews, snapshotViews: ZoomingViews){
         
         switch state {
         case .initial:
             backgroundViewController.view.transform = CGAffineTransform.identity
             backgroundViewController.view.alpha = 1
             
+            foregroundViewController.view.transform =  CGAffineTransform(translationX: 0, y: foregroundViewController.view.frame.height)
+            foregroundViewController.view.alpha = 0
             snapshotViews.collectionView.frame = containerView.convert(viewsInBackground.collectionView.frame, from: viewsInBackground.collectionView.superview)
         
         case .final:
-                backgroundViewController.view.transform = CGAffineTransform(scaleX: backgroundScale, y: backgroundScale)
-                backgroundViewController.view.alpha = 0
+            backgroundViewController.view.transform = CGAffineTransform(scaleX: backgroundScale, y: backgroundScale)
+            backgroundViewController.view.alpha = 0
+        
+            foregroundViewController.view.transform =  CGAffineTransform.identity
+            foregroundViewController.view.alpha = 1
             
-                snapshotViews.collectionView.frame = containerView.convert(viewsInForeground.collectionView.frame, from: viewsInForeground.collectionView.superview)
+            snapshotViews.collectionView.frame = containerView.convert(viewsInForeground.collectionView.frame, from: viewsInForeground.collectionView.superview)
         }
     }
 }
@@ -93,14 +98,14 @@ extension ZoomTransitioningDelegate: UIViewControllerAnimatedTransitioning{
 
         }
         
-        configureViews(for: preTransitionState, containerView: containerView, backgroundViewController: backgroundVC, viewsInBackground: (backgroundView, backgroundView), viewsInForeground: (foregroundView,foregroundView), snapshotViews: (viewSnapshot, viewSnapshot))
+       configureViews(for: preTransitionState, containerView: containerView, backgroundViewController: backgroundVC, foregroundViewController: foregroundVC, viewsInBackground: (backgroundView, backgroundView), viewsInForeground: (foregroundView,foregroundView), snapshotViews: (viewSnapshot, viewSnapshot))
         
         foregroundVC.view.layoutIfNeeded()
         
         UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: [], animations: {
             
-            self.configureViews(for: postTransitionState, containerView: containerView, backgroundViewController: backgroundVC, viewsInBackground: (backgroundView, backgroundView), viewsInForeground: (foregroundView,foregroundView), snapshotViews: (viewSnapshot, viewSnapshot))
-       
+            self.configureViews(for: postTransitionState, containerView: containerView, backgroundViewController: backgroundVC, foregroundViewController: foregroundVC, viewsInBackground: (backgroundView, backgroundView), viewsInForeground: (foregroundView,foregroundView), snapshotViews: (viewSnapshot, viewSnapshot))
+            
         }) { (finished) in
             backgroundVC.view.transform = CGAffineTransform.identity
             

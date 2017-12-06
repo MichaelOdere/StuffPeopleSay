@@ -57,6 +57,8 @@ class APIManager{
             do {
                 let json = try JSON(data: data)
                
+                print(json)
+                
                 if !self.checkLoggedIn(json: json){
                     completionHandler(false, [], nil)
                     return
