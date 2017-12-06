@@ -42,29 +42,13 @@ class BoardCollectionViewController:UIViewController, UICollectionViewDelegate, 
         vc.gameId = self.game.gameId
         vc.apiManager = self.apiManager
         
-//        self.performSegue(withIdentifier: "ShowBoards", sender: vc)
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "ShowBoards"{
-//            print("made it")
-//            let vc = sender as! BingoViewController
-//            let boardVC = segue.destination as! BingoViewController
-//
-//            boardVC.users = vc.users
-//            boardVC.deck = vc.deck
-//            boardVC.status = vc.status
-//            boardVC.gameId = vc.gameId
-//            boardVC.apiManager = vc.apiManager
-//        }
-//    }
 
 }
 
 extension BoardCollectionViewController : ZoomViewController{
     func zoomingCollectionView(for transition: ZoomTransitioningDelegate) -> UICollectionView? {
-        print("here we made it")
         if let indexPath = selectedIndexPath{
             let cell = collectionView?.cellForItem(at: indexPath) as! BoardCollectionViewCell
             return cell.board

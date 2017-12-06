@@ -64,9 +64,13 @@ extension ZoomTransitioningDelegate: UIViewControllerAnimatedTransitioning{
         let backgroundView = maybeBackgroundView!
         let foregroundView = maybeForegroundView!
         
-        let viewSnapshot:UICollectionView = UICollectionView(frame: backgroundView.frame)
-        viewSnapshot.delegate = backgroundView.delegate
-        viewSnapshot.dataSource = backgroundView.dataSource
+        let viewSnapshot:UICollectionView = UICollectionView(frame: backgroundView.frame, collectionViewLayout: BingoCollectionViewLayout())
+        
+//        viewSnapshot.delegate = backgroundView.delegate
+//        viewSnapshot.dataSource = backgroundView.dataSource
+        
+        viewSnapshot.backgroundColor = backgroundView.backgroundColor
+        
         viewSnapshot.layer.masksToBounds = true
         
         backgroundView.isHidden = true
@@ -115,7 +119,6 @@ extension ZoomTransitioningDelegate: UINavigationControllerDelegate{
     
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
        
-        print("here amdede it")
         if fromVC is ZoomViewController && toVC is ZoomViewController{
             self.operation = operation
             return self

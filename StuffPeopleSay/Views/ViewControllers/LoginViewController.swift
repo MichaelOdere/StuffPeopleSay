@@ -32,7 +32,6 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
             }
             
             group.leave()
-            
            
         })
         
@@ -87,8 +86,10 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
     func showGameScreen(completionHandler: @escaping () -> Void){
         if self.gameStore.isLoggedIn{
             let sb = UIStoryboard(name: "Main", bundle: nil)
-            let vc = sb.instantiateViewController(withIdentifier: "GamesTableView") as! GamesTableViewController
-            let navigationController = UINavigationController(rootViewController: vc)
+//            let vc = sb.instantiateViewController(withIdentifier: "GamesTableView") as! GamesTableViewController
+            let navigationController = sb.instantiateViewController(withIdentifier: "nav")
+            let vc = navigationController.childViewControllers.first as! GamesTableViewController
+//            UINavigationController(rootViewController: vc)
             vc.gameStore = self.gameStore
             self.present(navigationController, animated: false, completion: completionHandler)
         }

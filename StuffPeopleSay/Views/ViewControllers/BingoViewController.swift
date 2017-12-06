@@ -153,5 +153,13 @@ extension BingoViewController: UITableViewDelegate, UITableViewDataSource{
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    
+}
+
+extension BingoViewController : ZoomViewController{
+    func zoomingCollectionView(for transition: ZoomTransitioningDelegate) -> UICollectionView? {
+        if let cv = collectionView{
+          return cv
+        }
+        return nil
+    }
 }
