@@ -3,6 +3,11 @@ import Foundation
 
 class LoginViewController:UIViewController, UITextFieldDelegate{
     
+    enum ButtonState{
+        case active
+        case inactive
+    }
+    
     var gameStore:GameStore!
     
     var loadingView:LoadingView!
@@ -17,55 +22,35 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
         self.updateEmailTextField()
         emailTextField.delegate = self
         emailTextField.returnKeyType = UIReturnKeyType.done
-        
+        emailTextField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)),
+                                 for: UIControlEvents.editingChanged)
+
         self.loadingView = LoadingView(frame: self.view.frame)
         self.loadingView.startAnimating()
         self.view.addSubview(self.loadingView)
         
+        // tap to remove keyboard
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
-        let group = DispatchGroup()
-        group.enter()
-        
-        self.gameStore.loginUserStart(completionHandler: { login, error in
-            
-            guard let login = login else {
-                print(error as Any)
-                return
-            }
-            
-            group.leave()
-           
-        })
-        
-        group.notify(queue: DispatchQueue.main){
-            if self.gameStore.isLoggedIn {
-                print("user was logged in" )
-                self.showGameScreen{
-                    self.loadingView.removeFromSuperview()
-                }
-            }else{
-                self.loadingView.removeFromSuperview()
-            }
-        }
+        login(email: nil)
         
     }
     
-    @IBAction func Login(_ sender: Any?) {
+    func login(email:String?) {
         loadingView.startAnimating()
         self.view.addSubview(loadingView)
         let group = DispatchGroup()
         group.enter()
         
-        self.gameStore.loginUserEmail(email: self.emailTextField.text!, completionHandler: { login, error in
-            guard let login = login else {
+        self.gameStore.loginUser(email: email, completionHandler: { login, error in
+
+            guard let _ = login else {
                 print(error as Any)
                 return
             }
-
             group.leave()
         })
-        
+
         group.notify(queue: DispatchQueue.main){
             if self.gameStore.isLoggedIn {
                 self.showGameScreen {
@@ -79,11 +64,24 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
         }
     }
     
+    @IBAction func LoginButton(_ sender: Any?) {
+        
+        login(email: emailTextField.text)
+    }
+
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if (self.emailTextField.text?.isEmpty)!{
+            configureButton(for: .inactive)
+        }else{
+            configureButton(for: .active)
+        }
+    
+    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.emailTextField.resignFirstResponder()
         
         if !(textField.text?.isEmpty)!{
-            Login(nil)
+            LoginButton(nil)
         }
         return true
     }
@@ -101,8 +99,22 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
     
     func updateEmailTextField(){
         if gameStore.keychain.get("email") != nil{
-            self.emailTextField.text = gameStore.keychain.get("email")!
+            print("here is email ", gameStore.keychain.get("email"))
+            emailTextField.text = gameStore.keychain.get("email")
+            configureButton(for: .active)
+        }else{
+            configureButton(for: .inactive)
         }
     }
     
+    func configureButton(for state: ButtonState){
+        switch state{
+        case .active:
+            self.loginButton.alpha = 1.0
+            self.loginButton.isEnabled = true
+        case .inactive:
+            self.loginButton.alpha = 0.6
+            self.loginButton.isEnabled = false
+        }
+    }
 }

@@ -25,44 +25,45 @@ class GameStore{
         
     }
     
-    // Login when there is a token saved
-    func loginUserStart(completionHandler: @escaping (Bool?, Error?) -> Void){
-        print("Attempting loggin in user with a saved token....")
-
-        if keychain.get("token") != nil{
-            print("found token")
-            apiManager.token =  keychain.get("token")!
-            apiManager.socketId = "4313973413"
-
-            self.updateGames(completionHandler: { error in
+    // Login user and get game data
+    func loginUser(email:String?, completionHandler: @escaping (Bool?, Error?) -> Void){
+        
+        if let email = email{
+            print("Attempting loggin in user with no saved token....")
+            self.apiManager.getUser(email: email, completionHandler:  { (token, error) in
                 
-                completionHandler(self.isLoggedIn, error)
+                guard let token = token else {
+                    print(error as Any)
+                    return
+                }
+                
+                self.keychain.set(token, forKey: "token")
+                self.keychain.set(email, forKey: "email")
+                
+                self.updateGames(completionHandler: { error in
+                    
+                    completionHandler(self.isLoggedIn, error)
+                })
             })
-            
         }else{
-            print("no token")
-            completionHandler(false, nil)
-        }
-    }
-    
-    // Login when there is no token saved
-    func loginUserEmail(email:String, completionHandler: @escaping (Bool?, Error?) -> Void){
-        print("Attempting loggin in user with no saved token....")
-        self.apiManager.getUser(email: email, completionHandler:  { (token, error) in
-            
-            guard let token = token else {
-                print(error as Any)
-                return
-            }
-            
-            self.keychain.set(token, forKey: "token")
-            self.keychain.set(email, forKey: "email")
-            
-            self.updateGames(completionHandler: { error in
+            print("Attempting loggin in user with a saved token....")
+            if keychain.get("token") != nil{
+                print("found token")
+                apiManager.token =  keychain.get("token")!
+                apiManager.socketId = "4313973413"
                 
-                completionHandler(self.isLoggedIn, error)
-            })
-        })
+                self.updateGames(completionHandler: { error in
+                    
+                    completionHandler(self.isLoggedIn, error)
+                })
+                
+            }else{
+                print("no token")
+                completionHandler(false, nil)
+            }
+        }
+        
+        
         
     }
     
