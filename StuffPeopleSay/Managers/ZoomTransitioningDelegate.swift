@@ -71,9 +71,10 @@ extension ZoomTransitioningDelegate: UIViewControllerAnimatedTransitioning{
         
         let viewSnapshot:UICollectionView = UICollectionView(frame: backgroundView.frame, collectionViewLayout: BingoCollectionViewLayout())
         
+//        viewSnapshot.register(cell.classForCoder, forCellWithReuseIdentifier: "BingoCell")
 //        viewSnapshot.delegate = backgroundView.delegate
 //        viewSnapshot.dataSource = backgroundView.dataSource
-        
+
         viewSnapshot.backgroundColor = backgroundView.backgroundColor
         
         viewSnapshot.layer.masksToBounds = true

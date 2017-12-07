@@ -39,7 +39,7 @@ class APIManager{
         
     }
     
-    func getGames(completionHandler: @escaping (Bool?, [Game]?, Error?) -> Void) {
+    func getGames(completionHandler: @escaping (Bool, [Game], Error?) -> Void) {
         let url = URL(string: baseURL + "/games")!
         var request = URLRequest(url: url)
 
@@ -50,15 +50,13 @@ class APIManager{
         
         let task = URLSession.shared.dataTask(with: request) {data, response, error in
             guard let data = data, error == nil else {
-                completionHandler(false, nil, error)
+                completionHandler(false, [], error)
                 return
             }
             
             do {
                 let json = try JSON(data: data)
-               
-                print(json)
-                
+                               
                 if !self.checkLoggedIn(json: json){
                     completionHandler(false, [], nil)
                     return

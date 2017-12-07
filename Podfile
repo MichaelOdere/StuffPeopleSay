@@ -9,5 +9,6 @@ target 'StuffPeopleSay' do
   pod 'ChameleonFramework', '~> 2.1'
   pod 'SwiftyJSON', '~> 4.0'
   pod 'Alamofire', '~> 4.5'
+  pod 'KeychainSwift', '~> 10.0'
 
 end

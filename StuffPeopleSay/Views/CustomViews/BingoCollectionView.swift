@@ -14,6 +14,7 @@ class BingoCollectionView: NSObject, UICollectionViewDataSource, UICollectionVie
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BingoCell", for: indexPath) as! BingoCollectionCell
+        
         let card = deck.cards[indexPath.row]
         
         cell.backgroundColor = UIColor(red: 54/255.0, green: 80/255.0, blue: 98/255.0, alpha: 1.0)
@@ -53,3 +54,17 @@ class BingoCollectionView: NSObject, UICollectionViewDataSource, UICollectionVie
 
 
 
+//        if cell.pieceView == nil{
+//            let atr = CGRect(x: 0, y: 0, width: self., height: <#T##CGFloat#>)//BingoCollectionViewLayout().layoutAttributesForItem(at: indexPath)
+//            cell.frame = (atr?.frame)!
+//
+//            let title = UILabel(frame: (atr?.frame)!)
+//            let pieceView = PieceView(frame: (atr?.frame)!)
+//
+//            cell.addSubview(title)
+//            cell.addSubview(pieceView)
+//
+//            cell.title = title
+//            cell.pieceView = pieceView
+//        }
+//

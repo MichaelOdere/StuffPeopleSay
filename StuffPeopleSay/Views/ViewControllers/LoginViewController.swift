@@ -97,8 +97,8 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
     }
     
     func updateEmailTextField(){
-        if gameStore.userdefaults.string(forKey: "email") != nil{
-            self.emailTextField.text = gameStore.userdefaults.string(forKey: "email")
+        if gameStore.keychain.get("email") != nil{
+            self.emailTextField.text = gameStore.keychain.get("email")!
         }
     }
     

@@ -1,25 +1,25 @@
 import Foundation
+import KeychainSwift
 
 class GameStore{
     
     // Managers
-    var apiManager:APIManager!
-    var pushManager:PusherManager!
+    var apiManager:APIManager
+    var pushManager:PusherManager
 
     // User Variables
-    var isLoggedIn:Bool!
-    var userdefaults:UserDefaults!
+    var isLoggedIn:Bool
+    var keychain:KeychainSwift
 
     // All of the games
     var games:[Game]
     
-    // Return a bool indicating a login was successfull
     init() {
         apiManager = APIManager()
         pushManager = PusherManager()
        
         isLoggedIn = false
-        userdefaults = UserDefaults()
+        keychain = KeychainSwift()
        
         games = []
         
@@ -29,9 +29,9 @@ class GameStore{
     func loginUserStart(completionHandler: @escaping (Bool?, Error?) -> Void){
         print("Attempting loggin in user with a saved token....")
 
-        if userdefaults.string(forKey: "token") != nil{
+        if keychain.get("token") != nil{
             print("found token")
-            apiManager.token =  userdefaults.string(forKey: "token")!
+            apiManager.token =  keychain.get("token")!
             apiManager.socketId = "4313973413"
 
             self.updateGames(completionHandler: { error in
@@ -55,8 +55,8 @@ class GameStore{
                 return
             }
             
-            self.userdefaults.set(token, forKey: "token")
-            self.userdefaults.set(email, forKey: "email")
+            self.keychain.set(token, forKey: "token")
+            self.keychain.set(email, forKey: "email")
             
             self.updateGames(completionHandler: { error in
                 
@@ -69,7 +69,7 @@ class GameStore{
     func updateGames(completionHandler: @escaping (Error?) -> Void){
         self.apiManager.getGames(completionHandler: { loggedIn, gameData, error in
             
-            guard let gameData = gameData else {
+            if let error = error {
                 print(error as Any)
                 return
             }

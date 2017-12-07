@@ -79,6 +79,10 @@ import UIKit
     }
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    
+        print("Begining")
+        print(indexPath)
+        print(cache.count)
         return cache[indexPath.item]
     }
  }
