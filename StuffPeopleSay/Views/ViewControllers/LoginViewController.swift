@@ -12,15 +12,18 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
     @IBOutlet var passwordTextField: UITextField!
 
     override func viewDidLoad() {
-        loadingView = LoadingView(frame: self.view.frame)
 
+        
+        self.updateEmailTextField()
+        emailTextField.delegate = self
+        emailTextField.returnKeyType = UIReturnKeyType.done
+        
+        self.loadingView = LoadingView(frame: self.view.frame)
         self.loadingView.startAnimating()
         self.view.addSubview(self.loadingView)
         
-        emailTextField.delegate = self
-        self.updateEmailTextField()
-        emailTextField.returnKeyType = UIReturnKeyType.done
-
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        
         let group = DispatchGroup()
         group.enter()
         
@@ -77,19 +80,19 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        Login(nil)
+        self.emailTextField.resignFirstResponder()
         
+        if !(textField.text?.isEmpty)!{
+            Login(nil)
+        }
         return true
     }
     
     func showGameScreen(completionHandler: @escaping () -> Void){
         if self.gameStore.isLoggedIn{
             let sb = UIStoryboard(name: "Main", bundle: nil)
-//            let vc = sb.instantiateViewController(withIdentifier: "GamesTableView") as! GamesTableViewController
             let navigationController = sb.instantiateViewController(withIdentifier: "nav")
             let vc = navigationController.childViewControllers.first as! GamesTableViewController
-//            UINavigationController(rootViewController: vc)
             vc.gameStore = self.gameStore
             self.present(navigationController, animated: false, completion: completionHandler)
         }
