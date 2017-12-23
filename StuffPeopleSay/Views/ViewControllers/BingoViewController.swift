@@ -3,7 +3,7 @@ import UIKit
 class BingoViewController:UIViewController{
     var bingoGame:BingoGame = BingoGame()
     var users:[User]!
-    var deck:Deck!
+    var board:Board!
     var status:String!
     var gameId:String!
     var apiManager:APIManager!
@@ -23,7 +23,7 @@ class BingoViewController:UIViewController{
 
         bingoDataSource.didSelectRow = didSelectRow(card:cell:)
         bingoDataSource.bingoGame = bingoGame
-        bingoDataSource.deck = self.deck
+        bingoDataSource.deck = self.board.deck
 
         collectionView.dataSource = bingoDataSource
         collectionView.delegate = bingoDataSource
@@ -139,7 +139,7 @@ extension BingoViewController: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell")
         
         cell?.textLabel?.text = user.name
-        cell?.detailTextLabel?.text =  "Cards active: " + String(user.count)
+        cell?.detailTextLabel?.text =  "Cards active: " //+ String(user.boards[i] count)
         
         return cell!
     }

@@ -12,7 +12,7 @@
 		F90B4B7A1FBBA232002FEBF0 /* PusherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90B4B791FBBA232002FEBF0 /* PusherManager.swift */; };
 		F92DBED81FBB8D4000B4566F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DBED71FBB8D4000B4566F /* LoginViewController.swift */; };
 		F92DBEDA1FBB8D5300B4566F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DBED91FBB8D5300B4566F /* User.swift */; };
-		F9341C0F1FD1ECA0009CD301 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9341C0E1FD1ECA0009CD301 /* Deck.swift */; };
+		F9341C0F1FD1ECA0009CD301 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9341C0E1FD1ECA0009CD301 /* Board.swift */; };
 		F95B17151FBBBBEF00AA000B /* GameStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B17141FBBBBEF00AA000B /* GameStore.swift */; };
 		F95B17171FBBBBF400AA000B /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B17161FBBBBF400AA000B /* Card.swift */; };
 		F96AA6011FBAB4F4001E7CCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96AA6001FBAB4F4001E7CCD /* AppDelegate.swift */; };
@@ -43,7 +43,7 @@
 		F90B4B791FBBA232002FEBF0 /* PusherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PusherManager.swift; sourceTree = "<group>"; };
 		F92DBED71FBB8D4000B4566F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F92DBED91FBB8D5300B4566F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		F9341C0E1FD1ECA0009CD301 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		F9341C0E1FD1ECA0009CD301 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		F95B17141FBBBBEF00AA000B /* GameStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStore.swift; sourceTree = "<group>"; };
 		F95B17161FBBBBF400AA000B /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		F96AA5FD1FBAB4F4001E7CCD /* StuffPeopleSay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StuffPeopleSay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,7 +146,7 @@
 			children = (
 				F9E7B39B1FC3D28E00B81872 /* Game.swift */,
 				F92DBED91FBB8D5300B4566F /* User.swift */,
-				F9341C0E1FD1ECA0009CD301 /* Deck.swift */,
+				F9341C0E1FD1ECA0009CD301 /* Board.swift */,
 				F95B17161FBBBBF400AA000B /* Card.swift */,
 				F96C58051FBB69F600D49481 /* BingoGame.swift */,
 			);
@@ -351,7 +351,7 @@
 				F9AAF1CE1FD62F5E008A618F /* BoardCollectionViewCell.swift in Sources */,
 				F95B17171FBBBBF400AA000B /* Card.swift in Sources */,
 				F9E7B39E1FC3E4F600B81872 /* GamesTableViewController.swift in Sources */,
-				F9341C0F1FD1ECA0009CD301 /* Deck.swift in Sources */,
+				F9341C0F1FD1ECA0009CD301 /* Board.swift in Sources */,
 				F96AA6151FBAB999001E7CCD /* BingoCollectionViewLayout.swift in Sources */,
 				F96AA6011FBAB4F4001E7CCD /* AppDelegate.swift in Sources */,
 				F99A2F791FD4AA3000B2CEC6 /* LoadingView.swift in Sources */,

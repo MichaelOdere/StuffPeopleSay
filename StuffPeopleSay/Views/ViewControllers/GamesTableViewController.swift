@@ -56,7 +56,6 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
         
         self.navigationController?.pushViewController(vc, animated: true)
 
-        
     }
     
     @IBAction func newCard(_ sender: Any) {

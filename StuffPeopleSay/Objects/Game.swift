@@ -19,6 +19,7 @@ class Game {
 extension Game {
     convenience init?(json: JSON) {
 
+        print(json)
         guard let gameId = json["gameId"].string else {
             print("Error parsing game object for key: gameId")
             return nil
@@ -29,22 +30,26 @@ extension Game {
             return nil
         }
         
-        let myUserData = json["boards"]["my"]
-
-        guard let usersData = json["boards"]["users"].array else {
+        guard let usersData = json["users"].dictionary else {
             print("Error parsing game object for key: users")
             return nil
         }
-
-        guard let myUser = User(json: myUserData) else {
+        
+        let myUserData =  usersData["my"]
+        
+        guard let opponentsUserData =  usersData["opponents"]?.array else {
+            print("Error parsing game object for key: opponents")
+            return nil
+        }
+        
+        guard let myUser = User(json: myUserData!) else {
             print("My user was nil")
             return nil
             
         }
-        
         var allUsers:[User] = []
-        for uData in usersData {
-            if let user = User(json: uData){
+        for opponentData in opponentsUserData {
+            if let user = User(json: opponentData){
                 allUsers.append(user)
             }
         }

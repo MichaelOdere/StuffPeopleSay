@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var gameStore:GameStore!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
         gameStore = GameStore()
 
         let root = window!.rootViewController as! LoginViewController

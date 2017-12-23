@@ -4,21 +4,20 @@ import SwiftyJSON
 struct User{
     var userId: String
     var name: String
-    var boards: [Deck] = []
-    var count: Int
-    init(userId:String, name:String, boards:[Deck], count:Int) {
+    var boards: [Board] = []
+    
+    init(userId:String, name:String, boards:[Board]) {
         self.userId = userId
         self.name = name
         self.boards = boards
-        self.count = count
     }
     
     func getCardsActive(index: Int)->Int{
        
-        let deck = self.boards[index]
+        let deck = self.boards[index].deck
         
         var count = 0
-        for card in deck.cards{
+        for card in deck{
             if card.active == 1{
                 count += 1
             }
@@ -40,24 +39,19 @@ extension User {
             return nil
         }
         
-        guard let count = json["count"].int else {
-            print("Error parsing user object for key: count")
+        guard let boardsData = json["boards"].array else{
+            print("Error parsing user object for key: boards")
             return nil
+        }
+
+        for boardData in boardsData{
+            if let tempBoard = Board(json: boardData){
+                self.boards.append(tempBoard)
+            }
         }
         
-        guard let cardsData = json["cards"].array else {
-            print("Error parsing user object for key: user")
-            return nil
-        }
-
         self.name = name
         self.userId = userId
-        self.count = count
-
-        if let tempDeck = Deck(json: cardsData){
-            self.boards.append(tempDeck)
-        }
-
     }
     
 }

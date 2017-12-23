@@ -63,8 +63,6 @@ class GameStore{
             }
         }
         
-        
-        
     }
     
     func updateGames(completionHandler: @escaping (Error?) -> Void){
