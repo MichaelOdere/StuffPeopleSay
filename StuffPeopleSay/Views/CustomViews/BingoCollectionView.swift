@@ -1,7 +1,6 @@
 import UIKit
 
 class BingoCollectionView: NSObject, UICollectionViewDataSource, UICollectionViewDelegate{
-
     var deck:[Card] = []
     var bingoGame:BingoGame = BingoGame()
     var pieceTransparency:CGFloat = 0.2
@@ -14,17 +13,12 @@ class BingoCollectionView: NSObject, UICollectionViewDataSource, UICollectionVie
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BingoCell", for: indexPath) as! BingoCollectionCell
-        
         let card = deck[indexPath.row]
-        
-        cell.backgroundColor = UIColor(red: 54/255.0, green: 80/255.0, blue: 98/255.0, alpha: 1.0)
+        cell.backgroundColor = BingoPalette.bingoCellBackgroundColor
         cell.pieceView.backgroundColor = UIColor.clear
-
         cell.title.text = card.name
-
         cell.xIndex = indexPath.row / 5
         cell.yIndex = indexPath.row % 5
-
         if card.active == 1{
             cell.pieceView.alpha = pieceTransparency
             bingoGame.board[cell.xIndex][cell.yIndex] = 1
@@ -52,19 +46,3 @@ class BingoCollectionView: NSObject, UICollectionViewDataSource, UICollectionVie
     }
 }
 
-
-
-//        if cell.pieceView == nil{
-//            let atr = CGRect(x: 0, y: 0, width: self., height: <#T##CGFloat#>)//BingoCollectionViewLayout().layoutAttributesForItem(at: indexPath)
-//            cell.frame = (atr?.frame)!
-//
-//            let title = UILabel(frame: (atr?.frame)!)
-//            let pieceView = PieceView(frame: (atr?.frame)!)
-//
-//            cell.addSubview(title)
-//            cell.addSubview(pieceView)
-//
-//            cell.title = title
-//            cell.pieceView = pieceView
-//        }
-//

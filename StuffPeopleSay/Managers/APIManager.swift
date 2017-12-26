@@ -9,20 +9,16 @@ class APIManager{
     private let baseURL = "https://692188cd-b52e-4eef-8712-6b069331e1d9.now.sh"
     
     func getUser(email:String, completionHandler: @escaping (String?, Error?) -> Void) {
-        
         let url = URL(string: baseURL + "/users/auth")!
         var request = URLRequest(url: url)
         request.httpBody = "{\"email\" : \"\(email)\"}".data(using: .utf8)
         request.httpMethod = "PUT"
-        
         let task = URLSession.shared.dataTask(with: request) {data, response, error in
             guard let data = data, error == nil else {
                 completionHandler(nil, error)
                 return
             }
-            
             let json = try? JSONSerialization.jsonObject(with: data, options: [])
-            
             if let dictionary = json as? [String: Any] {
                 for (key, value) in dictionary {
                     if key == "token"{
@@ -34,9 +30,7 @@ class APIManager{
                 completionHandler(self.token, nil)
             }
         }
-        
         task.resume()
-        
     }
     
     func getGames(completionHandler: @escaping (Bool, [Game], Error?) -> Void) {
@@ -127,8 +121,6 @@ class APIManager{
     }
     
     func updateGame(gameId: String){
-        
-    
         let url = URL(string: baseURL + "/games/" + gameId )!
         var request = URLRequest(url: url)
         
@@ -149,7 +141,6 @@ class APIManager{
                 print(dictionary)
             }
         }
-        
         task.resume()
     }
     
@@ -174,7 +165,6 @@ class APIManager{
                 print(dictionary)
             }
         }
-        
         task.resume()
     }
     
@@ -184,10 +174,9 @@ class APIManager{
         
         if let message = json["message"].string {
             print("User recieved message from login attempt: \(message)")
-            userdefaults.removeObject(forKey: "token")
+//            userdefaults.removeObject(forKey: "token")
             return false
         }
-        
         return true
     }
     

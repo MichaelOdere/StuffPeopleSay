@@ -13,7 +13,7 @@ class OpponentBingoViewController:UIViewController{
         
         bingoDataSource.bingoGame = bingoGame
         if let board = self.user?.boards[0]{
-            bingoDataSource.deck = board.deck
+            bingoDataSource.deck = board.deck.cards
         }else{
             bingoDataSource.deck = []
         }

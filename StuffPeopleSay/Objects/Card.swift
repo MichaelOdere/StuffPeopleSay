@@ -18,7 +18,6 @@ struct Card{
 
 extension Card {
     init?(json: JSON) {
-
         guard let boardCardId = json["boardCardId"].string else {
             print("Error parsing Card object for key: boardCardId")
             return nil

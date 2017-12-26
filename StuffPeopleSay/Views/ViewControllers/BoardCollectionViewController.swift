@@ -24,7 +24,7 @@ class BoardCollectionViewController:UIViewController, UICollectionViewDelegate, 
         let cardCount = game.my.getCardsActive(index: indexPath.row)
         let cardString = cardCount == 1 ? "card" : "cards"
         cell.titleLabel.text = String(cardCount) + " \(cardString) active"
-        cell.bingoDataSource.deck = game.my.boards[indexPath.row].deck
+        cell.bingoDataSource.deck = game.my.boards[indexPath.row].deck.cards
         cell.setDelegation()
 
         return cell
@@ -36,7 +36,7 @@ class BoardCollectionViewController:UIViewController, UICollectionViewDelegate, 
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "BingoController") as! BingoViewController
         
-        vc.users = self.game.users
+        vc.users = self.game.opponents
         vc.board = self.game.my.boards[indexPath.row]
         vc.status = self.game.status
         vc.gameId = self.game.gameId

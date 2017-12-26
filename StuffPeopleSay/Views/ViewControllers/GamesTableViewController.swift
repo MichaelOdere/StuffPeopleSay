@@ -39,7 +39,7 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell") as! GameViewCell
         
         let game = gameStore.games[indexPath.row]
-        cell.deckTypeLabel.text = "Los Angeles"
+        cell.deckTypeLabel.text = game.name
         cell.oppponentsLabel.text = game.getOpponents()
         cell.statusLabel.text = game.status
         cell.statusView.backgroundColor = game.getSatusColor()
@@ -58,29 +58,16 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
 
     }
     
-    @IBAction func newCard(_ sender: Any) {
-        let alert = UIAlertController(title: "Type in the card you'd like to add",
-                                       message: nil,
-                                       preferredStyle: .alert)
-
-        alert.addTextField(configurationHandler: nil)
-
-        let add = UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
-            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-            guard let cardText = textField?.text else {return}
-            if !cardText.isEmpty{
-                self.gameStore.apiManager.createCard(name: cardText)
-            }
-        })
-        alert.addAction(add)
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-        alert.addAction(cancel)
-        
-        present(alert, animated: true, completion: nil)
+    @IBAction func showDecks(_ sender: Any) {
+        return
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "DeckViewController") as! DeckViewController
+        vc.decks = [Deck(deckId: "lfjsd", name: "My Deck", cards: [Card(active: 0, boardCardId: "ldfj", name: "lol", order: 3 )] )]
+        present(vc, animated: true, completion: nil)
     }
 
     @IBAction func newGame(_ sender: Any) {
+        return
         let alert = UIAlertController(title: "Are you sure you want to Create a new game?",
                                       message: nil,
                                       preferredStyle: .actionSheet)
@@ -148,16 +135,34 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
         }
     
     }
+    /*
+    //         vc.gameStore = self.gameStore
+    //         vc.gameIndex = gameStore.games.index(where: { (item) -> Bool in
+    //         item.gameId == self.gameStore.games[indexPath.row].gameId
+    //         })
+    
+    self.navigationController?.pushViewController(vc, animated: true)
+    
+    return
+    let alert = UIAlertController(title: "Type in the card you'd like to add",
+                                  message: nil,
+                                  preferredStyle: .alert)
+    
+    alert.addTextField(configurationHandler: nil)
+    
+    let add = UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
+        let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+        guard let cardText = textField?.text else {return}
+        if !cardText.isEmpty{
+            self.gameStore.apiManager.createCard(name: cardText)
+        }
+    })
+    alert.addAction(add)
+    
+    let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+    alert.addAction(cancel)
+    
+    present(alert, animated: true, completion: nil)
+    */
 }
 
-/*
-let sb = UIStoryboard(name: "Main", bundle: nil)
-let vc = sb.instantiateViewController(withIdentifier: "BingoController") as! BingoViewController
-
-vc.gameStore = self.gameStore
-vc.gameIndex = gameStore.games.index(where: { (item) -> Bool in
-    item.gameId == self.gameStore.games[indexPath.row].gameId
-})
-
-self.navigationController?.pushViewController(vc, animated: true)
-*/

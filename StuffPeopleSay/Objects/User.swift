@@ -17,18 +17,17 @@ struct User{
         let deck = self.boards[index].deck
         
         var count = 0
-        for card in deck{
+        for card in deck.cards{
             if card.active == 1{
                 count += 1
             }
         }
-        
         return count
     }
 }
+
 extension User {
     init?(json: JSON) {
-
         guard let name = json["name"].string else {
             print("Error parsing user object for key: name")
             return nil
@@ -53,6 +52,5 @@ extension User {
         self.name = name
         self.userId = userId
     }
-    
 }
 

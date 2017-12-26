@@ -1,7 +1,6 @@
 import UIKit
  
  class BingoCollectionViewLayout: UICollectionViewLayout {
-    
     fileprivate var numberOfColumns = 5
     fileprivate var numberOfRows = 5
     fileprivate var cellPadding: CGFloat = 1
@@ -28,7 +27,6 @@ import UIKit
         
         let cellWidth:CGFloat = contentWidth / CGFloat(numberOfColumns)
         let cellHeight:CGFloat = contentWidth / CGFloat(numberOfRows)
-
 
         var xOffset = [CGFloat]()
         var yOffset = [CGFloat]()
@@ -63,7 +61,6 @@ import UIKit
             // Updates the collection view content height
             contentHeight = max(contentHeight,frame.maxY)
         }
-
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
@@ -79,10 +76,6 @@ import UIKit
     }
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-    
-        print("Begining")
-        print(indexPath)
-        print(cache.count)
         return cache[indexPath.item]
     }
  }

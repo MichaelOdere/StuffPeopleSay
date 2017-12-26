@@ -2,24 +2,23 @@ import Foundation
 import SwiftyJSON
 
 class Game {
-
     var gameId: String
+    var name:String
     var status: String
     var my: User
-    var users: [User]
+    var opponents: [User]
     
-    init(gameId:String, status:String, my:User, users:[User]) {
+    init(gameId:String, name:String, status:String, my:User, opponents:[User]) {
         self.gameId = gameId
+        self.name = name
         self.status = status
         self.my = my
-        self.users = users
+        self.opponents = opponents
     }
 }
 
 extension Game {
     convenience init?(json: JSON) {
-
-        print(json)
         guard let gameId = json["gameId"].string else {
             print("Error parsing game object for key: gameId")
             return nil
@@ -47,35 +46,34 @@ extension Game {
             return nil
             
         }
-        var allUsers:[User] = []
+        var allOpponents:[User] = []
         for opponentData in opponentsUserData {
-            if let user = User(json: opponentData){
-                allUsers.append(user)
+            if let opponent = User(json: opponentData){
+                allOpponents.append(opponent)
             }
         }
         
-        self.init(gameId: gameId, status: status, my: myUser, users: allUsers)
-
+        self.init(gameId: gameId, name:"String", status: status, my: myUser, opponents: allOpponents)
     }
     
     func getOpponents()->String{
         var opponentsText = ""
         
-        switch self.users.count {
+        switch self.opponents.count {
             case 0:
                 opponentsText = "No Opponents"
             case 1:
-                opponentsText = self.users[0].name
+                opponentsText = self.opponents[0].name
             case 2:
-                opponentsText = self.users[0].name + " & " + self.users[1].name
+                opponentsText = self.opponents[0].name + " & " + self.opponents[1].name
             case 3:
-                opponentsText = self.users[0].name + ", " + self.users[1].name + ", & " + self.users[2].name
+                opponentsText = self.opponents[0].name + ", " + self.opponents[1].name + ", & " + self.opponents[2].name
             default:
-                opponentsText = self.users[0].name + ", " + self.users[1].name + ", & " + String(self.users.count - 2) + " Opponents"
+                opponentsText = self.opponents[0].name + ", " + self.opponents[1].name + ", & " + String(self.opponents.count - 2) + " Opponents"
         }
         
         if opponentsText.count > 42{
-            opponentsText = String(self.users.count) + " Opponents"
+            opponentsText = String(self.opponents.count) + " Opponents"
 
         }
 

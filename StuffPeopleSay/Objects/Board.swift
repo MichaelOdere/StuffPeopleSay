@@ -3,42 +3,33 @@ import SwiftyJSON
 
 class Board{
     
-    var deck: [Card] = []
     var boardId:String
+    var deck: Deck
     var count:Int
     
-    init(deck: [Card], boardId:String, count:Int) {
-        self.deck = deck
+    init( boardId:String, deck: Deck, count:Int) {
         self.boardId = boardId
+        self.deck = deck
         self.count = count
     }
 }
 extension Board {
     convenience init?(json: JSON) {
-        
-        guard let coardData = json["cards"].array else {
-            print("Error parsing user object for key: cards")
-            return nil
-        }
-        
-        var allCards:[Card] = []
-        for c in coardData {
-            if let card = Card(json: c){
-                allCards.append(card)
-            }
-        }
-        
         guard let boardId = json["boardId"].string else {
             print("Error parsing user object for key: boardId")
             return nil
         }
         
+        guard let deckData = Deck(json: json) else {
+            print("Error parsing Deck")
+            return nil
+        }
+
         guard let count = json["count"].int else {
             print("Error parsing user object for key: count")
             return nil
         }
         
-        self.init(deck: allCards, boardId: boardId, count: count)
-       
+        self.init(boardId: boardId, deck: deckData, count: count)
     }
 }

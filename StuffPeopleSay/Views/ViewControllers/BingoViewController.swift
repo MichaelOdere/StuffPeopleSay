@@ -23,7 +23,7 @@ class BingoViewController:UIViewController{
 
         bingoDataSource.didSelectRow = didSelectRow(card:cell:)
         bingoDataSource.bingoGame = bingoGame
-        bingoDataSource.deck = self.board.deck
+        bingoDataSource.deck = self.board.deck.cards
 
         collectionView.dataSource = bingoDataSource
         collectionView.delegate = bingoDataSource

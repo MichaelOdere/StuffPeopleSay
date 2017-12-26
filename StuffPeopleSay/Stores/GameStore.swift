@@ -50,6 +50,7 @@ class GameStore{
             if keychain.get("token") != nil{
                 print("found token")
                 apiManager.token =  keychain.get("token")!
+                print(apiManager.token)
                 apiManager.socketId = "4313973413"
                 
                 self.updateGames(completionHandler: { error in

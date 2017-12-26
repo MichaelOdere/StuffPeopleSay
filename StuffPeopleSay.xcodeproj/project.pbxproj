@@ -10,6 +10,8 @@
 		21A460F98FF1CCF3F16E5B3F /* Pods_StuffPeopleSay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51FA5B8480CBA27CE3AE29CC /* Pods_StuffPeopleSay.framework */; };
 		F9066DA21FD5F637003BF133 /* GameViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9066DA11FD5F637003BF133 /* GameViewCell.swift */; };
 		F90B4B7A1FBBA232002FEBF0 /* PusherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90B4B791FBBA232002FEBF0 /* PusherManager.swift */; };
+		F91230DB1FF1965D00182B55 /* DeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91230DA1FF1965D00182B55 /* DeckViewController.swift */; };
+		F91230DD1FF1972F00182B55 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91230DC1FF1972F00182B55 /* Deck.swift */; };
 		F92DBED81FBB8D4000B4566F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DBED71FBB8D4000B4566F /* LoginViewController.swift */; };
 		F92DBEDA1FBB8D5300B4566F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DBED91FBB8D5300B4566F /* User.swift */; };
 		F9341C0F1FD1ECA0009CD301 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9341C0E1FD1ECA0009CD301 /* Board.swift */; };
@@ -24,6 +26,8 @@
 		F96C58041FBB5A3B00D49481 /* BingoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C58031FBB5A3B00D49481 /* BingoCollectionCell.swift */; };
 		F96C58061FBB69F600D49481 /* BingoGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96C58051FBB69F600D49481 /* BingoGame.swift */; };
 		F9792C5E1FD75D4400ADE88C /* ZoomTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9792C5D1FD75D4400ADE88C /* ZoomTransitioningDelegate.swift */; };
+		F97E63841FF1A81700CBA256 /* DeckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97E63831FF1A81700CBA256 /* DeckCell.swift */; };
+		F97E63861FF1D66100CBA256 /* BingoPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97E63851FF1D66100CBA256 /* BingoPalette.swift */; };
 		F993AC0C1FD6229000433689 /* BoardCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F993AC0B1FD6229000433689 /* BoardCollectionViewController.swift */; };
 		F99A2F791FD4AA3000B2CEC6 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99A2F781FD4AA3000B2CEC6 /* LoadingView.swift */; };
 		F9AAF1CE1FD62F5E008A618F /* BoardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AAF1CD1FD62F5E008A618F /* BoardCollectionViewCell.swift */; };
@@ -41,6 +45,8 @@
 		B82C6D91C9AF9E86158C2F3E /* Pods-StuffPeopleSay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StuffPeopleSay.release.xcconfig"; path = "Pods/Target Support Files/Pods-StuffPeopleSay/Pods-StuffPeopleSay.release.xcconfig"; sourceTree = "<group>"; };
 		F9066DA11FD5F637003BF133 /* GameViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewCell.swift; sourceTree = "<group>"; };
 		F90B4B791FBBA232002FEBF0 /* PusherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PusherManager.swift; sourceTree = "<group>"; };
+		F91230DA1FF1965D00182B55 /* DeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckViewController.swift; sourceTree = "<group>"; };
+		F91230DC1FF1972F00182B55 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		F92DBED71FBB8D4000B4566F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F92DBED91FBB8D5300B4566F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F9341C0E1FD1ECA0009CD301 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
@@ -57,6 +63,8 @@
 		F96C58031FBB5A3B00D49481 /* BingoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoCollectionCell.swift; sourceTree = "<group>"; };
 		F96C58051FBB69F600D49481 /* BingoGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoGame.swift; sourceTree = "<group>"; };
 		F9792C5D1FD75D4400ADE88C /* ZoomTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomTransitioningDelegate.swift; sourceTree = "<group>"; };
+		F97E63831FF1A81700CBA256 /* DeckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCell.swift; sourceTree = "<group>"; };
+		F97E63851FF1D66100CBA256 /* BingoPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoPalette.swift; sourceTree = "<group>"; };
 		F993AC0B1FD6229000433689 /* BoardCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCollectionViewController.swift; sourceTree = "<group>"; };
 		F99A2F781FD4AA3000B2CEC6 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		F9AAF1CD1FD62F5E008A618F /* BoardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -101,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				F95B17141FBBBBEF00AA000B /* GameStore.swift */,
+				F97E63851FF1D66100CBA256 /* BingoPalette.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -124,6 +133,7 @@
 				F96AA6141FBAB999001E7CCD /* BingoCollectionViewLayout.swift */,
 				F96C58031FBB5A3B00D49481 /* BingoCollectionCell.swift */,
 				F9DC7C991FD1259D0097D4B5 /* PieceView.swift */,
+				F97E63831FF1A81700CBA256 /* DeckCell.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -137,6 +147,7 @@
 				F9AAF1CD1FD62F5E008A618F /* BoardCollectionViewCell.swift */,
 				F96AA6121FBAB91E001E7CCD /* BingoViewController.swift */,
 				F9DC7C951FD0C8370097D4B5 /* OpponentBingoViewController.swift */,
+				F91230DA1FF1965D00182B55 /* DeckViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -148,6 +159,7 @@
 				F92DBED91FBB8D5300B4566F /* User.swift */,
 				F9341C0E1FD1ECA0009CD301 /* Board.swift */,
 				F95B17161FBBBBF400AA000B /* Card.swift */,
+				F91230DC1FF1972F00182B55 /* Deck.swift */,
 				F96C58051FBB69F600D49481 /* BingoGame.swift */,
 			);
 			path = Objects;
@@ -342,11 +354,15 @@
 				F9DC7C941FD0C66A0097D4B5 /* BingoCollectionView.swift in Sources */,
 				F9792C5E1FD75D4400ADE88C /* ZoomTransitioningDelegate.swift in Sources */,
 				F96AA6131FBAB91E001E7CCD /* BingoViewController.swift in Sources */,
+				F97E63861FF1D66100CBA256 /* BingoPalette.swift in Sources */,
 				F9E7B39A1FC3A63500B81872 /* APIManager.swift in Sources */,
 				F993AC0C1FD6229000433689 /* BoardCollectionViewController.swift in Sources */,
 				F92DBEDA1FBB8D5300B4566F /* User.swift in Sources */,
+				F91230DD1FF1972F00182B55 /* Deck.swift in Sources */,
 				F96C58061FBB69F600D49481 /* BingoGame.swift in Sources */,
 				F95B17151FBBBBEF00AA000B /* GameStore.swift in Sources */,
+				F91230DB1FF1965D00182B55 /* DeckViewController.swift in Sources */,
+				F97E63841FF1A81700CBA256 /* DeckCell.swift in Sources */,
 				F9DC7C9A1FD1259D0097D4B5 /* PieceView.swift in Sources */,
 				F9AAF1CE1FD62F5E008A618F /* BoardCollectionViewCell.swift in Sources */,
 				F95B17171FBBBBF400AA000B /* Card.swift in Sources */,

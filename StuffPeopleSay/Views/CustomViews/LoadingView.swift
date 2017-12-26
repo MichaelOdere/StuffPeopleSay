@@ -18,7 +18,6 @@ class LoadingView:UIActivityIndicatorView{
         loadingTextLabel.center = CGPoint(x: self.center.x, y: self.center.y + 30)
 
         self.addSubview(loadingTextLabel)
-    
     }
     
     required init(coder: NSCoder) {
