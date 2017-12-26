@@ -21,6 +21,8 @@ extension Deck {
             print("Error parsing user object for key: cards")
             return nil
         }
+
+        print(coardData)
         
         var allCards:[Card] = []
         for c in coardData {

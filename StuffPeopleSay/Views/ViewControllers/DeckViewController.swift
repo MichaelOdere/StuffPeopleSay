@@ -1,8 +1,17 @@
 import UIKit
 
+
+enum ToolBarState{
+    case normal
+    case editing
+}
+
 class DeckViewController:UIViewController{
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var leftToolBarButton: UIButton!
+    @IBOutlet weak var rightToolBarButton: UIButton!
+    
     let searchController = UISearchController(searchResultsController: nil)
     var decks:[Deck]!
     var filteredDecks = [Deck]()
@@ -16,16 +25,58 @@ class DeckViewController:UIViewController{
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
-        
+        toolBarSetup(state: .normal)
+
         collectionView.dataSource = self
         collectionView.delegate = self
-        
         self.collectionView.backgroundColor = BingoPalette.vanillaBackgroundColor
     }
-    @IBAction func doneButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+
+    func toolBarSetup(state: ToolBarState){
+        switch state {
+        case .normal:
+            leftToolBarButton.tag = 0
+            leftToolBarButton.titleLabel?.text = "Edit"
+            
+            rightToolBarButton.tag = 1
+            rightToolBarButton.titleLabel?.text = "Add"
+
+            navigationItem.rightBarButtonItem = nil
+        case .editing:
+            leftToolBarButton.tag = 2
+            leftToolBarButton.titleLabel?.text = "Share"
+            
+            rightToolBarButton.tag = 3
+            rightToolBarButton.titleLabel?.text = "Delete"
+            
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action:  #selector(cancelBarButton(sender:)))
+
+        }
     }
+    
+    @objc func cancelBarButton(sender: UIBarButtonItem) {
+        toolBarSetup(state: .normal)
+        
+        print("Cancel")
+    }
+    
+    @IBAction func toolBarButtons(sender: UIButton) {
+        if sender.tag == 0{
+            toolBarSetup(state: .editing)
+
+            print("edit logic")
+        }else if sender.tag == 1{
+            print("Add logic")
+        } else if sender.tag == 2{
+            print("Add share")
+        }else if sender.tag == 3{
+            print("Add del")
+        }
+    }
+    
+    
 }
+
 extension DeckViewController:UICollectionViewDelegate, UICollectionViewDataSource{
     
     func isFiltering() -> Bool {

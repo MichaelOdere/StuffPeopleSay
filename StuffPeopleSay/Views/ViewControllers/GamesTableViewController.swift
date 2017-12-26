@@ -20,7 +20,6 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
                                                  selector: #selector(GamesTableViewController.didBecomeActive),
                                                  name: Notification.Name("didBecomeActive"),
                                                  object: nil)
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
