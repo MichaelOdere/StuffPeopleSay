@@ -14,6 +14,7 @@ class DeckViewController:UIViewController{
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Candies"
         navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
         
         collectionView.dataSource = self
@@ -56,7 +57,6 @@ extension DeckViewController:UICollectionViewDelegate, UICollectionViewDataSourc
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DeckCell", for: indexPath) as! DeckCell
         let deck: Deck
         if isFiltering() {
-            print(filteredDecks)
             deck = filteredDecks[indexPath.row]
         } else {
             deck = decks[indexPath.row]
