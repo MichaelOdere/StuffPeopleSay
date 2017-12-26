@@ -15,86 +15,25 @@ class DeckViewController:UIViewController{
     let searchController = UISearchController(searchResultsController: nil)
     var decks:[Deck]!
     var filteredDecks = [Deck]()
+    var selectedDecks = [String]()
+    var toolBarState: ToolBarState = .normal
     
     override func viewDidLoad() {
-        
-        // Setup the Search Controller
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Candies"
+        searchController.searchBar.placeholder = "Search Decks"
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
-        toolBarSetup(state: .normal)
+        toolBarSetup()
 
         collectionView.dataSource = self
         collectionView.delegate = self
         self.collectionView.backgroundColor = BingoPalette.vanillaBackgroundColor
     }
-
-    func toolBarSetup(state: ToolBarState){
-        switch state {
-        case .normal:
-            leftToolBarButton.tag = 0
-            leftToolBarButton.titleLabel?.text = "Edit"
-            
-            rightToolBarButton.tag = 1
-            rightToolBarButton.titleLabel?.text = "Add"
-
-            navigationItem.rightBarButtonItem = nil
-        case .editing:
-            leftToolBarButton.tag = 2
-            leftToolBarButton.titleLabel?.text = "Share"
-            
-            rightToolBarButton.tag = 3
-            rightToolBarButton.titleLabel?.text = "Delete"
-            
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action:  #selector(cancelBarButton(sender:)))
-
-        }
-    }
-    
-    @objc func cancelBarButton(sender: UIBarButtonItem) {
-        toolBarSetup(state: .normal)
-        
-        print("Cancel")
-    }
-    
-    @IBAction func toolBarButtons(sender: UIButton) {
-        if sender.tag == 0{
-            toolBarSetup(state: .editing)
-
-            print("edit logic")
-        }else if sender.tag == 1{
-            print("Add logic")
-        } else if sender.tag == 2{
-            print("Add share")
-        }else if sender.tag == 3{
-            print("Add del")
-        }
-    }
-    
-    
 }
 
 extension DeckViewController:UICollectionViewDelegate, UICollectionViewDataSource{
-    
-    func isFiltering() -> Bool {
-        return searchController.isActive && !searchBarIsEmpty()
-    }
-    
-    func searchBarIsEmpty() -> Bool {
-        // Returns true if the text is empty or nil
-        return searchController.searchBar.text?.isEmpty ?? true
-    }
-    
-    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        filteredDecks = decks.filter({( deck : Deck) -> Bool in
-            return deck.name.contains(searchText.lowercased())
-        })
-        
-        collectionView.reloadData()
-    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
        
         if isFiltering() {
@@ -102,6 +41,22 @@ extension DeckViewController:UICollectionViewDelegate, UICollectionViewDataSourc
         }
         
         return decks.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! DeckCell
+        if toolBarState == .editing{
+            if selectedDecks.contains(cell.deckId){
+                cell.alpha = 1
+                if let index = selectedDecks.index(of: cell.deckId) {
+                    selectedDecks.remove(at: index)
+                }
+            }else{
+                cell.alpha = 0.5
+                selectedDecks.append(cell.deckId)
+            }
+            checkToolBarButton()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -113,13 +68,97 @@ extension DeckViewController:UICollectionViewDelegate, UICollectionViewDataSourc
             deck = decks[indexPath.row]
         }
         cell.name.text = deck.name
+        cell.deckId = deck.deckId
+
+        if selectedDecks.contains(cell.deckId){
+            cell.alpha = 0.5
+        }else{
+            cell.alpha = 1
+        }
+        
         return cell
     }
 }
 
 extension DeckViewController: UISearchResultsUpdating {
-    // MARK: - UISearchResultsUpdating Delegate
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        filteredDecks = decks.filter({( deck : Deck) -> Bool in
+            return deck.name.contains(searchText.lowercased())
+        })
+        
+        collectionView.reloadData()
+    }
+}
+
+extension DeckViewController{
+    func toolBarSetup(){
+        
+        switch toolBarState {
+        case .normal:
+            leftToolBarButton.isHidden = true
+            
+            rightToolBarButton.tag = 1
+            rightToolBarButton.setTitle("Add", for: .normal)
+            rightToolBarButton.isEnabled = true
+            
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .done, target: self, action: #selector(selectBarButton(sender:)))
+            
+        case .editing:
+            leftToolBarButton.tag = 2
+            leftToolBarButton.setTitle("Share", for: .normal)
+            leftToolBarButton.isEnabled = false
+            leftToolBarButton.isHidden = false
+            
+            rightToolBarButton.tag = 3
+            rightToolBarButton.setTitle("Delete", for: .normal)
+            rightToolBarButton.isEnabled = false
+            
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action:  #selector(cancelBarButton(sender:)))
+        }
+    }
+    
+    @objc func cancelBarButton(sender: UIBarButtonItem) {
+        toolBarState = .normal
+        toolBarSetup()
+        
+        selectedDecks.removeAll()
+        collectionView.reloadData()
+    }
+    
+    @objc func selectBarButton(sender: UIBarButtonItem) {
+        toolBarState = .editing
+        toolBarSetup()
+    }
+    
+    @IBAction func toolBarButtons(sender: UIButton) {
+        if sender.tag == 0{
+            print("Add logic")
+        } else if sender.tag == 1{
+            print("Add share")
+        }else if sender.tag == 2{
+            print("Add del")
+        }
+    }
+    
+    func checkToolBarButton(){
+        if selectedDecks.isEmpty{
+            leftToolBarButton.isEnabled = false
+            rightToolBarButton.isEnabled = false
+        }else{
+            leftToolBarButton.isEnabled = true
+            rightToolBarButton.isEnabled = true
+        }
     }
 }

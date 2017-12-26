@@ -63,8 +63,8 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
         var decks:[Deck] = []
         
         for _ in 0...30{
-            let n = Int(arc4random_uniform(42))
-            let tempDeck = Deck(deckId: "lfjsd", name: String(n), cards: [Card(active: 0, boardCardId: "ldfj", name: "lol", order: 3 )] )
+            let n = Int(arc4random_uniform(100000))
+            let tempDeck = Deck(deckId: String(n), name: String(n), cards: [Card(active: 0, boardCardId: "ldfj", name: "lol", order: 3 )] )
             decks.append(tempDeck)
         }
         vc.decks = decks
@@ -141,34 +141,5 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
         }
     
     }
-    /*
-    //         vc.gameStore = self.gameStore
-    //         vc.gameIndex = gameStore.games.index(where: { (item) -> Bool in
-    //         item.gameId == self.gameStore.games[indexPath.row].gameId
-    //         })
-    
-    self.navigationController?.pushViewController(vc, animated: true)
-    
-    return
-    let alert = UIAlertController(title: "Type in the card you'd like to add",
-                                  message: nil,
-                                  preferredStyle: .alert)
-    
-    alert.addTextField(configurationHandler: nil)
-    
-    let add = UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
-        let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-        guard let cardText = textField?.text else {return}
-        if !cardText.isEmpty{
-            self.gameStore.apiManager.createCard(name: cardText)
-        }
-    })
-    alert.addAction(add)
-    
-    let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-    alert.addAction(cancel)
-    
-    present(alert, animated: true, completion: nil)
-    */
 }
 
