@@ -59,11 +59,18 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func showDecks(_ sender: Any) {
-        return
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "DeckViewController") as! DeckViewController
-        vc.decks = [Deck(deckId: "lfjsd", name: "My Deck", cards: [Card(active: 0, boardCardId: "ldfj", name: "lol", order: 3 )] )]
-        present(vc, animated: true, completion: nil)
+        var decks:[Deck] = []
+        
+        for _ in 0...30{
+            let n = Int(arc4random_uniform(42))
+            let tempDeck = Deck(deckId: "lfjsd", name: String(n), cards: [Card(active: 0, boardCardId: "ldfj", name: "lol", order: 3 )] )
+            decks.append(tempDeck)
+        }
+        vc.decks = decks
+        self.navigationController?.pushViewController(vc, animated: true)
+//        present(vc, animated: true, completion: nil)
     }
 
     @IBAction func newGame(_ sender: Any) {

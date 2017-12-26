@@ -442,7 +442,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1cM-TN-gW1">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="t7x-s6-IgX">
                                     <size key="itemSize" width="120" height="103"/>
@@ -458,18 +458,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="120" height="103"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqy-h5-zMM">
-                                                    <rect key="frame" x="37.5" y="41" width="45" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqy-h5-zMM">
+                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="103"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </view>
-                                        <constraints>
-                                            <constraint firstItem="kqy-h5-zMM" firstAttribute="centerX" secondItem="Jgn-3I-yWU" secondAttribute="centerX" id="D89-dY-eb3"/>
-                                            <constraint firstItem="kqy-h5-zMM" firstAttribute="centerY" secondItem="Jgn-3I-yWU" secondAttribute="centerY" id="TgU-Oz-00m"/>
-                                        </constraints>
                                         <connections>
                                             <outlet property="name" destination="kqy-h5-zMM" id="2t3-rQ-ozo"/>
                                         </connections>
@@ -479,10 +476,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="1cM-TN-gW1" firstAttribute="top" secondItem="z3D-iD-Sr6" secondAttribute="top" id="Evb-5L-WPZ"/>
-                            <constraint firstItem="1cM-TN-gW1" firstAttribute="trailing" secondItem="z3D-iD-Sr6" secondAttribute="trailing" id="F6A-78-O50"/>
-                            <constraint firstItem="1cM-TN-gW1" firstAttribute="leading" secondItem="z3D-iD-Sr6" secondAttribute="leading" id="Jzo-wy-Auq"/>
-                            <constraint firstItem="1cM-TN-gW1" firstAttribute="bottom" secondItem="z3D-iD-Sr6" secondAttribute="bottom" id="S4s-DT-50B"/>
+                            <constraint firstItem="1cM-TN-gW1" firstAttribute="leading" secondItem="z3D-iD-Sr6" secondAttribute="leading" id="9XL-1g-KVC"/>
+                            <constraint firstItem="1cM-TN-gW1" firstAttribute="trailing" secondItem="z3D-iD-Sr6" secondAttribute="trailing" id="AGw-u7-GuF"/>
+                            <constraint firstItem="1cM-TN-gW1" firstAttribute="top" secondItem="z3D-iD-Sr6" secondAttribute="top" id="JDV-4J-wsp"/>
+                            <constraint firstItem="1cM-TN-gW1" firstAttribute="bottom" secondItem="z3D-iD-Sr6" secondAttribute="bottom" id="MIS-Ot-lxM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="z3D-iD-Sr6"/>
                     </view>
@@ -491,6 +488,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ham-9S-aoI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="oJz-DE-ryX"/>
             </objects>
             <point key="canvasLocation" x="1277.5999999999999" y="-488.00599700149928"/>
         </scene>
@@ -625,7 +623,6 @@
                     <connections>
                         <outlet property="tableview" destination="j2L-Dk-lam" id="N90-X8-BVk"/>
                         <segue destination="UQy-lW-wdQ" kind="show" identifier="ShowBoards" id="Zlh-Wi-738"/>
-                        <segue destination="OEB-mn-JBU" kind="show" id="jgg-cp-Dhp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j4Q-aX-7mf" userLabel="First Responder" sceneMemberID="firstResponder"/>
