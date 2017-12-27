@@ -16,7 +16,6 @@ class BingoGame{
     }
     
     func cardsToBoard(cards: [Card]){
-        
         for index in 0..<cards.count{
             if index > 24 {
                 break
@@ -30,21 +29,18 @@ class BingoGame{
             }
         }
     }
+
     func checkVictory(x:Int, y: Int)->Bool{
-        
         var victory = false
         if checkVertical(y: y) || checkHorizontal(x: x){
             victory = true
-
         }else {
             let result = isDiagonal(x: x, y: y)
             
             if result != DiagonalResult.neither{
                 victory = checkDiagonal(dr: result)
             }
-
         }
-        
         return victory
     }
     
@@ -57,13 +53,11 @@ class BingoGame{
     }
     
     private func checkHorizontal(x:Int)->Bool{
-        
         for elem in 0..<5{
             if board[x][elem] != 1{
                 return false
             }
         }
-        
         return true
     }
     
@@ -73,12 +67,10 @@ class BingoGame{
                 return false
             }
         }
-        
         return true
     }
     
     private func checkDiagonal(dr: DiagonalResult)->Bool{
-
         var victory = false
         switch dr {
         case .both:
@@ -95,8 +87,6 @@ class BingoGame{
         default:
             victory = false
         }
-        
-        
         return victory
     }
     
@@ -109,7 +99,6 @@ class BingoGame{
                 return false
             }
         }
-        
         return true
     }
 
@@ -119,11 +108,10 @@ class BingoGame{
                 return false
             }
         }
-        
         return true
     }
+    
     private func isDiagonal(x:Int, y: Int)->DiagonalResult{
-
         if x == y{
             
             if x == 2{
@@ -137,9 +125,6 @@ class BingoGame{
             return DiagonalResult.slantingRight
 
         }
-        
         return DiagonalResult.neither
-
-        
     }
 }

@@ -22,8 +22,6 @@ extension Deck {
             return nil
         }
 
-        print(coardData)
-        
         var allCards:[Card] = []
         for c in coardData {
             if let card = Card(json: c){

@@ -1,6 +1,5 @@
 import UIKit
 
-
 enum ToolBarState{
     case normal
     case editing
@@ -35,11 +34,9 @@ class DeckViewController:UIViewController{
 
 extension DeckViewController:UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       
         if isFiltering() {
             return filteredDecks.count
         }
-        
         return decks.count
     }
     
@@ -56,6 +53,11 @@ extension DeckViewController:UICollectionViewDelegate, UICollectionViewDataSourc
                 selectedDecks.append(cell.deckId)
             }
             checkToolBarButton()
+        }else{
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "CardsViewController") as! CardsViewController
+            vc.deck = decks[indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -97,7 +99,6 @@ extension DeckViewController: UISearchResultsUpdating {
         filteredDecks = decks.filter({( deck : Deck) -> Bool in
             return deck.name.contains(searchText.lowercased())
         })
-        
         collectionView.reloadData()
     }
 }
@@ -162,7 +163,7 @@ extension DeckViewController{
             message: "This action cannot be undone.",
             preferredStyle: .actionSheet)
         
-        let add = UIAlertAction(title: "Delete", style: .default, handler: { [weak alert] (_) in
+        let add = UIAlertAction(title: "Delete", style: .default, handler: { (_) in
             self.deleteSelectedDecks()
         })
         alert.addAction(add)
@@ -189,7 +190,7 @@ extension DeckViewController{
             leftToolBarButton.isEnabled = false
             rightToolBarButton.isEnabled = false
         }else{
-            leftToolBarButton.isEnabled = true
+            leftToolBarButton.isEnabled = false
             rightToolBarButton.isEnabled = true
         }
     }
