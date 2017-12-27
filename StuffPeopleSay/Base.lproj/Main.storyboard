@@ -529,6 +529,31 @@
             </objects>
             <point key="canvasLocation" x="1277.5999999999999" y="-488.00599700149928"/>
         </scene>
+        <!--New Deck View Controller-->
+        <scene sceneID="ARb-dg-BqQ">
+            <objects>
+                <viewController storyboardIdentifier="NewDeckViewController" id="Et0-9p-DeS" customClass="NewDeckViewController" customModule="StuffPeopleSay" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xUr-Bd-VIo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6y-Bt-axS">
+                                <rect key="frame" x="150" y="496" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="leave:" destination="Et0-9p-DeS" eventType="touchUpInside" id="VEe-Q0-yoE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="nar-sZ-tpE"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r3Q-22-UnN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2023" y="-498"/>
+        </scene>
         <!--Games-->
         <scene sceneID="lzu-KL-BQL">
             <objects>

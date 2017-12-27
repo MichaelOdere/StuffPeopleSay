@@ -102,26 +102,26 @@ extension DeckViewController: UISearchResultsUpdating {
     }
 }
 
+// Tool bar functionality and setup
 extension DeckViewController{
     func toolBarSetup(){
-        
         switch toolBarState {
         case .normal:
             leftToolBarButton.isHidden = true
             
-            rightToolBarButton.tag = 1
+            rightToolBarButton.tag = 0
             rightToolBarButton.setTitle("Add", for: .normal)
             rightToolBarButton.isEnabled = true
             
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .done, target: self, action: #selector(selectBarButton(sender:)))
             
         case .editing:
-            leftToolBarButton.tag = 2
+            leftToolBarButton.tag = 1
             leftToolBarButton.setTitle("Share", for: .normal)
             leftToolBarButton.isEnabled = false
             leftToolBarButton.isHidden = false
             
-            rightToolBarButton.tag = 3
+            rightToolBarButton.tag = 2
             rightToolBarButton.setTitle("Delete", for: .normal)
             rightToolBarButton.isEnabled = false
             
@@ -144,12 +144,44 @@ extension DeckViewController{
     
     @IBAction func toolBarButtons(sender: UIButton) {
         if sender.tag == 0{
-            print("Add logic")
+            // Add
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "NewDeckViewController") as! NewDeckViewController
+            present(vc, animated: true, completion: nil)
         } else if sender.tag == 1{
+            // Share
             print("Add share")
         }else if sender.tag == 2{
-            print("Add del")
+            // Delete
+           presentDeleteAlert()
         }
+    }
+    
+    func presentDeleteAlert(){
+        let alert = UIAlertController(title: "Are you sure you want to Delete the \(selectedDecks.count) selected Decks?",
+            message: "This action cannot be undone.",
+            preferredStyle: .actionSheet)
+        
+        let add = UIAlertAction(title: "Delete", style: .default, handler: { [weak alert] (_) in
+            self.deleteSelectedDecks()
+        })
+        alert.addAction(add)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func deleteSelectedDecks(){
+        for deckId in selectedDecks{
+            if let index = decks.index(where: {$0.deckId == deckId}) {
+                decks.remove(at: index)
+            }
+        }
+        selectedDecks.removeAll()
+        checkToolBarButton()
+        collectionView.reloadData()
     }
     
     func checkToolBarButton(){

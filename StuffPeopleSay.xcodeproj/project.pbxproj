@@ -34,6 +34,7 @@
 		F9DC7C941FD0C66A0097D4B5 /* BingoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC7C931FD0C66A0097D4B5 /* BingoCollectionView.swift */; };
 		F9DC7C961FD0C8370097D4B5 /* OpponentBingoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC7C951FD0C8370097D4B5 /* OpponentBingoViewController.swift */; };
 		F9DC7C9A1FD1259D0097D4B5 /* PieceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC7C991FD1259D0097D4B5 /* PieceView.swift */; };
+		F9E107D61FF31C8D00EC4138 /* NewDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E107D51FF31C8D00EC4138 /* NewDeckViewController.swift */; };
 		F9E7B39A1FC3A63500B81872 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E7B3991FC3A63500B81872 /* APIManager.swift */; };
 		F9E7B39C1FC3D28E00B81872 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E7B39B1FC3D28E00B81872 /* Game.swift */; };
 		F9E7B39E1FC3E4F600B81872 /* GamesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E7B39D1FC3E4F600B81872 /* GamesTableViewController.swift */; };
@@ -71,6 +72,7 @@
 		F9DC7C931FD0C66A0097D4B5 /* BingoCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoCollectionView.swift; sourceTree = "<group>"; };
 		F9DC7C951FD0C8370097D4B5 /* OpponentBingoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpponentBingoViewController.swift; sourceTree = "<group>"; };
 		F9DC7C991FD1259D0097D4B5 /* PieceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceView.swift; sourceTree = "<group>"; };
+		F9E107D51FF31C8D00EC4138 /* NewDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckViewController.swift; sourceTree = "<group>"; };
 		F9E7B3991FC3A63500B81872 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		F9E7B39B1FC3D28E00B81872 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		F9E7B39D1FC3E4F600B81872 /* GamesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesTableViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				F96AA6121FBAB91E001E7CCD /* BingoViewController.swift */,
 				F9DC7C951FD0C8370097D4B5 /* OpponentBingoViewController.swift */,
 				F91230DA1FF1965D00182B55 /* DeckViewController.swift */,
+				F9E107D51FF31C8D00EC4138 /* NewDeckViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				F9341C0F1FD1ECA0009CD301 /* Board.swift in Sources */,
 				F96AA6151FBAB999001E7CCD /* BingoCollectionViewLayout.swift in Sources */,
 				F96AA6011FBAB4F4001E7CCD /* AppDelegate.swift in Sources */,
+				F9E107D61FF31C8D00EC4138 /* NewDeckViewController.swift in Sources */,
 				F99A2F791FD4AA3000B2CEC6 /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
