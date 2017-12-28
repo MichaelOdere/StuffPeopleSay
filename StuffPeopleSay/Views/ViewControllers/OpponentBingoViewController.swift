@@ -13,9 +13,9 @@ class OpponentBingoViewController:UIViewController{
         
         bingoDataSource.bingoGame = bingoGame
         if let board = self.user?.boards[0]{
-            bingoDataSource.deck = board.deck.cards
+            bingoDataSource.deck = board.deck
         }else{
-            bingoDataSource.deck = []
+            bingoDataSource.deck = Deck(deckId: "", name: "", cards: [])
         }
         
         collectionView.dataSource = bingoDataSource

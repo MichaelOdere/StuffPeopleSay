@@ -36,6 +36,7 @@ extension Deck {
                 allCards.append(card)
             }
         }
+        allCards = allCards.sorted(by: { $0.order > $1.order })
         self.init(deckId: "1", name:"Deck", cards: allCards)
     }
 }

@@ -1,19 +1,19 @@
 import UIKit
 
 class BingoCollectionView: NSObject, UICollectionViewDataSource, UICollectionViewDelegate{
-    var deck:[Card] = []
+    var deck:Deck!
     var bingoGame:BingoGame = BingoGame()
     var pieceTransparency:CGFloat = 0.2
     
     var didSelectRow: ((_ card: Card, _ cell: BingoCollectionCell ) -> Void)?
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return min(deck.count, 25)
+        return min(deck.cards.count, 25)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BingoCell", for: indexPath) as! BingoCollectionCell
-        let card = deck[indexPath.row]
+        let card = deck.cards[indexPath.row]
         cell.backgroundColor = BingoPalette.bingoCellBackgroundColor
         cell.pieceView.backgroundColor = UIColor.clear
         cell.title.text = card.name
@@ -32,15 +32,15 @@ class BingoCollectionView: NSObject, UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! BingoCollectionCell
-        let card = deck[indexPath.row]
+        let card = deck.cards[indexPath.row]
 
         if let didSelectRow = didSelectRow {
             didSelectRow(card, cell)
 
             if card.active == 0{
-               deck[indexPath.row].active = 1
+               deck.cards[indexPath.row].active = 1
             }else{
-                deck[indexPath.row].active = 0
+                deck.cards[indexPath.row].active = 0
             }
         }
     }
