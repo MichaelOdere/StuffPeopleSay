@@ -62,7 +62,7 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
         let vc = sb.instantiateViewController(withIdentifier: "DeckViewController") as! DeckViewController
         var decks:[Deck] = []
         
-        for _ in 0...30{
+        for _ in 0...3{
             let n = Int(arc4random_uniform(100000))
             let tempDeck = Deck(deckId: String(n), name: String(n), cards: [Card(active: 0, boardCardId: "ldfj", name: "lol", order: 3 )] )
             decks.append(tempDeck)

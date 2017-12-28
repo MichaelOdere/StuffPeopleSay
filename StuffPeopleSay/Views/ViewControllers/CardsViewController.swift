@@ -34,7 +34,8 @@ class CardsViewController:UIViewController{
         dismiss(animated: true, completion: nil)
     }
     @objc func save(sender: UIButton){
-        deck = tempDeck.copyDeck()
+        deck.name = tempDeck.name
+        deck.cards = tempDeck.cards
         dismiss(animated: true, completion: nil)
     }
     
