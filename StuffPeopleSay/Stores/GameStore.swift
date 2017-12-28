@@ -28,10 +28,8 @@ class GameStore{
     
     // Login user and get game data
     func loginUser(email:String?, completionHandler: @escaping (Bool?, Error?) -> Void){
-        print("login")
         self.isLoggedIn = true
         self.updateDeck(completionHandler: { (error) in
-            print("login1")
             if let error = error {
                 print(error as Any)
                 return

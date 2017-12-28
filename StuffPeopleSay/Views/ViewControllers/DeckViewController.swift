@@ -1,17 +1,18 @@
 import UIKit
 
-enum ToolBarState {
-    case normal
-    case editing
-}
 class DeckViewController:UIViewController{
+
+    enum ToolBarState {
+        case normal
+        case editing
+    }
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var leftToolBarButton: UIButton!
     @IBOutlet weak var rightToolBarButton: UIButton!
 
     let searchController = UISearchController(searchResultsController: nil)
-    var decks:[Deck]!
+    var gameStore:GameStore!
     var filteredDecks = [Deck]()
     var selectedDecks = [String]()
     var toolBarState: ToolBarState = .normal {
@@ -44,7 +45,7 @@ extension DeckViewController:UICollectionViewDelegate, UICollectionViewDataSourc
         if isFiltering() {
             return filteredDecks.count
         }
-        return decks.count
+        return gameStore.decks.count
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -63,8 +64,9 @@ extension DeckViewController:UICollectionViewDelegate, UICollectionViewDataSourc
         }else{
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "CardsViewController") as! CardsViewController
-            vc.decks = decks
-            vc.deck = decks[indexPath.row]
+            vc.gameStore = gameStore
+            vc.deck = gameStore.decks[indexPath.row]
+            vc.newDeck = false
             present(vc, animated: true, completion: nil)
         }
     }
@@ -75,7 +77,7 @@ extension DeckViewController:UICollectionViewDelegate, UICollectionViewDataSourc
         if isFiltering() {
             deck = filteredDecks[indexPath.row]
         } else {
-            deck = decks[indexPath.row]
+            deck = gameStore.decks[indexPath.row]
         }
         cell.name.text = deck.name
         cell.deckId = deck.deckId
@@ -104,7 +106,7 @@ extension DeckViewController: UISearchResultsUpdating {
     }
 
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        filteredDecks = decks.filter({( deck : Deck) -> Bool in
+        filteredDecks = gameStore.decks.filter({( deck : Deck) -> Bool in
             return deck.name.contains(searchText.lowercased())
         })
         collectionView.reloadData()
@@ -153,11 +155,12 @@ extension DeckViewController{
     @IBAction func toolBarButtons(sender: UIButton) {
         if sender.tag == 0{
             // Add
-//            let sb = UIStoryboard(name: "Main", bundle: nil)
-//            let vc = sb.instantiateViewController(withIdentifier: "CardsViewController") as! CardsViewController
-//            vc.decks = decks
-//            vc.deck = Deck(deckId: "", name: "", cards: emptyCards())
-//            present(vc, animated: true, completion: nil)
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "CardsViewController") as! CardsViewController
+            vc.gameStore = gameStore
+            vc.deck = Deck(deckId: "", name: "", cards: emptyCards())
+            vc.newDeck = true
+            present(vc, animated: true, completion: nil)
         } else if sender.tag == 1{
             // Share
             print("Add share")
@@ -194,8 +197,8 @@ extension DeckViewController{
 
     func deleteSelectedDecks(){
         for deckId in selectedDecks{
-            if let index = decks.index(where: {$0.deckId == deckId}) {
-                decks.remove(at: index)
+            if let index = gameStore.decks.index(where: {$0.deckId == deckId}) {
+                gameStore.decks.remove(at: index)
             }
         }
         selectedDecks.removeAll()

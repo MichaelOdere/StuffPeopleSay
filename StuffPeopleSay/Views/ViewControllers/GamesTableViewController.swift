@@ -60,7 +60,7 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
     @IBAction func showDecks(_ sender: Any) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "DeckViewController") as! DeckViewController
-        vc.decks = gameStore.decks
+        vc.gameStore = gameStore
         self.navigationController?.pushViewController(vc, animated: true)
 //        present(vc, animated: true, completion: nil)
     }

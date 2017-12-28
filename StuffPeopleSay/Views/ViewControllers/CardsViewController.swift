@@ -7,13 +7,13 @@ class CardsViewController:UIViewController{
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
     
-    var decks:[Deck]!
+    var gameStore:GameStore!
     var deck:Deck!
-    
     var tempDeck:Deck!
     var filteredCards = [Card]()
     var selectedCards = [String]()
-
+    var newDeck:Bool!
+    
     override func viewDidLoad() {
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -38,6 +38,9 @@ class CardsViewController:UIViewController{
     @objc func save(sender: UIButton){
         deck.name = tempDeck.name
         deck.cards = tempDeck.cards
+        if newDeck{
+            gameStore.decks.append(deck)
+        }
         dismiss(animated: true, completion: nil)
     }
     
