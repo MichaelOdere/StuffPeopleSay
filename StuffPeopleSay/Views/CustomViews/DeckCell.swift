@@ -16,6 +16,4 @@ class DeckCell:UICollectionViewCell{
         super.init(coder: aDecoder)
         backgroundColor = UIColor.white
     }
-    
-   
 }

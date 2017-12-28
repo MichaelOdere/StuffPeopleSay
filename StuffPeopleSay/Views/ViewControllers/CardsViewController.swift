@@ -8,13 +8,14 @@ class CardsViewController:UIViewController{
     @IBOutlet weak var nameTextField: UITextField!
     
     var deck:Deck!
+    var tempDeck:Deck!
     var filteredCards = [Card]()
     var selectedCards = [String]()
 
     override func viewDidLoad() {
         collectionView.delegate = self
         collectionView.dataSource = self
-                
+        collectionView.register(CardCell.self, forCellWithReuseIdentifier: "CardCell")
         self.collectionView.backgroundColor = BingoPalette.vanillaBackgroundColor
 
         nameTextField.text = deck.name
@@ -40,11 +41,18 @@ extension CardsViewController:UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DeckCell", for: indexPath) as! DeckCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCell
         let card = deck.cards[indexPath.row]
-        
+        cell.name.boardCardId = card.boardCardId
+        cell.name.indexPath = indexPath
+        cell.name.addTarget(self, action: #selector(textChanged(sender:)), for: UIControlEvents.editingChanged)
+
         cell.name.text = card.name
         return cell
+    }
+    
+    @objc func textChanged(sender: CardTextfield){
+        print("CHANGE \(sender.indexPath)")
     }
 }
 
