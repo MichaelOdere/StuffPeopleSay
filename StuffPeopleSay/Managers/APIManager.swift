@@ -77,6 +77,34 @@ class APIManager{
         task.resume()
     }
 
+    func getDecks(completionHandler: ([Deck]?, Error?)->Void){
+        if let path = Bundle.main.path(forResource: "Decks", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let json = try JSON(data: data)
+                
+                guard let decksData = json["decks"].array else {
+                    print("Error parsing user object for key: decks")
+                    return
+                }
+                
+                var allDecks:[Deck] = []
+                for d in decksData{
+                    if let deck = Deck(json: d){
+                        allDecks.append(deck)
+                    }
+                }
+                completionHandler(allDecks, nil)
+            } catch {
+                completionHandler(nil, error)
+                print(error)
+            }
+        }else{
+            completionHandler(nil, nil)
+        }
+        
+    }
+    
     func createGame(completionHandler: @escaping (Data?, Error?) -> Void) {
         let url = URL(string: baseURL + "/games")!
         var request = URLRequest(url: url)
@@ -97,7 +125,7 @@ class APIManager{
         task.resume()
         
     }
-
+    
     func updateBoard(boardCardId: String){
         let url = URL(string: baseURL + "/boards/" + boardCardId)!
         var request = URLRequest(url: url)
@@ -116,7 +144,6 @@ class APIManager{
                 print(dictionary)
             }
         }
-        
         task.resume()
     }
     
@@ -169,15 +196,10 @@ class APIManager{
     }
     
     func checkLoggedIn(json: JSON)->Bool{
-
-        let userdefaults = UserDefaults()
-        
         if let message = json["message"].string {
             print("User recieved message from login attempt: \(message)")
-//            userdefaults.removeObject(forKey: "token")
             return false
         }
         return true
     }
-    
 }

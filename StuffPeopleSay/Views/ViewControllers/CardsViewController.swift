@@ -7,7 +7,9 @@ class CardsViewController:UIViewController{
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
     
+    var decks:[Deck]!
     var deck:Deck!
+    
     var tempDeck:Deck!
     var filteredCards = [Card]()
     var selectedCards = [String]()
@@ -42,17 +44,20 @@ class CardsViewController:UIViewController{
 }
 extension CardsViewController:UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return deck.cards.count
+        return max(deck.cards.count, 25)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCell
-        let card = deck.cards[indexPath.row]
-        cell.name.boardCardId = card.boardCardId
+        if indexPath.row < deck.cards.count{
+            let card = deck.cards[indexPath.row]
+            cell.name.boardCardId = card.boardCardId
+            cell.name.text = card.name
+        }
         cell.name.indexPath = indexPath
+
         cell.name.addTarget(self, action: #selector(textChanged(sender:)), for: UIControlEvents.editingChanged)
 
-        cell.name.text = card.name
         return cell
     }
     

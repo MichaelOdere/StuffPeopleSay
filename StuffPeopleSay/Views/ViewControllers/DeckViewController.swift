@@ -33,6 +33,10 @@ class DeckViewController:UIViewController{
         collectionView.delegate = self
         self.collectionView.backgroundColor = BingoPalette.vanillaBackgroundColor
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        collectionView.reloadData()
+    }
 }
 
 extension DeckViewController:UICollectionViewDelegate, UICollectionViewDataSource{
@@ -59,6 +63,7 @@ extension DeckViewController:UICollectionViewDelegate, UICollectionViewDataSourc
         }else{
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "CardsViewController") as! CardsViewController
+            vc.decks = decks
             vc.deck = decks[indexPath.row]
             present(vc, animated: true, completion: nil)
         }
@@ -148,10 +153,11 @@ extension DeckViewController{
     @IBAction func toolBarButtons(sender: UIButton) {
         if sender.tag == 0{
             // Add
-            let sb = UIStoryboard(name: "Main", bundle: nil)
-            let vc = sb.instantiateViewController(withIdentifier: "CardsViewController") as! CardsViewController
-            vc.deck = Deck(deckId: "", name: "", cards: [])
-            present(vc, animated: true, completion: nil)
+//            let sb = UIStoryboard(name: "Main", bundle: nil)
+//            let vc = sb.instantiateViewController(withIdentifier: "CardsViewController") as! CardsViewController
+//            vc.decks = decks
+//            vc.deck = Deck(deckId: "", name: "", cards: emptyCards())
+//            present(vc, animated: true, completion: nil)
         } else if sender.tag == 1{
             // Share
             print("Add share")
@@ -161,6 +167,14 @@ extension DeckViewController{
         }
     }
 
+    func emptyCards()->[Card]{
+        var allCards:[Card] = []
+        for index in 0..<25{
+            allCards.append(Card(active: 0, boardCardId: "", name: "", order: index))
+        }
+        return allCards
+    }
+    
     func presentDeleteAlert(){
         let alert = UIAlertController(title: "Are you sure you want to Delete the \(selectedDecks.count) selected Decks?",
             message: "This action cannot be undone.",

@@ -17,8 +17,6 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
     @IBOutlet var passwordTextField: UITextField!
 
     override func viewDidLoad() {
-
-        
         self.updateEmailTextField()
         emailTextField.delegate = self
         emailTextField.returnKeyType = UIReturnKeyType.done

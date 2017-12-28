@@ -60,14 +60,7 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
     @IBAction func showDecks(_ sender: Any) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "DeckViewController") as! DeckViewController
-        var decks:[Deck] = []
-        
-        for _ in 0...3{
-            let n = Int(arc4random_uniform(100000))
-            let tempDeck = Deck(deckId: String(n), name: String(n), cards: [Card(active: 0, boardCardId: "ldfj", name: "lol", order: 3 )] )
-            decks.append(tempDeck)
-        }
-        vc.decks = decks
+        vc.decks = gameStore.decks
         self.navigationController?.pushViewController(vc, animated: true)
 //        present(vc, animated: true, completion: nil)
     }

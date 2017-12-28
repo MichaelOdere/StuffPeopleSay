@@ -539,9 +539,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Nht-R7-Zmy">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Nht-R7-Zmy">
                                 <rect key="frame" x="0.0" y="58" width="375" height="564"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewLayout key="collectionViewLayout" id="K82-XI-RaC" customClass="DeckCollectionViewLayout" customModule="StuffPeopleSay" customModuleProvider="target"/>
                                 <cells>
@@ -610,9 +609,13 @@
                         <constraints>
                             <constraint firstItem="1yT-Sv-GIt" firstAttribute="leading" secondItem="nar-sZ-tpE" secondAttribute="leading" constant="81" id="2wP-GG-SdO"/>
                             <constraint firstItem="1yT-Sv-GIt" firstAttribute="top" secondItem="nar-sZ-tpE" secondAttribute="top" id="4Dp-xV-rK0"/>
+                            <constraint firstItem="U93-T8-UF1" firstAttribute="top" secondItem="Nht-R7-Zmy" secondAttribute="bottom" id="Bpx-hi-rG2"/>
+                            <constraint firstItem="Nht-R7-Zmy" firstAttribute="trailing" secondItem="nar-sZ-tpE" secondAttribute="trailing" id="QVh-bU-lMN"/>
                             <constraint firstItem="U93-T8-UF1" firstAttribute="leading" secondItem="nar-sZ-tpE" secondAttribute="leading" id="U4q-cN-3Hk"/>
                             <constraint firstItem="U93-T8-UF1" firstAttribute="bottom" secondItem="nar-sZ-tpE" secondAttribute="bottom" id="Vmz-q1-m7i"/>
                             <constraint firstItem="U93-T8-UF1" firstAttribute="trailing" secondItem="nar-sZ-tpE" secondAttribute="trailing" id="e9R-Ob-z8d"/>
+                            <constraint firstItem="Nht-R7-Zmy" firstAttribute="leading" secondItem="nar-sZ-tpE" secondAttribute="leading" id="fpt-Oe-Azb"/>
+                            <constraint firstItem="Nht-R7-Zmy" firstAttribute="top" secondItem="1yT-Sv-GIt" secondAttribute="bottom" constant="8" id="lfB-1Q-Rb4"/>
                             <constraint firstItem="nar-sZ-tpE" firstAttribute="trailing" secondItem="1yT-Sv-GIt" secondAttribute="trailing" constant="81" id="vmF-YK-JKt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nar-sZ-tpE"/>

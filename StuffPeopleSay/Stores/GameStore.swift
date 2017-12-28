@@ -13,6 +13,7 @@ class GameStore{
 
     // All of the games
     var games:[Game]
+    var decks:[Deck]
     
     init() {
         apiManager = APIManager()
@@ -22,64 +23,79 @@ class GameStore{
         keychain = KeychainSwift()
        
         games = []
-        
+        decks = []
     }
     
     // Login user and get game data
     func loginUser(email:String?, completionHandler: @escaping (Bool?, Error?) -> Void){
-        
-        if let email = email{
-            print("Attempting loggin in user with no saved token....")
-            self.apiManager.getUser(email: email, completionHandler:  { (token, error) in
-                
-                guard let token = token else {
-                    print(error as Any)
-                    return
-                }
-                
-                self.keychain.set(token, forKey: "token")
-                self.keychain.set(email, forKey: "email")
-                
-                self.updateGames(completionHandler: { error in
-                    
-                    completionHandler(self.isLoggedIn, error)
-                })
-            })
-        }else{
-            print("Attempting loggin in user with a saved token....")
-            if keychain.get("token") != nil{
-                print("found token")
-                apiManager.token =  keychain.get("token")!
-                print(apiManager.token)
-                apiManager.socketId = "4313973413"
-                
-                self.updateGames(completionHandler: { error in
-                    
-                    completionHandler(self.isLoggedIn, error)
-                })
-                
-            }else{
-                print("no token")
-                completionHandler(false, nil)
+        print("login")
+        self.isLoggedIn = true
+        self.updateDeck(completionHandler: { (error) in
+            print("login1")
+            if let error = error {
+                print(error as Any)
+                return
             }
-        }
-        
+            completionHandler(true, nil)
+        })
+//        if let email = email{
+//            print("Attempting loggin in user with no saved token....")
+//            self.apiManager.getUser(email: email, completionHandler:  { (token, error) in
+//                guard let token = token else {
+//                    print(error as Any)
+//                    return
+//                }
+//                self.keychain.set(token, forKey: "token")
+//                self.keychain.set(email, forKey: "email")
+//
+//                self.updateGames(completionHandler: { error in
+//
+//                    completionHandler(self.isLoggedIn, error)
+//                })
+//            })
+//        }else{
+//            print("Attempting loggin in user with a saved token....")
+//            if keychain.get("token") != nil{
+//                print("found token")
+//                apiManager.token =  keychain.get("token")!
+//                print(apiManager.token)
+//                apiManager.socketId = "4313973413"
+//                self.updateGames(completionHandler: { error in
+//                    completionHandler(self.isLoggedIn, error)
+//                })
+//            }else{
+//                print("no token")
+//                completionHandler(false, nil)
+//            }
+//        }
     }
     
     func updateGames(completionHandler: @escaping (Error?) -> Void){
         self.apiManager.getGames(completionHandler: { loggedIn, gameData, error in
-            
+            if let error = error {
+                print(error as Any)
+                return
+            }
+            self.isLoggedIn = loggedIn
+            self.games = gameData
+            completionHandler(error)
+        })
+    }
+    
+    func updateDeck(completionHandler: @escaping (Error?) -> Void){
+       
+        self.apiManager.getDecks(completionHandler: { (decks, error) in
             if let error = error {
                 print(error as Any)
                 return
             }
             
-            self.isLoggedIn = loggedIn
-            self.games = gameData
-            
-            completionHandler(error)
+            if let decks = decks{
+                self.decks = decks
+            }
+
+            completionHandler(nil)
         })
-        
     }
-        
+    
 }

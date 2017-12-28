@@ -41,6 +41,7 @@
 		F9E7B39A1FC3A63500B81872 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E7B3991FC3A63500B81872 /* APIManager.swift */; };
 		F9E7B39C1FC3D28E00B81872 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E7B39B1FC3D28E00B81872 /* Game.swift */; };
 		F9E7B39E1FC3E4F600B81872 /* GamesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E7B39D1FC3E4F600B81872 /* GamesTableViewController.swift */; };
+		F9EFD5541FF58BB400C99D72 /* Decks.json in Resources */ = {isa = PBXBuildFile; fileRef = F9EFD5531FF58BB400C99D72 /* Decks.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		F9E7B3991FC3A63500B81872 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		F9E7B39B1FC3D28E00B81872 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		F9E7B39D1FC3E4F600B81872 /* GamesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesTableViewController.swift; sourceTree = "<group>"; };
+		F9EFD5531FF58BB400C99D72 /* Decks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Decks.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			children = (
 				F95B17141FBBBBEF00AA000B /* GameStore.swift */,
 				F97E63851FF1D66100CBA256 /* BingoPalette.swift */,
+				F9EFD5531FF58BB400C99D72 /* Decks.json */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9EFD5541FF58BB400C99D72 /* Decks.json in Resources */,
 				F96AA60B1FBAB4F4001E7CCD /* LaunchScreen.storyboard in Resources */,
 				F96AA6081FBAB4F4001E7CCD /* Assets.xcassets in Resources */,
 				F96AA6061FBAB4F4001E7CCD /* Main.storyboard in Resources */,
