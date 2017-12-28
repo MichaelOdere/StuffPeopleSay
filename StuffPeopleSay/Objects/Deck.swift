@@ -12,6 +12,14 @@ class Deck{
         self.name = name
         self.cards = cards
     }
+    
+    func copyDeck()->Deck{
+        var newCards:[Card] = []
+        for c in cards{
+            newCards.append(c.copyCard())
+        }
+        return Deck(deckId: deckId, name: name, cards: newCards)
+    }
 }
 
 extension Deck {

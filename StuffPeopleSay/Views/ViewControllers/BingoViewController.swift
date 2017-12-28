@@ -31,7 +31,6 @@ class BingoViewController:UIViewController{
         tableview.dataSource = self
         tableview.delegate = self
 
-        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(BingoViewController.didBecomeActive),
                                                name: Notification.Name("didBecomeActive"),

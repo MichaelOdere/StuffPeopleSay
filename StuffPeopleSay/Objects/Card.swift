@@ -12,7 +12,10 @@ struct Card{
         self.name = name
         self.active = active
         self.order = order
-
+    }
+    
+    func copyCard()->Card{
+        return Card(active: active, boardCardId: boardCardId, name: name, order: order)
     }
 }
 

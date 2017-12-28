@@ -17,9 +17,11 @@ class CardsViewController:UIViewController{
         collectionView.dataSource = self
         collectionView.register(CardCell.self, forCellWithReuseIdentifier: "CardCell")
         self.collectionView.backgroundColor = BingoPalette.vanillaBackgroundColor
-
+        tempDeck = deck.copyDeck()
+        
         nameTextField.text = deck.name
-
+        nameTextField.addTarget(self, action: #selector(nameTextChanged(sender:)), for: UIControlEvents.editingChanged)
+        
         setupButtons()
     }
     
@@ -32,8 +34,10 @@ class CardsViewController:UIViewController{
         dismiss(animated: true, completion: nil)
     }
     @objc func save(sender: UIButton){
+        deck = tempDeck.copyDeck()
         dismiss(animated: true, completion: nil)
     }
+    
 }
 extension CardsViewController:UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -52,7 +56,10 @@ extension CardsViewController:UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     @objc func textChanged(sender: CardTextfield){
-        print("CHANGE \(sender.indexPath)")
+        tempDeck.cards[sender.indexPath.row].name = sender.text
+    }
+    @objc func nameTextChanged(sender: UITextField){
+        tempDeck.name = sender.text!
     }
 }
 
