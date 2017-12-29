@@ -453,23 +453,23 @@
                                             <rect key="frame" x="0.0" y="0.0" width="120" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n9t-QC-mNy">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bir-VH-Q6p">
                                                     <rect key="frame" x="0.0" y="0.0" width="120" height="100"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="n9t-QC-mNy" firstAttribute="leading" secondItem="Jgn-3I-yWU" secondAttribute="leading" id="J89-gd-oGn"/>
-                                            <constraint firstAttribute="bottom" secondItem="n9t-QC-mNy" secondAttribute="bottom" id="gAZ-jL-gDw"/>
-                                            <constraint firstItem="n9t-QC-mNy" firstAttribute="top" secondItem="Jgn-3I-yWU" secondAttribute="top" id="kab-tx-GgS"/>
-                                            <constraint firstAttribute="trailing" secondItem="n9t-QC-mNy" secondAttribute="trailing" id="mli-op-Itm"/>
+                                            <constraint firstItem="bir-VH-Q6p" firstAttribute="top" secondItem="Jgn-3I-yWU" secondAttribute="top" id="KZl-AY-8h3"/>
+                                            <constraint firstAttribute="trailing" secondItem="bir-VH-Q6p" secondAttribute="trailing" id="U0g-zt-Q3S"/>
+                                            <constraint firstItem="bir-VH-Q6p" firstAttribute="leading" secondItem="Jgn-3I-yWU" secondAttribute="leading" id="eF1-cn-NVC"/>
+                                            <constraint firstAttribute="bottom" secondItem="bir-VH-Q6p" secondAttribute="bottom" id="xUa-jy-s9g"/>
                                         </constraints>
                                         <size key="customSize" width="120" height="100"/>
                                         <connections>
-                                            <outlet property="name" destination="n9t-QC-mNy" id="VkO-xx-Rvi"/>
+                                            <outlet property="name" destination="bir-VH-Q6p" id="3Hw-jJ-rBv"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

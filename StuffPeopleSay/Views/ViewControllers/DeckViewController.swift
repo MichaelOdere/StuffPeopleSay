@@ -142,7 +142,6 @@ extension DeckViewController{
 
     @objc func cancelBarButton(sender: UIBarButtonItem) {
         toolBarState = .normal
-
         selectedDecks.removeAll()
         collectionView.reloadData()
     }

@@ -37,6 +37,6 @@ extension Deck {
             }
         }
         allCards = allCards.sorted(by: { $0.order > $1.order })
-        self.init(deckId: "1", name:"Deck", cards: allCards)
+        self.init(deckId: String(Int(arc4random_uniform(600000))), name:"Deck", cards: allCards)
     }
 }
