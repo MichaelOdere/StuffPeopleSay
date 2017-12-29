@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		21A460F98FF1CCF3F16E5B3F /* Pods_StuffPeopleSay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51FA5B8480CBA27CE3AE29CC /* Pods_StuffPeopleSay.framework */; };
+		F905D6D61FF5C30600A0CFD5 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F905D6D51FF5C30600A0CFD5 /* AlertViewController.swift */; };
 		F9066DA21FD5F637003BF133 /* GameViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9066DA11FD5F637003BF133 /* GameViewCell.swift */; };
 		F90B4B7A1FBBA232002FEBF0 /* PusherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90B4B791FBBA232002FEBF0 /* PusherManager.swift */; };
 		F91230DB1FF1965D00182B55 /* DeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91230DA1FF1965D00182B55 /* DeckViewController.swift */; };
@@ -48,6 +49,7 @@
 		51FA5B8480CBA27CE3AE29CC /* Pods_StuffPeopleSay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StuffPeopleSay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		969F576DC84CC8784B284975 /* Pods-StuffPeopleSay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StuffPeopleSay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StuffPeopleSay/Pods-StuffPeopleSay.debug.xcconfig"; sourceTree = "<group>"; };
 		B82C6D91C9AF9E86158C2F3E /* Pods-StuffPeopleSay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StuffPeopleSay.release.xcconfig"; path = "Pods/Target Support Files/Pods-StuffPeopleSay/Pods-StuffPeopleSay.release.xcconfig"; sourceTree = "<group>"; };
+		F905D6D51FF5C30600A0CFD5 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		F9066DA11FD5F637003BF133 /* GameViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewCell.swift; sourceTree = "<group>"; };
 		F90B4B791FBBA232002FEBF0 /* PusherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PusherManager.swift; sourceTree = "<group>"; };
 		F91230DA1FF1965D00182B55 /* DeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				F97E63831FF1A81700CBA256 /* DeckCell.swift */,
 				F96F1DB31FF4CC7A00C06E9C /* CardCell.swift */,
 				F9B295371FF4DCB700454D21 /* CardTextfield.swift */,
+				F905D6D51FF5C30600A0CFD5 /* AlertViewController.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				F9DC7C961FD0C8370097D4B5 /* OpponentBingoViewController.swift in Sources */,
 				F92DBED81FBB8D4000B4566F /* LoginViewController.swift in Sources */,
 				F9066DA21FD5F637003BF133 /* GameViewCell.swift in Sources */,
+				F905D6D61FF5C30600A0CFD5 /* AlertViewController.swift in Sources */,
 				F96C58041FBB5A3B00D49481 /* BingoCollectionCell.swift in Sources */,
 				F9E7B39C1FC3D28E00B81872 /* Game.swift in Sources */,
 				F9DC7C941FD0C66A0097D4B5 /* BingoCollectionView.swift in Sources */,

@@ -66,6 +66,11 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
     }
 
     @IBAction func newGame(_ sender: Any) {
+        
+        let alertView = AlertView()
+        alertView.modalPresentationStyle = .overCurrentContext
+        present(alertView, animated: true, completion: nil)
+        
         return
         let alert = UIAlertController(title: "Are you sure you want to Create a new game?",
                                       message: nil,

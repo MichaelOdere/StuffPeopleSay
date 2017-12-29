@@ -50,6 +50,21 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
         })
 
         group.notify(queue: DispatchQueue.main){
+            group.enter()
+            if self.gameStore.isLoggedIn{
+                self.gameStore.updateDeck(completionHandler: { (error) in
+                    if let error = error {
+                        print(error as Any)
+                        return
+                    }
+                    group.leave()
+                })
+            }else{
+                group.leave()
+
+            }
+        }
+        group.notify(queue: DispatchQueue.main){
             if self.gameStore.isLoggedIn {
                 self.showGameScreen {
                     self.loadingView.stopAnimating()
