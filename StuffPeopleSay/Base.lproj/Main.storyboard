@@ -433,10 +433,10 @@
             </objects>
             <point key="canvasLocation" x="3446" y="269"/>
         </scene>
-        <!--Deck View Controller-->
+        <!--Edit Deck View Controller-->
         <scene sceneID="9KH-YI-lwC">
             <objects>
-                <viewController storyboardIdentifier="DeckViewController" id="OEB-mn-JBU" customClass="DeckViewController" customModule="StuffPeopleSay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditDeckViewController" id="OEB-mn-JBU" customClass="EditDeckViewController" customModule="StuffPeopleSay" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mXV-Jf-Zap">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -483,16 +483,10 @@
                                             <constraint firstAttribute="width" constant="112" id="5ki-7a-xgR"/>
                                         </constraints>
                                         <state key="normal" title="Delete"/>
-                                        <connections>
-                                            <action selector="toolBarButtonsWithSender:" destination="OEB-mn-JBU" eventType="touchUpInside" id="nQu-WA-HHe"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9IO-xp-Nlo" userLabel="Manage Decks">
                                         <rect key="frame" x="8" y="8" width="112" height="30"/>
                                         <state key="normal" title="Share"/>
-                                        <connections>
-                                            <action selector="toolBarButtonsWithSender:" destination="OEB-mn-JBU" eventType="touchUpInside" id="eyT-TC-a6I"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.97636479139999999" green="0.97653168440000004" blue="0.9763541818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -520,9 +514,9 @@
                         <viewLayoutGuide key="safeArea" id="z3D-iD-Sr6"/>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="1cM-TN-gW1" id="Mgr-rq-bl6"/>
-                        <outlet property="leftToolBarButton" destination="9IO-xp-Nlo" id="DX1-AF-80F"/>
-                        <outlet property="rightToolBarButton" destination="8Ye-OG-rjf" id="Udc-fc-mYX"/>
+                        <outlet property="collectionView" destination="1cM-TN-gW1" id="t2L-P4-jKv"/>
+                        <outlet property="leftToolBarButton" destination="9IO-xp-Nlo" id="ZnN-t7-GaL"/>
+                        <outlet property="rightToolBarButton" destination="8Ye-OG-rjf" id="dna-Ri-ema"/>
                         <segue destination="qga-fJ-p1o" kind="show" id="aZ9-OB-fY4"/>
                     </connections>
                 </viewController>
@@ -681,16 +675,10 @@
                                             <constraint firstAttribute="width" constant="112" id="4sh-ua-2I2"/>
                                         </constraints>
                                         <state key="normal" title="Save"/>
-                                        <connections>
-                                            <action selector="toolBarButtonsWithSender:" destination="OEB-mn-JBU" eventType="touchUpInside" id="Ozd-wl-JRx"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U11-DY-HwH" userLabel="Manage Decks">
                                         <rect key="frame" x="8" y="8" width="112" height="30"/>
                                         <state key="normal" title="Cancel"/>
-                                        <connections>
-                                            <action selector="toolBarButtonsWithSender:" destination="OEB-mn-JBU" eventType="touchUpInside" id="Qlm-Fp-agI"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.97636479139999999" green="0.97653168440000004" blue="0.9763541818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
