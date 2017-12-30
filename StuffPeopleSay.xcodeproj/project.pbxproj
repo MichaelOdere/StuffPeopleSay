@@ -43,6 +43,7 @@
 		F9E7B39C1FC3D28E00B81872 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E7B39B1FC3D28E00B81872 /* Game.swift */; };
 		F9E7B39E1FC3E4F600B81872 /* GamesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E7B39D1FC3E4F600B81872 /* GamesTableViewController.swift */; };
 		F9EFD5541FF58BB400C99D72 /* Decks.json in Resources */ = {isa = PBXBuildFile; fileRef = F9EFD5531FF58BB400C99D72 /* Decks.json */; };
+		F9FAD23C1FF6F6D8007A1F78 /* EditDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FAD23B1FF6F6D8007A1F78 /* EditDeckViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		F9E7B39B1FC3D28E00B81872 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		F9E7B39D1FC3E4F600B81872 /* GamesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesTableViewController.swift; sourceTree = "<group>"; };
 		F9EFD5531FF58BB400C99D72 /* Decks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Decks.json; sourceTree = "<group>"; };
+		F9FAD23B1FF6F6D8007A1F78 /* EditDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDeckViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +152,6 @@
 				F97E63831FF1A81700CBA256 /* DeckCell.swift */,
 				F96F1DB31FF4CC7A00C06E9C /* CardCell.swift */,
 				F9B295371FF4DCB700454D21 /* CardTextfield.swift */,
-				F905D6D51FF5C30600A0CFD5 /* AlertViewController.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -165,7 +166,9 @@
 				F96AA6121FBAB91E001E7CCD /* BingoViewController.swift */,
 				F9DC7C951FD0C8370097D4B5 /* OpponentBingoViewController.swift */,
 				F91230DA1FF1965D00182B55 /* DeckViewController.swift */,
+				F9FAD23B1FF6F6D8007A1F78 /* EditDeckViewController.swift */,
 				F950F3611FF3663F00DF578F /* CardsViewController.swift */,
+				F905D6D51FF5C30600A0CFD5 /* AlertViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				F92DBEDA1FBB8D5300B4566F /* User.swift in Sources */,
 				F91230DD1FF1972F00182B55 /* Deck.swift in Sources */,
 				F96C58061FBB69F600D49481 /* BingoGame.swift in Sources */,
+				F9FAD23C1FF6F6D8007A1F78 /* EditDeckViewController.swift in Sources */,
 				F95B17151FBBBBEF00AA000B /* GameStore.swift in Sources */,
 				F91230DB1FF1965D00182B55 /* DeckViewController.swift in Sources */,
 				F950F3601FF3561800DF578F /* DeckCollectionViewLayout.swift in Sources */,

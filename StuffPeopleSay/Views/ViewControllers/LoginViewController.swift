@@ -64,6 +64,7 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
 
             }
         }
+        
         group.notify(queue: DispatchQueue.main){
             if self.gameStore.isLoggedIn {
                 self.showGameScreen {

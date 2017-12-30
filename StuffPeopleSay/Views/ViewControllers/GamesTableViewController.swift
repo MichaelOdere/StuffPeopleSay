@@ -69,6 +69,7 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
         
         let alertView = AlertView()
         alertView.modalPresentationStyle = .overCurrentContext
+        alertView.gameStore = gameStore
         present(alertView, animated: true, completion: nil)
         
         return
