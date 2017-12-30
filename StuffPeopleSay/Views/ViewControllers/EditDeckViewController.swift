@@ -30,10 +30,6 @@ class EditDeckViewController:DeckViewController{
         collectionView.delegate = self
         collectionView.backgroundColor = BingoPalette.vanillaBackgroundColor
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        collectionView.reloadData()
-    }
 }
 
 extension EditDeckViewController:UICollectionViewDelegate, UICollectionViewDataSource{

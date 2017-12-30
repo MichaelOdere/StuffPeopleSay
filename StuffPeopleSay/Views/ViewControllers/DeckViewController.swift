@@ -17,9 +17,10 @@ class DeckViewController:UIViewController{
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
     }
+    override func viewWillAppear(_ animated: Bool) {
+        superCollectionView.reloadData()
+    }
 }
-
-
 
 extension DeckViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {

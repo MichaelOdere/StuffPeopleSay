@@ -126,12 +126,6 @@ class AlertView: UIViewController{
         
         let deckTop = NSLayoutConstraint(item: deckButton, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: numberPicker, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 10)
         deckTop.isActive = true
-        
-//        let deckLeading = NSLayoutConstraint(item: cancelButton, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 10)
-//        deckLeading.isActive = true
-//
-//        let deckTrailing = NSLayoutConstraint(item: cancelButton, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 10)
-//        deckTrailing.isActive = true
     }
     
     @objc func cancel(sender:UIButton){
@@ -145,7 +139,7 @@ class AlertView: UIViewController{
     
     @objc func showDecks(sender:UIButton){
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "DeckViewController") as! DeckViewController
+        let vc = sb.instantiateViewController(withIdentifier: "ShowDeckViewController") as! ShowDeckViewController
         vc.gameStore = gameStore
         present(vc, animated: true, completion: nil)
     }
