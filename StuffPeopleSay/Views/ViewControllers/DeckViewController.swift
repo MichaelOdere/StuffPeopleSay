@@ -27,7 +27,9 @@ class DeckViewController:UIViewController{
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Decks"
         navigationItem.searchController = searchController
-
+        navigationItem.hidesSearchBarWhenScrolling = false
+        definesPresentationContext = true
+        
         toolBarSetup()
 
         collectionView.dataSource = self
@@ -107,7 +109,7 @@ extension DeckViewController: UISearchResultsUpdating {
 
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         filteredDecks = gameStore.decks.filter({( deck : Deck) -> Bool in
-            return deck.name.contains(searchText.lowercased())
+            return deck.name.lowercased().contains(searchText.lowercased())
         })
         collectionView.reloadData()
     }
@@ -215,4 +217,5 @@ extension DeckViewController{
         }
     }
 }
+
 
