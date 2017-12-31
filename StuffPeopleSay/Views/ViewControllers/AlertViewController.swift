@@ -6,6 +6,7 @@ class AlertView: UIViewController{
     private var horizontalPadding:CGFloat = 50
     var contentView = UIView()
     var gameNameTextField = UITextField()
+    var gameTextFieldLine = UILabel()
     var numberPicker = UIPickerView()
     var pickerData = Array(1...10)
     var deckButton = UIButton()
@@ -14,16 +15,26 @@ class AlertView: UIViewController{
     var gameStore:GameStore!
 
     override func viewDidLoad() {
+
         setupContentView()
         setupButtons()
         setupTextView()
+//        setupTextLine()
         setupNumberPicker()
         setupDeckButton()
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        contentView.center.y += view.bounds.height
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+            self.contentView.center.y -= self.view.bounds.height
+        })
+        
+    }
+    
     func setupContentView(){
-        contentView.backgroundColor = UIColor.blue
+        contentView.backgroundColor = UIColor.white
         contentView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(contentView)
         
@@ -40,8 +51,8 @@ class AlertView: UIViewController{
     }
     
     func setupButtons(){
-        cancelButton.backgroundColor = UIColor.red
-        saveButton.backgroundColor = UIColor.flatPink()
+        cancelButton.backgroundColor = UIColor.lightGray
+        saveButton.backgroundColor = UIColor.lightGray
         
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.translatesAutoresizingMaskIntoConstraints = false
@@ -66,16 +77,18 @@ class AlertView: UIViewController{
 
         let saveTrailing = NSLayoutConstraint(item: saveButton, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0)
         saveTrailing.isActive = true
-        
+
+        let widths = NSLayoutConstraint(item: saveButton, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: cancelButton, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0)
+        widths.isActive = true
+
         let equalWidths = NSLayoutConstraint(item: saveButton, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: cancelButton, attribute: NSLayoutAttribute.width, multiplier: 1, constant: 0)
         equalWidths.isActive = true
     }
     
     func setupTextView(){
         
-        gameNameTextField.backgroundColor = UIColor.white
+        gameNameTextField.backgroundColor = UIColor.lightGray
         gameNameTextField.placeholder = "Enter A Game Name"
-        
         gameNameTextField.layer.cornerRadius = 5
         gameNameTextField.translatesAutoresizingMaskIntoConstraints = false
         
@@ -86,6 +99,23 @@ class AlertView: UIViewController{
         
         let gameNameTextFieldTop = NSLayoutConstraint(item: gameNameTextField, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 10)
         gameNameTextFieldTop.isActive = true
+
+    }
+    
+    func setupTextLine(){
+        gameTextFieldLine.backgroundColor = UIColor.black
+        gameTextFieldLine.translatesAutoresizingMaskIntoConstraints = false
+
+        contentView.addSubview(gameTextFieldLine)
+        
+        let gameNameTextFieldTop = NSLayoutConstraint(item: gameTextFieldLine, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: gameNameTextField, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
+        gameNameTextFieldTop.isActive = true
+        
+//        let gameNameTextFieldHeight = NSLayoutConstraint(item: gameTextFieldLine, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 1)
+//        gameNameTextFieldHeight.isActive = true
+
+        let gameNameTextFieldWidth = NSLayoutConstraint(item: gameTextFieldLine, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: gameNameTextField, attribute: NSLayoutAttribute.width, multiplier: 1, constant: 0)
+        gameNameTextFieldWidth.isActive = true
 
     }
     
@@ -113,7 +143,7 @@ class AlertView: UIViewController{
     }
     
     func setupDeckButton(){
-        deckButton.backgroundColor = BingoPalette.vanillaBackgroundColor
+        deckButton.backgroundColor = UIColor.lightGray
         deckButton.translatesAutoresizingMaskIntoConstraints = false
         deckButton.addTarget(self, action: #selector(showDecks(sender:)), for: .touchUpInside)
         deckButton.setTitle("Select a Deck", for: .normal)
@@ -129,9 +159,14 @@ class AlertView: UIViewController{
     }
     
     @objc func cancel(sender:UIButton){
-        UIView.animate(withDuration: 0.2, animations: {
-            self.view.alpha = 0
-
+//        UIView.animate(withDuration: 0.2, animations: {
+//            self.view.alpha = 0
+//
+//        }, completion: {  (finished: Bool) in
+//            self.dismiss(animated: false, completion: nil)
+//        })
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
+            self.contentView.center.y += self.view.bounds.height
         }, completion: {  (finished: Bool) in
             self.dismiss(animated: false, completion: nil)
         })

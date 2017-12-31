@@ -69,7 +69,7 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
         let alertView = AlertView()
         alertView.modalPresentationStyle = .overCurrentContext
         alertView.gameStore = gameStore
-        present(alertView, animated: true, completion: nil)
+        present(alertView, animated: false, completion: nil)
         
         return
         let alert = UIAlertController(title: "Are you sure you want to Create a new game?",
