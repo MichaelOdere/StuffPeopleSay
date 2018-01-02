@@ -1,10 +1,16 @@
 import UIKit
 
+protocol MyProtocol {
+    func setResultOfBusinessLogic(valueSent: String)
+}
+
 class ShowDeckViewController:DeckViewController{
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var leftToolBarButton: UIButton!
     @IBOutlet weak var rightToolBarButton: UIButton!
     
+    var delegate:MyProtocol?
+
     override func viewDidLoad() {
         super.superCollectionView = collectionView
         super.viewDidLoad()
@@ -12,7 +18,6 @@ class ShowDeckViewController:DeckViewController{
         collectionView.delegate = self
         collectionView.backgroundColor = BingoPalette.vanillaBackgroundColor
 
-        print(navigationItem)
         rightToolBarButton.setTitle("Save", for: .normal)
         rightToolBarButton.addTarget(self, action: #selector(toolBarButtons(sender:)), for: .touchUpInside)
         rightToolBarButton.tag = 0
@@ -21,8 +26,8 @@ class ShowDeckViewController:DeckViewController{
         leftToolBarButton.addTarget(self, action: #selector(toolBarButtons(sender:)), for: .touchUpInside)
         leftToolBarButton.tag = 1
     }
-    
 }
+
 extension ShowDeckViewController:UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isFiltering() {
@@ -33,8 +38,7 @@ extension ShowDeckViewController:UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! DeckCell
-        print("name")
-        print(gameStore.decks[indexPath.row])
+        delegate?.setResultOfBusinessLogic(valueSent: gameStore.decks[indexPath.row].name)
         dismiss(animated: true, completion: nil)
     }
     

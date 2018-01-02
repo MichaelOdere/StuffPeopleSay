@@ -7,6 +7,7 @@ class CardsViewController:UIViewController{
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
     
+
     var gameStore:GameStore!
     var deck:Deck!
     var tempDeck:Deck!

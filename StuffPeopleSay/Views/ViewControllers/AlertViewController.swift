@@ -13,6 +13,8 @@ class AlertView: UIViewController{
     var cancelButton = UIButton()
     var saveButton = UIButton()
     var gameStore:GameStore!
+    
+    var selectedDeck:String?
 
     override func viewDidLoad() {
 
@@ -31,6 +33,11 @@ class AlertView: UIViewController{
             self.contentView.center.y -= self.view.bounds.height
         })
         
+        if let deck = selectedDeck {
+            deckButton.setTitle(deck, for: .normal)
+        }else{
+            deckButton.setTitle("Select a Deck", for: .normal)
+        }
     }
     
     func setupContentView(){
@@ -176,6 +183,7 @@ class AlertView: UIViewController{
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "ShowDeckViewController") as! ShowDeckViewController
         vc.gameStore = gameStore
+        vc.delegate = self
         present(vc, animated: true, completion: nil)
     }
 }
@@ -200,5 +208,10 @@ extension AlertView:UIPickerViewDelegate, UIPickerViewDataSource{
         }
         return NSAttributedString(string: String(pickerData[row]) + " Boards")
     }
-    
+}
+
+extension AlertView:MyProtocol{
+    func setResultOfBusinessLogic(valueSent: String) {
+        self.selectedDeck = valueSent
+    }
 }
