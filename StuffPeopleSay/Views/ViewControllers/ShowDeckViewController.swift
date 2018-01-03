@@ -1,7 +1,7 @@
 import UIKit
 
 protocol MyProtocol {
-    func setResultOfBusinessLogic(valueSent: String)
+    func sendSelectedDeck(valueSent: Deck)
 }
 
 class ShowDeckViewController:DeckViewController{
@@ -37,8 +37,7 @@ extension ShowDeckViewController:UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! DeckCell
-        delegate?.setResultOfBusinessLogic(valueSent: gameStore.decks[indexPath.row].name)
+        delegate?.sendSelectedDeck(valueSent: gameStore.decks[indexPath.row])
         dismiss(animated: true, completion: nil)
     }
     
