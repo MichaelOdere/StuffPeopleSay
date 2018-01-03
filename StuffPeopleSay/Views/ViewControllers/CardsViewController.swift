@@ -6,6 +6,8 @@ class CardsViewController:UIViewController{
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var collectionViewBottom: NSLayoutConstraint!
+    @IBOutlet weak var tabBarView: UIView!
     
 
     var gameStore:GameStore!
@@ -14,11 +16,13 @@ class CardsViewController:UIViewController{
     var filteredCards = [Card]()
     var selectedCards = [String]()
     var newDeck:Bool!
-    var keyboardOffset:CGFloat!
     
     override func viewDidLoad() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.setContentHuggingPriority(.init(1), for: .vertical)
+        collectionView.setContentCompressionResistancePriority(.init(1), for: .vertical)
+
         collectionView.register(CardCell.self, forCellWithReuseIdentifier: "CardCell")
         self.collectionView.backgroundColor = BingoPalette.vanillaBackgroundColor
         tempDeck = deck.copyDeck()
@@ -28,26 +32,26 @@ class CardsViewController:UIViewController{
         nameTextField.returnKeyType = .done
         nameTextField.addTarget(self, action: #selector(nameTextChanged(sender:)), for: UIControlEvents.editingChanged)
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(CardsViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(CardsViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CardsViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CardsViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
         setupButtons()
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            print("HELLO")
             if self.view.frame.origin.y == 0{
-                keyboardOffset = keyboardSize.height - saveButton.frame.height
-                self.view.frame.origin.y -= keyboardOffset
+                self.collectionViewBottom.constant += keyboardSize.height //- saveButton.frame.height
+                self.collectionView.layoutIfNeeded()
             }
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardOffset
+            if self.collectionViewBottom.constant != 0{
+                self.collectionViewBottom.constant = 0
+                self.collectionView.layoutIfNeeded()
             }
         }
     }

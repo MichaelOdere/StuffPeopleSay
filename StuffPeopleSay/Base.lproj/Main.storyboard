@@ -549,13 +549,13 @@
                         <constraints>
                             <constraint firstItem="1yT-Sv-GIt" firstAttribute="leading" secondItem="nar-sZ-tpE" secondAttribute="leading" constant="81" id="2wP-GG-SdO"/>
                             <constraint firstItem="1yT-Sv-GIt" firstAttribute="top" secondItem="nar-sZ-tpE" secondAttribute="top" id="4Dp-xV-rK0"/>
-                            <constraint firstItem="U93-T8-UF1" firstAttribute="top" secondItem="Nht-R7-Zmy" secondAttribute="bottom" id="Bpx-hi-rG2"/>
                             <constraint firstItem="Nht-R7-Zmy" firstAttribute="trailing" secondItem="nar-sZ-tpE" secondAttribute="trailing" id="QVh-bU-lMN"/>
                             <constraint firstItem="U93-T8-UF1" firstAttribute="leading" secondItem="nar-sZ-tpE" secondAttribute="leading" id="U4q-cN-3Hk"/>
                             <constraint firstItem="U93-T8-UF1" firstAttribute="bottom" secondItem="nar-sZ-tpE" secondAttribute="bottom" id="Vmz-q1-m7i"/>
                             <constraint firstItem="U93-T8-UF1" firstAttribute="trailing" secondItem="nar-sZ-tpE" secondAttribute="trailing" id="e9R-Ob-z8d"/>
                             <constraint firstItem="Nht-R7-Zmy" firstAttribute="leading" secondItem="nar-sZ-tpE" secondAttribute="leading" id="fpt-Oe-Azb"/>
                             <constraint firstItem="Nht-R7-Zmy" firstAttribute="top" secondItem="1yT-Sv-GIt" secondAttribute="bottom" constant="8" id="lfB-1Q-Rb4"/>
+                            <constraint firstItem="U93-T8-UF1" firstAttribute="top" secondItem="Nht-R7-Zmy" secondAttribute="bottom" id="oiB-0d-0Cx"/>
                             <constraint firstItem="nar-sZ-tpE" firstAttribute="trailing" secondItem="1yT-Sv-GIt" secondAttribute="trailing" constant="81" id="vmF-YK-JKt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nar-sZ-tpE"/>
@@ -563,8 +563,10 @@
                     <connections>
                         <outlet property="cancelButton" destination="C9y-PO-nPC" id="mWx-r4-Xju"/>
                         <outlet property="collectionView" destination="Nht-R7-Zmy" id="s3Z-sm-eas"/>
+                        <outlet property="collectionViewBottom" destination="oiB-0d-0Cx" id="OcG-Wu-cfy"/>
                         <outlet property="nameTextField" destination="1yT-Sv-GIt" id="O8V-4G-8Tv"/>
                         <outlet property="saveButton" destination="MaF-Ns-oRg" id="I0s-pb-669"/>
+                        <outlet property="tabBarView" destination="U93-T8-UF1" id="Bp9-tc-mdA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r3Q-22-UnN" userLabel="First Responder" sceneMemberID="firstResponder"/>
