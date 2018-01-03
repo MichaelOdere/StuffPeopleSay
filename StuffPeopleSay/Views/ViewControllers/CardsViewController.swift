@@ -14,6 +14,7 @@ class CardsViewController:UIViewController{
     var filteredCards = [Card]()
     var selectedCards = [String]()
     var newDeck:Bool!
+    var keyboardOffset:CGFloat!
     
     override func viewDidLoad() {
         collectionView.delegate = self
@@ -27,7 +28,28 @@ class CardsViewController:UIViewController{
         nameTextField.returnKeyType = .done
         nameTextField.addTarget(self, action: #selector(nameTextChanged(sender:)), for: UIControlEvents.editingChanged)
         
+//        NotificationCenter.default.addObserver(self, selector: #selector(CardsViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(CardsViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+
         setupButtons()
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            print("HELLO")
+            if self.view.frame.origin.y == 0{
+                keyboardOffset = keyboardSize.height - saveButton.frame.height
+                self.view.frame.origin.y -= keyboardOffset
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardOffset
+            }
+        }
     }
     
     func setupButtons(){
