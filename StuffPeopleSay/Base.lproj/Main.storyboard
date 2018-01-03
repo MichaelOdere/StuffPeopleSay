@@ -566,7 +566,7 @@
                         <outlet property="collectionViewBottom" destination="oiB-0d-0Cx" id="OcG-Wu-cfy"/>
                         <outlet property="nameTextField" destination="1yT-Sv-GIt" id="O8V-4G-8Tv"/>
                         <outlet property="saveButton" destination="MaF-Ns-oRg" id="I0s-pb-669"/>
-                        <outlet property="tabBarView" destination="U93-T8-UF1" id="Bp9-tc-mdA"/>
+                        <outlet property="toolBarView" destination="U93-T8-UF1" id="r3O-qH-7sg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r3Q-22-UnN" userLabel="First Responder" sceneMemberID="firstResponder"/>

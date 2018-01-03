@@ -7,7 +7,7 @@ class CardsViewController:UIViewController{
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var collectionViewBottom: NSLayoutConstraint!
-    @IBOutlet weak var tabBarView: UIView!
+    @IBOutlet weak var toolBarView: UIView!
     
 
     var gameStore:GameStore!
@@ -36,9 +36,10 @@ class CardsViewController:UIViewController{
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
+        print(collectionView.visibleCells.count)
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.collectionViewBottom.constant == 0{
-                self.collectionViewBottom.constant += keyboardSize.height - saveButton.frame.height
+                self.collectionViewBottom.constant += keyboardSize.height - toolBarView.frame.height
                 self.collectionView.layoutIfNeeded()
             }
         }
