@@ -29,6 +29,11 @@ class AlertView: UIViewController{
         setupNumberPicker()
         setupDeckButton()
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        
+        gameNameTextField.delegate = self
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +44,6 @@ class AlertView: UIViewController{
             })
             hasLoaded = true
         }
-        
         if let deck = selectedDeck {
             deckButton.setTitle(deck.name, for: .normal)
         }else{
@@ -49,8 +53,8 @@ class AlertView: UIViewController{
     
     func setupContentView(){
         contentView.backgroundColor = UIColor.white
-
         contentView.translatesAutoresizingMaskIntoConstraints = false
+
         self.view.addSubview(contentView)
         
         let top = NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: verticalPadding)
@@ -80,7 +84,7 @@ class AlertView: UIViewController{
         saveButton.setTitleColor(UIColor.gray, for: .normal)
         saveButton.layer.borderColor = UIColor.lightGray.cgColor
         saveButton.layer.borderWidth = 0.8
-        saveButton.addTarget(self, action: #selector(cancel(sender:)), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(save(sender:)), for: .touchUpInside)
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(saveButton)
 
@@ -104,6 +108,8 @@ class AlertView: UIViewController{
     }
     
     func setupTextView(){
+        gameNameTextField.returnKeyType = .done
+        
         gameNameTextField.placeholder = "Enter A Game Name"
         gameNameTextField.backgroundColor = UIColor.white
         gameNameTextField.textAlignment = .center
@@ -188,7 +194,17 @@ class AlertView: UIViewController{
     }
     
     @objc func cancel(sender:UIButton){
-
+        animateDissmiss()
+    }
+    
+    @objc func save(sender:UIButton){
+        if !(gameNameTextField.text?.isEmpty)! && selectedDeck != nil{
+            //Save logic
+            animateDissmiss()
+        }
+    }
+    
+    func animateDissmiss(){
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
             self.contentView.center.y += self.view.bounds.height
         }, completion: {  (finished: Bool) in
@@ -230,5 +246,16 @@ extension AlertView:UIPickerViewDelegate, UIPickerViewDataSource{
 extension AlertView:MyProtocol{
     func sendSelectedDeck(valueSent: Deck) {
         self.selectedDeck = valueSent
+    }
+}
+
+extension AlertView:UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
