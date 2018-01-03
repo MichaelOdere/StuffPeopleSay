@@ -108,14 +108,14 @@ class AlertView: UIViewController{
     }
     
     func setupTextView(){
-        gameNameTextField.returnKeyType = .done
-        
         gameNameTextField.placeholder = "Enter A Game Name"
         gameNameTextField.backgroundColor = UIColor.white
         gameNameTextField.textAlignment = .center
         gameNameTextField.layer.borderColor = UIColor.lightGray.cgColor
         gameNameTextField.layer.borderWidth = 0.8
         
+        gameNameTextField.returnKeyType = .done
+
         gameNameTextField.layer.cornerRadius = 5
         gameNameTextField.translatesAutoresizingMaskIntoConstraints = false
         

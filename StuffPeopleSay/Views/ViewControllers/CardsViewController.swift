@@ -23,6 +23,8 @@ class CardsViewController:UIViewController{
         tempDeck = deck.copyDeck()
         
         nameTextField.text = deck.name
+        nameTextField.delegate = self
+        nameTextField.returnKeyType = .done
         nameTextField.addTarget(self, action: #selector(nameTextChanged(sender:)), for: UIControlEvents.editingChanged)
         
         setupButtons()
@@ -59,9 +61,8 @@ extension CardsViewController:UICollectionViewDelegate, UICollectionViewDataSour
             cell.name.text = card.name
         }
         cell.name.indexPath = indexPath
-
         cell.name.addTarget(self, action: #selector(textChanged(sender:)), for: UIControlEvents.editingChanged)
-
+        cell.name.delegate = self
         return cell
     }
     
@@ -73,5 +74,9 @@ extension CardsViewController:UICollectionViewDelegate, UICollectionViewDataSour
     }
 }
 
-
-
+extension CardsViewController:UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
