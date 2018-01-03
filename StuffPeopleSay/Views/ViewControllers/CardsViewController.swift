@@ -20,9 +20,6 @@ class CardsViewController:UIViewController{
     override func viewDidLoad() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.setContentHuggingPriority(.init(1), for: .vertical)
-        collectionView.setContentCompressionResistancePriority(.init(1), for: .vertical)
-
         collectionView.register(CardCell.self, forCellWithReuseIdentifier: "CardCell")
         self.collectionView.backgroundColor = BingoPalette.vanillaBackgroundColor
         tempDeck = deck.copyDeck()
@@ -40,8 +37,8 @@ class CardsViewController:UIViewController{
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0{
-                self.collectionViewBottom.constant += keyboardSize.height //- saveButton.frame.height
+            if self.collectionViewBottom.constant == 0{
+                self.collectionViewBottom.constant += keyboardSize.height - saveButton.frame.height
                 self.collectionView.layoutIfNeeded()
             }
         }
