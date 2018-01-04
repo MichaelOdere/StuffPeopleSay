@@ -12,10 +12,8 @@ struct User{
         self.boards = boards
     }
     
-    func getCardsActive(index: Int)->Int{
-       
+    func getCardsActive(index: Int)->Int{       
         let deck = self.boards[index].deck
-        
         var count = 0
         for card in deck.cards{
             if card.active == 1{

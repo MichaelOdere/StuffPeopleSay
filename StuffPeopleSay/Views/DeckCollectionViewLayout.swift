@@ -1,7 +1,7 @@
 import UIKit
 
 class DeckCollectionViewLayout: UICollectionViewLayout {
-   
+    fileprivate var cache = [UICollectionViewLayoutAttributes]()
     fileprivate var numberOfColumns = 2
     fileprivate var cellPadding: CGFloat = 10
     
@@ -13,8 +13,6 @@ class DeckCollectionViewLayout: UICollectionViewLayout {
         let insets = collectionView.contentInset
         return collectionView.bounds.width - (insets.left + insets.right)
     }
-    
-    fileprivate var cache = [UICollectionViewLayoutAttributes]()
     
     override var collectionViewContentSize: CGSize {
         return CGSize(width: contentWidth, height: contentHeight)

@@ -1,7 +1,6 @@
 import UIKit
 
 class EditDeckViewController:DeckViewController{
-    
     enum ToolBarState {
         case normal
         case editing

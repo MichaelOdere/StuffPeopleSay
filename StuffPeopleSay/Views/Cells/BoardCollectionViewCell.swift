@@ -1,11 +1,3 @@
-//
-//  BoardCollectionViewCell.swift
-//  StuffPeopleSay
-//
-//  Created by Michael Odere on 12/4/17.
-//  Copyright © 2017 michaelodere. All rights reserved.
-//
-
 import UIKit
 
 class BoardCollectionViewCell: UICollectionViewCell {
@@ -16,6 +8,5 @@ class BoardCollectionViewCell: UICollectionViewCell {
     func setDelegation(){
         board.dataSource = bingoDataSource
         board.delegate = bingoDataSource
-        
     }
 }

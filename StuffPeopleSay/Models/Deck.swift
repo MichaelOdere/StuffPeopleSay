@@ -6,7 +6,6 @@ class Deck{
     var name:String
     var cards:[Card]
     
-    
     init(deckId:String, name:String, cards: [Card]) {
         self.deckId = deckId
         self.name = name
@@ -24,7 +23,6 @@ class Deck{
 
 extension Deck {
     convenience init?(json: JSON) {
-       
         guard let coardData = json["cards"].array else {
             print("Error parsing user object for key: cards")
             return nil
@@ -36,6 +34,7 @@ extension Deck {
                 allCards.append(card)
             }
         }
+        
         allCards = allCards.sorted(by: { $0.order > $1.order })
         self.init(deckId: String(Int(arc4random_uniform(600000))), name:"Deck", cards: allCards)
     }

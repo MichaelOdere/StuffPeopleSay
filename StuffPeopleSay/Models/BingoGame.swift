@@ -1,7 +1,6 @@
 import Foundation
 
-class BingoGame{
-    
+class BingoBoard{
     enum DiagonalResult {
         case slantingLeft
         case slantingRight
@@ -23,7 +22,6 @@ class BingoGame{
             let card = cards[index]
             let x = index % 5
             let y:Int = index / 5
-            
             if card.active == 1{
                 board[x][y] = 1
             }
@@ -77,7 +75,6 @@ class BingoGame{
             if checkLeftSlant() || checkRightSlant(){
                 victory = true
             }
-            
         case .slantingLeft:
             victory = checkLeftSlant()
             
@@ -94,7 +91,6 @@ class BingoGame{
         for elem in 0..<5{
             let x = 4 - elem
             let y = elem
-            
             if board[x][y] != 1{
                 return false
             }
@@ -113,17 +109,13 @@ class BingoGame{
     
     private func isDiagonal(x:Int, y: Int)->DiagonalResult{
         if x == y{
-            
             if x == 2{
                 return DiagonalResult.both
             }
             return DiagonalResult.slantingLeft
-
         }
-        
         if (x + y) == 4{
             return DiagonalResult.slantingRight
-
         }
         return DiagonalResult.neither
     }

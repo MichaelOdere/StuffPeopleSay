@@ -3,13 +3,11 @@ import SwiftyJSON
 import ChameleonFramework
 
 class GamesTableViewController:UIViewController, UITableViewDelegate, UITableViewDataSource{
+    @IBOutlet var tableview: UITableView!
 
     var gameStore:GameStore!
-    
     var loadingView:LoadingView!
 
-    @IBOutlet var tableview: UITableView!
-    
     override func viewDidLoad() {
         loadingView = LoadingView(frame: self.view.frame)
         
@@ -54,7 +52,6 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
         vc.apiManager = self.gameStore.apiManager
         
         self.navigationController?.pushViewController(vc, animated: true)
-
     }
     
     @IBAction func showDecks(_ sender: Any) {
@@ -85,17 +82,14 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
         alert.addAction(cancel)
         
         present(alert, animated: true, completion: nil)
-        
     }
     
     func addNewGame(){
         self.gameStore.apiManager.createGame(completionHandler: { data, error in
-            
             guard let data = data else {
                 print(error as Any)
                 return
             }
-            
             do {
 
                 let json = try JSON(data: data)
@@ -103,21 +97,16 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
                     self.gameStore.games.insert(game, at: 0)
                     print("New game added")
                 }
-                
             } catch {
                 print(error)
             }
-            
             DispatchQueue.main.sync {
                 self.tableview.reloadData()
             }
-                
-            
         })
     }
     
     @objc func didBecomeActive(){
-
         if self.gameStore.isLoggedIn{
             self.loadingView.startAnimating()
             self.view.addSubview(self.loadingView)
@@ -126,18 +115,13 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
             group.enter()
             self.gameStore.updateGames(completionHandler: { error in
                 group.leave()
-                
             })
-            
             group.notify(queue: DispatchQueue.main){
-                
                 self.loadingView.stopAnimating()
                 self.loadingView.removeFromSuperview()
                 self.tableview.reloadData()
             }
-            
         }
-    
     }
 }
 

@@ -1,7 +1,6 @@
 import UIKit
 
 class AlertView: UIViewController{
-
     private var verticalPadding:CGFloat!
     private var verticleSpaceBetweenElements:CGFloat!
     private var horizontalPadding:CGFloat!
@@ -18,7 +17,6 @@ class AlertView: UIViewController{
     var hasLoaded:Bool = false
     
     override func viewDidLoad() {
-
         verticalPadding = self.view.frame.height * 0.1
         verticleSpaceBetweenElements = 10
         horizontalPadding = self.view.frame.width * 0.05
@@ -54,7 +52,6 @@ class AlertView: UIViewController{
     func setupContentView(){
         contentView.backgroundColor = UIColor.white
         contentView.translatesAutoresizingMaskIntoConstraints = false
-
         self.view.addSubview(contentView)
         
         let top = NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: verticalPadding)
@@ -113,12 +110,9 @@ class AlertView: UIViewController{
         gameNameTextField.textAlignment = .center
         gameNameTextField.layer.borderColor = UIColor.lightGray.cgColor
         gameNameTextField.layer.borderWidth = 0.8
-        
         gameNameTextField.returnKeyType = .done
-
         gameNameTextField.layer.cornerRadius = 5
         gameNameTextField.translatesAutoresizingMaskIntoConstraints = false
-        
         contentView.addSubview(gameNameTextField)
         
 
@@ -135,7 +129,6 @@ class AlertView: UIViewController{
     func setupTextLine(){
         gameTextFieldLine.backgroundColor = UIColor.black
         gameTextFieldLine.translatesAutoresizingMaskIntoConstraints = false
-
         contentView.addSubview(gameTextFieldLine)
         
         let gameNameTextFieldTop = NSLayoutConstraint(item: gameTextFieldLine, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: gameNameTextField, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
@@ -151,9 +144,8 @@ class AlertView: UIViewController{
         numberPicker.layer.cornerRadius = 10
         numberPicker.layer.borderColor = UIColor.lightGray.cgColor
         numberPicker.layer.borderWidth = 0.8
-        contentView.addSubview(numberPicker)
-        
         numberPicker.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(numberPicker)
         
         let pickerCenterX = NSLayoutConstraint(item: numberPicker, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
         pickerCenterX.isActive = true
@@ -176,11 +168,10 @@ class AlertView: UIViewController{
     
     func setupDeckButton(){
         deckButton.backgroundColor = UIColor.lightGray
-        deckButton.translatesAutoresizingMaskIntoConstraints = false
         deckButton.addTarget(self, action: #selector(showDecks(sender:)), for: .touchUpInside)
         deckButton.setTitle("Select a Deck", for: .normal)
         deckButton.isEnabled = true
-        
+        deckButton.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(deckButton)
         
         let deckCenterX = NSLayoutConstraint(item: deckButton, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)

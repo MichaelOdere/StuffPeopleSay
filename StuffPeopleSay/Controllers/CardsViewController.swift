@@ -1,7 +1,6 @@
 import UIKit
 
 class CardsViewController:UIViewController{
-    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
@@ -9,7 +8,6 @@ class CardsViewController:UIViewController{
     @IBOutlet weak var collectionViewBottom: NSLayoutConstraint!
     @IBOutlet weak var toolBarView: UIView!
     
-
     var gameStore:GameStore!
     var deck:Deck!
     var tempDeck:Deck!

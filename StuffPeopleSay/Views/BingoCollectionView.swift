@@ -6,7 +6,7 @@ protocol BingoCollectionViewDelegate: class {
 
 class BingoCollectionView: NSObject, UICollectionViewDataSource, UICollectionViewDelegate{
     var deck:Deck!
-    var bingoGame:BingoGame = BingoGame()
+    var bingoGame:BingoBoard = BingoBoard()
     var pieceTransparency:CGFloat = 0.2
     weak var didSelectDelegate: BingoCollectionViewDelegate?
 

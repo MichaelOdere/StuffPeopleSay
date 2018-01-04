@@ -2,7 +2,6 @@ import Foundation
 import SwiftyJSON
 
 class Board{
-    
     var boardId:String
     var deck: Deck
     var count:Int
@@ -13,6 +12,7 @@ class Board{
         self.count = count
     }
 }
+
 extension Board {
     convenience init?(json: JSON) {
         guard let boardId = json["boardId"].string else {

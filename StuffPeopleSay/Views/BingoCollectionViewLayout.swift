@@ -1,6 +1,7 @@
 import UIKit
  
  class BingoCollectionViewLayout: UICollectionViewLayout {
+    fileprivate var cache = [UICollectionViewLayoutAttributes]()
     fileprivate var numberOfColumns = 5
     fileprivate var numberOfRows = 5
     fileprivate var cellPadding: CGFloat = 1
@@ -14,7 +15,6 @@ import UIKit
         return collectionView.bounds.width - (insets.left + insets.right)
     }
     
-    fileprivate var cache = [UICollectionViewLayoutAttributes]()
     
     override var collectionViewContentSize: CGSize {
         return CGSize(width: contentWidth, height: contentHeight)
@@ -43,7 +43,6 @@ import UIKit
         }
         
         for item in 0 ..< collectionView.numberOfItems(inSection: 0) {
-           
             let indexPath = IndexPath(item: item, section: 0)
 
             let xOffIndex = item % numberOfColumns

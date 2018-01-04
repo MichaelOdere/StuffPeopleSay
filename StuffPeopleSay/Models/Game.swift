@@ -46,13 +46,14 @@ extension Game {
             return nil
             
         }
+        
         var allOpponents:[User] = []
         for opponentData in opponentsUserData {
             if let opponent = User(json: opponentData){
                 allOpponents.append(opponent)
             }
         }
-        
+
         self.init(gameId: gameId, name:"String", status: status, my: myUser, opponents: allOpponents)
     }
     

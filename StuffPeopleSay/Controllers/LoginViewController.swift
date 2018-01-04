@@ -2,19 +2,17 @@ import UIKit
 import Foundation
 
 class LoginViewController:UIViewController, UITextFieldDelegate{
-    
     enum ButtonState{
         case active
         case inactive
     }
     
-    var gameStore:GameStore!
-    
-    var loadingView:LoadingView!
-
     @IBOutlet var loginButton: UIButton!
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
+
+    var gameStore:GameStore!
+    var loadingView:LoadingView!
 
     override func viewDidLoad() {
         self.updateEmailTextField()
@@ -31,7 +29,6 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
         login(email: nil)
-        
     }
     
     func login(email:String?) {
@@ -39,16 +36,13 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
         self.view.addSubview(loadingView)
         let group = DispatchGroup()
         group.enter()
-        
         self.gameStore.loginUser(email: email, completionHandler: { login, error in
-
             guard let _ = login else {
                 print(error as Any)
                 return
             }
             group.leave()
         })
-
         group.notify(queue: DispatchQueue.main){
             group.enter()
             if self.gameStore.isLoggedIn{
@@ -61,10 +55,8 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
                 })
             }else{
                 group.leave()
-
             }
         }
-        
         group.notify(queue: DispatchQueue.main){
             if self.gameStore.isLoggedIn {
                 self.showGameScreen {
@@ -79,7 +71,6 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
     }
     
     @IBAction func LoginButton(_ sender: Any?) {
-        
         login(email: emailTextField.text)
     }
 
@@ -89,8 +80,8 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
         }else{
             configureButton(for: .active)
         }
-    
     }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.emailTextField.resignFirstResponder()
         
@@ -108,7 +99,6 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
             vc.gameStore = self.gameStore
             self.present(navigationController, animated: false, completion: completionHandler)
         }
-        
     }
     
     func updateEmailTextField(){

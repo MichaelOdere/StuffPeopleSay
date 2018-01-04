@@ -1,11 +1,11 @@
 import UIKit
 
 class BoardCollectionViewController:UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var game:Game!
     var apiManager:APIManager!
     var selectedIndexPath:IndexPath!
-    @IBOutlet weak var collectionView: UICollectionView!
 
     override func viewDidLoad() {
         collectionView.dataSource = self
@@ -41,7 +41,6 @@ class BoardCollectionViewController:UIViewController, UICollectionViewDelegate, 
         
         self.navigationController?.pushViewController(vc, animated: true)
     }
-
 }
 
 extension BoardCollectionViewController : ZoomViewController{

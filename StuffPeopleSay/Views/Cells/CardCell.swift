@@ -3,7 +3,6 @@ import UIKit
 class CardCell:UICollectionViewCell{
     var name: CardTextfield!
     var boardCardId:String!
-    
     var hasBeenSelected:Bool = false
     var deSelectedAlphaValue:CGFloat = 1.0
     var selectedAlphaValue:CGFloat = 0.5

@@ -1,20 +1,19 @@
 import UIKit
 
 class BingoViewController:UIViewController{
-    var bingoGame:BingoGame = BingoGame()
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var tableview: UITableView!
+    
+    var bingoGame:BingoBoard = BingoBoard()
     var users:[User]!
     var board:Board!
     var status:String!
     var gameId:String!
     var apiManager:APIManager!
-
     var loadingView:LoadingView!
     let pieceTransparency:CGFloat = 0.2
-    
     var bingoCollectionView:BingoCollectionView!
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var tableview: UITableView!
-    
+
     override func viewDidLoad() {
         loadingView = LoadingView(frame: self.view.frame)
         

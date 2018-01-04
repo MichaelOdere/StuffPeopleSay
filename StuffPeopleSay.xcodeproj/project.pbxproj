@@ -231,11 +231,11 @@
 		F9FEA8A41FFEBDC400CEFE30 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				F9066DA11FD5F637003BF133 /* GameViewCell.swift */,
 				F96C58031FBB5A3B00D49481 /* BingoCollectionCell.swift */,
-				F97E63831FF1A81700CBA256 /* DeckCell.swift */,
-				F96F1DB31FF4CC7A00C06E9C /* CardCell.swift */,
 				F9AAF1CD1FD62F5E008A618F /* BoardCollectionViewCell.swift */,
+				F96F1DB31FF4CC7A00C06E9C /* CardCell.swift */,
+				F97E63831FF1A81700CBA256 /* DeckCell.swift */,
+				F9066DA11FD5F637003BF133 /* GameViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
