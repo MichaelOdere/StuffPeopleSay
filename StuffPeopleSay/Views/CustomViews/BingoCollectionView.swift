@@ -1,11 +1,14 @@
 import UIKit
 
+protocol BingoCollectionViewDelegate: class {
+    func specificDidSelectRow(card: Card, cell: BingoCollectionCell)
+}
+
 class BingoCollectionView: NSObject, UICollectionViewDataSource, UICollectionViewDelegate{
     var deck:Deck!
     var bingoGame:BingoGame = BingoGame()
     var pieceTransparency:CGFloat = 0.2
-    
-    var didSelectRow: ((_ card: Card, _ cell: BingoCollectionCell ) -> Void)?
+    weak var didSelectDelegate: BingoCollectionViewDelegate?
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return min(deck.cards.count, 25)
@@ -34,9 +37,8 @@ class BingoCollectionView: NSObject, UICollectionViewDataSource, UICollectionVie
         let cell = collectionView.cellForItem(at: indexPath) as! BingoCollectionCell
         let card = deck.cards[indexPath.row]
 
-        if let didSelectRow = didSelectRow {
-            didSelectRow(card, cell)
-
+        if let didSelectDelegate = didSelectDelegate {
+            didSelectDelegate.specificDidSelectRow(card: card, cell: cell)
             if card.active == 0{
                deck.cards[indexPath.row].active = 1
             }else{

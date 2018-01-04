@@ -8,10 +8,8 @@ class BoardCollectionViewController:UIViewController, UICollectionViewDelegate, 
     @IBOutlet weak var collectionView: UICollectionView!
 
     override func viewDidLoad() {
-        
         collectionView.dataSource = self
         collectionView.delegate = self
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -20,7 +18,6 @@ class BoardCollectionViewController:UIViewController, UICollectionViewDelegate, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "boardCell", for: indexPath) as! BoardCollectionViewCell
-        
         let cardCount = game.my.getCardsActive(index: indexPath.row)
         let cardString = cardCount == 1 ? "card" : "cards"
         cell.titleLabel.text = String(cardCount) + " \(cardString) active"

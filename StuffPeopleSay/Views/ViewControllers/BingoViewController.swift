@@ -11,23 +11,21 @@ class BingoViewController:UIViewController{
     var loadingView:LoadingView!
     let pieceTransparency:CGFloat = 0.2
     
-    var bingoDataSource:BingoCollectionView!
+    var bingoCollectionView:BingoCollectionView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableview: UITableView!
     
     override func viewDidLoad() {
-
         loadingView = LoadingView(frame: self.view.frame)
         
-        bingoDataSource = BingoCollectionView()
-
-        bingoDataSource.didSelectRow = didSelectRow(card:cell:)
-        bingoDataSource.bingoGame = bingoGame
-        bingoDataSource.deck = self.board.deck
-
-        collectionView.dataSource = bingoDataSource
-        collectionView.delegate = bingoDataSource
-
+        bingoCollectionView = BingoCollectionView()
+        bingoCollectionView.bingoGame = bingoGame
+        bingoCollectionView.deck = board.deck
+        bingoCollectionView.didSelectDelegate = self
+        
+        collectionView.dataSource = bingoCollectionView
+        collectionView.delegate = bingoCollectionView
+        
         tableview.dataSource = self
         tableview.delegate = self
 
@@ -35,49 +33,15 @@ class BingoViewController:UIViewController{
                                                selector: #selector(BingoViewController.didBecomeActive),
                                                name: Notification.Name("didBecomeActive"),
                                                object: nil)
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         if let selectionIndexPath = tableview.indexPathForSelectedRow {
             tableview.deselectRow(at: selectionIndexPath, animated: animated)
         }
     }
     
-    func didSelectRow(card: Card, cell: BingoCollectionCell) {
-
-        if self.self.status.lowercased() != "playing"{
-            return
-        }
-
-        self.apiManager.updateBoard(boardCardId: card.boardCardId)
-        
-        let x = cell.xIndex!
-        let y = cell.yIndex!
-
-        if card.active == 1{
-            cell.pieceView.alpha = 0.0
-            bingoGame.board[x][y] = 0
-        }else{
-            cell.pieceView.alpha = pieceTransparency
-            bingoGame.board[x][y] = 1
-        }
-        
-        if (bingoGame.checkVictory(x: x, y: y)){
-
-            self.status = "ended"
-            self.apiManager.updateGame(gameId: self.gameId)
-            showAlert {
-                self.bingoGame.boardReset()
-                self.collectionView.reloadData()
-            }
-
-        }
-        
-    }
-
     func showAlert(completion: @escaping ()->()){
         let alert = UIAlertController(title: "Congratulations You Won!",
                                       message: "We're sorry you had to hear all that!!",
@@ -128,7 +92,6 @@ class BingoViewController:UIViewController{
     }
 }
 extension BingoViewController: UITableViewDelegate, UITableViewDataSource{
-   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.self.users.count
     }
@@ -151,7 +114,6 @@ extension BingoViewController: UITableViewDelegate, UITableViewDataSource{
 
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
 }
 
 extension BingoViewController : ZoomViewController{
@@ -160,5 +122,35 @@ extension BingoViewController : ZoomViewController{
           return cv
         }
         return nil
+    }
+}
+
+extension BingoViewController:BingoCollectionViewDelegate{
+    func specificDidSelectRow(card: Card, cell: BingoCollectionCell) {
+        if self.self.status.lowercased() != "playing"{
+            return
+        }
+        
+        self.apiManager.updateBoard(boardCardId: card.boardCardId)
+        
+        let x = cell.xIndex!
+        let y = cell.yIndex!
+        
+        if card.active == 1{
+            cell.pieceView.alpha = 0.0
+            bingoGame.board[x][y] = 0
+        }else{
+            cell.pieceView.alpha = pieceTransparency
+            bingoGame.board[x][y] = 1
+        }
+        
+        if (bingoGame.checkVictory(x: x, y: y)){
+            self.status = "ended"
+            self.apiManager.updateGame(gameId: self.gameId)
+            showAlert {
+                self.bingoGame.boardReset()
+                self.collectionView.reloadData()
+            }
+        }
     }
 }
