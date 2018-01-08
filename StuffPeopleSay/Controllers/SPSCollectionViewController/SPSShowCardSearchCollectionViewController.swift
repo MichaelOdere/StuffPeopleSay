@@ -104,12 +104,6 @@ extension SPSShowCardSearchCollectionViewController:SPSCollectionViewControllerD
     }
 }
 
-extension SPSShowCardSearchCollectionViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-}
 extension SPSShowCardSearchCollectionViewController: SPSSearchCollectionViewControllerDelegate {
     func getFilteredObjectsFromSearchText(name: String) -> [SearchableObject] {
         return deck.cards.filter({( card : Card) -> Bool in
