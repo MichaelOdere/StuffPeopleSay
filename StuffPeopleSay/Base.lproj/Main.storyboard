@@ -480,7 +480,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Nht-R7-Zmy">
-                                <rect key="frame" x="0.0" y="102" width="375" height="520"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="558"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewLayout key="collectionViewLayout" id="K82-XI-RaC" customClass="DeckCollectionViewLayout" customModule="StuffPeopleSay" customModuleProvider="target"/>
                                 <cells>
@@ -491,7 +491,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="120" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bvm-Pl-je3">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bvm-Pl-je3" customClass="CardTextfield" customModule="StuffPeopleSay" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="120" height="100"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -538,40 +538,30 @@
                                     <constraint firstAttribute="trailing" secondItem="MaF-Ns-oRg" secondAttribute="trailing" constant="8" id="zbP-Ll-X24"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name this deck" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1yT-Sv-GIt">
-                                <rect key="frame" x="81" y="64" width="213" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="1yT-Sv-GIt" firstAttribute="leading" secondItem="nar-sZ-tpE" secondAttribute="leading" constant="81" id="2wP-GG-SdO"/>
-                            <constraint firstItem="1yT-Sv-GIt" firstAttribute="top" secondItem="nar-sZ-tpE" secondAttribute="top" id="4Dp-xV-rK0"/>
-                            <constraint firstItem="Nht-R7-Zmy" firstAttribute="trailing" secondItem="nar-sZ-tpE" secondAttribute="trailing" id="QVh-bU-lMN"/>
+                            <constraint firstItem="Nht-R7-Zmy" firstAttribute="leading" secondItem="nar-sZ-tpE" secondAttribute="leading" id="3cZ-Sx-L0e"/>
+                            <constraint firstItem="Nht-R7-Zmy" firstAttribute="top" secondItem="nar-sZ-tpE" secondAttribute="top" id="TgR-hu-oqb"/>
                             <constraint firstItem="U93-T8-UF1" firstAttribute="leading" secondItem="nar-sZ-tpE" secondAttribute="leading" id="U4q-cN-3Hk"/>
                             <constraint firstItem="U93-T8-UF1" firstAttribute="bottom" secondItem="nar-sZ-tpE" secondAttribute="bottom" id="Vmz-q1-m7i"/>
                             <constraint firstItem="U93-T8-UF1" firstAttribute="trailing" secondItem="nar-sZ-tpE" secondAttribute="trailing" id="e9R-Ob-z8d"/>
-                            <constraint firstItem="Nht-R7-Zmy" firstAttribute="leading" secondItem="nar-sZ-tpE" secondAttribute="leading" id="fpt-Oe-Azb"/>
-                            <constraint firstItem="Nht-R7-Zmy" firstAttribute="top" secondItem="1yT-Sv-GIt" secondAttribute="bottom" constant="8" id="lfB-1Q-Rb4"/>
-                            <constraint firstItem="U93-T8-UF1" firstAttribute="top" secondItem="Nht-R7-Zmy" secondAttribute="bottom" id="oiB-0d-0Cx"/>
-                            <constraint firstItem="nar-sZ-tpE" firstAttribute="trailing" secondItem="1yT-Sv-GIt" secondAttribute="trailing" constant="81" id="vmF-YK-JKt"/>
+                            <constraint firstItem="U93-T8-UF1" firstAttribute="top" secondItem="Nht-R7-Zmy" secondAttribute="bottom" id="sqk-xW-OT8"/>
+                            <constraint firstItem="Nht-R7-Zmy" firstAttribute="trailing" secondItem="nar-sZ-tpE" secondAttribute="trailing" id="yUI-lR-xBd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nar-sZ-tpE"/>
                     </view>
                     <connections>
                         <outlet property="cancelButton" destination="C9y-PO-nPC" id="mWx-r4-Xju"/>
                         <outlet property="collectionView" destination="Nht-R7-Zmy" id="s3Z-sm-eas"/>
-                        <outlet property="collectionViewBottomLayoutConstraint" destination="oiB-0d-0Cx" id="Sie-dn-PKq"/>
-                        <outlet property="nameTextField" destination="1yT-Sv-GIt" id="O8V-4G-8Tv"/>
+                        <outlet property="collectionViewBottomLayoutConstraint" destination="sqk-xW-OT8" id="nzg-kJ-J8y"/>
                         <outlet property="saveButton" destination="MaF-Ns-oRg" id="I0s-pb-669"/>
                         <outlet property="toolBarView" destination="U93-T8-UF1" id="r3O-qH-7sg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r3Q-22-UnN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2017" y="-544"/>
+            <point key="canvasLocation" x="2016.8" y="-544.67766116941539"/>
         </scene>
         <!--Games-->
         <scene sceneID="lzu-KL-BQL">

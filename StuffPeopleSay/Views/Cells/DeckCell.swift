@@ -6,7 +6,8 @@ class DeckCell:UICollectionViewCell{
     var hasBeenSelected:Bool = false
     var deSelectedAlphaValue:CGFloat = 1.0
     var selectedAlphaValue:CGFloat = 0.5
-
+    var indexPath:IndexPath!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.white

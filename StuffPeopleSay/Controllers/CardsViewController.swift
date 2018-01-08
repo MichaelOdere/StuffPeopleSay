@@ -4,7 +4,6 @@ class CardsViewController: SPSCollectionViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var collectionViewBottomLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var toolBarView: UIView!
     
@@ -24,12 +23,7 @@ class CardsViewController: SPSCollectionViewController {
         collectionView.register(CardCell.self, forCellWithReuseIdentifier: "CardCell")
         self.collectionView.backgroundColor = BingoPalette.vanillaBackgroundColor
         tempDeck = deck.copyDeck()
-        
-        nameTextField.text = deck.name
-        nameTextField.delegate = self
-        nameTextField.returnKeyType = .done
-        nameTextField.addTarget(self, action: #selector(nameTextChanged(sender:)), for: UIControlEvents.editingChanged)
-        
+                
         setupButtons()
     }
     
@@ -68,20 +62,6 @@ extension CardsViewController:UICollectionViewDelegate, UICollectionViewDataSour
         cell.name.delegate = self
         return cell
     }
-    
-    @objc func textChanged(sender: CardTextfield){
-        tempDeck.cards[sender.indexPath.row].name = sender.text
-    }
-    @objc func nameTextChanged(sender: UITextField){
-        tempDeck.name = sender.text!
-    }
-}
-
-extension CardsViewController:UITextFieldDelegate{
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
 }
 
 extension CardsViewController:SPSCollectionViewControllerDelegate{
@@ -93,5 +73,11 @@ extension CardsViewController:SPSCollectionViewControllerDelegate{
         return collectionViewBottomLayoutConstraint
     }
     
-    
+    func getTextChanged(sender: UITextField){
+        if let sender = sender as? CardTextfield {
+            tempDeck.cards[sender.indexPath.row].name = sender.text
+        }else{
+            print("Not cardtextfield")
+        }
+    }
 }

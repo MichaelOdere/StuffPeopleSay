@@ -3,6 +3,7 @@ import UIKit
 protocol SPSCollectionViewControllerDelegate {
     func getCollectionview() -> UICollectionView
     func getCollectionviewBottomConstraint() -> NSLayoutConstraint
+    func getTextChanged(sender: UITextField)
 }
 
 class SPSCollectionViewController:UIViewController{
@@ -30,7 +31,6 @@ class SPSCollectionViewController:UIViewController{
         
         NotificationCenter.default.addObserver(self, selector: #selector(SPSCollectionViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SPSCollectionViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-
     }
     override func viewWillAppear(_ animated: Bool) {
         superCollectionView.reloadData()
@@ -61,9 +61,26 @@ extension SPSCollectionViewController: UISearchResultsUpdating {
 extension SPSCollectionViewController {
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            
+            var displacement:CGFloat = 0
+            
+            if let h = navigationController?.navigationBar.frame.height {
+                displacement += h
+            }
+            
+            print("displacement, \(displacement)")
             if self.superCollectionViewBottomConstraint.constant == 0{
-                self.superCollectionViewBottomConstraint.constant += keyboardSize.height// - toolBarView.frame.height
+                self.superCollectionViewBottomConstraint.constant += keyboardSize.height - displacement
                 self.superCollectionView.layoutIfNeeded()
+                
+                if let last = self.superCollectionView.visibleCells.last as? DeckCell{
+                    print("scroll!")
+                    print(last.indexPath)
+                    self.superCollectionView.scrollToItem(at: IndexPath(item: 3, section: 0), at: .bottom, animated: true)
+                }else{
+                    print("No scroll")
+                }
+                
             }
         }
     }
@@ -76,5 +93,15 @@ extension SPSCollectionViewController {
             }
         }
     }
+    
+    @objc func textChanged(sender: UITextField){
+        SPSDelegate.getTextChanged(sender: sender)
+    }
 }
 
+extension SPSCollectionViewController:UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}

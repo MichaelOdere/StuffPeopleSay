@@ -89,6 +89,8 @@ extension EditDeckViewController:UICollectionViewDelegate, UICollectionViewDataS
             cell.alpha = cell.deSelectedAlphaValue
         }
         
+        cell.indexPath = indexPath
+        
         return cell
     }
 }
@@ -197,11 +199,6 @@ extension EditDeckViewController{
 
 extension EditDeckViewController {
     @objc func handleLongPress(gestureReconizer: UILongPressGestureRecognizer) {
-//        print("UILongPressGestureRecognizer!")
-//        if gestureReconizer.state != UIGestureRecognizerState.ended {
-//            return
-//        }
-//
         let p = gestureReconizer.location(in: self.collectionView)
         let indexPath = self.collectionView.indexPathForItem(at: p)
         
@@ -215,7 +212,7 @@ extension EditDeckViewController {
     }
 }
 
-extension EditDeckViewController:SPSCollectionViewControllerDelegate{
+extension EditDeckViewController:SPSCollectionViewControllerDelegate {
     func getCollectionview() -> UICollectionView {
         return collectionView
     }
@@ -224,7 +221,8 @@ extension EditDeckViewController:SPSCollectionViewControllerDelegate{
         return collectionViewBottomLayoutConstraint
     }
     
-    
-    
+    func getTextChanged(sender:UITextField) {
+        print("TEXT CHANGED!")
+    }
 }
 
