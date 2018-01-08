@@ -1,6 +1,6 @@
 import UIKit
 
-class SPSShowCardSearchCollectionViewController: SPSSearchCollectionViewController {
+class SPSShowCardSearchCollectionViewController: SPSCardSearchCollectionViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
@@ -20,7 +20,6 @@ class SPSShowCardSearchCollectionViewController: SPSSearchCollectionViewControll
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(CardCell.self, forCellWithReuseIdentifier: "CardCell")
         self.collectionView.backgroundColor = BingoPalette.vanillaBackgroundColor
         tempDeck = deck.copyDeck()
                 
@@ -53,8 +52,14 @@ extension SPSShowCardSearchCollectionViewController:UICollectionViewDelegate, UI
         return deck.cards.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! CardCell
+        cell.cellSelected()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCell
+        cell.state = .selected
         let card: Card
         
         if isFiltering() {
@@ -62,6 +67,7 @@ extension SPSShowCardSearchCollectionViewController:UICollectionViewDelegate, UI
         } else {
             card = deck.cards[indexPath.row]
         }
+        cell.name.isEnabled = false
         cell.name.boardCardId = card.id
         cell.name.text = card.name
         cell.name.indexPath = indexPath

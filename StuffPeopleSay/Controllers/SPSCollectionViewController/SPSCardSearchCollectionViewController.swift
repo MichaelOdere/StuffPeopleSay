@@ -9,6 +9,9 @@ class SPSCardSearchCollectionViewController:SPSSearchCollectionViewController{
         lpgr.minimumPressDuration = 0.5
         lpgr.delaysTouchesBegan = true
         superCollectionView.addGestureRecognizer(lpgr)
+        
+        superCollectionView.register(CardCell.self, forCellWithReuseIdentifier: "CardCell")
+
     }
     
     func getFilteredDeck(id: String)->Deck{

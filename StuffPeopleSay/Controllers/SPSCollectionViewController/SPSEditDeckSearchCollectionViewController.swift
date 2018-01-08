@@ -44,15 +44,19 @@ extension SPSEditDeckSearchCollectionViewController:UICollectionViewDelegate, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if isEditingATextField{
+            return
+        }
+        
         let cell = collectionView.cellForItem(at: indexPath) as! DeckCell
         if toolBarState == .editing{
             if selectedObjects.contains(cell.deckId){
-                cell.alpha = cell.deSelectedAlphaValue
+                cell.alpha = cell.selectedAlphaValue
                 if let index = selectedObjects.index(of: cell.deckId) {
                     selectedObjects.remove(at: index)
                 }
             }else{
-                cell.alpha = cell.selectedAlphaValue
+                cell.alpha = cell.deSelectedAlphaValue
                 selectedObjects.append(cell.deckId)
             }
             checkToolBarButton()
@@ -82,9 +86,9 @@ extension SPSEditDeckSearchCollectionViewController:UICollectionViewDelegate, UI
         cell.deckId = deck.id
         
         if selectedObjects.contains(cell.deckId){
-            cell.alpha = cell.selectedAlphaValue
-        }else{
             cell.alpha = cell.deSelectedAlphaValue
+        }else{
+            cell.alpha = cell.selectedAlphaValue
         }
         
         cell.indexPath = indexPath

@@ -391,33 +391,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="602"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewLayout key="collectionViewLayout" id="k73-bQ-ZNh" customClass="DeckCollectionViewLayout" customModule="StuffPeopleSay" customModuleProvider="target"/>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DeckCell" id="Jgn-3I-yWU" customClass="DeckCell" customModule="StuffPeopleSay" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="120" height="100"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="120" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gri-ik-HHO">
-                                                    <rect key="frame" x="0.0" y="35" width="120" height="30"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                            </subviews>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="gri-ik-HHO" firstAttribute="leading" secondItem="Jgn-3I-yWU" secondAttribute="leading" id="3mT-wK-nJ7"/>
-                                            <constraint firstAttribute="trailing" secondItem="gri-ik-HHO" secondAttribute="trailing" id="5IY-2F-Ea3"/>
-                                            <constraint firstItem="gri-ik-HHO" firstAttribute="centerY" secondItem="Jgn-3I-yWU" secondAttribute="centerY" id="PEY-Em-lg7"/>
-                                        </constraints>
-                                        <size key="customSize" width="120" height="100"/>
-                                        <connections>
-                                            <outlet property="name" destination="gri-ik-HHO" id="sWC-jj-Tsp"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hkk-rp-Alr">
                                 <rect key="frame" x="0.0" y="622" width="375" height="45"/>
@@ -482,34 +456,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="602"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewLayout key="collectionViewLayout" id="K82-XI-RaC" customClass="DeckCollectionViewLayout" customModule="StuffPeopleSay" customModuleProvider="target"/>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="3v7-Tc-Vb0">
-                                        <rect key="frame" x="0.0" y="0.0" width="120" height="100"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="120" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bvm-Pl-je3" customClass="CardTextfield" customModule="StuffPeopleSay" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="100"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                            </subviews>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="bvm-Pl-je3" secondAttribute="trailing" id="CnG-Er-HGc"/>
-                                            <constraint firstItem="bvm-Pl-je3" firstAttribute="top" secondItem="3v7-Tc-Vb0" secondAttribute="top" id="XQE-10-ldn"/>
-                                            <constraint firstItem="bvm-Pl-je3" firstAttribute="leading" secondItem="3v7-Tc-Vb0" secondAttribute="leading" id="upp-fZ-HdK"/>
-                                            <constraint firstAttribute="bottom" secondItem="bvm-Pl-je3" secondAttribute="bottom" id="wAb-KH-4wu"/>
-                                        </constraints>
-                                        <size key="customSize" width="120" height="100"/>
-                                        <connections>
-                                            <outlet property="name" destination="bvm-Pl-je3" id="Jy0-bg-Mau"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U93-T8-UF1">
                                 <rect key="frame" x="0.0" y="622" width="375" height="45"/>
@@ -731,34 +678,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="602"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewLayout key="collectionViewLayout" id="oRg-ez-kG1" customClass="DeckCollectionViewLayout" customModule="StuffPeopleSay" customModuleProvider="target"/>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DeckCell" id="TYc-tQ-6fM" customClass="DeckCell" customModule="StuffPeopleSay" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="120" height="100"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="120" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrR-4h-R8D">
-                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="100"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="zrR-4h-R8D" secondAttribute="bottom" id="OuO-5T-bQV"/>
-                                            <constraint firstAttribute="trailing" secondItem="zrR-4h-R8D" secondAttribute="trailing" id="Y3H-85-VJG"/>
-                                            <constraint firstItem="zrR-4h-R8D" firstAttribute="leading" secondItem="TYc-tQ-6fM" secondAttribute="leading" id="rgx-kg-Ceb"/>
-                                            <constraint firstItem="zrR-4h-R8D" firstAttribute="top" secondItem="TYc-tQ-6fM" secondAttribute="top" id="yeb-Js-G7O"/>
-                                        </constraints>
-                                        <size key="customSize" width="120" height="100"/>
-                                        <connections>
-                                            <outlet property="name" destination="zrR-4h-R8D" id="27n-MH-13O"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="soT-xU-gWu">
                                 <rect key="frame" x="0.0" y="622" width="375" height="45"/>

@@ -41,6 +41,7 @@
 		F99A2F791FD4AA3000B2CEC6 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99A2F781FD4AA3000B2CEC6 /* LoadingView.swift */; };
 		F9AAF1CE1FD62F5E008A618F /* BoardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AAF1CD1FD62F5E008A618F /* BoardCollectionViewCell.swift */; };
 		F9B295381FF4DCB700454D21 /* CardTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B295371FF4DCB700454D21 /* CardTextfield.swift */; };
+		F9C2B7FB200424B400F38DAD /* SPSCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C2B7FA200424B400F38DAD /* SPSCollectionViewCell.swift */; };
 		F9DC7C941FD0C66A0097D4B5 /* BingoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC7C931FD0C66A0097D4B5 /* BingoCollectionView.swift */; };
 		F9DC7C961FD0C8370097D4B5 /* OpponentBingoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC7C951FD0C8370097D4B5 /* OpponentBingoViewController.swift */; };
 		F9DC7C9A1FD1259D0097D4B5 /* PieceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC7C991FD1259D0097D4B5 /* PieceView.swift */; };
@@ -90,6 +91,7 @@
 		F99A2F781FD4AA3000B2CEC6 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		F9AAF1CD1FD62F5E008A618F /* BoardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9B295371FF4DCB700454D21 /* CardTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTextfield.swift; sourceTree = "<group>"; };
+		F9C2B7FA200424B400F38DAD /* SPSCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPSCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9DC7C931FD0C66A0097D4B5 /* BingoCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoCollectionView.swift; sourceTree = "<group>"; };
 		F9DC7C951FD0C8370097D4B5 /* OpponentBingoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpponentBingoViewController.swift; sourceTree = "<group>"; };
 		F9DC7C991FD1259D0097D4B5 /* PieceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceView.swift; sourceTree = "<group>"; };
@@ -155,8 +157,8 @@
 				F91230DA1FF1965D00182B55 /* SPSCollectionViewController.swift */,
 				F940AF602003F6D0002DC915 /* SPSSearchCollectionViewController.swift */,
 				F940AF64200408D4002DC915 /* SPSCardSearchCollectionViewController.swift */,
-				F9FAD23B1FF6F6D8007A1F78 /* SPSEditDeckSearchCollectionViewController.swift */,
 				F940AF62200403C5002DC915 /* SPSDeckSearchCollectionViewController.swift */,
+				F9FAD23B1FF6F6D8007A1F78 /* SPSEditDeckSearchCollectionViewController.swift */,
 				F9235BC01FF77EAD00E54ED5 /* SPSShowDeckSearchCollectionViewController.swift */,
 				F950F3611FF3663F00DF578F /* SPSShowCardSearchCollectionViewController.swift */,
 			);
@@ -256,6 +258,7 @@
 				F96F1DB31FF4CC7A00C06E9C /* CardCell.swift */,
 				F97E63831FF1A81700CBA256 /* DeckCell.swift */,
 				F9066DA11FD5F637003BF133 /* GameViewCell.swift */,
+				F9C2B7FA200424B400F38DAD /* SPSCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				F90B4B7A1FBBA232002FEBF0 /* PusherManager.swift in Sources */,
 				F9DC7C961FD0C8370097D4B5 /* OpponentBingoViewController.swift in Sources */,
 				F92DBED81FBB8D4000B4566F /* LoginViewController.swift in Sources */,
+				F9C2B7FB200424B400F38DAD /* SPSCollectionViewCell.swift in Sources */,
 				F9066DA21FD5F637003BF133 /* GameViewCell.swift in Sources */,
 				F905D6D61FF5C30600A0CFD5 /* AlertViewController.swift in Sources */,
 				F96C58041FBB5A3B00D49481 /* BingoCollectionCell.swift in Sources */,

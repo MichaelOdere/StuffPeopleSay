@@ -1,38 +1,45 @@
 import UIKit
 
-class CardCell:UICollectionViewCell{
-    var name: CardTextfield!
+class CardCell:SPSCollectionViewCell{
     var boardCardId:String!
-    var hasBeenSelected:Bool = false
-    var deSelectedAlphaValue:CGFloat = 1.0
-    var selectedAlphaValue:CGFloat = 0.5
+    var state:SelectedState! {
+        didSet{
+            stateChange(state: state)
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.white
-        setupNameTextfield(frame: frame)
+        layer.borderWidth = 5
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         backgroundColor = UIColor.white
-        setupNameTextfield(frame: self.frame)
+        layer.borderWidth = 5
     }
     
-    func setupNameTextfield(frame: CGRect){
-        name = CardTextfield(frame: frame)
-        name.translatesAutoresizingMaskIntoConstraints = false
-
-        self.addSubview(name)
-                
-        let top = NSLayoutConstraint(item: name, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0)
-        top.isActive = true
-        let bottom = NSLayoutConstraint(item: name, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
-        bottom.isActive = true
-        let trailing = NSLayoutConstraint(item: name, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0)
-        trailing.isActive = true
-        let leading = NSLayoutConstraint(item: name, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0)
-        leading.isActive = true
+    func stateChange(state:SelectedState){
+        switch state {
+        case .selected:
+            alpha = selectedAlphaValue
+            layer.borderColor = UIColor.green.cgColor
+        case .deselected:
+            alpha = deSelectedAlphaValue
+            layer.borderColor = UIColor.red.cgColor
+        }
+    }
+    
+    func cellSelected(){
+        switch state {
+            case .selected:
+                state =  .deselected
+            case .deselected:
+                state =  .selected
+        default:
+                state =  .selected
+        }
     }
 }
 

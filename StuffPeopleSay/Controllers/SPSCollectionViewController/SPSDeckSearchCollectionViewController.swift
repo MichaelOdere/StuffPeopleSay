@@ -1,13 +1,17 @@
 import UIKit
 
 class SPSDeckSearchCollectionViewController:SPSSearchCollectionViewController{
+   
+    var isEditingATextField:Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let lpgr = UILongPressGestureRecognizer(target: self, action:  #selector(SPSDeckSearchCollectionViewController.handleLongPress(gestureReconizer:)))
         lpgr.minimumPressDuration = 0.5
         lpgr.delaysTouchesBegan = true
         superCollectionView.addGestureRecognizer(lpgr)
-        
+        superCollectionView.register(DeckCell.self, forCellWithReuseIdentifier: "DeckCell")
+
         searchDelegate = self
     }
     
@@ -36,6 +40,10 @@ extension SPSDeckSearchCollectionViewController {
 }
 
 extension SPSDeckSearchCollectionViewController:UITextFieldDelegate{
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        isEditingATextField = true
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -43,6 +51,7 @@ extension SPSDeckSearchCollectionViewController:UITextFieldDelegate{
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.isEnabled = false
+        isEditingATextField = false
     }
 }
 
