@@ -32,7 +32,7 @@ class CardsViewController: SPSCollectionViewController {
     }
     
     @objc func cancel(sender: UIButton){
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
     @objc func save(sender: UIButton){
         deck.name = tempDeck.name
@@ -40,7 +40,7 @@ class CardsViewController: SPSCollectionViewController {
         if newDeck{
             gameStore.decks.append(deck)
         }
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
 }
 

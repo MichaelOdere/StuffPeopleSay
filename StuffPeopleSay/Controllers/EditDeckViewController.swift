@@ -67,8 +67,7 @@ extension EditDeckViewController:UICollectionViewDelegate, UICollectionViewDataS
             vc.gameStore = gameStore
             vc.deck = gameStore.decks[indexPath.row]
             vc.newDeck = false
-            present(vc, animated: true, completion: nil)
-//            self.navigationController?.pushViewController(vc, animated: true)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
