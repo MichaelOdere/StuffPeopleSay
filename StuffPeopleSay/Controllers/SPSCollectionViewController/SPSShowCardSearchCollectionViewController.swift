@@ -1,6 +1,6 @@
 import UIKit
 
-class CardsViewController: SPSSearchCollectionViewController {
+class SPSShowCardSearchCollectionViewController: SPSSearchCollectionViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
@@ -45,7 +45,7 @@ class CardsViewController: SPSSearchCollectionViewController {
     }
 }
 
-extension CardsViewController:UICollectionViewDelegate, UICollectionViewDataSource{
+extension SPSShowCardSearchCollectionViewController:UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isFiltering(){
             return filteredObjects.count
@@ -80,7 +80,7 @@ extension CardsViewController:UICollectionViewDelegate, UICollectionViewDataSour
     }
 }
 
-extension CardsViewController:SPSCollectionViewControllerDelegate{
+extension SPSShowCardSearchCollectionViewController:SPSCollectionViewControllerDelegate{
     func getCollectionview() -> UICollectionView {
         return collectionView
     }
@@ -98,13 +98,13 @@ extension CardsViewController:SPSCollectionViewControllerDelegate{
     }
 }
 
-extension CardsViewController: UITextFieldDelegate {
+extension SPSShowCardSearchCollectionViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
 }
-extension CardsViewController: SPSSearchCollectionViewControllerDelegate {
+extension SPSShowCardSearchCollectionViewController: SPSSearchCollectionViewControllerDelegate {
     func getFilteredObjectsFromSearchText(name: String) -> [SearchableObject] {
         return deck.cards.filter({( card : Card) -> Bool in
             return card.name.lowercased().contains(name.lowercased())

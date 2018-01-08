@@ -22,7 +22,7 @@
 		F940AF63200403C5002DC915 /* SPSDeckSearchCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F940AF62200403C5002DC915 /* SPSDeckSearchCollectionViewController.swift */; };
 		F940AF65200408D4002DC915 /* SPSCardSearchCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F940AF64200408D4002DC915 /* SPSCardSearchCollectionViewController.swift */; };
 		F950F3601FF3561800DF578F /* DeckCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F950F35F1FF3561800DF578F /* DeckCollectionViewLayout.swift */; };
-		F950F3621FF3663F00DF578F /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F950F3611FF3663F00DF578F /* CardsViewController.swift */; };
+		F950F3621FF3663F00DF578F /* SPSShowCardSearchCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F950F3611FF3663F00DF578F /* SPSShowCardSearchCollectionViewController.swift */; };
 		F95B17151FBBBBEF00AA000B /* GameStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B17141FBBBBEF00AA000B /* GameStore.swift */; };
 		F95B17171FBBBBF400AA000B /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B17161FBBBBF400AA000B /* Card.swift */; };
 		F96AA6011FBAB4F4001E7CCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96AA6001FBAB4F4001E7CCD /* AppDelegate.swift */; };
@@ -69,7 +69,7 @@
 		F940AF62200403C5002DC915 /* SPSDeckSearchCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPSDeckSearchCollectionViewController.swift; sourceTree = "<group>"; };
 		F940AF64200408D4002DC915 /* SPSCardSearchCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPSCardSearchCollectionViewController.swift; sourceTree = "<group>"; };
 		F950F35F1FF3561800DF578F /* DeckCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCollectionViewLayout.swift; sourceTree = "<group>"; };
-		F950F3611FF3663F00DF578F /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
+		F950F3611FF3663F00DF578F /* SPSShowCardSearchCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPSShowCardSearchCollectionViewController.swift; sourceTree = "<group>"; };
 		F95B17141FBBBBEF00AA000B /* GameStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStore.swift; sourceTree = "<group>"; };
 		F95B17161FBBBBF400AA000B /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		F96AA5FD1FBAB4F4001E7CCD /* StuffPeopleSay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StuffPeopleSay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,6 +149,20 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		F940AF6620041063002DC915 /* SPSCollectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F91230DA1FF1965D00182B55 /* SPSCollectionViewController.swift */,
+				F940AF602003F6D0002DC915 /* SPSSearchCollectionViewController.swift */,
+				F940AF64200408D4002DC915 /* SPSCardSearchCollectionViewController.swift */,
+				F9FAD23B1FF6F6D8007A1F78 /* SPSEditDeckSearchCollectionViewController.swift */,
+				F940AF62200403C5002DC915 /* SPSDeckSearchCollectionViewController.swift */,
+				F9235BC01FF77EAD00E54ED5 /* SPSShowDeckSearchCollectionViewController.swift */,
+				F950F3611FF3663F00DF578F /* SPSShowCardSearchCollectionViewController.swift */,
+			);
+			path = SPSCollectionViewController;
+			sourceTree = "<group>";
+		};
 		F96AA5F41FBAB4F4001E7CCD = {
 			isa = PBXGroup;
 			children = (
@@ -215,16 +229,10 @@
 		F9FEA8A21FFEBD5700CEFE30 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F940AF6620041063002DC915 /* SPSCollectionViewController */,
 				F905D6D51FF5C30600A0CFD5 /* AlertViewController.swift */,
 				F96AA6121FBAB91E001E7CCD /* BingoViewController.swift */,
 				F993AC0B1FD6229000433689 /* BoardCollectionViewController.swift */,
-				F950F3611FF3663F00DF578F /* CardsViewController.swift */,
-				F91230DA1FF1965D00182B55 /* SPSCollectionViewController.swift */,
-				F940AF64200408D4002DC915 /* SPSCardSearchCollectionViewController.swift */,
-				F940AF602003F6D0002DC915 /* SPSSearchCollectionViewController.swift */,
-				F940AF62200403C5002DC915 /* SPSDeckSearchCollectionViewController.swift */,
-				F9FAD23B1FF6F6D8007A1F78 /* SPSEditDeckSearchCollectionViewController.swift */,
-				F9235BC01FF77EAD00E54ED5 /* SPSShowDeckSearchCollectionViewController.swift */,
 				F9E7B39D1FC3E4F600B81872 /* GamesTableViewController.swift */,
 				F92DBED71FBB8D4000B4566F /* LoginViewController.swift */,
 				F9DC7C951FD0C8370097D4B5 /* OpponentBingoViewController.swift */,
@@ -404,7 +412,7 @@
 				F97E63861FF1D66100CBA256 /* BingoPalette.swift in Sources */,
 				F9E7B39A1FC3A63500B81872 /* APIManager.swift in Sources */,
 				F940AF612003F6D0002DC915 /* SPSSearchCollectionViewController.swift in Sources */,
-				F950F3621FF3663F00DF578F /* CardsViewController.swift in Sources */,
+				F950F3621FF3663F00DF578F /* SPSShowCardSearchCollectionViewController.swift in Sources */,
 				F993AC0C1FD6229000433689 /* BoardCollectionViewController.swift in Sources */,
 				F92DBEDA1FBB8D5300B4566F /* User.swift in Sources */,
 				F91230DD1FF1972F00182B55 /* Deck.swift in Sources */,

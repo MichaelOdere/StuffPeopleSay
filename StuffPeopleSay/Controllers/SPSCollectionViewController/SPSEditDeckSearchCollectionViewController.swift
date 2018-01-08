@@ -58,7 +58,7 @@ extension SPSEditDeckSearchCollectionViewController:UICollectionViewDelegate, UI
             checkToolBarButton()
         }else{
             let sb = UIStoryboard(name: "Main", bundle: nil)
-            let vc = sb.instantiateViewController(withIdentifier: "CardsViewController") as! CardsViewController
+            let vc = sb.instantiateViewController(withIdentifier: "SPSShowCardSearchCollectionViewController") as! SPSShowCardSearchCollectionViewController
             vc.gameStore = gameStore
             vc.deck = gameStore.decks[indexPath.row]
             vc.newDeck = false
@@ -134,7 +134,7 @@ extension SPSEditDeckSearchCollectionViewController{
         if sender.tag == 0{
             // Add
             let sb = UIStoryboard(name: "Main", bundle: nil)
-            let vc = sb.instantiateViewController(withIdentifier: "CardsViewController") as! CardsViewController
+            let vc = sb.instantiateViewController(withIdentifier: "SPSShowCardSearchCollectionViewController") as! SPSShowCardSearchCollectionViewController
             vc.gameStore = gameStore
             vc.deck = Deck(id: "", name: "", cards: emptyCards())
             vc.newDeck = true

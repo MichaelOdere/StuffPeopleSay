@@ -470,10 +470,10 @@
             </objects>
             <point key="canvasLocation" x="1277.5999999999999" y="-543.77811094452773"/>
         </scene>
-        <!--Cards View Controller-->
+        <!--Show Card Search Collection View Controller-->
         <scene sceneID="ARb-dg-BqQ">
             <objects>
-                <viewController storyboardIdentifier="CardsViewController" id="Et0-9p-DeS" customClass="CardsViewController" customModule="StuffPeopleSay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SPSShowCardSearchCollectionViewController" id="Et0-9p-DeS" customClass="SPSShowCardSearchCollectionViewController" customModule="StuffPeopleSay" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xUr-Bd-VIo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
