@@ -460,6 +460,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="1cM-TN-gW1" id="t2L-P4-jKv"/>
+                        <outlet property="collectionViewBottomLayoutConstraint" destination="cTv-aT-tgy" id="FgR-ww-sMk"/>
                         <outlet property="leftToolBarButton" destination="9IO-xp-Nlo" id="ZnN-t7-GaL"/>
                         <outlet property="rightToolBarButton" destination="8Ye-OG-rjf" id="dna-Ri-ema"/>
                         <segue destination="Et0-9p-DeS" kind="show" id="bNS-ow-das"/>
@@ -562,7 +563,7 @@
                     <connections>
                         <outlet property="cancelButton" destination="C9y-PO-nPC" id="mWx-r4-Xju"/>
                         <outlet property="collectionView" destination="Nht-R7-Zmy" id="s3Z-sm-eas"/>
-                        <outlet property="collectionViewBottom" destination="oiB-0d-0Cx" id="OcG-Wu-cfy"/>
+                        <outlet property="collectionViewBottomLayoutConstraint" destination="oiB-0d-0Cx" id="Sie-dn-PKq"/>
                         <outlet property="nameTextField" destination="1yT-Sv-GIt" id="O8V-4G-8Tv"/>
                         <outlet property="saveButton" destination="MaF-Ns-oRg" id="I0s-pb-669"/>
                         <outlet property="toolBarView" destination="U93-T8-UF1" id="r3O-qH-7sg"/>

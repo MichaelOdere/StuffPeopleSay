@@ -4,12 +4,12 @@ protocol MyProtocol {
     func sendSelectedDeck(valueSent: Deck)
 }
 
-class ShowDeckViewController:DeckViewController{
+class ShowDeckViewController:SPSCollectionViewController{
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var leftToolBarButton: UIButton!
     @IBOutlet weak var rightToolBarButton: UIButton!
     
-    var delegate:MyProtocol?
+    var myDelegate:MyProtocol?
 
     override func viewDidLoad() {
         super.superCollectionView = collectionView
@@ -37,7 +37,7 @@ extension ShowDeckViewController:UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.sendSelectedDeck(valueSent: gameStore.decks[indexPath.row])
+        myDelegate?.sendSelectedDeck(valueSent: gameStore.decks[indexPath.row])
         dismiss(animated: true, completion: nil)
     }
     

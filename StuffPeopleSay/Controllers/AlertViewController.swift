@@ -207,7 +207,7 @@ class AlertView: UIViewController{
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "ShowDeckViewController") as! ShowDeckViewController
         vc.gameStore = gameStore
-        vc.delegate = self
+        vc.myDelegate = self
         present(vc, animated: true, completion: nil)
     }
 }

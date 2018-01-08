@@ -1,6 +1,6 @@
 import UIKit
 
-class EditDeckViewController:DeckViewController{
+class EditDeckViewController:SPSCollectionViewController{
     enum ToolBarState {
         case normal
         case editing
@@ -9,6 +9,7 @@ class EditDeckViewController:DeckViewController{
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var leftToolBarButton: UIButton!
     @IBOutlet weak var rightToolBarButton: UIButton!
+    @IBOutlet weak var collectionViewBottomLayoutConstraint: NSLayoutConstraint!
     
     var toolBarState: ToolBarState = .normal {
         didSet {
@@ -17,7 +18,8 @@ class EditDeckViewController:DeckViewController{
     }
     
     override func viewDidLoad() {
-        super.superCollectionView = collectionView
+        SPSDelegate = self
+        
         super.viewDidLoad()
         
         rightToolBarButton.addTarget(self, action: #selector(toolBarButtons(sender:)), for: .touchUpInside)
@@ -211,5 +213,18 @@ extension EditDeckViewController {
             print("Could not find index path")
         }
     }
+}
+
+extension EditDeckViewController:SPSCollectionViewControllerDelegate{
+    func getCollectionview() -> UICollectionView {
+        return collectionView
+    }
+    
+    func getCollectionviewBottomConstraint() -> NSLayoutConstraint {
+        return collectionViewBottomLayoutConstraint
+    }
+    
+    
+    
 }
 

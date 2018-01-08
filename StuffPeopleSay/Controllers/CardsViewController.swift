@@ -1,14 +1,14 @@
 import UIKit
 
-class CardsViewController:UIViewController{
+class CardsViewController: SPSCollectionViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var collectionViewBottom: NSLayoutConstraint!
+    @IBOutlet weak var collectionViewBottomLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var toolBarView: UIView!
     
-    var gameStore:GameStore!
+//    var gameStore:GameStore!
     var deck:Deck!
     var tempDeck:Deck!
     var filteredCards = [Card]()
@@ -16,6 +16,9 @@ class CardsViewController:UIViewController{
     var newDeck:Bool!
     
     override func viewDidLoad() {
+        SPSDelegate = self
+
+        super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(CardCell.self, forCellWithReuseIdentifier: "CardCell")
@@ -27,29 +30,7 @@ class CardsViewController:UIViewController{
         nameTextField.returnKeyType = .done
         nameTextField.addTarget(self, action: #selector(nameTextChanged(sender:)), for: UIControlEvents.editingChanged)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(CardsViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(CardsViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-
         setupButtons()
-    }
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        print(collectionView.visibleCells.count)
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.collectionViewBottom.constant == 0{
-                self.collectionViewBottom.constant += keyboardSize.height - toolBarView.frame.height
-                self.collectionView.layoutIfNeeded()
-            }
-        }
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.collectionViewBottom.constant != 0{
-                self.collectionViewBottom.constant = 0
-                self.collectionView.layoutIfNeeded()
-            }
-        }
     }
     
     func setupButtons(){
@@ -101,4 +82,16 @@ extension CardsViewController:UITextFieldDelegate{
         textField.resignFirstResponder()
         return true
     }
+}
+
+extension CardsViewController:SPSCollectionViewControllerDelegate{
+    func getCollectionview() -> UICollectionView {
+        return collectionView
+    }
+    
+    func getCollectionviewBottomConstraint() -> NSLayoutConstraint {
+        return collectionViewBottomLayoutConstraint
+    }
+    
+    
 }
