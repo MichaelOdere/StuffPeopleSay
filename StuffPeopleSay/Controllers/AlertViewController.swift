@@ -232,6 +232,11 @@ extension AlertView:UIPickerViewDelegate, UIPickerViewDataSource{
         }
         return NSAttributedString(string: String(pickerData[row]) + " Boards")
     }
+    
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
 
 extension AlertView:MyProtocol{
@@ -245,8 +250,5 @@ extension AlertView:UITextFieldDelegate{
         textField.resignFirstResponder()
         return true
     }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
+
 }

@@ -1,6 +1,6 @@
 import UIKit
 
-class EditDeckViewController:SPSCollectionViewController{
+class EditDeckViewController:SPSSearchCollectionViewController{
     enum ToolBarState {
         case normal
         case editing

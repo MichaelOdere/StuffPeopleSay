@@ -8,12 +8,10 @@ protocol SPSCollectionViewControllerDelegate {
 }
 
 class SPSCollectionViewController:UIViewController{
-    let searchController = UISearchController(searchResultsController: nil)
     var superCollectionView:UICollectionView!
     var superCollectionViewBottomConstraint:NSLayoutConstraint!
+
     var gameStore:GameStore!
-    var filteredObjects = [SearchableObject]()
-    var selectedObjects = [String]()
     var SPSDelegate:SPSCollectionViewControllerDelegate!
     
     override func viewDidLoad() {
@@ -22,37 +20,11 @@ class SPSCollectionViewController:UIViewController{
         superCollectionView = SPSDelegate.getCollectionview()
         superCollectionViewBottomConstraint = SPSDelegate.getCollectionviewBottomConstraint()
 
-        superCollectionView.backgroundColor = UIColor.purple
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search"
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
-        definesPresentationContext = true
-        
         NotificationCenter.default.addObserver(self, selector: #selector(SPSCollectionViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SPSCollectionViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
     }
     override func viewWillAppear(_ animated: Bool) {
-        superCollectionView.reloadData()
-    }
-}
-
-extension SPSCollectionViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
-    }
-
-    func isFiltering() -> Bool {
-        return searchController.isActive && !searchBarIsEmpty()
-    }
-
-    func searchBarIsEmpty() -> Bool {
-        return searchController.searchBar.text?.isEmpty ?? true
-    }
-
-    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        filteredObjects = SPSDelegate.getFilteredObjectsFromSearchText(name: searchText)
         superCollectionView.reloadData()
     }
 }

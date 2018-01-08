@@ -1,6 +1,6 @@
 import UIKit
 
-class CardsViewController: SPSCollectionViewController {
+class CardsViewController: SPSSearchCollectionViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!

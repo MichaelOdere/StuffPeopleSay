@@ -4,7 +4,7 @@ protocol MyProtocol {
     func sendSelectedDeck(valueSent: Deck)
 }
 
-class ShowDeckViewController:SPSCollectionViewController{
+class ShowDeckViewController:SPSSearchCollectionViewController{
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var leftToolBarButton: UIButton!
     @IBOutlet weak var rightToolBarButton: UIButton!
