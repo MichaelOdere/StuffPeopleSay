@@ -21,8 +21,6 @@ class CardCell:UICollectionViewCell{
     
     func setupNameTextfield(frame: CGRect){
         name = CardTextfield(frame: frame)
-        name.textAlignment = .center
-        name.returnKeyType = .done
         name.translatesAutoresizingMaskIntoConstraints = false
 
         self.addSubview(name)

@@ -74,7 +74,6 @@ extension CardsViewController:UICollectionViewDelegate, UICollectionViewDataSour
         if let index = deck.cards.index(where: { $0.id == id }) {
             card = deck.cards[index]
         }
-        
         assert(card != nil, "Cannot find id for CARD when searching!")
         return card!
     }
@@ -104,5 +103,11 @@ extension CardsViewController:SPSCollectionViewControllerDelegate{
             return card.name.lowercased().contains(name.lowercased())
         })
 
+    }
+}
+extension CardsViewController:UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

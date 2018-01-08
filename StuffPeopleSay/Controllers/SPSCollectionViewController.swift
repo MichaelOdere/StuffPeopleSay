@@ -60,12 +60,11 @@ extension SPSCollectionViewController: UISearchResultsUpdating {
 extension SPSCollectionViewController {
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            var displacement:CGFloat = 0
-            if let h = navigationController?.navigationBar.frame.height {
-                displacement += h
-            }
-            print("displacement, \(displacement)")
             if self.superCollectionViewBottomConstraint.constant == 0{
+                var displacement:CGFloat = 0
+                if let h = navigationController?.navigationBar.frame.height {
+                    displacement += h
+                }
                 self.superCollectionViewBottomConstraint.constant += keyboardSize.height - displacement
                 self.superCollectionView.layoutIfNeeded()
             }
@@ -86,9 +85,3 @@ extension SPSCollectionViewController {
     }
 }
 
-extension SPSCollectionViewController:UITextFieldDelegate{
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-}

@@ -36,7 +36,6 @@ class EditDeckViewController:SPSCollectionViewController{
         lpgr.delaysTouchesBegan = true
 
         self.collectionView.addGestureRecognizer(lpgr)
-
     }
 }
 
@@ -81,6 +80,8 @@ extension EditDeckViewController:UICollectionViewDelegate, UICollectionViewDataS
         }
         cell.name.text = deck.name
         cell.name.isEnabled = false
+        cell.name.addTarget(self, action: #selector(textChanged(sender:)), for: UIControlEvents.editingChanged)
+        cell.name.delegate = self
         cell.deckId = deck.id
         
         if selectedObjects.contains(cell.deckId){
@@ -150,7 +151,7 @@ extension EditDeckViewController{
             vc.gameStore = gameStore
             vc.deck = Deck(id: "", name: "", cards: emptyCards())
             vc.newDeck = true
-            present(vc, animated: true, completion: nil)
+            self.navigationController?.pushViewController(vc, animated: true)
         } else if sender.tag == 1{
             // Share
             print("Add share")
@@ -242,3 +243,13 @@ extension EditDeckViewController:SPSCollectionViewControllerDelegate {
     }
 }
 
+extension EditDeckViewController:UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.isEnabled = false
+    }
+}

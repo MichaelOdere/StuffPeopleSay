@@ -7,7 +7,6 @@ class CardTextfield:UITextField{
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
-
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -16,6 +15,7 @@ class CardTextfield:UITextField{
     }
     
     func setup(){
+        textAlignment = .center
         returnKeyType = .done
     }
 }
