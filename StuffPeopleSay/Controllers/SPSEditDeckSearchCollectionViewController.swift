@@ -1,6 +1,6 @@
 import UIKit
 
-class EditDeckViewController:SPSSearchCollectionViewController{
+class SPSEditDeckSearchCollectionViewController:SPSDeckSearchCollectionViewController{
     enum ToolBarState {
         case normal
         case editing
@@ -31,15 +31,11 @@ class EditDeckViewController:SPSSearchCollectionViewController{
         collectionView.delegate = self
         collectionView.backgroundColor = BingoPalette.vanillaBackgroundColor
         
-        let lpgr = UILongPressGestureRecognizer(target: self, action:  #selector(EditDeckViewController.handleLongPress(gestureReconizer:)))
-        lpgr.minimumPressDuration = 0.5
-        lpgr.delaysTouchesBegan = true
 
-        self.collectionView.addGestureRecognizer(lpgr)
     }
 }
 
-extension EditDeckViewController:UICollectionViewDelegate, UICollectionViewDataSource{
+extension SPSEditDeckSearchCollectionViewController:UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isFiltering() {
             return filteredObjects.count
@@ -95,20 +91,10 @@ extension EditDeckViewController:UICollectionViewDelegate, UICollectionViewDataS
         
         return cell
     }
-    
-    func getFilteredDeck(id: String)->Deck{
-        var deck:Deck?
-        if let index = gameStore.decks.index(where: { $0.id == id }) {
-            deck = gameStore.decks[index]
-        }
-        
-        assert(deck != nil, "Cannot find id for DECK when searching!")
-        return deck!
-    }
 }
 
 // Tool bar functionality and setup
-extension EditDeckViewController{
+extension SPSEditDeckSearchCollectionViewController{
     func toolBarSetup(){
         switch toolBarState {
         case .normal:
@@ -209,22 +195,9 @@ extension EditDeckViewController{
     }
 }
 
-extension EditDeckViewController {
-    @objc func handleLongPress(gestureReconizer: UILongPressGestureRecognizer) {
-        let p = gestureReconizer.location(in: self.collectionView)
-        let indexPath = self.collectionView.indexPathForItem(at: p)
-        
-        if let index = indexPath {
-            let cell = self.collectionView.cellForItem(at: index) as! DeckCell
-            cell.name.isEnabled = true
-            cell.name.becomeFirstResponder()
-        } else {
-            print("Could not find index path")
-        }
-    }
-}
 
-extension EditDeckViewController:SPSCollectionViewControllerDelegate {
+
+extension SPSEditDeckSearchCollectionViewController:SPSCollectionViewControllerDelegate {
     func getCollectionview() -> UICollectionView {
         return collectionView
     }
@@ -244,15 +217,4 @@ extension EditDeckViewController:SPSCollectionViewControllerDelegate {
     }
 }
 
-extension EditDeckViewController:UITextFieldDelegate{
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("textFieldShouldReturn")
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.isEnabled = false
-        print("Did end")
-    }
-}
+

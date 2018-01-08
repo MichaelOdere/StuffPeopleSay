@@ -379,10 +379,10 @@
             </objects>
             <point key="canvasLocation" x="3446" y="269"/>
         </scene>
-        <!--Edit Deck View Controller-->
+        <!--Edit Deck Search Collection View Controller-->
         <scene sceneID="9KH-YI-lwC">
             <objects>
-                <viewController storyboardIdentifier="EditDeckViewController" id="OEB-mn-JBU" customClass="EditDeckViewController" customModule="StuffPeopleSay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SPSEditDeckSearchCollectionViewController" id="OEB-mn-JBU" customClass="SPSEditDeckSearchCollectionViewController" customModule="StuffPeopleSay" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mXV-Jf-Zap">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
