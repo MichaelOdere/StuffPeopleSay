@@ -6,7 +6,7 @@ class APIManager{
     var token:String = ""
     var socketId:String = ""
 
-    private let baseURL = "https://692188cd-b52e-4eef-8712-6b069331e1d9.now.sh"
+    private let baseURL = "https://smfs.now.sh"
     
     func getUser(email:String, completionHandler: @escaping (String?, Error?) -> Void) {
         let url = URL(string: baseURL + "/users/auth")!

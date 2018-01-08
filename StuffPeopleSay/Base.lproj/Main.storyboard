@@ -399,23 +399,22 @@
                                             <rect key="frame" x="0.0" y="0.0" width="120" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bir-VH-Q6p">
-                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="100"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gri-ik-HHO">
+                                                    <rect key="frame" x="0.0" y="35" width="120" height="30"/>
                                                     <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="bir-VH-Q6p" firstAttribute="top" secondItem="Jgn-3I-yWU" secondAttribute="top" id="KZl-AY-8h3"/>
-                                            <constraint firstAttribute="trailing" secondItem="bir-VH-Q6p" secondAttribute="trailing" id="U0g-zt-Q3S"/>
-                                            <constraint firstItem="bir-VH-Q6p" firstAttribute="leading" secondItem="Jgn-3I-yWU" secondAttribute="leading" id="eF1-cn-NVC"/>
-                                            <constraint firstAttribute="bottom" secondItem="bir-VH-Q6p" secondAttribute="bottom" id="xUa-jy-s9g"/>
+                                            <constraint firstItem="gri-ik-HHO" firstAttribute="leading" secondItem="Jgn-3I-yWU" secondAttribute="leading" id="3mT-wK-nJ7"/>
+                                            <constraint firstAttribute="trailing" secondItem="gri-ik-HHO" secondAttribute="trailing" id="5IY-2F-Ea3"/>
+                                            <constraint firstItem="gri-ik-HHO" firstAttribute="centerY" secondItem="Jgn-3I-yWU" secondAttribute="centerY" id="PEY-Em-lg7"/>
                                         </constraints>
                                         <size key="customSize" width="120" height="100"/>
                                         <connections>
-                                            <outlet property="name" destination="bir-VH-Q6p" id="3Hw-jJ-rBv"/>
+                                            <outlet property="name" destination="gri-ik-HHO" id="sWC-jj-Tsp"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

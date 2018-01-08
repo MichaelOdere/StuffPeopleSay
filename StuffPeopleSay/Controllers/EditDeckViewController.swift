@@ -28,6 +28,13 @@ class EditDeckViewController:DeckViewController{
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = BingoPalette.vanillaBackgroundColor
+        
+        let lpgr = UILongPressGestureRecognizer(target: self, action:  #selector(EditDeckViewController.handleLongPress(gestureReconizer:)))
+        lpgr.minimumPressDuration = 0.5
+        lpgr.delaysTouchesBegan = true
+
+        self.collectionView.addGestureRecognizer(lpgr)
+
     }
 }
 
@@ -181,6 +188,27 @@ extension EditDeckViewController{
         }else{
             leftToolBarButton.isEnabled = false
             rightToolBarButton.isEnabled = true
+        }
+    }
+}
+
+extension EditDeckViewController {
+    @objc func handleLongPress(gestureReconizer: UILongPressGestureRecognizer) {
+        print("UILongPressGestureRecognizer!")
+        if gestureReconizer.state != UIGestureRecognizerState.ended {
+            return
+        }
+        
+        let p = gestureReconizer.location(in: self.collectionView)
+        let indexPath = self.collectionView.indexPathForItem(at: p)
+        
+        if let index = indexPath {
+            var cell = self.collectionView.cellForItem(at: index) as! DeckCell
+            cell.
+            // do stuff with your cell, for example print the indexPath
+            print(index.row)
+        } else {
+            print("Could not find index path")
         }
     }
 }

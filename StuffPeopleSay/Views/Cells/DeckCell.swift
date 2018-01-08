@@ -1,7 +1,7 @@
 import UIKit
 
 class DeckCell:UICollectionViewCell{
-    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var name: UITextField!
     var deckId:String!
     var hasBeenSelected:Bool = false
     var deSelectedAlphaValue:CGFloat = 1.0
