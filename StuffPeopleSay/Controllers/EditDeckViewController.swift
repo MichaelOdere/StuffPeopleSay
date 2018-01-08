@@ -67,7 +67,8 @@ extension EditDeckViewController:UICollectionViewDelegate, UICollectionViewDataS
             vc.gameStore = gameStore
             vc.deck = gameStore.decks[indexPath.row]
             vc.newDeck = false
-            self.navigationController?.pushViewController(vc, animated: true)
+            present(vc, animated: true, completion: nil)
+//            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -153,7 +154,7 @@ extension EditDeckViewController{
     func emptyCards()->[Card]{
         var allCards:[Card] = []
         for index in 0..<25{
-            allCards.append(Card(active: 0, boardCardId: "", name: "", order: index))
+            allCards.append(Card(id: "", name: "", active: 0, order: index))
         }
         return allCards
     }

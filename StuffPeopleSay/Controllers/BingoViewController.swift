@@ -130,7 +130,7 @@ extension BingoViewController:BingoCollectionViewDelegate{
             return
         }
         
-        self.apiManager.updateBoard(boardCardId: card.boardCardId)
+        self.apiManager.updateBoard(boardCardId: card.id)
         
         let x = cell.xIndex!
         let y = cell.yIndex!

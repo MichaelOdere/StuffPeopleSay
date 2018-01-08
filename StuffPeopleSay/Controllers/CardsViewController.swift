@@ -53,7 +53,7 @@ extension CardsViewController:UICollectionViewDelegate, UICollectionViewDataSour
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCell
         if indexPath.row < deck.cards.count{
             let card = deck.cards[indexPath.row]
-            cell.name.boardCardId = card.boardCardId
+            cell.name.boardCardId = card.id
             cell.name.text = card.name
         }
         cell.name.indexPath = indexPath
@@ -74,7 +74,7 @@ extension CardsViewController:SPSCollectionViewControllerDelegate{
     
     func getTextChanged(sender: UITextField){
         if let sender = sender as? CardTextfield {
-            tempDeck.cards[sender.indexPath.row].name = sender.text
+            tempDeck.cards[sender.indexPath.row].name = sender.text!
         }else{
             print("Not cardtextfield")
         }

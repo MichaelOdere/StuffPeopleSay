@@ -4,7 +4,7 @@ import SwiftyJSON
 class Deck:SearchableObject{
     var cards:[Card]
     
-    init(id:String, name:String, cards: [Card]) {
+    init(id: String, name: String, cards: [Card]) {
         self.cards = cards
         super.init(id: id, name: name)
     }

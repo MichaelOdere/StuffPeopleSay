@@ -1,27 +1,24 @@
 import Foundation
 import SwiftyJSON
 
-struct Card{
-    var boardCardId:String!
-    var name:String!
-    var active:Int!
-    var order:Int!
+class Card:SearchableObject {
+    var active:Int
+    var order:Int
 
-    init(active: Int, boardCardId: String, name: String, order: Int) {
-        self.boardCardId = boardCardId
-        self.name = name
+    init(id: String, name: String, active: Int, order: Int) {
         self.active = active
         self.order = order
+        super.init(id: id, name: name)
     }
     
     func copyCard()->Card{
-        return Card(active: active, boardCardId: boardCardId, name: name, order: order)
+        return Card(id: id, name: name, active: active, order: order)
     }
 }
 
 extension Card {
-    init?(json: JSON) {
-        guard let boardCardId = json["boardCardId"].string else {
+    convenience init?(json: JSON) {
+        guard let id = json["boardCardId"].string else {
             print("Error parsing Card object for key: boardCardId")
             return nil
         }
@@ -41,9 +38,7 @@ extension Card {
             return nil
         }
         
-        self.active = active
-        self.boardCardId = boardCardId
-        self.name = name
-        self.order = order
+        self.init(id: id, name: name, active: active, order: order)
+
     }
 }
