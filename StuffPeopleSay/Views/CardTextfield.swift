@@ -17,5 +17,6 @@ class CardTextfield:UITextField{
     func setup(){
         textAlignment = .center
         returnKeyType = .done
+        autocorrectionType = .no
     }
 }

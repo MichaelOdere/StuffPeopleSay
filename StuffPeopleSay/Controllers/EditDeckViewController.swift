@@ -80,6 +80,7 @@ extension EditDeckViewController:UICollectionViewDelegate, UICollectionViewDataS
         }
         cell.name.text = deck.name
         cell.name.isEnabled = false
+        cell.name.autocorrectionType = .no
         cell.name.addTarget(self, action: #selector(textChanged(sender:)), for: UIControlEvents.editingChanged)
         cell.name.delegate = self
         cell.deckId = deck.id
@@ -245,11 +246,13 @@ extension EditDeckViewController:SPSCollectionViewControllerDelegate {
 
 extension EditDeckViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("textFieldShouldReturn")
         textField.resignFirstResponder()
         return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.isEnabled = false
+        print("Did end")
     }
 }
