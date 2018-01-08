@@ -18,8 +18,8 @@ class SPSEditDeckSearchCollectionViewController:SPSDeckSearchCollectionViewContr
     }
     
     override func viewDidLoad() {
-        SPSDelegate = self
-        
+        collectionViewControllerDelegate = self
+
         super.viewDidLoad()
         
         rightToolBarButton.addTarget(self, action: #selector(toolBarButtons(sender:)), for: .touchUpInside)
@@ -195,8 +195,6 @@ extension SPSEditDeckSearchCollectionViewController{
     }
 }
 
-
-
 extension SPSEditDeckSearchCollectionViewController:SPSCollectionViewControllerDelegate {
     func getCollectionview() -> UICollectionView {
         return collectionView
@@ -208,12 +206,6 @@ extension SPSEditDeckSearchCollectionViewController:SPSCollectionViewControllerD
     
     func getTextChanged(sender:UITextField) {
         print("TEXT CHANGED!")
-    }
-    
-    func getFilteredObjectsFromSearchText(name: String) -> [SearchableObject] {
-       return gameStore.decks.filter({( deck : Deck) -> Bool in
-            return deck.name.lowercased().contains(name.lowercased())
-        })
     }
 }
 

@@ -1,14 +1,19 @@
 import UIKit
 
+protocol SPSSearchCollectionViewControllerDelegate {
+    func getFilteredObjectsFromSearchText(name:String)->[SearchableObject]
+}
+
 class SPSSearchCollectionViewController: SPSCollectionViewController {
     var filteredObjects = [SearchableObject]()
     var selectedObjects = [String]()
+    var searchDelegate:SPSSearchCollectionViewControllerDelegate!
     
     let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+        
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
@@ -32,7 +37,7 @@ extension SPSSearchCollectionViewController: UISearchResultsUpdating {
     }
     
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        filteredObjects = SPSDelegate.getFilteredObjectsFromSearchText(name: searchText)
+        filteredObjects = searchDelegate.getFilteredObjectsFromSearchText(name: searchText)
         superCollectionView.reloadData()
     }
 }

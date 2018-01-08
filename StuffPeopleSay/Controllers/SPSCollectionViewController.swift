@@ -4,7 +4,6 @@ protocol SPSCollectionViewControllerDelegate {
     func getCollectionview() -> UICollectionView
     func getCollectionviewBottomConstraint() -> NSLayoutConstraint
     func getTextChanged(sender: UITextField)
-    func getFilteredObjectsFromSearchText(name:String)->[SearchableObject]
 }
 
 class SPSCollectionViewController:UIViewController{
@@ -12,13 +11,13 @@ class SPSCollectionViewController:UIViewController{
     var superCollectionViewBottomConstraint:NSLayoutConstraint!
 
     var gameStore:GameStore!
-    var SPSDelegate:SPSCollectionViewControllerDelegate!
+    var collectionViewControllerDelegate:SPSCollectionViewControllerDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        superCollectionView = SPSDelegate.getCollectionview()
-        superCollectionViewBottomConstraint = SPSDelegate.getCollectionviewBottomConstraint()
+        superCollectionView = collectionViewControllerDelegate.getCollectionview()
+        superCollectionViewBottomConstraint = collectionViewControllerDelegate.getCollectionviewBottomConstraint()
 
         NotificationCenter.default.addObserver(self, selector: #selector(SPSCollectionViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SPSCollectionViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -53,7 +52,7 @@ extension SPSCollectionViewController {
     }
     
     @objc func textChanged(sender: UITextField){
-        SPSDelegate.getTextChanged(sender: sender)
+        collectionViewControllerDelegate.getTextChanged(sender: sender)
     }
 }
 

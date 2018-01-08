@@ -14,8 +14,9 @@ class CardsViewController: SPSSearchCollectionViewController {
     var newDeck:Bool!
     
     override func viewDidLoad() {
-        SPSDelegate = self
-
+        collectionViewControllerDelegate = self
+        searchDelegate =  self
+        
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -95,19 +96,18 @@ extension CardsViewController:SPSCollectionViewControllerDelegate{
             print("Not cardtextfield")
         }
     }
-    
-    func getFilteredObjectsFromSearchText(name: String) -> [SearchableObject] {
-        print(deck)
-        print(name)
-        return deck.cards.filter({( card : Card) -> Bool in
-            return card.name.lowercased().contains(name.lowercased())
-        })
-
-    }
 }
-extension CardsViewController:UITextFieldDelegate{
+
+extension CardsViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+extension CardsViewController: SPSSearchCollectionViewControllerDelegate {
+    func getFilteredObjectsFromSearchText(name: String) -> [SearchableObject] {
+        return deck.cards.filter({( card : Card) -> Bool in
+            return card.name.lowercased().contains(name.lowercased())
+        })
     }
 }

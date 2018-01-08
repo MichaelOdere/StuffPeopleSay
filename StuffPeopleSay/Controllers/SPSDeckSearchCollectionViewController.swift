@@ -1,13 +1,14 @@
 import UIKit
 
 class SPSDeckSearchCollectionViewController:SPSSearchCollectionViewController{
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         let lpgr = UILongPressGestureRecognizer(target: self, action:  #selector(SPSDeckSearchCollectionViewController.handleLongPress(gestureReconizer:)))
         lpgr.minimumPressDuration = 0.5
         lpgr.delaysTouchesBegan = true
         superCollectionView.addGestureRecognizer(lpgr)
+        
+        searchDelegate = self
     }
     
     func getFilteredDeck(id: String)->Deck{
@@ -42,5 +43,13 @@ extension SPSDeckSearchCollectionViewController:UITextFieldDelegate{
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.isEnabled = false
+    }
+}
+
+extension SPSDeckSearchCollectionViewController:SPSSearchCollectionViewControllerDelegate{
+    func getFilteredObjectsFromSearchText(name: String) -> [SearchableObject] {
+        return gameStore.decks.filter({( deck : Deck) -> Bool in
+            return deck.name.lowercased().contains(name.lowercased())
+        })
     }
 }
