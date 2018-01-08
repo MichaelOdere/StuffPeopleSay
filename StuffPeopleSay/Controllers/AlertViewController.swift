@@ -205,7 +205,7 @@ class AlertView: UIViewController{
     
     @objc func showDecks(sender:UIButton){
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "ShowDeckViewController") as! ShowDeckViewController
+        let vc = sb.instantiateViewController(withIdentifier: "SPSShowDeckSearchCollectionViewController") as! SPSShowDeckSearchCollectionViewController
         vc.gameStore = gameStore
         vc.myDelegate = self
         present(vc, animated: true, completion: nil)

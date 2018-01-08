@@ -4,15 +4,16 @@ protocol MyProtocol {
     func sendSelectedDeck(valueSent: Deck)
 }
 
-class ShowDeckViewController:SPSSearchCollectionViewController{
+class SPSShowDeckSearchCollectionViewController:SPSDeckSearchCollectionViewController{
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var leftToolBarButton: UIButton!
     @IBOutlet weak var rightToolBarButton: UIButton!
-    
+    @IBOutlet weak var collectionViewBottomLayoutConstraint: NSLayoutConstraint!
+
     var myDelegate:MyProtocol?
 
     override func viewDidLoad() {
-        super.superCollectionView = collectionView
+        collectionViewControllerDelegate = self
         super.viewDidLoad()
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -28,7 +29,7 @@ class ShowDeckViewController:SPSSearchCollectionViewController{
     }
 }
 
-extension ShowDeckViewController:UICollectionViewDelegate, UICollectionViewDataSource{
+extension SPSShowDeckSearchCollectionViewController:UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isFiltering() {
             return filteredObjects.count
@@ -68,7 +69,7 @@ extension ShowDeckViewController:UICollectionViewDelegate, UICollectionViewDataS
     }
 }
 
-extension ShowDeckViewController{
+extension SPSShowDeckSearchCollectionViewController{
     @objc func toolBarButtons(sender: UIButton) {
         if sender.tag == 0{
            self.dismiss(animated: true, completion: nil)
@@ -77,3 +78,18 @@ extension ShowDeckViewController{
         }
     }
 }
+
+extension SPSShowDeckSearchCollectionViewController:SPSCollectionViewControllerDelegate {
+    func getCollectionview() -> UICollectionView {
+        return collectionView
+    }
+    
+    func getCollectionviewBottomConstraint() -> NSLayoutConstraint {
+        return collectionViewBottomLayoutConstraint
+    }
+    
+    func getTextChanged(sender:UITextField) {
+        print("TEXT CHANGED!")
+    }
+}
+

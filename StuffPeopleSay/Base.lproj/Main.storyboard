@@ -719,10 +719,10 @@
             </objects>
             <point key="canvasLocation" x="613" y="268"/>
         </scene>
-        <!--Show Deck View Controller-->
+        <!--Show Deck Search Collection View Controller-->
         <scene sceneID="2wa-65-3fl">
             <objects>
-                <viewController storyboardIdentifier="ShowDeckViewController" id="ruA-c4-ooO" customClass="ShowDeckViewController" customModule="StuffPeopleSay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SPSShowDeckSearchCollectionViewController" id="ruA-c4-ooO" customClass="SPSShowDeckSearchCollectionViewController" customModule="StuffPeopleSay" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dSi-aX-xn0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -800,9 +800,10 @@
                         <viewLayoutGuide key="safeArea" id="ZNy-OV-z3e"/>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="4QA-9u-7e7" id="tqx-xJ-UF6"/>
-                        <outlet property="leftToolBarButton" destination="560-l8-1oo" id="u6d-e5-nP5"/>
-                        <outlet property="rightToolBarButton" destination="whZ-QP-zCB" id="Ifv-Ih-eZh"/>
+                        <outlet property="collectionView" destination="4QA-9u-7e7" id="b4f-w5-c5N"/>
+                        <outlet property="collectionViewBottomLayoutConstraint" destination="JDM-Wg-RMd" id="Dda-GU-fDV"/>
+                        <outlet property="leftToolBarButton" destination="560-l8-1oo" id="FBh-LL-dcE"/>
+                        <outlet property="rightToolBarButton" destination="whZ-QP-zCB" id="K5e-TZ-9qm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0oC-XS-AF3" userLabel="First Responder" sceneMemberID="firstResponder"/>
