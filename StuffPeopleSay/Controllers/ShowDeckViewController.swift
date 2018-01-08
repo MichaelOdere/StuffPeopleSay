@@ -50,7 +50,7 @@ extension ShowDeckViewController:UICollectionViewDelegate, UICollectionViewDataS
             deck = gameStore.decks[indexPath.row]
         }
         cell.name.text = deck.name
-        cell.deckId = deck.deckId
+        cell.deckId = deck.id
         
         if selectedDecks.contains(cell.deckId){
             cell.alpha = cell.selectedAlphaValue

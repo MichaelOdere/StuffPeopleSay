@@ -1,15 +1,12 @@
 import Foundation
 import SwiftyJSON
 
-class Deck{
-    var deckId:String
-    var name:String
+class Deck:SearchableObject{
     var cards:[Card]
     
-    init(deckId:String, name:String, cards: [Card]) {
-        self.deckId = deckId
-        self.name = name
+    init(id:String, name:String, cards: [Card]) {
         self.cards = cards
+        super.init(id: id, name: name)
     }
     
     func copyDeck()->Deck{
@@ -17,7 +14,7 @@ class Deck{
         for c in cards{
             newCards.append(c.copyCard())
         }
-        return Deck(deckId: deckId, name: name, cards: newCards)
+        return Deck(id: id, name: name, cards: newCards)
     }
 }
 
@@ -36,6 +33,6 @@ extension Deck {
         }
         
         allCards = allCards.sorted(by: { $0.order > $1.order })
-        self.init(deckId: String(Int(arc4random_uniform(600000))), name:"Deck", cards: allCards)
+        self.init(id: String(Int(arc4random_uniform(600000))), name:"Deck", cards: allCards)
     }
 }

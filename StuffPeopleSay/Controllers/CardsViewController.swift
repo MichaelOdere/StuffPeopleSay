@@ -7,7 +7,6 @@ class CardsViewController: SPSCollectionViewController {
     @IBOutlet weak var collectionViewBottomLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var toolBarView: UIView!
     
-//    var gameStore:GameStore!
     var deck:Deck!
     var tempDeck:Deck!
     var filteredCards = [Card]()
@@ -43,8 +42,8 @@ class CardsViewController: SPSCollectionViewController {
         }
         dismiss(animated: true, completion: nil)
     }
-    
 }
+
 extension CardsViewController:UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return max(deck.cards.count, 25)

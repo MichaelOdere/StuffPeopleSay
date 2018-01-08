@@ -67,7 +67,7 @@ extension EditDeckViewController:UICollectionViewDelegate, UICollectionViewDataS
             vc.gameStore = gameStore
             vc.deck = gameStore.decks[indexPath.row]
             vc.newDeck = false
-            present(vc, animated: true, completion: nil)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -81,7 +81,7 @@ extension EditDeckViewController:UICollectionViewDelegate, UICollectionViewDataS
         }
         cell.name.text = deck.name
         cell.name.isEnabled = false
-        cell.deckId = deck.deckId
+        cell.deckId = deck.id
         
         if selectedDecks.contains(cell.deckId){
             cell.alpha = cell.selectedAlphaValue
@@ -138,7 +138,7 @@ extension EditDeckViewController{
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let vc = sb.instantiateViewController(withIdentifier: "CardsViewController") as! CardsViewController
             vc.gameStore = gameStore
-            vc.deck = Deck(deckId: "", name: "", cards: emptyCards())
+            vc.deck = Deck(id: "", name: "", cards: emptyCards())
             vc.newDeck = true
             present(vc, animated: true, completion: nil)
         } else if sender.tag == 1{
@@ -176,8 +176,8 @@ extension EditDeckViewController{
     }
     
     func deleteSelectedDecks(){
-        for deckId in selectedDecks{
-            if let index = gameStore.decks.index(where: {$0.deckId == deckId}) {
+        for id in selectedDecks{
+            if let index = gameStore.decks.index(where: {$0.id == id}) {
                 gameStore.decks.remove(at: index)
             }
         }
