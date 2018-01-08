@@ -78,6 +78,7 @@ extension EditDeckViewController:UICollectionViewDelegate, UICollectionViewDataS
             deck = gameStore.decks[indexPath.row]
         }
         cell.name.text = deck.name
+        cell.name.isEnabled = false
         cell.deckId = deck.deckId
         
         if selectedDecks.contains(cell.deckId){
@@ -194,19 +195,18 @@ extension EditDeckViewController{
 
 extension EditDeckViewController {
     @objc func handleLongPress(gestureReconizer: UILongPressGestureRecognizer) {
-        print("UILongPressGestureRecognizer!")
-        if gestureReconizer.state != UIGestureRecognizerState.ended {
-            return
-        }
-        
+//        print("UILongPressGestureRecognizer!")
+//        if gestureReconizer.state != UIGestureRecognizerState.ended {
+//            return
+//        }
+//
         let p = gestureReconizer.location(in: self.collectionView)
         let indexPath = self.collectionView.indexPathForItem(at: p)
         
         if let index = indexPath {
             var cell = self.collectionView.cellForItem(at: index) as! DeckCell
-            cell.
-            // do stuff with your cell, for example print the indexPath
-            print(index.row)
+            cell.name.isEnabled = true
+            cell.name.becomeFirstResponder()
         } else {
             print("Could not find index path")
         }
