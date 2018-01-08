@@ -43,7 +43,7 @@ class EditDeckViewController:SPSCollectionViewController{
 extension EditDeckViewController:UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isFiltering() {
-            return filteredDecks.count
+            return filteredObjects.count
         }
         return gameStore.decks.count
     }
@@ -51,14 +51,14 @@ extension EditDeckViewController:UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! DeckCell
         if toolBarState == .editing{
-            if selectedDecks.contains(cell.deckId){
+            if selectedObjects.contains(cell.deckId){
                 cell.alpha = cell.deSelectedAlphaValue
-                if let index = selectedDecks.index(of: cell.deckId) {
-                    selectedDecks.remove(at: index)
+                if let index = selectedObjects.index(of: cell.deckId) {
+                    selectedObjects.remove(at: index)
                 }
             }else{
                 cell.alpha = cell.selectedAlphaValue
-                selectedDecks.append(cell.deckId)
+                selectedObjects.append(cell.deckId)
             }
             checkToolBarButton()
         }else{
@@ -75,7 +75,7 @@ extension EditDeckViewController:UICollectionViewDelegate, UICollectionViewDataS
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DeckCell", for: indexPath) as! DeckCell
         let deck: Deck
         if isFiltering() {
-            deck = filteredDecks[indexPath.row]
+            deck = getFilteredDeck(id: filteredObjects[indexPath.row].id)
         } else {
             deck = gameStore.decks[indexPath.row]
         }
@@ -83,7 +83,7 @@ extension EditDeckViewController:UICollectionViewDelegate, UICollectionViewDataS
         cell.name.isEnabled = false
         cell.deckId = deck.id
         
-        if selectedDecks.contains(cell.deckId){
+        if selectedObjects.contains(cell.deckId){
             cell.alpha = cell.selectedAlphaValue
         }else{
             cell.alpha = cell.deSelectedAlphaValue
@@ -92,6 +92,16 @@ extension EditDeckViewController:UICollectionViewDelegate, UICollectionViewDataS
         cell.indexPath = indexPath
         
         return cell
+    }
+    
+    func getFilteredDeck(id: String)->Deck{
+        var deck:Deck?
+        if let index = gameStore.decks.index(where: { $0.id == id }) {
+            deck = gameStore.decks[index]
+        }
+        
+        assert(deck != nil, "Cannot find id for DECK when searching!")
+        return deck!
     }
 }
 
@@ -123,7 +133,7 @@ extension EditDeckViewController{
     
     @objc func cancelBarButton(sender: UIBarButtonItem) {
         toolBarState = .normal
-        selectedDecks.removeAll()
+        selectedObjects.removeAll()
         collectionView.reloadData()
     }
     
@@ -159,12 +169,12 @@ extension EditDeckViewController{
     }
     
     func presentDeleteAlert(){
-        let alert = UIAlertController(title: "Are you sure you want to Delete the \(selectedDecks.count) selected Decks?",
+        let alert = UIAlertController(title: "Are you sure you want to Delete the \(selectedObjects.count) selected Decks?",
             message: "This action cannot be undone.",
             preferredStyle: .actionSheet)
         
         let add = UIAlertAction(title: "Delete", style: .default, handler: { (_) in
-            self.deleteSelectedDecks()
+            self.deleteselectedObjects()
             self.toolBarState = .normal
         })
         alert.addAction(add)
@@ -175,19 +185,19 @@ extension EditDeckViewController{
         present(alert, animated: true, completion: nil)
     }
     
-    func deleteSelectedDecks(){
-        for id in selectedDecks{
+    func deleteselectedObjects(){
+        for id in selectedObjects{
             if let index = gameStore.decks.index(where: {$0.id == id}) {
                 gameStore.decks.remove(at: index)
             }
         }
-        selectedDecks.removeAll()
+        selectedObjects.removeAll()
         checkToolBarButton()
         collectionView.reloadData()
     }
     
     func checkToolBarButton(){
-        if selectedDecks.isEmpty{
+        if selectedObjects.isEmpty{
             leftToolBarButton.isEnabled = false
             rightToolBarButton.isEnabled = false
         }else{
@@ -203,7 +213,7 @@ extension EditDeckViewController {
         let indexPath = self.collectionView.indexPathForItem(at: p)
         
         if let index = indexPath {
-            var cell = self.collectionView.cellForItem(at: index) as! DeckCell
+            let cell = self.collectionView.cellForItem(at: index) as! DeckCell
             cell.name.isEnabled = true
             cell.name.becomeFirstResponder()
         } else {
@@ -223,6 +233,12 @@ extension EditDeckViewController:SPSCollectionViewControllerDelegate {
     
     func getTextChanged(sender:UITextField) {
         print("TEXT CHANGED!")
+    }
+    
+    func getFilteredObjectsFromSearchText(name: String) -> [SearchableObject] {
+       return gameStore.decks.filter({( deck : Deck) -> Bool in
+            return deck.name.lowercased().contains(name.lowercased())
+        })
     }
 }
 

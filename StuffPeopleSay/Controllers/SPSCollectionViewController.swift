@@ -4,6 +4,7 @@ protocol SPSCollectionViewControllerDelegate {
     func getCollectionview() -> UICollectionView
     func getCollectionviewBottomConstraint() -> NSLayoutConstraint
     func getTextChanged(sender: UITextField)
+    func getFilteredObjectsFromSearchText(name:String)->[SearchableObject]
 }
 
 class SPSCollectionViewController:UIViewController{
@@ -11,8 +12,8 @@ class SPSCollectionViewController:UIViewController{
     var superCollectionView:UICollectionView!
     var superCollectionViewBottomConstraint:NSLayoutConstraint!
     var gameStore:GameStore!
-    var filteredDecks = [Deck]()
-    var selectedDecks = [String]()
+    var filteredObjects = [SearchableObject]()
+    var selectedObjects = [String]()
     var SPSDelegate:SPSCollectionViewControllerDelegate!
     
     override func viewDidLoad() {
@@ -24,7 +25,7 @@ class SPSCollectionViewController:UIViewController{
         superCollectionView.backgroundColor = UIColor.purple
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Decks"
+        searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
@@ -51,9 +52,7 @@ extension SPSCollectionViewController: UISearchResultsUpdating {
     }
 
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        filteredDecks = gameStore.decks.filter({( deck : Deck) -> Bool in
-            return deck.name.lowercased().contains(searchText.lowercased())
-        })
+        filteredObjects = SPSDelegate.getFilteredObjectsFromSearchText(name: searchText)
         superCollectionView.reloadData()
     }
 }
@@ -69,14 +68,6 @@ extension SPSCollectionViewController {
             if self.superCollectionViewBottomConstraint.constant == 0{
                 self.superCollectionViewBottomConstraint.constant += keyboardSize.height - displacement
                 self.superCollectionView.layoutIfNeeded()
-                
-                if let last = self.superCollectionView.visibleCells.last as? DeckCell{
-                    print("scroll!")
-                    print(last.indexPath)
-                    self.superCollectionView.scrollToItem(at: IndexPath(item: 3, section: 0), at: .bottom, animated: true)
-                }else{
-                    print("No scroll")
-                }
             }
         }
     }

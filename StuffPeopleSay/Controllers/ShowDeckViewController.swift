@@ -31,7 +31,7 @@ class ShowDeckViewController:SPSCollectionViewController{
 extension ShowDeckViewController:UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isFiltering() {
-            return filteredDecks.count
+            return filteredObjects.count
         }
         return gameStore.decks.count
     }
@@ -43,21 +43,28 @@ extension ShowDeckViewController:UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DeckCell", for: indexPath) as! DeckCell
-        let deck: Deck
+        let deck: Deck?
         if isFiltering() {
-            deck = filteredDecks[indexPath.row]
+            deck = getFilderedDeck(id: filteredObjects[indexPath.row].id)
         } else {
             deck = gameStore.decks[indexPath.row]
         }
-        cell.name.text = deck.name
-        cell.deckId = deck.id
+        cell.name.text = deck?.name
+        cell.deckId = deck?.id
         
-        if selectedDecks.contains(cell.deckId){
+        if selectedObjects.contains(cell.deckId){
             cell.alpha = cell.selectedAlphaValue
         }else{
             cell.alpha = cell.deSelectedAlphaValue
         }
         return cell
+    }
+    
+    func getFilderedDeck(id: String)->Deck?{
+        if let index = gameStore.decks.index(where: { $0.id == id }) {
+            return gameStore.decks[index]
+        }
+        return nil
     }
 }
 

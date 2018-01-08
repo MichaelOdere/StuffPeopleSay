@@ -66,7 +66,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-738.39999999999998" y="268.51574212893553"/>
+            <point key="canvasLocation" x="-28" y="268"/>
         </scene>
         <!--Board-->
         <scene sceneID="BnT-wt-Jeo">
@@ -388,7 +388,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1cM-TN-gW1">
-                                <rect key="frame" x="0.0" y="64" width="375" height="558"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="602"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewLayout key="collectionViewLayout" id="k73-bQ-ZNh" customClass="DeckCollectionViewLayout" customModule="StuffPeopleSay" customModuleProvider="target"/>
                                 <cells>
@@ -463,7 +463,6 @@
                         <outlet property="collectionViewBottomLayoutConstraint" destination="cTv-aT-tgy" id="FgR-ww-sMk"/>
                         <outlet property="leftToolBarButton" destination="9IO-xp-Nlo" id="ZnN-t7-GaL"/>
                         <outlet property="rightToolBarButton" destination="8Ye-OG-rjf" id="dna-Ri-ema"/>
-                        <segue destination="Et0-9p-DeS" kind="show" id="bNS-ow-das"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ham-9S-aoI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -480,7 +479,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Nht-R7-Zmy">
-                                <rect key="frame" x="0.0" y="64" width="375" height="558"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="602"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewLayout key="collectionViewLayout" id="K82-XI-RaC" customClass="DeckCollectionViewLayout" customModule="StuffPeopleSay" customModuleProvider="target"/>
                                 <cells>
@@ -561,7 +560,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r3Q-22-UnN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2016.8" y="-544.67766116941539"/>
+            <point key="canvasLocation" x="1977" y="-545"/>
         </scene>
         <!--Games-->
         <scene sceneID="lzu-KL-BQL">
@@ -694,7 +693,6 @@
                     <connections>
                         <outlet property="tableview" destination="j2L-Dk-lam" id="N90-X8-BVk"/>
                         <segue destination="UQy-lW-wdQ" kind="show" identifier="ShowBoards" id="Zlh-Wi-738"/>
-                        <segue destination="OEB-mn-JBU" kind="show" id="pe0-VX-6hg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j4Q-aX-7mf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -719,7 +717,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Kw-dW-CQG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="pBk-Y1-TNH" customClass="ZoomTransitioningDelegate" customModule="StuffPeopleSay" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="454" y="269"/>
+            <point key="canvasLocation" x="613" y="268"/>
         </scene>
         <!--Show Deck View Controller-->
         <scene sceneID="2wa-65-3fl">

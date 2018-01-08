@@ -46,20 +46,37 @@ class CardsViewController: SPSCollectionViewController {
 
 extension CardsViewController:UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return max(deck.cards.count, 25)
+        if isFiltering(){
+            return filteredObjects.count
+        }
+        return deck.cards.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCell
-        if indexPath.row < deck.cards.count{
-            let card = deck.cards[indexPath.row]
-            cell.name.boardCardId = card.id
-            cell.name.text = card.name
+        let card: Card
+        
+        if isFiltering() {
+            card = getFilteredCard(id: filteredObjects[indexPath.row].id)
+        } else {
+            card = deck.cards[indexPath.row]
         }
+        cell.name.boardCardId = card.id
+        cell.name.text = card.name
         cell.name.indexPath = indexPath
         cell.name.addTarget(self, action: #selector(textChanged(sender:)), for: UIControlEvents.editingChanged)
         cell.name.delegate = self
         return cell
+    }
+    
+    func getFilteredCard(id: String)->Card{
+        var card:Card?
+        if let index = deck.cards.index(where: { $0.id == id }) {
+            card = deck.cards[index]
+        }
+        
+        assert(card != nil, "Cannot find id for CARD when searching!")
+        return card!
     }
 }
 
@@ -78,5 +95,14 @@ extension CardsViewController:SPSCollectionViewControllerDelegate{
         }else{
             print("Not cardtextfield")
         }
+    }
+    
+    func getFilteredObjectsFromSearchText(name: String) -> [SearchableObject] {
+        print(deck)
+        print(name)
+        return deck.cards.filter({( card : Card) -> Bool in
+            return card.name.lowercased().contains(name.lowercased())
+        })
+
     }
 }
