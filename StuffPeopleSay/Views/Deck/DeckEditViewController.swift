@@ -2,8 +2,13 @@ import UIKit
 
 class DeckEditViewController: UIViewController{
     var gameStore:GameStore!
+    var filteredDecks = [Deck]()
+    var selectedDecks = [String]()
+    let deckDataSource = DeckCollectionViewDataSource()
+
+//    let searchController = UISearchController(searchResultsController: nil)
     var deckEditView:DeckEditView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -11,7 +16,16 @@ class DeckEditViewController: UIViewController{
         deckEditView.collectionView.delegate = self
         view.addSubview(deckEditView)
         
-        deckEditView.setDataSource(gameStore: gameStore)
+        deckDataSource.gameStore = gameStore
+//        deckDataSource.searchDelegate = self
+        deckEditView.setDataSource(deckDataSource: deckDataSource)
+        
+//        searchController.searchResultsUpdater = self
+//        searchController.obscuresBackgroundDuringPresentation = false
+//        searchController.searchBar.placeholder = "Search"
+//        navigationItem.searchController = searchController
+//        navigationItem.hidesSearchBarWhenScrolling = false
+//        definesPresentationContext = true
     }
 }
 
@@ -23,3 +37,30 @@ extension DeckEditViewController: UICollectionViewDelegate {
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
+
+//extension DeckEditViewController: UISearchResultsUpdating, DeckSearchCollectionViewDelegate{
+//    func updateSearchResults(for searchController: UISearchController) {
+//        filterContentForSearchText(searchController.searchBar.text!)
+//    }
+//
+//    func isFiltering() -> Bool {
+//        return searchController.isActive && !searchBarIsEmpty()
+//    }
+//
+//    func searchBarIsEmpty() -> Bool {
+//        return searchController.searchBar.text?.isEmpty ?? true
+//    }
+//
+//    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+//        filteredDecks = gameStore.decks.filter({( deck : Deck) -> Bool in
+//            return deck.name.lowercased().contains(searchText.lowercased())
+//        })
+//        deckEditView.collectionView.reloadData()
+//    }
+//}
+
+
+
+
+
+

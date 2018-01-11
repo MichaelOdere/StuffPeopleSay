@@ -1,9 +1,7 @@
 import UIKit
 
 class DeckEditView:EditView {
- 
-    let deckDataSource = DeckCollectionViewDataSource()
-    
+     
     override init(frame: CGRect) {
         super.init(frame: frame)
         collectionViewTypeDelegate = self
@@ -13,8 +11,7 @@ class DeckEditView:EditView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setDataSource(gameStore: GameStore){
-        deckDataSource.gameStore = gameStore
+    func setDataSource(deckDataSource: DeckCollectionViewDataSource){
         collectionView.dataSource = deckDataSource
     }
 }
