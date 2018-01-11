@@ -3,16 +3,16 @@ import UIKit
 class DeckEditViewController: UIViewController{
 
     var gameStore:GameStore!
-    var deckView:DeckView!
+    var deckEditView:DeckEditView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        deckView = DeckView(frame: view.frame)
-        deckView.collectionView.delegate = self
-        view.addSubview(deckView)
+        deckEditView = DeckEditView(frame: view.frame)
+        deckEditView.collectionView.delegate = self
+        view.addSubview(deckEditView)
         
-        deckView.setDataSource(gameStore: gameStore)
+        deckEditView.setDataSource(gameStore: gameStore)
     }
 }
 
