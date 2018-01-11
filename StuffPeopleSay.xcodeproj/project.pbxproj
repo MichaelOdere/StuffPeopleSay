@@ -50,6 +50,7 @@
 		F9EB8CAE2007DB96004F04D0 /* CardCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB8CAD2007DB96004F04D0 /* CardCollectionViewDataSource.swift */; };
 		F9EB8CB02007DC91004F04D0 /* CardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB8CAF2007DC91004F04D0 /* CardCollectionView.swift */; };
 		F9EB8CB22007DE68004F04D0 /* CardEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB8CB12007DE68004F04D0 /* CardEditViewController.swift */; };
+		F9EB8CB42007EFF0004F04D0 /* DeckShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB8CB32007EFF0004F04D0 /* DeckShowViewController.swift */; };
 		F9EFD5541FF58BB400C99D72 /* Decks.json in Resources */ = {isa = PBXBuildFile; fileRef = F9EFD5531FF58BB400C99D72 /* Decks.json */; };
 		F9FA25D12007D5CA001D7E3A /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FA25D02007D5CA001D7E3A /* EditView.swift */; };
 /* End PBXBuildFile section */
@@ -102,6 +103,7 @@
 		F9EB8CAD2007DB96004F04D0 /* CardCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		F9EB8CAF2007DC91004F04D0 /* CardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionView.swift; sourceTree = "<group>"; };
 		F9EB8CB12007DE68004F04D0 /* CardEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEditViewController.swift; sourceTree = "<group>"; };
+		F9EB8CB32007EFF0004F04D0 /* DeckShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckShowViewController.swift; sourceTree = "<group>"; };
 		F9EFD5531FF58BB400C99D72 /* Decks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Decks.json; sourceTree = "<group>"; };
 		F9FA25D02007D5CA001D7E3A /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -247,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				F905D6D51FF5C30600A0CFD5 /* AlertViewController.swift */,
+				F9EB8CB32007EFF0004F04D0 /* DeckShowViewController.swift */,
 				F96AA6121FBAB91E001E7CCD /* BingoViewController.swift */,
 				F993AC0B1FD6229000433689 /* BoardCollectionViewController.swift */,
 				F9E7B39D1FC3E4F600B81872 /* GamesTableViewController.swift */,
@@ -445,6 +448,7 @@
 				F9B295381FF4DCB700454D21 /* CardTextfield.swift in Sources */,
 				F97E63841FF1A81700CBA256 /* DeckCell.swift in Sources */,
 				F9DC7C9A1FD1259D0097D4B5 /* PieceView.swift in Sources */,
+				F9EB8CB42007EFF0004F04D0 /* DeckShowViewController.swift in Sources */,
 				F9AAF1CE1FD62F5E008A618F /* BoardCollectionViewCell.swift in Sources */,
 				F95B17171FBBBBF400AA000B /* Card.swift in Sources */,
 				F91A631D2006C63A00BF8DD1 /* DeckCollectionViewDataSource.swift in Sources */,

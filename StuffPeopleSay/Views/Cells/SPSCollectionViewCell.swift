@@ -18,7 +18,7 @@ class SPSCollectionViewCell:UICollectionViewCell{
         super.init(frame: frame)
         setupNameTextfield(frame: frame)
         backgroundColor = UIColor.white
-        print(#function, "name ", CFGetRetainCount(name))
+//        print(#function, "name ", CFGetRetainCount(name))
     }
     
     required init?(coder aDecoder: NSCoder) {

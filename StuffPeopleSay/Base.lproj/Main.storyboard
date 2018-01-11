@@ -759,7 +759,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0oC-XS-AF3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="QOw-rU-gW1"/>
             </objects>
-            <point key="canvasLocation" x="1278" y="1002"/>
+            <point key="canvasLocation" x="2137" y="1126"/>
+        </scene>
+        <!--Deck Show View Controller-->
+        <scene sceneID="M9E-bx-bN9">
+            <objects>
+                <viewController storyboardIdentifier="DeckShowViewController" id="bbF-4X-qoa" customClass="DeckShowViewController" customModule="StuffPeopleSay" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HJJ-nR-Erq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="9Kk-yZ-Bx7"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gDC-No-i6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1278" y="990"/>
         </scene>
     </scenes>
 </document>
