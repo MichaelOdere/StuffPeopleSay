@@ -1,12 +1,20 @@
 import UIKit
 
+protocol CollectionViewType: class {
+    func getCollectionView() -> UICollectionView
+}
+
 class EditView: UIView{
-    var collectionView: DeckCollectionView!
+    var collectionView: UICollectionView!
     var bottomCollectionLayoutConstraint:NSLayoutConstraint!
+    weak var collectionViewTypeDelegate:CollectionViewType? {
+        didSet {
+            setupCollectionView()
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupCollectionView()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -14,8 +22,8 @@ class EditView: UIView{
     }
     
     func setupCollectionView(){
-        let layout = DeckCollectionViewLayout()
-        collectionView = DeckCollectionView(frame: frame, collectionViewLayout: layout)
+        collectionView = collectionViewTypeDelegate?.getCollectionView()
+
         self.addSubview(collectionView)
         
         let top = NSLayoutConstraint(item: collectionView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0)

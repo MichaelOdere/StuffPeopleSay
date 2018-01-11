@@ -14,9 +14,7 @@ class CardCell:SPSCollectionViewCell{
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        backgroundColor = UIColor.white
-        layer.borderWidth = 5
+        fatalError("init(coder:) has not been implemented")
     }
     
     func stateChange(state:SelectedState){
