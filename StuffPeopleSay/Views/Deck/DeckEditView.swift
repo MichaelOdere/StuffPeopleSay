@@ -1,7 +1,6 @@
 import UIKit
 
 class DeckEditView:EditView {
-     
     override init(frame: CGRect) {
         super.init(frame: frame)
         collectionViewTypeDelegate = self
@@ -9,10 +8,6 @@ class DeckEditView:EditView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setDataSource(deckDataSource: DeckCollectionViewDataSource){
-        collectionView.dataSource = deckDataSource
     }
 }
 

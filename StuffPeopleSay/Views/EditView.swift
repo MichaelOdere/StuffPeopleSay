@@ -35,4 +35,8 @@ class EditView: UIView{
         let leading = NSLayoutConstraint(item: collectionView, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0)
         leading.isActive = true
     }
+    
+    func setDataSource(dataSource: UICollectionViewDataSource){
+        collectionView.dataSource = dataSource
+    }
 }

@@ -1,13 +1,13 @@
 import UIKit
 
 class DeckEditViewController: UIViewController{
+    var deckEditView:DeckEditView!
     var gameStore:GameStore!
-    var filteredDecks = [Deck]()
-    var selectedDecks = [String]()
     let deckDataSource = DeckCollectionViewDataSource()
 
+//    var filteredDecks = [Deck]()
+//    var selectedDecks = [String]()
 //    let searchController = UISearchController(searchResultsController: nil)
-    var deckEditView:DeckEditView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,10 +16,14 @@ class DeckEditViewController: UIViewController{
         deckEditView.collectionView.delegate = self
         view.addSubview(deckEditView)
         
-        deckDataSource.gameStore = gameStore
 //        deckDataSource.searchDelegate = self
-        deckEditView.setDataSource(deckDataSource: deckDataSource)
+        deckDataSource.gameStore = gameStore
+        deckEditView.setDataSource(dataSource: deckDataSource)
         
+        setupSearch()
+    }
+    
+    func setupSearch(){
 //        searchController.searchResultsUpdater = self
 //        searchController.obscuresBackgroundDuringPresentation = false
 //        searchController.searchBar.placeholder = "Search"
@@ -58,9 +62,3 @@ extension DeckEditViewController: UICollectionViewDelegate {
 //        deckEditView.collectionView.reloadData()
 //    }
 //}
-
-
-
-
-
-

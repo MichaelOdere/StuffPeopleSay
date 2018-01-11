@@ -3,9 +3,8 @@ import UIKit
 protocol DeckSearchCollectionViewDelegate: class {
     func isFiltering()->Bool
     var filteredDecks:[Deck] { get }
-    var selectedDecks:[String] { get }
+//    var selectedDecks:[String] { get }
 }
-
 
 class DeckCollectionViewDataSource: NSObject, UICollectionViewDataSource{
     var gameStore:GameStore!

@@ -1,12 +1,21 @@
 import UIKit
 
+protocol CardSearchCollectionViewDelegate: class {
+    func isFiltering()->Bool
+    var filteredCards:[Card] { get }
+//    var selectedDecks:[String] { get }
+}
+
 class CardCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     var deck:Deck!
-    
+    weak var searchDelegate:CardSearchCollectionViewDelegate?
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if isFiltering(){
-//            return filteredObjects.count
-//        }
+        if let sd = searchDelegate {
+            if sd.isFiltering(){
+                return searchDelegate!.filteredCards.count
+            }
+        }
         return deck.cards.count
     }
     
@@ -18,14 +27,14 @@ class CardCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCell
 //        cell.state = .selected
-        let card: Card
+        var card = deck.cards[indexPath.row]
+
+        if let sd = searchDelegate {
+            if sd.isFiltering() {
+                card = sd.filteredCards[indexPath.row]
+            }
+        }
         
-//        if isFiltering() {
-//            card = getFilteredCard(id: filteredObjects[indexPath.row].id)
-//        } else {
-//            card = deck.cards[indexPath.row]
-//        }
-        card = deck.cards[indexPath.row]
 //        cell.name.isEnabled = false
         cell.name.id = card.id
         cell.name.text = card.name
