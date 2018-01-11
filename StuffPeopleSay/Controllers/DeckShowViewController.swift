@@ -6,6 +6,10 @@ protocol SelectDeckProtocol {
 
 class DeckShowViewController:DeckEditViewController{
     var selectDeck:SelectDeckProtocol?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 }
 
 extension DeckShowViewController {

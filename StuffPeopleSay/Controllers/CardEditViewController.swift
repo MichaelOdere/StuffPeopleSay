@@ -17,7 +17,7 @@ class CardEditViewController: UIViewController{
         view.addSubview(cardEditView)
 
 //        cardDataSource.searchDelegate = self
-        cardDataSource.deck = deck
+        cardDataSource.delegate = self
         cardEditView.setDataSource(dataSource: cardDataSource)
         
 //        setupSearch()
@@ -30,6 +30,16 @@ class CardEditViewController: UIViewController{
 //        navigationItem.searchController = searchController
 //        navigationItem.hidesSearchBarWhenScrolling = false
 //        definesPresentationContext = true
+    }
+}
+
+extension CardEditViewController: CardCollectionViewDelegate {
+    var d: Deck {
+        return deck
+    }
+    
+    var cardView: CardEditView {
+        return cardEditView
     }
 }
 

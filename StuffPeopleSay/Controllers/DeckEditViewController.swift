@@ -17,7 +17,7 @@ class DeckEditViewController: UIViewController{
         view.addSubview(deckEditView)
         
 //        deckDataSource.searchDelegate = self
-        deckDataSource.gameStore = gameStore
+        deckDataSource.delegate = self
         deckEditView.setDataSource(dataSource: deckDataSource)
         
         setupSearch()
@@ -30,6 +30,16 @@ class DeckEditViewController: UIViewController{
 //        navigationItem.searchController = searchController
 //        navigationItem.hidesSearchBarWhenScrolling = false
 //        definesPresentationContext = true
+    }
+}
+
+extension DeckEditViewController: DeckCollectionViewDelegate {
+    var gs: GameStore {
+        return gameStore
+    }
+
+    var deckView: DeckEditView {
+        return deckEditView
     }
 }
 

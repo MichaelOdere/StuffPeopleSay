@@ -1,5 +1,10 @@
 import UIKit
 
+protocol CardCollectionViewDelegate: class {
+    var d:Deck { get }
+    var cardView:CardEditView { get }
+}
+
 protocol CardSearchCollectionViewDelegate: class {
     func isFiltering()->Bool
     var filteredCards:[Card] { get }
@@ -7,7 +12,7 @@ protocol CardSearchCollectionViewDelegate: class {
 }
 
 class CardCollectionViewDataSource: NSObject, UICollectionViewDataSource {
-    var deck:Deck!
+    weak var delegate:CardCollectionViewDelegate?
     weak var searchDelegate:CardSearchCollectionViewDelegate?
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -16,12 +21,14 @@ class CardCollectionViewDataSource: NSObject, UICollectionViewDataSource {
                 return searchDelegate!.filteredCards.count
             }
         }
-        return deck.cards.count
-    }
+        if let delegate = delegate {
+            return delegate.d.cards.count
+        }
+        return 0    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCell
-        var card = deck.cards[indexPath.row]
+        var card = delegate?.d.cards[indexPath.row]
 
         if let sd = searchDelegate {
             if sd.isFiltering() {
@@ -31,11 +38,11 @@ class CardCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         
         cell.state = .selected
         cell.name.isEnabled = false
-        cell.name.id = card.id
-        cell.name.text = card.name
+        cell.name.id = card?.id
+        cell.name.text = card?.name
         cell.name.indexPath = indexPath
         //        cell.name.addTarget(self, action: #selector(textChanged(sender:)), for: UIControlEvents.editingChanged)
-        //        cell.name.delegate = self
+        cell.name.delegate = delegate?.cardView
         return cell
     }
 }
