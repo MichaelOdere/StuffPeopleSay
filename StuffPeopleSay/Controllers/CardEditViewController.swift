@@ -35,7 +35,8 @@ class CardEditViewController: UIViewController{
 
 extension CardEditViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath)
+        let cell = collectionView.cellForItem(at: indexPath) as! CardCell
+        cell.cellSelected()
     }
 }
 

@@ -157,17 +157,6 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		F91A63222006DA0700BF8DD1 /* Deck */ = {
-			isa = PBXGroup;
-			children = (
-				F91A631E2006D87000BF8DD1 /* DeckEditViewController.swift */,
-				F91A63202006D8D200BF8DD1 /* DeckEditView.swift */,
-				F91A631A2006B2C000BF8DD1 /* DeckCollectionView.swift */,
-				F91A631C2006C63A00BF8DD1 /* DeckCollectionViewDataSource.swift */,
-			);
-			path = Deck;
-			sourceTree = "<group>";
-		};
 		F96AA5F41FBAB4F4001E7CCD = {
 			isa = PBXGroup;
 			children = (
@@ -203,17 +192,6 @@
 			path = StuffPeopleSay;
 			sourceTree = "<group>";
 		};
-		F9FA25CF2007D5B2001D7E3A /* Card */ = {
-			isa = PBXGroup;
-			children = (
-				F9EB8CB12007DE68004F04D0 /* CardEditViewController.swift */,
-				F9EB8CAB2007D9C5004F04D0 /* CardEditView.swift */,
-				F9EB8CAF2007DC91004F04D0 /* CardCollectionView.swift */,
-				F9EB8CAD2007DB96004F04D0 /* CardCollectionViewDataSource.swift */,
-			);
-			path = Card;
-			sourceTree = "<group>";
-		};
 		F9FEA8A01FFEBD3E00CEFE30 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,8 +209,10 @@
 		F9FEA8A11FFEBD4800CEFE30 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F91A63222006DA0700BF8DD1 /* Deck */,
-				F9FA25CF2007D5B2001D7E3A /* Card */,
+				F9EB8CAB2007D9C5004F04D0 /* CardEditView.swift */,
+				F9EB8CAF2007DC91004F04D0 /* CardCollectionView.swift */,
+				F91A631A2006B2C000BF8DD1 /* DeckCollectionView.swift */,
+				F91A63202006D8D200BF8DD1 /* DeckEditView.swift */,
 				F9FA25D02007D5CA001D7E3A /* EditView.swift */,
 				F9DC7C931FD0C66A0097D4B5 /* BingoCollectionView.swift */,
 				F96AA6141FBAB999001E7CCD /* BingoCollectionViewLayout.swift */,
@@ -249,6 +229,8 @@
 			isa = PBXGroup;
 			children = (
 				F905D6D51FF5C30600A0CFD5 /* AlertViewController.swift */,
+				F9EB8CB12007DE68004F04D0 /* CardEditViewController.swift */,
+				F91A631E2006D87000BF8DD1 /* DeckEditViewController.swift */,
 				F9EB8CB32007EFF0004F04D0 /* DeckShowViewController.swift */,
 				F96AA6121FBAB91E001E7CCD /* BingoViewController.swift */,
 				F993AC0B1FD6229000433689 /* BoardCollectionViewController.swift */,
@@ -262,6 +244,8 @@
 		F9FEA8A31FFEBD8100CEFE30 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				F9EB8CAD2007DB96004F04D0 /* CardCollectionViewDataSource.swift */,
+				F91A631C2006C63A00BF8DD1 /* DeckCollectionViewDataSource.swift */,
 				F9066D9C1FD5D7D9003BF133 /* Managers */,
 			);
 			path = Helpers;

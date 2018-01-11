@@ -19,14 +19,8 @@ class CardCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         return deck.cards.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! CardCell
-//        cell.cellSelected()
-    }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCell
-//        cell.state = .selected
         var card = deck.cards[indexPath.row]
 
         if let sd = searchDelegate {
@@ -35,7 +29,8 @@ class CardCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             }
         }
         
-//        cell.name.isEnabled = false
+        cell.state = .selected
+        cell.name.isEnabled = false
         cell.name.id = card.id
         cell.name.text = card.name
         cell.name.indexPath = indexPath
