@@ -24,7 +24,8 @@ class CardCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         if let delegate = delegate {
             return delegate.d.cards.count
         }
-        return 0    }
+        return 0
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCell

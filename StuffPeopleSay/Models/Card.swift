@@ -1,14 +1,17 @@
 import Foundation
 import SwiftyJSON
 
-class Card:SearchableObject {
+class Card {
+    var id:String
+    var name:String
     var active:Int
     var order:Int
 
     init(id: String, name: String, active: Int, order: Int) {
+        self.id = id
+        self.name = name
         self.active = active
         self.order = order
-        super.init(id: id, name: name)
     }
     
     func copyCard()->Card{

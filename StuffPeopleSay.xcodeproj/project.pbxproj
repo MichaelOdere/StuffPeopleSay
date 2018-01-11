@@ -19,7 +19,6 @@
 		F92DBED81FBB8D4000B4566F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DBED71FBB8D4000B4566F /* LoginViewController.swift */; };
 		F92DBEDA1FBB8D5300B4566F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DBED91FBB8D5300B4566F /* User.swift */; };
 		F9341C0F1FD1ECA0009CD301 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9341C0E1FD1ECA0009CD301 /* Board.swift */; };
-		F940AF5F2003D685002DC915 /* SearchableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F940AF5E2003D685002DC915 /* SearchableObject.swift */; };
 		F950F3601FF3561800DF578F /* DeckCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F950F35F1FF3561800DF578F /* DeckCollectionViewLayout.swift */; };
 		F95B17151FBBBBEF00AA000B /* GameStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B17141FBBBBEF00AA000B /* GameStore.swift */; };
 		F95B17171FBBBBF400AA000B /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B17161FBBBBF400AA000B /* Card.swift */; };
@@ -70,7 +69,6 @@
 		F92DBED71FBB8D4000B4566F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F92DBED91FBB8D5300B4566F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F9341C0E1FD1ECA0009CD301 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
-		F940AF5E2003D685002DC915 /* SearchableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableObject.swift; sourceTree = "<group>"; };
 		F950F35F1FF3561800DF578F /* DeckCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCollectionViewLayout.swift; sourceTree = "<group>"; };
 		F95B17141FBBBBEF00AA000B /* GameStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStore.swift; sourceTree = "<group>"; };
 		F95B17161FBBBBF400AA000B /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -199,7 +197,6 @@
 				F9341C0E1FD1ECA0009CD301 /* Board.swift */,
 				F95B17161FBBBBF400AA000B /* Card.swift */,
 				F91230DC1FF1972F00182B55 /* Deck.swift */,
-				F940AF5E2003D685002DC915 /* SearchableObject.swift */,
 				F9E7B39B1FC3D28E00B81872 /* Game.swift */,
 				F92DBED91FBB8D5300B4566F /* User.swift */,
 			);
@@ -209,15 +206,15 @@
 		F9FEA8A11FFEBD4800CEFE30 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F9EB8CAB2007D9C5004F04D0 /* CardEditView.swift */,
-				F9EB8CAF2007DC91004F04D0 /* CardCollectionView.swift */,
-				F91A631A2006B2C000BF8DD1 /* DeckCollectionView.swift */,
-				F91A63202006D8D200BF8DD1 /* DeckEditView.swift */,
-				F9FA25D02007D5CA001D7E3A /* EditView.swift */,
 				F9DC7C931FD0C66A0097D4B5 /* BingoCollectionView.swift */,
 				F96AA6141FBAB999001E7CCD /* BingoCollectionViewLayout.swift */,
+				F9EB8CAB2007D9C5004F04D0 /* CardEditView.swift */,
+				F9EB8CAF2007DC91004F04D0 /* CardCollectionView.swift */,
 				F9B295371FF4DCB700454D21 /* CardTextfield.swift */,
+				F91A631A2006B2C000BF8DD1 /* DeckCollectionView.swift */,
+				F91A63202006D8D200BF8DD1 /* DeckEditView.swift */,
 				F950F35F1FF3561800DF578F /* DeckCollectionViewLayout.swift */,
+				F9FA25D02007D5CA001D7E3A /* EditView.swift */,
 				F99A2F781FD4AA3000B2CEC6 /* LoadingView.swift */,
 				F9DC7C991FD1259D0097D4B5 /* PieceView.swift */,
 				F9FEA8A41FFEBDC400CEFE30 /* Cells */,
@@ -425,7 +422,6 @@
 				F993AC0C1FD6229000433689 /* BoardCollectionViewController.swift in Sources */,
 				F92DBEDA1FBB8D5300B4566F /* User.swift in Sources */,
 				F91230DD1FF1972F00182B55 /* Deck.swift in Sources */,
-				F940AF5F2003D685002DC915 /* SearchableObject.swift in Sources */,
 				F96C58061FBB69F600D49481 /* BingoGame.swift in Sources */,
 				F95B17151FBBBBEF00AA000B /* GameStore.swift in Sources */,
 				F950F3601FF3561800DF578F /* DeckCollectionViewLayout.swift in Sources */,
