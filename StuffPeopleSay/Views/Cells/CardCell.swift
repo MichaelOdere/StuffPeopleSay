@@ -1,7 +1,6 @@
 import UIKit
 
 class CardCell:SPSCollectionViewCell{
-    var boardCardId:String!
     var state:SelectedState! {
         didSet{
             stateChange(state: state)

@@ -1,7 +1,8 @@
 import UIKit
 
-class CardTextfield:UITextField{
-    var boardCardId:String!
+// TODO make textfield when strong reference cycle is fixed
+class CardTextfield:UILabel{
+    var id:String!
     var indexPath:IndexPath!
     
     override init(frame: CGRect) {
@@ -10,13 +11,12 @@ class CardTextfield:UITextField{
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
+        fatalError("init(coder:) has not been implemented")
     }
     
     func setup(){
         textAlignment = .center
-        returnKeyType = .done
-        autocorrectionType = .no
+//        returnKeyType = .done
+//        autocorrectionType = .no
     }
 }

@@ -56,17 +56,17 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
     
     @IBAction func showDecks(_ sender: Any) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "SPSEditDeckSearchCollectionViewController") as! SPSEditDeckSearchCollectionViewController
+        let vc = sb.instantiateViewController(withIdentifier: "DeckEditViewController") as! DeckEditViewController
         vc.gameStore = gameStore
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
     @IBAction func newGame(_ sender: Any) {
         
-        let alertView = AlertView()
-        alertView.modalPresentationStyle = .overCurrentContext
-        alertView.gameStore = gameStore
-        present(alertView, animated: false, completion: nil)
+//        let alertView = AlertView()
+//        alertView.modalPresentationStyle = .overCurrentContext
+//        alertView.gameStore = gameStore
+//        present(alertView, animated: false, completion: nil)
         
         return
         let alert = UIAlertController(title: "Are you sure you want to Create a new game?",

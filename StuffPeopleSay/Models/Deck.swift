@@ -1,12 +1,15 @@
 import Foundation
 import SwiftyJSON
 
-class Deck:SearchableObject{
+class Deck{
     var cards:[Card]
+    var id:String
+    var name:String
     
     init(id: String, name: String, cards: [Card]) {
         self.cards = cards
-        super.init(id: id, name: name)
+        self.id = id
+        self.name = name
     }
     
     func copyDeck()->Deck{
