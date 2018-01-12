@@ -46,13 +46,24 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
         group.notify(queue: DispatchQueue.main){
             group.enter()
             if self.gameStore.isLoggedIn{
-                self.gameStore.updateDeck(completionHandler: { (error) in
-                    if let error = error {
-                        print(error as Any)
-                        return
-                    }
-                    group.leave()
-                })
+//                self.gameStore.createDeck { (error) in
+//                    print("done0")
+//                    if let error = error {
+//                        print(error as Any)
+//                        return
+//                    }
+//                }
+                    print("done1")
+                    self.gameStore.getDecks(completionHandler: { (error) in
+                        if let error = error {
+                            print(error as Any)
+                            return
+                        }
+                        group.leave()
+
+                        print("done2")
+                    })
+                
             }else{
                 group.leave()
             }

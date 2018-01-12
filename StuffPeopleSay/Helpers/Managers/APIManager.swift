@@ -1,5 +1,6 @@
 import Foundation
 import SwiftyJSON
+import Alamofire
 
 class APIManager{
     
@@ -77,32 +78,96 @@ class APIManager{
         task.resume()
     }
 
-    func getDecks(completionHandler: ([Deck]?, Error?)->Void){
-        if let path = Bundle.main.path(forResource: "Decks", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let json = try JSON(data: data)
-                
-                guard let decksData = json["decks"].array else {
-                    print("Error parsing user object for key: decks")
-                    return
-                }
-                
-                var allDecks:[Deck] = []
-                for d in decksData{
-                    if let deck = Deck(json: d){
-                        allDecks.append(deck)
-                    }
-                }
-                completionHandler(allDecks, nil)
-            } catch {
-                completionHandler(nil, error)
-                print(error)
-            }
-        }else{
-            completionHandler(nil, nil)
-        }
+//    func getDecks(completionHandler: ([Deck]?, Error?)->Void){
+//        if let path = Bundle.main.path(forResource: "Decks", ofType: "json") {
+//            do {
+//                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+//                let json = try JSON(data: data)
+//                
+//                guard let decksData = json["decks"].array else {
+//                    print("Error parsing user object for key: decks")
+//                    return
+//                }
+//                
+//                var allDecks:[Deck] = []
+//                for d in decksData{
+//                    if let deck = Deck(json: d){
+//                        allDecks.append(deck)
+//                    }
+//                }
+//                completionHandler(allDecks, nil)
+//            } catch {
+//                completionHandler(nil, error)
+//                print(error)
+//            }
+//        }else{
+//            completionHandler(nil, nil)
+//        }
+//        
+//    }
+    
+    func createDeck(deckName:String, completionHandler: @escaping (Data?, Error?) -> Void) {
+        let url = URL(string: baseURL + "/decks")!
+        var request = URLRequest(url: url)
         
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        request.addValue(socketId, forHTTPHeaderField: "SocketId")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        request.httpBody = "{\"name\" : \"\(deckName)\"}".data(using: .utf8)
+
+        request.httpMethod = "POST"
+        
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            guard let data = data, error == nil else {
+                completionHandler(nil, error)
+                return
+            }
+            
+            let json = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let dictionary = json as? [String: Any] {
+                print(dictionary)
+            }
+            
+            var backToString = String(data: data, encoding: String.Encoding.utf8) as String!
+            print("String11")
+            print(backToString)
+            print("String21")
+            completionHandler(data, nil)
+        }
+        task.resume()
+    }
+    
+    func getDecks(completionHandler: @escaping (Data?, Error?) -> Void) {
+        let url = URL(string: baseURL + "/decks")!
+        var request = URLRequest(url: url)
+        
+        request.addValue(token, forHTTPHeaderField: "Authorization")
+        request.addValue(socketId, forHTTPHeaderField: "SocketId")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        request.httpMethod = "GET"
+        
+        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+            guard let data = data, error == nil else {
+                completionHandler(nil, error)
+                return
+            }
+            
+            var backToString = String(data: data, encoding: String.Encoding.utf8) as String!
+            print("String12")
+            print(backToString)
+            print("String22")
+
+            //            do {
+//                let json = try JSON(data: data)
+//                print(json)
+//            } catch {
+//                print(error)
+//            }
+            completionHandler(data, nil)
+        }
+        task.resume()
     }
     
     func createGame(completionHandler: @escaping (Data?, Error?) -> Void) {
@@ -121,9 +186,7 @@ class APIManager{
             }
             completionHandler(data, nil)
         }
-        
         task.resume()
-        
     }
     
     func updateBoard(boardCardId: String){

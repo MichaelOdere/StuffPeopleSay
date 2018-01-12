@@ -72,20 +72,24 @@ class GameStore{
         })
     }
     
-    func updateDeck(completionHandler: @escaping (Error?) -> Void){
-       
-        self.apiManager.getDecks(completionHandler: { (decks, error) in
+    func createDeck(completionHandler: @escaping (Error?) -> Void){
+        
+        self.apiManager.createDeck(deckName: "TestName") { (data, error) in
             if let error = error {
                 print(error as Any)
                 return
             }
-            
-            if let decks = decks{
-                self.decks = decks
-            }
-
-            completionHandler(nil)
-        })
+            completionHandler(error)
+        }
     }
     
+    func getDecks(completionHandler: @escaping (Error?) -> Void){
+        self.apiManager.getDecks { (data, error) in
+            if let error = error {
+                print(error as Any)
+                return
+            }
+            completionHandler(error)
+        }
+    }
 }
