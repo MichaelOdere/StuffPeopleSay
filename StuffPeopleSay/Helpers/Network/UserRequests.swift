@@ -26,13 +26,13 @@ public enum UserRequest: Request {
         }
     }
         
-    public var parameters: [String : String]? {
+    public var parameters: [String : Any]? {
         switch self {
         case .create(let email,_):
             return ["email" : email]
         case .login(let email, _):
             return ["email" : email]
-        case .checkToken(let token):
+        case .checkToken(_):
             return nil
         }
     }

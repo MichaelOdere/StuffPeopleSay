@@ -1,50 +1,50 @@
 public enum GameRequest: Request {
     
-    case createGame(token: String, socketId: String, name: String, boards: Int, deckId: String)
-    case getGames(token: String, socketId: String)
-    case updateGame(token: String, socketId: String, gameId: String)
+    case createGame(name: String, boards: Int, deckId: String)
+    case getGames()
+    case updateGame(gameId: String)
 
     public var path: String {
         switch self {
-        case .createGame(_,_,_,_,_):
+        case .createGame(_,_,_):
             return "/games"
-        case .getGames(_,_):
+        case .getGames():
             return "/games"
-        case .updateGame(_, _, let gameId):
+        case .updateGame(let gameId):
             return "/games/{" + gameId + "}"
         }
     }
     
     public var method: HTTPMethod {
         switch self {
-        case .createGame(_,_,_,_,_):
+        case .createGame(_,_,_):
             return .put
-        case .getGames(_,_):
+        case .getGames():
             return .get
-        case .updateGame(_, _, _):
+        case .updateGame(_):
             return .put
         }
     }
     
-    public var parameters: [String : String]? {
+    public var parameters: [String : Any]? {
         switch self {
-        case .createGame(_,_,let name, let boards, let deckId):
+        case .createGame(let name, let boards, let deckId):
             return ["name":name, "boards": boards, "deckId": deckId]
-        case .getGames(_,_):
+        case .getGames():
             return nil
-        case .updateGame(_, _, _):
+        case .updateGame(_):
             return ["winner":"true"]
         }
     }
     
     public var headers: [String : String]? {
         switch self {
-        case .createGame(let token, let socketId,_,_,_):
-            return createHeader(token: token, socketId: socketId)
-        case .getGames(let token, let socketId):
-            return createHeader(token: token, socketId: socketId)
-        case .updateGame(let token, let socketId, _):
-            return createHeader(token: token, socketId: socketId)
+        case .createGame(_,_,_):
+            return nil
+        case .getGames():
+            return nil
+        case .updateGame(_):
+            return nil
         }
     }
 }
