@@ -33,6 +33,8 @@
 		F96F1DB41FF4CC7A00C06E9C /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96F1DB31FF4CC7A00C06E9C /* CardCell.swift */; };
 		F9707CE4200B0008001F4D17 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9707CE3200B0008001F4D17 /* RequestProtocol.swift */; };
 		F9707CE7200B2C49001F4D17 /* UserRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9707CE6200B2C49001F4D17 /* UserRequests.swift */; };
+		F9707CE9200B325D001F4D17 /* GameRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9707CE8200B325D001F4D17 /* GameRequests.swift */; };
+		F9707CEB200B36DA001F4D17 /* DeckRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9707CEA200B36DA001F4D17 /* DeckRequests.swift */; };
 		F9792C5E1FD75D4400ADE88C /* ZoomTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9792C5D1FD75D4400ADE88C /* ZoomTransitioningDelegate.swift */; };
 		F97E63841FF1A81700CBA256 /* DeckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97E63831FF1A81700CBA256 /* DeckCell.swift */; };
 		F97E63861FF1D66100CBA256 /* BingoPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97E63851FF1D66100CBA256 /* BingoPalette.swift */; };
@@ -87,6 +89,8 @@
 		F96F1DB31FF4CC7A00C06E9C /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		F9707CE3200B0008001F4D17 /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
 		F9707CE6200B2C49001F4D17 /* UserRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequests.swift; sourceTree = "<group>"; };
+		F9707CE8200B325D001F4D17 /* GameRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRequests.swift; sourceTree = "<group>"; };
+		F9707CEA200B36DA001F4D17 /* DeckRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckRequests.swift; sourceTree = "<group>"; };
 		F9792C5D1FD75D4400ADE88C /* ZoomTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomTransitioningDelegate.swift; sourceTree = "<group>"; };
 		F97E63831FF1A81700CBA256 /* DeckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCell.swift; sourceTree = "<group>"; };
 		F97E63851FF1D66100CBA256 /* BingoPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoPalette.swift; sourceTree = "<group>"; };
@@ -199,6 +203,8 @@
 			children = (
 				F9707CE3200B0008001F4D17 /* RequestProtocol.swift */,
 				F9707CE6200B2C49001F4D17 /* UserRequests.swift */,
+				F9707CE8200B325D001F4D17 /* GameRequests.swift */,
+				F9707CEA200B36DA001F4D17 /* DeckRequests.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -437,6 +443,7 @@
 				F92DBEDA1FBB8D5300B4566F /* User.swift in Sources */,
 				F9707CE7200B2C49001F4D17 /* UserRequests.swift in Sources */,
 				F9707CE4200B0008001F4D17 /* RequestProtocol.swift in Sources */,
+				F9707CEB200B36DA001F4D17 /* DeckRequests.swift in Sources */,
 				F91230DD1FF1972F00182B55 /* Deck.swift in Sources */,
 				F96C58061FBB69F600D49481 /* BingoGame.swift in Sources */,
 				F95B17151FBBBBEF00AA000B /* GameStore.swift in Sources */,
@@ -454,6 +461,7 @@
 				F96AA6151FBAB999001E7CCD /* BingoCollectionViewLayout.swift in Sources */,
 				F96AA6011FBAB4F4001E7CCD /* AppDelegate.swift in Sources */,
 				F99A2F791FD4AA3000B2CEC6 /* LoadingView.swift in Sources */,
+				F9707CE9200B325D001F4D17 /* GameRequests.swift in Sources */,
 				F96F1DB41FF4CC7A00C06E9C /* CardCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
