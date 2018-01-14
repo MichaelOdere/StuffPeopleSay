@@ -11,7 +11,3 @@ public enum HTTPMethod: String {
     case get    = "GET"
     case delete = "DELETE"
 }
-
-public func createHeader(token:String, socketId:String)->[String : String]{
-    return ["Authorization": token, "SocketId": socketId]
-}
