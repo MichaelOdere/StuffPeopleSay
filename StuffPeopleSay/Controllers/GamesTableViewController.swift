@@ -18,23 +18,6 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
                                                  selector: #selector(GamesTableViewController.didBecomeActive),
                                                  name: Notification.Name("didBecomeActive"),
                                                  object: nil)
-        
-        gameStore.createDeck { (error) in
-            if let error = error {
-                print(error as Any)
-                return
-            }
-            print("done1")
-            self.gameStore.getDecks(completionHandler: { (error) in
-                if let error = error {
-                    print(error as Any)
-                    return
-                }
-                    
-                print("done2")
-            })
-        }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

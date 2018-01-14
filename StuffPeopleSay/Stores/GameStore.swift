@@ -35,6 +35,10 @@ class GameStore{
                     print(error as Any)
                     return
                 }
+                
+                print("token login user")
+                print(token)
+
                 self.keychain.set(token, forKey: "token")
                 self.keychain.set(email, forKey: "email")
 
@@ -44,6 +48,8 @@ class GameStore{
             })
         }else{
             print("Attempting loggin in user with a saved token....")
+            completionHandler(false, nil)
+            return
             if keychain.get("token") != nil{
                 print("found token")
                 apiManager.token =  keychain.get("token")!
