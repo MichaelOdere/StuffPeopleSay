@@ -28,8 +28,8 @@ public enum GameRequest: Request {
     
     public var parameters: [String : String]? {
         switch self {
-        case .createGame(_,_,_,_,_):
-            return nil
+        case .createGame(_,_,let name, let boards, let deckId):
+            return ["name":name, "boards": boards, "deckId": deckId]
         case .getGames(_,_):
             return nil
         case .updateGame(_, _, _):
@@ -39,12 +39,12 @@ public enum GameRequest: Request {
     
     public var headers: [String : String]? {
         switch self {
-        case .createGame(_,_,_,_,_):
-            return nil
-        case .getGames(_,_):
-            return nil
-        case .updateGame(_, _, _):
-            return .put
+        case .createGame(let token, let socketId,_,_,_):
+            return createHeader(token: token, socketId: socketId)
+        case .getGames(let token, let socketId):
+            return createHeader(token: token, socketId: socketId)
+        case .updateGame(let token, let socketId, _):
+            return createHeader(token: token, socketId: socketId)
         }
     }
 }
