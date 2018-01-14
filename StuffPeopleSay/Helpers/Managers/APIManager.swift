@@ -23,6 +23,32 @@ class APIManager{
     // Online
     private let baseURL = "https://smfs.now.sh"
     
+    func checkToken(checkToken:String, completion: @escaping (Bool) -> Void){
+        let url = URL(string: baseURL + "/auth")!
+        Alamofire.request(
+            url,
+            method: .get,
+            headers: [ "Authorization": checkToken])
+        .validate()
+        .responseJSON { (response) -> Void in
+
+            guard response.result.isSuccess else {
+                print("Error while fetching remote rooms: \(response.result.error)")
+                completion(false)
+                return
+            }
+            
+            let json = JSON(response.data)
+            
+            if json["token"] == "true" {
+                completion(true)
+            }
+            completion(false)
+        }
+    }
+    
+    
+    
     func getUser(email:String, completionHandler: @escaping (String?, Error?) -> Void) {
         let url = URL(string: baseURL + "/users/auth")!
         var request = URLRequest(url: url)
