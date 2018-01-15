@@ -1,5 +1,11 @@
 import Alamofire
 
+
+public enum NetworkErrors: Error {
+    case unauthorized
+    case noData
+}
+
 public class NetworkDispatcher: Dispatcher {
     
     private var environment: Environment

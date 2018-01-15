@@ -16,7 +16,13 @@ public enum NetworkResponse {
             return
         }
         
-        self = .json(JSON(data: data))
+        do {
+            let jsonData = try JSON(data: data)
+            self = .json(jsonData)
+        } catch  let error as NSError {
+            self = .error(response.r?.statusCode, error)
+        }
+        
     }
 }
 
