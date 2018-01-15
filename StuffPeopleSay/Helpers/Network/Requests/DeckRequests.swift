@@ -21,7 +21,7 @@ public enum DeckRequest: Request {
         }
     }
         
-    public var method: HTTPMethod {
+    public var method: HTTPMethodCase {
         switch self {
         case .createDeck(_):
             return .post
@@ -64,5 +64,9 @@ public enum DeckRequest: Request {
         case .deleteCardsFromDeck(_,_):
             return nil
         }
+    }
+    
+    public var needsAuthHeader: Bool {
+        return true
     }
 }

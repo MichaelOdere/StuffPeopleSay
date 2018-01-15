@@ -183,48 +183,48 @@ class APIManager{
     
     func getDecks(completionHandler: @escaping ([Deck]?, Error?) -> Void) {
         let url = URL(string: baseURL + "/decks")!
-        var request = URLRequest(url: url)
-
-        request.addValue(token, forHTTPHeaderField: "Authorization")
-        request.addValue(socketId, forHTTPHeaderField: "SocketId")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        request.httpMethod = "GET"
-
-        let task = URLSession.shared.dataTask(with: request) {data, response, error in
-            guard let data = data, error == nil else {
-                completionHandler(nil, error)
-                return
-            }
-
-            do {
-                let json = try JSON(data: data)
-                print("json")
-                print(json)
-                if !self.checkLoggedIn(json: json){
-                    completionHandler(nil,nil)
-                    return
-                }
-
-                var decks:[Deck] = []
-
-                let jsonArr:[JSON] = json.arrayValue
-
-                for g in jsonArr{
-                    if let deck = Deck(json: g){
-                        decks.append(deck)
-                    }
-                }
-                completionHandler(decks, nil)
-
-            } catch {
-
-                print(error)
-                completionHandler(nil, nil)
-            }
-
-        }
-        task.resume()
+//        var request = URLRequest(url: url)
+//
+//        request.addValue(token, forHTTPHeaderField: "Authorization")
+//        request.addValue(socketId, forHTTPHeaderField: "SocketId")
+//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//
+//        request.httpMethod = "GET"
+//
+//        let task = URLSession.shared.dataTask(with: request) {data, response, error in
+//            guard let data = data, error == nil else {
+//                completionHandler(nil, error)
+//                return
+//            }
+//
+//            do {
+//                let json = try JSON(data: data)
+//                print("json")
+//                print(json)
+//                if !self.checkLoggedIn(json: json){
+//                    completionHandler(nil,nil)
+//                    return
+//                }
+//
+//                var decks:[Deck] = []
+//
+//                let jsonArr:[JSON] = json.arrayValue
+//
+//                for g in jsonArr{
+//                    if let deck = Deck(json: g){
+//                        decks.append(deck)
+//                    }
+//                }
+//                completionHandler(decks, nil)
+//
+//            } catch {
+//
+//                print(error)
+//                completionHandler(nil, nil)
+//            }
+//
+//        }
+//        task.resume()
 //        print("token get decks")
 //        print(token)
 //
@@ -245,10 +245,10 @@ class APIManager{
 //
 //        print(headers)
         
-//        Alamofire.request(
-//            url,
-//            method: .get,
-//            headers: headers)
+        Alamofire.request(
+            url,
+            method: .get,
+            headers: headers)
 //            .validate()
 //            .responseJSON { (response) -> Void in
 //

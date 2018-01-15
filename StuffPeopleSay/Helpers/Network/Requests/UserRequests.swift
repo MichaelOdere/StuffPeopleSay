@@ -15,7 +15,7 @@ public enum UserRequest: Request {
         }
     }
         
-    public var method: HTTPMethod {
+    public var method: HTTPMethodCase {
         switch self {
         case .create(_,_):
             return .post
@@ -46,5 +46,9 @@ public enum UserRequest: Request {
         case .checkToken(let token):
             return ["Authorization": token]
         }
+    }
+    
+    public var needsAuthHeader: Bool {
+        return false
     }
 }

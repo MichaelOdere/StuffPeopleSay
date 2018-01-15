@@ -15,7 +15,7 @@ public enum GameRequest: Request {
         }
     }
     
-    public var method: HTTPMethod {
+    public var method: HTTPMethodCase {
         switch self {
         case .createGame(_,_,_):
             return .put
@@ -46,5 +46,9 @@ public enum GameRequest: Request {
         case .updateGame(_):
             return nil
         }
+    }
+    
+    public var needsAuthHeader: Bool {
+        return true
     }
 }
