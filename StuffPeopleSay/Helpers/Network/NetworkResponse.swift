@@ -19,3 +19,4 @@ public enum NetworkResponse {
         self = .json(JSON(data: data))
     }
 }
+

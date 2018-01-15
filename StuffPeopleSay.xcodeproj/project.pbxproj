@@ -22,7 +22,6 @@
 		F93D1C11200BD77900B0107D /* CardRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93D1C10200BD77900B0107D /* CardRequests.swift */; };
 		F93D1C13200BD80000B0107D /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93D1C12200BD80000B0107D /* Environment.swift */; };
 		F93D1C16200C0C6000B0107D /* NetworkDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93D1C15200C0C6000B0107D /* NetworkDispatcher.swift */; };
-		F93D1C1A200C28E000B0107D /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93D1C19200C28DF00B0107D /* NetworkResponse.swift */; };
 		F950F3601FF3561800DF578F /* DeckCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F950F35F1FF3561800DF578F /* DeckCollectionViewLayout.swift */; };
 		F95B17151FBBBBEF00AA000B /* GameStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B17141FBBBBEF00AA000B /* GameStore.swift */; };
 		F95B17171FBBBBF400AA000B /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B17161FBBBBF400AA000B /* Card.swift */; };
@@ -46,6 +45,7 @@
 		F99A2F791FD4AA3000B2CEC6 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99A2F781FD4AA3000B2CEC6 /* LoadingView.swift */; };
 		F9AAF1CE1FD62F5E008A618F /* BoardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AAF1CD1FD62F5E008A618F /* BoardCollectionViewCell.swift */; };
 		F9B295381FF4DCB700454D21 /* CardTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B295371FF4DCB700454D21 /* CardTextfield.swift */; };
+		F9B7CE9C200C2E3A00E6C5BC /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B7CE9B200C2E3A00E6C5BC /* NetworkResponse.swift */; };
 		F9C2B7FB200424B400F38DAD /* SPSCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C2B7FA200424B400F38DAD /* SPSCollectionViewCell.swift */; };
 		F9DC7C941FD0C66A0097D4B5 /* BingoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC7C931FD0C66A0097D4B5 /* BingoCollectionView.swift */; };
 		F9DC7C961FD0C8370097D4B5 /* OpponentBingoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC7C951FD0C8370097D4B5 /* OpponentBingoViewController.swift */; };
@@ -80,7 +80,6 @@
 		F93D1C10200BD77900B0107D /* CardRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRequests.swift; sourceTree = "<group>"; };
 		F93D1C12200BD80000B0107D /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		F93D1C15200C0C6000B0107D /* NetworkDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDispatcher.swift; sourceTree = "<group>"; };
-		F93D1C19200C28DF00B0107D /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
 		F950F35F1FF3561800DF578F /* DeckCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCollectionViewLayout.swift; sourceTree = "<group>"; };
 		F95B17141FBBBBEF00AA000B /* GameStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStore.swift; sourceTree = "<group>"; };
 		F95B17161FBBBBF400AA000B /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -106,6 +105,7 @@
 		F99A2F781FD4AA3000B2CEC6 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		F9AAF1CD1FD62F5E008A618F /* BoardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9B295371FF4DCB700454D21 /* CardTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTextfield.swift; sourceTree = "<group>"; };
+		F9B7CE9B200C2E3A00E6C5BC /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
 		F9C2B7FA200424B400F38DAD /* SPSCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPSCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9DC7C931FD0C66A0097D4B5 /* BingoCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoCollectionView.swift; sourceTree = "<group>"; };
 		F9DC7C951FD0C8370097D4B5 /* OpponentBingoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpponentBingoViewController.swift; sourceTree = "<group>"; };
@@ -223,8 +223,8 @@
 			children = (
 				F93D1C12200BD80000B0107D /* Environment.swift */,
 				F93D1C15200C0C6000B0107D /* NetworkDispatcher.swift */,
-				F93D1C19200C28DF00B0107D /* NetworkResponse.swift */,
 				F93D1C14200C0A9D00B0107D /* Requests */,
+				F9B7CE9B200C2E3A00E6C5BC /* NetworkResponse.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -480,7 +480,7 @@
 				F91A631D2006C63A00BF8DD1 /* DeckCollectionViewDataSource.swift in Sources */,
 				F9E7B39E1FC3E4F600B81872 /* GamesTableViewController.swift in Sources */,
 				F9341C0F1FD1ECA0009CD301 /* Board.swift in Sources */,
-				F93D1C1A200C28E000B0107D /* NetworkResponse.swift in Sources */,
+				F9B7CE9C200C2E3A00E6C5BC /* NetworkResponse.swift in Sources */,
 				F9EB8CB02007DC91004F04D0 /* CardCollectionView.swift in Sources */,
 				F96AA6151FBAB999001E7CCD /* BingoCollectionViewLayout.swift in Sources */,
 				F96AA6011FBAB4F4001E7CCD /* AppDelegate.swift in Sources */,
