@@ -13,11 +13,13 @@ public enum DeckRequests: Request {
         case .getDecks():
             return "/decks"
         case .getDeck(let deckId):
-            return "/decks/{\(deckId)}"
+            // URL Does not accept curly brackets ex. {}
+            // They can be encoded with %7B and %7d respectfully
+            return "/decks/%7B" + deckId + "%7D"
         case .addCardsToDeck(let deckId,_):
-            return "/decks/{" + deckId + "}/cards"
+            return "/decks/%7B" + deckId + "%7D/cards"
         case .deleteCardsFromDeck(let deckId,_):
-            return "/decks/{" + deckId + "}/cards"
+            return "/decks/%7B" + deckId + "%7D/cards"
         }
     }
         

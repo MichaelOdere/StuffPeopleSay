@@ -20,13 +20,10 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
         let environment = NetworkEnvironment(host: "https://smfs.now.sh", token: "", socketId: "")
         let dispatch = NetworkDispatcher(environment: environment)
         let keychain = KeychainSwift()
-
-        print("check")
-//        log.execute(in: dispatch)
         
         let getToken = GetToken(email: keychain.get("email")!, password: "")
         getToken.execute(in: dispatch) { (token) in
-            print("in login we have \(token)")
+
             let log = CheckToken(email: keychain.get("email")!, token: token!, socketId: "1")
             log.execute(in: dispatch, completionHandler: { (response) in
                 print("Token valid: \(response)")
@@ -35,7 +32,7 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
             
             let decks = GetDecks()
             decks.execute(in: dispatch, completionHandler: { (decks) in
-                
+                print("complete")
             })
         }
 //        self.updateEmailTextField()

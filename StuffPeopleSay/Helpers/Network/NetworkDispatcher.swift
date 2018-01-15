@@ -25,7 +25,8 @@ public class NetworkDispatcher: Dispatcher {
             print(full_url)
             return
         }
-        
+
+        print(url)
         var headers:[String:String] = [:]
         
         if request.needsAuthHeader {
@@ -39,8 +40,6 @@ public class NetworkDispatcher: Dispatcher {
         }
         
         let method:HTTPMethod = getMethod(httpCase: request.method)
-        print("headers")
-        print(headers)
         Alamofire.request(url,
                           method: method,
                           parameters: request.parameters,
