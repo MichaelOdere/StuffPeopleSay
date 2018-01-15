@@ -1,6 +1,7 @@
 import Alamofire
 
 public class NetworkDispatcher: Dispatcher {
+    
     private var environment: Environment
 
     required public init(environment: Environment) {

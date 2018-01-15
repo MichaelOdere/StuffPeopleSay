@@ -22,6 +22,7 @@
 		F93D1C11200BD77900B0107D /* CardRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93D1C10200BD77900B0107D /* CardRequests.swift */; };
 		F93D1C13200BD80000B0107D /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93D1C12200BD80000B0107D /* Environment.swift */; };
 		F93D1C16200C0C6000B0107D /* NetworkDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93D1C15200C0C6000B0107D /* NetworkDispatcher.swift */; };
+		F93D1C1A200C28E000B0107D /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93D1C19200C28DF00B0107D /* NetworkResponse.swift */; };
 		F950F3601FF3561800DF578F /* DeckCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F950F35F1FF3561800DF578F /* DeckCollectionViewLayout.swift */; };
 		F95B17151FBBBBEF00AA000B /* GameStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B17141FBBBBEF00AA000B /* GameStore.swift */; };
 		F95B17171FBBBBF400AA000B /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B17161FBBBBF400AA000B /* Card.swift */; };
@@ -79,6 +80,7 @@
 		F93D1C10200BD77900B0107D /* CardRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRequests.swift; sourceTree = "<group>"; };
 		F93D1C12200BD80000B0107D /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		F93D1C15200C0C6000B0107D /* NetworkDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDispatcher.swift; sourceTree = "<group>"; };
+		F93D1C19200C28DF00B0107D /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
 		F950F35F1FF3561800DF578F /* DeckCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCollectionViewLayout.swift; sourceTree = "<group>"; };
 		F95B17141FBBBBEF00AA000B /* GameStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStore.swift; sourceTree = "<group>"; };
 		F95B17161FBBBBF400AA000B /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 			children = (
 				F93D1C12200BD80000B0107D /* Environment.swift */,
 				F93D1C15200C0C6000B0107D /* NetworkDispatcher.swift */,
+				F93D1C19200C28DF00B0107D /* NetworkResponse.swift */,
 				F93D1C14200C0A9D00B0107D /* Requests */,
 			);
 			path = Network;
@@ -477,6 +480,7 @@
 				F91A631D2006C63A00BF8DD1 /* DeckCollectionViewDataSource.swift in Sources */,
 				F9E7B39E1FC3E4F600B81872 /* GamesTableViewController.swift in Sources */,
 				F9341C0F1FD1ECA0009CD301 /* Board.swift in Sources */,
+				F93D1C1A200C28E000B0107D /* NetworkResponse.swift in Sources */,
 				F9EB8CB02007DC91004F04D0 /* CardCollectionView.swift in Sources */,
 				F96AA6151FBAB999001E7CCD /* BingoCollectionViewLayout.swift in Sources */,
 				F96AA6011FBAB4F4001E7CCD /* AppDelegate.swift in Sources */,
