@@ -8,7 +8,7 @@ public class NetworkDispatcher: Dispatcher {
         self.environment = environment
     }
 
-    public func execute(request: Request, completionHandler: @escaping (Data?, Error?) -> Void) {
+    public func execute(request: Request, completionHandler: @escaping (Data?, HTTPURLResponse?,  Error?) -> Void) {
         let full_url = "\(environment.host)/\(request.path)"
         let url = URL(string: full_url)!
         
@@ -33,11 +33,11 @@ public class NetworkDispatcher: Dispatcher {
             .responseData { (response) in
                 guard response.result.isSuccess else {
                     print("Error while fetching remote rooms: \(response.result.error)")
-                    completionHandler(nil, response.result.error)
+                    completionHandler(nil, response.response, response.result.error)
                     return
                 }
                 
-                completionHandler(response.data, nil)
+                completionHandler(response.data, response.response, nil)
 
             }
         }

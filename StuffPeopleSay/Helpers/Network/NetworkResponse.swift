@@ -3,7 +3,6 @@ import SwiftyJSON
 
 public enum NetworkResponse {
     case json(_: JSON)
-    case data(_: Data)
     case error(_: Int?, _: Error?)
     
     init(_ response: (r: HTTPURLResponse?, data: Data?, error: Error?), for request: Request) {
@@ -17,11 +16,6 @@ public enum NetworkResponse {
             return
         }
         
-        switch request.dataType {
-        case .Data:
-            self = .data(data)
-        case .JSON:
-            self = .json(JSON(data: data))
-        }
+        self = .json(JSON(data: data))
     }
 }

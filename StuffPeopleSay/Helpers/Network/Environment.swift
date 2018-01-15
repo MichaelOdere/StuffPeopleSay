@@ -22,5 +22,5 @@ public struct Environment {
 
 public protocol Dispatcher {
     init(environment: Environment)
-    func execute(request: Request, completionHandler: @escaping (Data?, Error?)->Void)
+    func execute(request: Request, completionHandler: @escaping (Data?, HTTPURLResponse?, Error?)->Void)
 }
