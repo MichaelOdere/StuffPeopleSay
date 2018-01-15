@@ -17,12 +17,7 @@ class CheckToken: Operation {
     }
 
     func execute(in dispatcher: Dispatcher, completionHandler: @escaping (Output?)->Void) {
-        print(email)
-        print(token)
-        print(socketId)
         let response = dispatcher.execute(request: request) { (response) in
-            print("HERE IS JSON")
-            print(response)
             completionHandler(true)
         }
     }

@@ -36,27 +36,3 @@ class GetDecks: Operation {
 
 
 
-
-/*
-let group = DispatchGroup()
-var decks:[Deck] = []
-
-for d in jsonData.array!{
-    group.enter()
-    let id = d["id"].string
-    
-    let getDeck = GetDeck(deckId: id!)
-    getDeck.execute(in: dispatcher, completionHandler: { (deckResponse) in
-        if let deck = deckResponse {
-            decks.append(deck)
-        }
-        group.leave()
-    })
-}
-
-group.notify(queue: DispatchQueue.main){
-    completionHandler(decks)
-}
-
- 
- */
