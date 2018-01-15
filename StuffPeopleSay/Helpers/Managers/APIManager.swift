@@ -1,11 +1,6 @@
 import Foundation
-import SwiftyJSON
-import Alamofire
 
 class APIManager{
-    
-    var token:String = ""
-    var socketId:String = ""
 
     // Local
     //    private let baseURL = "http://smfs.info:8000"
@@ -21,9 +16,18 @@ class APIManager{
      
     */
     // Online
-    private let baseURL = "https://smfs.now.sh"
 
-
+    func checkToken(dispatch: NetworkDispatcher, email: String, token: String, socketId: String, completionHandler: @escaping (Bool)->Void){
+        let log = CheckToken(email: email, token: token, socketId: socketId)
+        log.execute(in: dispatch, completionHandler: { (response) in
+            guard let response = response else{
+                completionHandler(false)
+                return
+            }
+            completionHandler(response)
+        })
+    }
+}
     
 
 
