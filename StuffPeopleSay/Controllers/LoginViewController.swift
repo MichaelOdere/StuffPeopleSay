@@ -32,6 +32,11 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
             
             let decks = GetDecks()
             decks.execute(in: dispatch, completionHandler: { (decks) in
+                print("IN LOGIN")
+                print(decks?.count)
+                for deck in decks!{
+                    print(deck)
+                }
                 print("complete")
             })
         }

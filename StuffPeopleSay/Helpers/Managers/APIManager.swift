@@ -23,6 +23,7 @@ class APIManager{
     // Online
     private let baseURL = "https://smfs.now.sh"
     
+/*
     func checkToken(checkToken:String, completion: @escaping (Bool) -> Void){
         let url = URL(string: baseURL + "/auth")!
         Alamofire.request(
@@ -410,3 +411,4 @@ class APIManager{
         return true
     }
 }
+*/

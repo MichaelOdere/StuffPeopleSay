@@ -26,7 +26,6 @@ public class NetworkDispatcher: Dispatcher {
             return
         }
 
-        print(url)
         var headers:[String:String] = [:]
         
         if request.needsAuthHeader {

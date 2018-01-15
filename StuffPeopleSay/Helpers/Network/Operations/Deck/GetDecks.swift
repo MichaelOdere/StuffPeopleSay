@@ -2,7 +2,7 @@ import SwiftyJSON
 
 class GetDecks: Operation {
     
-    typealias Output = [Deck]
+    typealias Output = JSON
     
     var request: Request {
         return DeckRequests.getDecks()
@@ -23,21 +23,7 @@ class GetDecks: Operation {
             }
             
             if case let NetworkResponse.json(jsonData) = response {
-                
-                var decks:[Deck] = []
-                for d in jsonData.array!{
-                    let id = d["id"].string
-                    print(id)
-                    
-                    let getDeck = GetDeck(deckId: id!)
-                    getDeck.execute(in: dispatcher, completionHandler: { (deckResponse) in
-
-                        if let deck = deckResponse {
-                            decks.append(deck)
-                        }
-                    })
-                }
-
+                completionHandler(jsonData)
                 return
             } else {
                 completionHandler(nil)
@@ -51,3 +37,26 @@ class GetDecks: Operation {
 
 
 
+/*
+let group = DispatchGroup()
+var decks:[Deck] = []
+
+for d in jsonData.array!{
+    group.enter()
+    let id = d["id"].string
+    
+    let getDeck = GetDeck(deckId: id!)
+    getDeck.execute(in: dispatcher, completionHandler: { (deckResponse) in
+        if let deck = deckResponse {
+            decks.append(deck)
+        }
+        group.leave()
+    })
+}
+
+group.notify(queue: DispatchQueue.main){
+    completionHandler(decks)
+}
+
+ 
+ */
