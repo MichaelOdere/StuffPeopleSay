@@ -8,13 +8,13 @@ public enum NetworkErrors: Error {
 
 public class NetworkDispatcher: Dispatcher {
     
-    private var environment: Environment
+    private var environment: NetworkEnvironment
 
-    required public init(environment: Environment) {
+    required public init(environment: NetworkEnvironment) {
         self.environment = environment
     }
 
-    public func execute(request: Request, completionHandler: @escaping (Data?, HTTPURLResponse?,  Error?) -> Void) {
+    public func execute(request: Request) -> NetworkResponse {
         let full_url = "\(environment.host)/\(request.path)"
         let url = URL(string: full_url)!
         
@@ -30,23 +30,25 @@ public class NetworkDispatcher: Dispatcher {
             }
         }
         
+        var networkResponse:NetworkResponse!
+        
         let method:HTTPMethod = getMethod(httpCase: request.method)
         Alamofire.request(url,
                           method: method,
                           parameters: request.parameters,
                           headers:headers)
         .validate()
-            .responseData { (response) in
-                guard response.result.isSuccess else {
-                    print("Error while fetching remote rooms: \(response.result.error)")
-                    completionHandler(nil, response.response, response.result.error)
-                    return
-                }
-                
-                completionHandler(response.data, response.response, nil)
-
+        .responseData { (response) in
+            if response.result.isSuccess{
+                networkResponse = NetworkResponse((r: response.response, data: response.data, error: nil))
+            } else {
+                print("Error while fetching remote rooms: \(String(describing: response.result.error))")
+                networkResponse = NetworkResponse((r: response.response, data: nil, error: response.result.error))
             }
         }
+        
+        return networkResponse
+    }
     
     func getMethod(httpCase: HTTPMethodCase) -> HTTPMethod {
         switch httpCase{

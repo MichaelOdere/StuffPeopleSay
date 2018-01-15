@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Environment {
+public struct NetworkEnvironment {
     
     // Token and Socket Id will be nil until the user is logged in and/or the existing token is verified
     public var host: String
@@ -21,6 +21,6 @@ public struct Environment {
 }
 
 public protocol Dispatcher {
-    init(environment: Environment)
-    func execute(request: Request, completionHandler: @escaping (Data?, HTTPURLResponse?, Error?)->Void)
+    init(environment: NetworkEnvironment)
+    func execute(request: Request)->NetworkResponse //, completionHandler: @escaping (Data?, HTTPURLResponse?, Error?)->Void)
 }

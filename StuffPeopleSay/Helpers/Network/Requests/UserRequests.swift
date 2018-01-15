@@ -1,8 +1,8 @@
-public enum UserRequest: Request {
+public enum UserRequests: Request {
 
     case create(email: String, password: String)
     case login(email: String, password: String)
-    case checkToken(token: String)
+    case checkToken(token: String, socketId: String)
     
     public var path: String {
         switch self {
@@ -43,8 +43,8 @@ public enum UserRequest: Request {
             return ["password" : password]
         case .login(_,let password):
             return ["password" : password]
-        case .checkToken(let token):
-            return ["Authorization": token]
+        case .checkToken(let token, let socketId):
+            return ["Authorization": token, "SocketId": socketId]
         }
     }
     

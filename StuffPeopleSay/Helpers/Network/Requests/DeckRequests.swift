@@ -1,4 +1,4 @@
-public enum DeckRequest: Request {
+public enum DeckRequests: Request {
 
     case createDeck(name:String)
     case getDecks()

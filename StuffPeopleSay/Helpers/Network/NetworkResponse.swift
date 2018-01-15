@@ -5,7 +5,7 @@ public enum NetworkResponse {
     case json(_: JSON)
     case error(_: Int?, _: Error?)
     
-    init(_ response: (r: HTTPURLResponse?, data: Data?, error: Error?), for request: Request) {
+    init(_ response: (r: HTTPURLResponse?, data: Data?, error: Error?)) {
         guard response.r?.statusCode == 200, response.error == nil else {
             self = .error(response.r?.statusCode, response.error)
             return

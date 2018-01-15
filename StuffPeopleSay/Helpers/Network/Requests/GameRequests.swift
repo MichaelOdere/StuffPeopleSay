@@ -1,4 +1,4 @@
-public enum GameRequest: Request {
+public enum GameRequests: Request {
     
     case createGame(name: String, boards: Int, deckId: String)
     case getGames()
