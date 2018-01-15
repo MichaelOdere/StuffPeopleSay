@@ -18,9 +18,10 @@ public struct NetworkEnvironment {
         self.token = token
         self.socketId = socketId
     }
+    
 }
 
 public protocol Dispatcher {
     init(environment: NetworkEnvironment)
-    func execute(request: Request)->NetworkResponse //, completionHandler: @escaping (Data?, HTTPURLResponse?, Error?)->Void)
+    func execute(request: Request, completionHandler: @escaping (NetworkResponse)->Void)
 }

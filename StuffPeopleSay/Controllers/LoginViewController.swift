@@ -1,5 +1,6 @@
 import UIKit
 import Foundation
+import KeychainSwift
 
 class LoginViewController:UIViewController, UITextFieldDelegate{
     enum ButtonState{
@@ -15,20 +16,42 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
     var loadingView:LoadingView!
 
     override func viewDidLoad() {
-        self.updateEmailTextField()
-        emailTextField.delegate = self
-        emailTextField.returnKeyType = UIReturnKeyType.done
-        emailTextField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)),
-                                 for: UIControlEvents.editingChanged)
 
-        self.loadingView = LoadingView(frame: self.view.frame)
-        self.loadingView.startAnimating()
-        self.view.addSubview(self.loadingView)
+        let environment = NetworkEnvironment(host: "https://smfs.now.sh", token: "", socketId: "")
+        let dispatch = NetworkDispatcher(environment: environment)
+        let keychain = KeychainSwift()
+
+        print("check")
+//        log.execute(in: dispatch)
         
-        // tap to remove keyboard
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
-        
-        login(email: nil)
+        let getToken = GetToken(email: keychain.get("email")!, password: "")
+        getToken.execute(in: dispatch) { (token) in
+            print("in login we have \(token)")
+            let log = CheckToken(email: keychain.get("email")!, token: token!, socketId: "1")
+            log.execute(in: dispatch, completionHandler: { (response) in
+                print("Token valid: \(response)")
+            })
+            dispatch.setToken(token: token!)
+            
+            let decks = GetDecks()
+            decks.execute(in: dispatch, completionHandler: { (decks) in
+                
+            })
+        }
+//        self.updateEmailTextField()
+//        emailTextField.delegate = self
+//        emailTextField.returnKeyType = UIReturnKeyType.done
+//        emailTextField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)),
+//                                 for: UIControlEvents.editingChanged)
+//
+//        self.loadingView = LoadingView(frame: self.view.frame)
+//        self.loadingView.startAnimating()
+//        self.view.addSubview(self.loadingView)
+//
+//        // tap to remove keyboard
+//        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+//
+//        login(email: nil)
     }
     
     func login(email:String?) {

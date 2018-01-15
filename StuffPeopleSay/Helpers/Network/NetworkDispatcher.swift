@@ -14,9 +14,17 @@ public class NetworkDispatcher: Dispatcher {
         self.environment = environment
     }
 
-    public func execute(request: Request) -> NetworkResponse {
-        let full_url = "\(environment.host)/\(request.path)"
-        let url = URL(string: full_url)!
+    func setToken(token:String){
+        environment.token = token
+    }
+    
+    public func execute(request: Request, completionHandler: @escaping (NetworkResponse)->Void) {
+        let full_url = "\(environment.host)\(request.path)"
+        guard let url = URL(string: full_url) else{
+            print("Something went wrong with the URL")
+            print(full_url)
+            return
+        }
         
         var headers:[String:String] = [:]
         
@@ -30,9 +38,9 @@ public class NetworkDispatcher: Dispatcher {
             }
         }
         
-        var networkResponse:NetworkResponse!
-        
         let method:HTTPMethod = getMethod(httpCase: request.method)
+        print("headers")
+        print(headers)
         Alamofire.request(url,
                           method: method,
                           parameters: request.parameters,
@@ -40,14 +48,12 @@ public class NetworkDispatcher: Dispatcher {
         .validate()
         .responseData { (response) in
             if response.result.isSuccess{
-                networkResponse = NetworkResponse((r: response.response, data: response.data, error: nil))
+                completionHandler(NetworkResponse((r: response.response, data: response.data, error: nil)))
             } else {
-                print("Error while fetching remote rooms: \(String(describing: response.result.error))")
-                networkResponse = NetworkResponse((r: response.response, data: nil, error: response.result.error))
+                print("Error while fetching: \(String(describing: response.result.error))")
+                completionHandler(NetworkResponse((r: response.response, data: nil, error: response.result.error)))
             }
         }
-        
-        return networkResponse
     }
     
     func getMethod(httpCase: HTTPMethodCase) -> HTTPMethod {
@@ -62,5 +68,4 @@ public class NetworkDispatcher: Dispatcher {
             return .delete
         }
     }
-    
 }

@@ -2,7 +2,7 @@ public enum UserRequests: Request {
 
     case create(email: String, password: String)
     case login(email: String, password: String)
-    case checkToken(token: String, socketId: String)
+    case checkToken(email: String, token: String, socketId: String)
     
     public var path: String {
         switch self {
@@ -10,7 +10,7 @@ public enum UserRequests: Request {
             return "/users/create"
         case .login(_):
             return "/users/auth"
-        case .checkToken(_):
+        case .checkToken(_,_,_):
             return "/auth"
         }
     }
@@ -21,7 +21,7 @@ public enum UserRequests: Request {
             return .post
         case .login(_):
             return .put
-        case .checkToken(_):
+        case .checkToken(_,_,_):
             return .get
         }
     }
@@ -32,8 +32,8 @@ public enum UserRequests: Request {
             return ["email" : email]
         case .login(let email, _):
             return ["email" : email]
-        case .checkToken(_):
-            return nil
+        case .checkToken(let email,_,_):
+            return ["email" : email]
         }
     }
     
@@ -41,10 +41,10 @@ public enum UserRequests: Request {
         switch self {
         case .create(_,let password):
             return ["password" : password]
-        case .login(_,let password):
-            return ["password" : password]
-        case .checkToken(let token, let socketId):
-            return ["Authorization": token, "SocketId": socketId]
+        case .login(_,_):
+            return nil
+        case .checkToken(_, let token, let socketId):
+            return ["Authorization": token]
         }
     }
     

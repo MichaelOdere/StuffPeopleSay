@@ -13,7 +13,7 @@ public enum DeckRequests: Request {
         case .getDecks():
             return "/decks"
         case .getDeck(let deckId):
-            return "/decks/{" + deckId + "}"
+            return "/decks/{\(deckId)}"
         case .addCardsToDeck(let deckId,_):
             return "/decks/{" + deckId + "}/cards"
         case .deleteCardsFromDeck(let deckId,_):

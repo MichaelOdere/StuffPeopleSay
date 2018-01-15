@@ -11,6 +11,9 @@
 		F905D6D61FF5C30600A0CFD5 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F905D6D51FF5C30600A0CFD5 /* AlertViewController.swift */; };
 		F9066DA21FD5F637003BF133 /* GameViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9066DA11FD5F637003BF133 /* GameViewCell.swift */; };
 		F90B4B7A1FBBA232002FEBF0 /* PusherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90B4B791FBBA232002FEBF0 /* PusherManager.swift */; };
+		F90CFDDD200C8C6C0028F6D7 /* GetToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90CFDDC200C8C6C0028F6D7 /* GetToken.swift */; };
+		F90CFDDF200D2A560028F6D7 /* GetDecks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90CFDDE200D2A560028F6D7 /* GetDecks.swift */; };
+		F90CFDE3200D32570028F6D7 /* GetDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90CFDE2200D32570028F6D7 /* GetDeck.swift */; };
 		F91230DD1FF1972F00182B55 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91230DC1FF1972F00182B55 /* Deck.swift */; };
 		F91A631B2006B2C000BF8DD1 /* DeckCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91A631A2006B2C000BF8DD1 /* DeckCollectionView.swift */; };
 		F91A631D2006C63A00BF8DD1 /* DeckCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91A631C2006C63A00BF8DD1 /* DeckCollectionViewDataSource.swift */; };
@@ -47,7 +50,7 @@
 		F9B295381FF4DCB700454D21 /* CardTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B295371FF4DCB700454D21 /* CardTextfield.swift */; };
 		F9B7CE9C200C2E3A00E6C5BC /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B7CE9B200C2E3A00E6C5BC /* NetworkResponse.swift */; };
 		F9B7CE9E200C3CC500E6C5BC /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B7CE9D200C3CC500E6C5BC /* NetworkOperation.swift */; };
-		F9B7CEA1200C3D7D00E6C5BC /* LoginOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B7CEA0200C3D7D00E6C5BC /* LoginOperation.swift */; };
+		F9B7CEA1200C3D7D00E6C5BC /* CheckToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B7CEA0200C3D7D00E6C5BC /* CheckToken.swift */; };
 		F9C2B7FB200424B400F38DAD /* SPSCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C2B7FA200424B400F38DAD /* SPSCollectionViewCell.swift */; };
 		F9DC7C941FD0C66A0097D4B5 /* BingoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC7C931FD0C66A0097D4B5 /* BingoCollectionView.swift */; };
 		F9DC7C961FD0C8370097D4B5 /* OpponentBingoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC7C951FD0C8370097D4B5 /* OpponentBingoViewController.swift */; };
@@ -71,6 +74,9 @@
 		F905D6D51FF5C30600A0CFD5 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		F9066DA11FD5F637003BF133 /* GameViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewCell.swift; sourceTree = "<group>"; };
 		F90B4B791FBBA232002FEBF0 /* PusherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PusherManager.swift; sourceTree = "<group>"; };
+		F90CFDDC200C8C6C0028F6D7 /* GetToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetToken.swift; sourceTree = "<group>"; };
+		F90CFDDE200D2A560028F6D7 /* GetDecks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDecks.swift; sourceTree = "<group>"; };
+		F90CFDE2200D32570028F6D7 /* GetDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDeck.swift; sourceTree = "<group>"; };
 		F91230DC1FF1972F00182B55 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		F91A631A2006B2C000BF8DD1 /* DeckCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCollectionView.swift; sourceTree = "<group>"; };
 		F91A631C2006C63A00BF8DD1 /* DeckCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -109,7 +115,7 @@
 		F9B295371FF4DCB700454D21 /* CardTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTextfield.swift; sourceTree = "<group>"; };
 		F9B7CE9B200C2E3A00E6C5BC /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
 		F9B7CE9D200C3CC500E6C5BC /* NetworkOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
-		F9B7CEA0200C3D7D00E6C5BC /* LoginOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOperation.swift; sourceTree = "<group>"; };
+		F9B7CEA0200C3D7D00E6C5BC /* CheckToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckToken.swift; sourceTree = "<group>"; };
 		F9C2B7FA200424B400F38DAD /* SPSCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPSCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9DC7C931FD0C66A0097D4B5 /* BingoCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoCollectionView.swift; sourceTree = "<group>"; };
 		F9DC7C951FD0C8370097D4B5 /* OpponentBingoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpponentBingoViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +181,24 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		F90CFDE0200D323B0028F6D7 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				F9B7CEA0200C3D7D00E6C5BC /* CheckToken.swift */,
+				F90CFDDC200C8C6C0028F6D7 /* GetToken.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		F90CFDE1200D32420028F6D7 /* Deck */ = {
+			isa = PBXGroup;
+			children = (
+				F90CFDDE200D2A560028F6D7 /* GetDecks.swift */,
+				F90CFDE2200D32570028F6D7 /* GetDeck.swift */,
+			);
+			path = Deck;
+			sourceTree = "<group>";
+		};
 		F93D1C14200C0A9D00B0107D /* Requests */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,8 +261,9 @@
 		F9B7CE9F200C3D5100E6C5BC /* Operations */ = {
 			isa = PBXGroup;
 			children = (
+				F90CFDE0200D323B0028F6D7 /* User */,
 				F9B7CE9D200C3CC500E6C5BC /* NetworkOperation.swift */,
-				F9B7CEA0200C3D7D00E6C5BC /* LoginOperation.swift */,
+				F90CFDE1200D32420028F6D7 /* Deck */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -480,6 +505,7 @@
 				F9707CE4200B0008001F4D17 /* RequestProtocol.swift in Sources */,
 				F9707CEB200B36DA001F4D17 /* DeckRequests.swift in Sources */,
 				F93D1C11200BD77900B0107D /* CardRequests.swift in Sources */,
+				F90CFDE3200D32570028F6D7 /* GetDeck.swift in Sources */,
 				F91230DD1FF1972F00182B55 /* Deck.swift in Sources */,
 				F96C58061FBB69F600D49481 /* BingoGame.swift in Sources */,
 				F95B17151FBBBBEF00AA000B /* GameStore.swift in Sources */,
@@ -489,13 +515,14 @@
 				F9DC7C9A1FD1259D0097D4B5 /* PieceView.swift in Sources */,
 				F93D1C13200BD80000B0107D /* NetworkEnvironment.swift in Sources */,
 				F9EB8CB42007EFF0004F04D0 /* DeckShowViewController.swift in Sources */,
-				F9B7CEA1200C3D7D00E6C5BC /* LoginOperation.swift in Sources */,
+				F9B7CEA1200C3D7D00E6C5BC /* CheckToken.swift in Sources */,
 				F9AAF1CE1FD62F5E008A618F /* BoardCollectionViewCell.swift in Sources */,
 				F95B17171FBBBBF400AA000B /* Card.swift in Sources */,
 				F91A631D2006C63A00BF8DD1 /* DeckCollectionViewDataSource.swift in Sources */,
 				F9E7B39E1FC3E4F600B81872 /* GamesTableViewController.swift in Sources */,
 				F9341C0F1FD1ECA0009CD301 /* Board.swift in Sources */,
 				F9B7CE9C200C2E3A00E6C5BC /* NetworkResponse.swift in Sources */,
+				F90CFDDF200D2A560028F6D7 /* GetDecks.swift in Sources */,
 				F9EB8CB02007DC91004F04D0 /* CardCollectionView.swift in Sources */,
 				F96AA6151FBAB999001E7CCD /* BingoCollectionViewLayout.swift in Sources */,
 				F96AA6011FBAB4F4001E7CCD /* AppDelegate.swift in Sources */,
@@ -503,6 +530,7 @@
 				F9707CE9200B325D001F4D17 /* GameRequests.swift in Sources */,
 				F96F1DB41FF4CC7A00C06E9C /* CardCell.swift in Sources */,
 				F9B7CE9E200C3CC500E6C5BC /* NetworkOperation.swift in Sources */,
+				F90CFDDD200C8C6C0028F6D7 /* GetToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
