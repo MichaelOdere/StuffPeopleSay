@@ -32,7 +32,3 @@ class GetDecks: Operation {
         }
     }
 }
-
-
-
-

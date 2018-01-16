@@ -1,20 +1,21 @@
-class GetDeck: Operation {
+class CreateUser: Operation {
     
-    typealias Output = Deck
+    typealias Output = Bool
     
-    var deckId: String
+    var email: String
+    var password: String
     
-    init(deckId: String) {
-        self.deckId = deckId
+    init(email: String, password: String) {
+        self.email = email
+        self.password = password
     }
     
     var request: Request {
-        return DeckRequests.getDeck(deckId: deckId)
+        return UserRequests.create(email: email, password: password)
     }
     
     func execute(in dispatcher: Dispatcher, completionHandler: @escaping (Output?)->Void) {
         dispatcher.execute(request: request) { (response) in
-
             if case let NetworkResponse.error(code, error) = response {
                 if let code = code {
                     print("Status code \(code)")
@@ -28,11 +29,14 @@ class GetDeck: Operation {
             }
             
             if case let NetworkResponse.json(jsonData) = response {
-                completionHandler(Deck(json: jsonData))
-            }else{
+                print("JSON")
+                print(jsonData)
+                completionHandler(true)
+                return
+            } else {
                 completionHandler(nil)
+                return
             }
-            
         }
     }
 }

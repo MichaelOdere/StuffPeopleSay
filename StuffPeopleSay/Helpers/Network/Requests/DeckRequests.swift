@@ -4,7 +4,7 @@ public enum DeckRequests: Request {
     case getDecks()
     case getDeck(deckId:String)
     case addCardsToDeck(deckId:String, cards:[String])
-    case deleteCardsFromDeck(deckId:String, cards:[String])
+    case removeCardsFromDeck(deckId:String, cards:[String])
     
     public var path: String {
         switch self {
@@ -18,7 +18,7 @@ public enum DeckRequests: Request {
             return "/decks/%7B" + deckId + "%7D"
         case .addCardsToDeck(let deckId,_):
             return "/decks/%7B" + deckId + "%7D/cards"
-        case .deleteCardsFromDeck(let deckId,_):
+        case .removeCardsFromDeck(let deckId,_):
             return "/decks/%7B" + deckId + "%7D/cards"
         }
     }
@@ -33,7 +33,7 @@ public enum DeckRequests: Request {
             return .get
         case .addCardsToDeck(_,_):
             return .put
-        case .deleteCardsFromDeck(_,_):
+        case .removeCardsFromDeck(_,_):
             return .delete
         }
     }
@@ -48,7 +48,7 @@ public enum DeckRequests: Request {
             return nil
         case .addCardsToDeck(_,let cards):
             return ["cards": cards]
-        case .deleteCardsFromDeck(_,let cards):
+        case .removeCardsFromDeck(_,let cards):
             return ["cards": cards]
         }
     }
@@ -63,7 +63,7 @@ public enum DeckRequests: Request {
             return nil
         case .addCardsToDeck(_,_):
             return nil
-        case .deleteCardsFromDeck(_,_):
+        case .removeCardsFromDeck(_,_):
             return nil
         }
     }

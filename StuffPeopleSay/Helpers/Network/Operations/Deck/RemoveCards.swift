@@ -1,20 +1,23 @@
-class GetDeck: Operation {
+import SwiftyJSON
+
+class RemoveCards: Operation {
     
-    typealias Output = Deck
+    typealias Output = Game
     
     var deckId: String
+    var cards: [String]
     
-    init(deckId: String) {
+    init(deckId: String, cards: [String]) {
         self.deckId = deckId
+        self.cards = cards
     }
     
     var request: Request {
-        return DeckRequests.getDeck(deckId: deckId)
+        return DeckRequests.removeCardsFromDeck(deckId: deckId, cards: cards)
     }
     
     func execute(in dispatcher: Dispatcher, completionHandler: @escaping (Output?)->Void) {
         dispatcher.execute(request: request) { (response) in
-
             if case let NetworkResponse.error(code, error) = response {
                 if let code = code {
                     print("Status code \(code)")
@@ -28,11 +31,16 @@ class GetDeck: Operation {
             }
             
             if case let NetworkResponse.json(jsonData) = response {
-                completionHandler(Deck(json: jsonData))
-            }else{
+                print("JSON")
+                print(jsonData)
                 completionHandler(nil)
+                //                completionHandler(Game(gameId: "s", name: "s", status: "2", my: User(userId: "d", name: "d", boards: [] ), opponents: []))
+                return
+            } else {
+                completionHandler(nil)
+                return
             }
-            
         }
     }
 }
+
