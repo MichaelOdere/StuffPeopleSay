@@ -101,6 +101,19 @@ class GameStore{
     
     // MARK: GameStore - User
 
+    func createUser(email: String, password: String, completionHandler: @escaping (Bool)->Void) {
+        apiManager.createUser(email: email, password: password, dispatch: dispatch) { (token) in
+            guard let token = token else {
+                completionHandler(false)
+                return
+            }
+            
+            self.apiManager.checkToken(email: email, token: token, socketId: "123", dispatch: self.dispatch, completionHandler: { (success) in
+                completionHandler(success)
+            })
+        }
+    }
+    
     func loginWithToken(completionHandler: @escaping (Bool)->Void) {
         guard let token = keychain.get("token"), let email = keychain.get("email") else{
             self.isLoggedIn = false
@@ -143,7 +156,7 @@ class GameStore{
     }
     
     // MARK: GameStore - Game
-
+    
     func createGame(name: String, boards: Int, deckId: String, completionHandler: @escaping (Game?)->Void){
         apiManager.createGame(name: name, boards: boards, deckId: deckId, dispatch: dispatch) { (game) in
             completionHandler(game)
@@ -154,6 +167,12 @@ class GameStore{
         apiManager.getGames(dispatch: dispatch) { (games) in
             self.games = games
             completionHandler(true)
+        }
+    }
+    
+    func updateGame(gameId: String, completionHandler: @escaping (Bool)->Void) {
+        apiManager.updateGame(gameId: gameId, dispatch: dispatch) { (success) in
+            completionHandler(success)
         }
     }
     
@@ -210,6 +229,60 @@ class GameStore{
             }
         }
     }
+    
+    func addCards(deckId: String, cards: [String], completionHandler: @escaping (Bool)->Void) {
+        apiManager.addCards(deckId: deckId, cards: cards, dispatch: dispatch) { (success) in
+//            if success {
+//                if let deck = self.findDeck(deckId: deckId){
+//                    self.addCards(deck: deck, cards: cards)
+//                    completionHandler(success)
+//                    return
+//                }
+//                completionHandler(false)
+//                return
+//            }
+            completionHandler(success)
+        }
+    }
+    
+    func removeCards(deckId: String, cards: [String], completionHandler: @escaping (Bool)->Void) {
+        apiManager.removeCards(deckId: deckId, cards: cards, dispatch: dispatch) { (success) in
+//            if success {
+//                if let deck = self.findDeck(deckId: deckId){
+//                    self.removeCards(deck: deck, cards: cards)
+//                    completionHandler(success)
+//                    return
+//                }
+//                completionHandler(false)
+//                return
+//            }
+            completionHandler(success)
+        }
+    }
+    
+//    func findDeck(deckId: String)->Deck? {
+//        if let index = decks.index(where: {$0.id == deckId}) {
+//            return decks[index]
+//        }
+//        return nil
+//    }
+//
+//
+//    func addCards(deck: Deck, cards: [String]) {
+//        for id in cards {
+//            if !deck.cards.contains(id) {
+//                deck.cards.append(id)
+//            }
+//        }
+//    }
+//
+//    func removeCards(deck: Deck, cards: [String]) {
+//        for id in cards {
+//            if let index = deck.cards.index(of: id) {
+//                deck.cards.remove(at: index)
+//            }
+//        }
+//    }
     
     // MARK: GameStore - Card
 }

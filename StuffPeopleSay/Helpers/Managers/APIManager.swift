@@ -99,22 +99,22 @@ struct APIManager{
         }
     }
     
-    func addCards(deckId: String, cards: [String], dispatch: NetworkDispatcher, completionHandler: @escaping (Bool?)->Void){
+    func addCards(deckId: String, cards: [String], dispatch: NetworkDispatcher, completionHandler: @escaping (Bool)->Void){
         let operation = AddCardsOperation(deckId: deckId, cards: cards)
         operation.execute(in: dispatch) { (success) in
             guard let success = success else{
-                completionHandler(nil)
+                completionHandler(false)
                 return
             }
             completionHandler(success)
         }
     }
     
-    func removeCards(deckId: String, cards: [String], dispatch: NetworkDispatcher, completionHandler: @escaping (Bool?)->Void){
+    func removeCards(deckId: String, cards: [String], dispatch: NetworkDispatcher, completionHandler: @escaping (Bool)->Void){
         let operation = RemoveCardsOperation(deckId: deckId, cards: cards)
         operation.execute(in: dispatch) { (success) in
             guard let success = success else{
-                completionHandler(nil)
+                completionHandler(false)
                 return
             }
             completionHandler(success)
