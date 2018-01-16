@@ -1,6 +1,11 @@
 import Foundation
 import KeychainSwift
 
+enum LoginType {
+    case token
+    case password(email: String, password: String)
+}
+
 class GameStore{
     
     // Managers
@@ -8,8 +13,9 @@ class GameStore{
     var pushManager:PusherManager
     var dispatch:NetworkDispatcher
 
-    private let baseURL = "https://smfs.now.sh"
-   
+//    private let baseURL = "https://smfs.now.sh"
+    private let baseURL = "http://smfs.info:8000"
+
     // User Variables
     var isLoggedIn:Bool
     var keychain:KeychainSwift
@@ -32,19 +38,79 @@ class GameStore{
         decks = []
     }
     
+    func login(loginType: LoginType, completionHandler: @escaping (Bool)->Void) {
+        switch loginType {
+        case .token:
+            loginWithToken(completionHandler: { (success) in
+                completionHandler(success)
+            })
+        case .password(let email, let password):
+            loginWithPassword(email: email, password: password, completionHandler: { (success) in
+                completionHandler(success)
+            })
+        }
+    }
     
-    // Check token user
-    func checkToken(email: String, token:String, socketId: String, completionHandler: @escaping (Bool)->Void){
-        apiManager.checkToken(dispatch: dispatch, email: email, token: token, socketId: socketId) { (success) in
+    func loginWithToken(completionHandler: @escaping (Bool)->Void) {
+        guard let token = keychain.get("token"), let email = keychain.get("email") else{
+            self.isLoggedIn = false
+            completionHandler(false)
+            return
+        }
+
+        apiManager.checkToken(dispatch: dispatch, email: email, token: token, socketId: "123") { (success) in
             if success {
                 self.isLoggedIn = true
-                self.dispatch.setToken(token: token)
+                let environment = NetworkEnvironment(host: self.baseURL, token: token, socketId: "123")
+                self.dispatch.setEnvironment(environment: environment)
             }else{
                 self.isLoggedIn = false
             }
             completionHandler(success)
         }
     }
+    
+    func loginWithPassword(email: String, password: String, completionHandler: @escaping (Bool)->Void){
+        apiManager.login(dispatch: dispatch, email: email, password: password) { (token) in
+            guard let token = token else{
+                self.isLoggedIn = false
+                completionHandler(false)
+                return
+            }
+            
+            self.isLoggedIn = true
+          
+            let environment = NetworkEnvironment(host: self.baseURL, token: token, socketId: "123")
+            self.dispatch.setEnvironment(environment: environment)
+            
+            self.keychain.set(token, forKey: "token")
+            self.keychain.set(email, forKey: "email")
+            
+            print("THIS IS THE TOKEN IN LOGIN")
+            print(token)
+            completionHandler(true)
+        }
+    }
+    
+    func getGames(completionHandler: @escaping (Bool)->Void){
+        apiManager.getGames(dispatch: dispatch) { (games) in
+            self.games = games
+            completionHandler(true)
+        }
+    }
+    
+    // Check token user
+//    func checkToken(email: String, token:String, socketId: String, completionHandler: @escaping (Bool)->Void){
+//        apiManager.checkToken(dispatch: dispatch, email: email, token: token, socketId: socketId) { (success) in
+//            if success {
+//                self.isLoggedIn = true
+//                self.dispatch.setToken(token: token)
+//            }else{
+//                self.isLoggedIn = false
+//            }
+//            completionHandler(success)
+//        }
+//    }
     
     
     

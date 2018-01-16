@@ -44,7 +44,7 @@ public enum UserRequests: Request {
         case .login(_,_):
             return nil
         case .checkToken(_, let token, let socketId):
-            return ["Authorization": token]
+            return ["Authorization": token, ]
         }
     }
     

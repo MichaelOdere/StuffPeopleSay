@@ -14,8 +14,8 @@ public class NetworkDispatcher: Dispatcher {
         self.environment = environment
     }
 
-    func setToken(token:String){
-        environment.token = token
+    func setEnvironment(environment: NetworkEnvironment) {
+        self.environment = environment
     }
     
     public func execute(request: Request, completionHandler: @escaping (NetworkResponse)->Void) {
@@ -29,6 +29,7 @@ public class NetworkDispatcher: Dispatcher {
         var headers:[String:String] = [:]
         
         if request.needsAuthHeader {
+            print("yes needs header")
             headers = environment.authHeaders
         }
         
@@ -38,6 +39,11 @@ public class NetworkDispatcher: Dispatcher {
             }
         }
         
+        print("headers")
+        print(request.path)
+        print(headers)
+        print(environment.authHeaders)
+
         let method:HTTPMethod = getMethod(httpCase: request.method)
         Alamofire.request(url,
                           method: method,

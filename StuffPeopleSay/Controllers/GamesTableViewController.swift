@@ -85,43 +85,43 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
     }
     
     func addNewGame(){
-        self.gameStore.apiManager.createGame(completionHandler: { data, error in
-            guard let data = data else {
-                print(error as Any)
-                return
-            }
-            do {
-
-                let json = try JSON(data: data)
-                if let game = Game(json: json){
-                    self.gameStore.games.insert(game, at: 0)
-                    print("New game added")
-                }
-            } catch {
-                print(error)
-            }
-            DispatchQueue.main.sync {
-                self.tableview.reloadData()
-            }
-        })
+//        self.gameStore.apiManager.createGame(completionHandler: { data, error in
+//            guard let data = data else {
+//                print(error as Any)
+//                return
+//            }
+//            do {
+//
+//                let json = try JSON(data: data)
+//                if let game = Game(json: json){
+//                    self.gameStore.games.insert(game, at: 0)
+//                    print("New game added")
+//                }
+//            } catch {
+//                print(error)
+//            }
+//            DispatchQueue.main.sync {
+//                self.tableview.reloadData()
+//            }
+//        })
     }
     
     @objc func didBecomeActive(){
-        if self.gameStore.isLoggedIn{
-            self.loadingView.startAnimating()
-            self.view.addSubview(self.loadingView)
-
-            let group = DispatchGroup()
-            group.enter()
-            self.gameStore.updateGames(completionHandler: { error in
-                group.leave()
-            })
-            group.notify(queue: DispatchQueue.main){
-                self.loadingView.stopAnimating()
-                self.loadingView.removeFromSuperview()
-                self.tableview.reloadData()
-            }
-        }
+//        if self.gameStore.isLoggedIn{
+//            self.loadingView.startAnimating()
+//            self.view.addSubview(self.loadingView)
+//
+//            let group = DispatchGroup()
+//            group.enter()
+//            self.gameStore.updateGames(completionHandler: { error in
+//                group.leave()
+//            })
+//            group.notify(queue: DispatchQueue.main){
+//                self.loadingView.stopAnimating()
+//                self.loadingView.removeFromSuperview()
+//                self.tableview.reloadData()
+//            }
+//        }
     }
 }
 

@@ -1,6 +1,5 @@
 import UIKit
 import Foundation
-import KeychainSwift
 
 class LoginViewController:UIViewController, UITextFieldDelegate{
     enum ButtonState{
@@ -17,82 +16,38 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
 
     override func viewDidLoad() {
 
-        let environment = NetworkEnvironment(host: "https://smfs.now.sh", token: "", socketId: "")
-        let dispatch = NetworkDispatcher(environment: environment)
-        let keychain = KeychainSwift()
-        
-        let getToken = GetToken(email: keychain.get("email")!, password: "")
-        getToken.execute(in: dispatch) { (token) in
+        self.updateEmailTextField()
+        emailTextField.delegate = self
+        emailTextField.returnKeyType = UIReturnKeyType.done
+        emailTextField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)),
+                                 for: UIControlEvents.editingChanged)
 
-            let log = CheckToken(email: keychain.get("email")!, token: token!, socketId: "1")
-            log.execute(in: dispatch, completionHandler: { (response) in
-                print("Token valid: \(response)")
-            })
-            dispatch.setToken(token: token!)
-            
-            let decks = GetDecks()
-            decks.execute(in: dispatch, completionHandler: { (decks) in
-                print("IN LOGIN")
-                print(decks?.count)
-                for deck in decks!{
-                    print(deck)
-                }
-                print("complete")
-            })
-        }
-//        self.updateEmailTextField()
-//        emailTextField.delegate = self
-//        emailTextField.returnKeyType = UIReturnKeyType.done
-//        emailTextField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)),
-//                                 for: UIControlEvents.editingChanged)
-//
-//        self.loadingView = LoadingView(frame: self.view.frame)
-//        self.loadingView.startAnimating()
-//        self.view.addSubview(self.loadingView)
-//
-//        // tap to remove keyboard
-//        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
-//
-//        login(email: nil)
+        self.loadingView = LoadingView(frame: self.view.frame)
+        self.loadingView.startAnimating()
+        self.view.addSubview(self.loadingView)
+
+        // tap to remove keyboard
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        
+        login(loginType: .token)
     }
     
-    func login(email:String?) {
+    func login(loginType:LoginType) {
         loadingView.startAnimating()
         self.view.addSubview(loadingView)
         let group = DispatchGroup()
         group.enter()
-        self.gameStore.loginUser(email: email, completionHandler: { login, error in
-            guard let _ = login else {
-                print(error as Any)
-                return
+        
+        gameStore.login(loginType: loginType) { (success) in
+
+            if self.gameStore.isLoggedIn {
+                self.gameStore.getGames(completionHandler: { (success) in
+                    print(self.gameStore.games.count)
+                })
             }
             group.leave()
-        })
-        group.notify(queue: DispatchQueue.main){
-            group.enter()
-            if self.gameStore.isLoggedIn{
-//                self.gameStore.createDeck { (error) in
-//                    print("done0")
-//                    if let error = error {
-//                        print(error as Any)
-//                        return
-//                    }
-//                }
-                    print("done1")
-                    self.gameStore.getDecks(completionHandler: { (error) in
-                        if let error = error {
-                            print(error as Any)
-                            return
-                        }
-                        group.leave()
-
-                        print("done2")
-                    })
-                
-            }else{
-                group.leave()
-            }
         }
+        
         group.notify(queue: DispatchQueue.main){
             if self.gameStore.isLoggedIn {
                 self.showGameScreen {
@@ -107,7 +62,7 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
     }
     
     @IBAction func LoginButton(_ sender: Any?) {
-        login(email: emailTextField.text)
+        login(loginType: .password(email: emailTextField.text!, password: "pw"))
     }
 
     @objc func textFieldDidChange(_ textField: UITextField) {

@@ -51,6 +51,10 @@
 		F9B7CE9C200C2E3A00E6C5BC /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B7CE9B200C2E3A00E6C5BC /* NetworkResponse.swift */; };
 		F9B7CE9E200C3CC500E6C5BC /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B7CE9D200C3CC500E6C5BC /* NetworkOperation.swift */; };
 		F9B7CEA1200C3D7D00E6C5BC /* CheckToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B7CEA0200C3D7D00E6C5BC /* CheckToken.swift */; };
+		F9BDD318200D731900FD320E /* GetGames.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BDD317200D731900FD320E /* GetGames.swift */; };
+		F9BDD31A200D732500FD320E /* CreateGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BDD319200D732500FD320E /* CreateGame.swift */; };
+		F9BDD31C200D733700FD320E /* UpdateGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BDD31B200D733700FD320E /* UpdateGame.swift */; };
+		F9BDD31E200D793400FD320E /* CreateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BDD31D200D793400FD320E /* CreateUser.swift */; };
 		F9C2B7FB200424B400F38DAD /* SPSCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C2B7FA200424B400F38DAD /* SPSCollectionViewCell.swift */; };
 		F9DC7C941FD0C66A0097D4B5 /* BingoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC7C931FD0C66A0097D4B5 /* BingoCollectionView.swift */; };
 		F9DC7C961FD0C8370097D4B5 /* OpponentBingoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC7C951FD0C8370097D4B5 /* OpponentBingoViewController.swift */; };
@@ -116,6 +120,10 @@
 		F9B7CE9B200C2E3A00E6C5BC /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
 		F9B7CE9D200C3CC500E6C5BC /* NetworkOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
 		F9B7CEA0200C3D7D00E6C5BC /* CheckToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckToken.swift; sourceTree = "<group>"; };
+		F9BDD317200D731900FD320E /* GetGames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGames.swift; sourceTree = "<group>"; };
+		F9BDD319200D732500FD320E /* CreateGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGame.swift; sourceTree = "<group>"; };
+		F9BDD31B200D733700FD320E /* UpdateGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateGame.swift; sourceTree = "<group>"; };
+		F9BDD31D200D793400FD320E /* CreateUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUser.swift; sourceTree = "<group>"; };
 		F9C2B7FA200424B400F38DAD /* SPSCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPSCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9DC7C931FD0C66A0097D4B5 /* BingoCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoCollectionView.swift; sourceTree = "<group>"; };
 		F9DC7C951FD0C8370097D4B5 /* OpponentBingoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpponentBingoViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +203,7 @@
 			children = (
 				F90CFDDE200D2A560028F6D7 /* GetDecks.swift */,
 				F90CFDE2200D32570028F6D7 /* GetDeck.swift */,
+				F9BDD31D200D793400FD320E /* CreateUser.swift */,
 			);
 			path = Deck;
 			sourceTree = "<group>";
@@ -261,11 +270,22 @@
 		F9B7CE9F200C3D5100E6C5BC /* Operations */ = {
 			isa = PBXGroup;
 			children = (
-				F90CFDE0200D323B0028F6D7 /* User */,
 				F9B7CE9D200C3CC500E6C5BC /* NetworkOperation.swift */,
+				F90CFDE0200D323B0028F6D7 /* User */,
+				F9BDD316200D72DF00FD320E /* Game */,
 				F90CFDE1200D32420028F6D7 /* Deck */,
 			);
 			path = Operations;
+			sourceTree = "<group>";
+		};
+		F9BDD316200D72DF00FD320E /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				F9BDD319200D732500FD320E /* CreateGame.swift */,
+				F9BDD317200D731900FD320E /* GetGames.swift */,
+				F9BDD31B200D733700FD320E /* UpdateGame.swift */,
+			);
+			path = Game;
 			sourceTree = "<group>";
 		};
 		F9FEA8A01FFEBD3E00CEFE30 /* Models */ = {
@@ -488,6 +508,7 @@
 				F9EB8CAE2007DB96004F04D0 /* CardCollectionViewDataSource.swift in Sources */,
 				F905D6D61FF5C30600A0CFD5 /* AlertViewController.swift in Sources */,
 				F96C58041FBB5A3B00D49481 /* BingoCollectionCell.swift in Sources */,
+				F9BDD31E200D793400FD320E /* CreateUser.swift in Sources */,
 				F9E7B39C1FC3D28E00B81872 /* Game.swift in Sources */,
 				F9DC7C941FD0C66A0097D4B5 /* BingoCollectionView.swift in Sources */,
 				F9792C5E1FD75D4400ADE88C /* ZoomTransitioningDelegate.swift in Sources */,
@@ -502,6 +523,7 @@
 				F993AC0C1FD6229000433689 /* BoardCollectionViewController.swift in Sources */,
 				F92DBEDA1FBB8D5300B4566F /* User.swift in Sources */,
 				F9707CE7200B2C49001F4D17 /* UserRequests.swift in Sources */,
+				F9BDD318200D731900FD320E /* GetGames.swift in Sources */,
 				F9707CE4200B0008001F4D17 /* RequestProtocol.swift in Sources */,
 				F9707CEB200B36DA001F4D17 /* DeckRequests.swift in Sources */,
 				F93D1C11200BD77900B0107D /* CardRequests.swift in Sources */,
@@ -509,6 +531,7 @@
 				F91230DD1FF1972F00182B55 /* Deck.swift in Sources */,
 				F96C58061FBB69F600D49481 /* BingoGame.swift in Sources */,
 				F95B17151FBBBBEF00AA000B /* GameStore.swift in Sources */,
+				F9BDD31C200D733700FD320E /* UpdateGame.swift in Sources */,
 				F950F3601FF3561800DF578F /* DeckCollectionViewLayout.swift in Sources */,
 				F9B295381FF4DCB700454D21 /* CardTextfield.swift in Sources */,
 				F97E63841FF1A81700CBA256 /* DeckCell.swift in Sources */,
@@ -531,6 +554,7 @@
 				F96F1DB41FF4CC7A00C06E9C /* CardCell.swift in Sources */,
 				F9B7CE9E200C3CC500E6C5BC /* NetworkOperation.swift in Sources */,
 				F90CFDDD200C8C6C0028F6D7 /* GetToken.swift in Sources */,
+				F9BDD31A200D732500FD320E /* CreateGame.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

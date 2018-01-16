@@ -17,7 +17,8 @@ class APIManager{
     */
     // Online
 
-    func checkToken(dispatch: NetworkDispatcher, email: String, token: String, socketId: String, completionHandler: @escaping (Bool)->Void){
+    func checkToken(dispatch: NetworkDispatcher, email: String, token: String, socketId: String,
+                    completionHandler: @escaping (Bool)->Void){
         let log = CheckToken(email: email, token: token, socketId: socketId)
         log.execute(in: dispatch, completionHandler: { (response) in
             guard let response = response else{
@@ -27,6 +28,25 @@ class APIManager{
             completionHandler(response)
         })
     }
+    
+    func login(dispatch: NetworkDispatcher, email: String, password:String, completionHandler: @escaping (String?)->Void){
+        let log = GetToken(email: email, password: password)
+        log.execute(in: dispatch, completionHandler: { (response) in
+            completionHandler(response)
+        })
+    }
+    
+    func getGames(dispatch: NetworkDispatcher, completionHandler: @escaping ([Game])->Void){
+        let getGames = GetGames()
+        getGames.execute(in: dispatch) { (games) in
+            guard let games = games else{
+                completionHandler([])
+                return
+            }
+            completionHandler(games)
+        }
+    }
+    
 }
     
 

@@ -130,26 +130,26 @@ extension BingoViewController:BingoCollectionViewDelegate{
             return
         }
         
-        self.apiManager.updateBoard(boardCardId: card.id)
-        
-        let x = cell.xIndex!
-        let y = cell.yIndex!
-        
-        if card.active == 1{
-            cell.pieceView.alpha = 0.0
-            bingoGame.board[x][y] = 0
-        }else{
-            cell.pieceView.alpha = pieceTransparency
-            bingoGame.board[x][y] = 1
-        }
-        
-        if (bingoGame.checkVictory(x: x, y: y)){
-            self.status = "ended"
-            self.apiManager.updateGame(gameId: self.gameId)
-            showAlert {
-                self.bingoGame.boardReset()
-                self.collectionView.reloadData()
-            }
-        }
+//        self.apiManager.updateBoard(boardCardId: card.id)
+//        
+//        let x = cell.xIndex!
+//        let y = cell.yIndex!
+//        
+//        if card.active == 1{
+//            cell.pieceView.alpha = 0.0
+//            bingoGame.board[x][y] = 0
+//        }else{
+//            cell.pieceView.alpha = pieceTransparency
+//            bingoGame.board[x][y] = 1
+//        }
+//        
+//        if (bingoGame.checkVictory(x: x, y: y)){
+//            self.status = "ended"
+//            self.apiManager.updateGame(gameId: self.gameId)
+//            showAlert {
+//                self.bingoGame.boardReset()
+//                self.collectionView.reloadData()
+//            }
+//        }
     }
 }
