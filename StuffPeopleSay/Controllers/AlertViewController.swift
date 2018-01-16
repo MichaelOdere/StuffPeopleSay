@@ -190,7 +190,14 @@ class AlertView: UIViewController{
 
     @objc func save(sender:UIButton){
         if !(gameNameTextField.text?.isEmpty)! && selectedDeck != nil{
-            //Save logic
+
+            print(selectedDeck?.id)
+            gameStore.createGame(name: gameNameTextField.text!, boards: 4, deckId: (selectedDeck?.id)!, completionHandler: { (game) in
+                print("this worked")
+                print(game)
+            })
+            
+            print("saved")
             animateDissmiss()
         }
     }

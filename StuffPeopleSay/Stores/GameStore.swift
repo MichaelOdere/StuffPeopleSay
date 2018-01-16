@@ -1,5 +1,6 @@
 import Foundation
 import KeychainSwift
+import SwiftyJSON
 
 enum LoginType {
     case token
@@ -26,8 +27,8 @@ class GameStore{
      </dict>
      
      */
-//    private let baseURL = "https://smfs.now.sh"
-    private let baseURL = "http://smfs.info:8000"
+    private let baseURL = "https://smfs.now.sh"
+//    private let baseURL = "http://smfs.info:8000"
 
     // User Variables
     var isLoggedIn:Bool
@@ -51,11 +52,18 @@ class GameStore{
         decks = []
     }
     
+    // MARK: GameStore - Multiple
+
     func login(loginType: LoginType, completionHandler: @escaping (Bool)->Void) {
         switch loginType {
         case .token:
             loginWithToken(completionHandler: { (success) in
-                completionHandler(success)
+                
+                if success {
+                    
+                }else{
+                    completionHandler(success)
+                }
             })
         case .password(let email, let password):
             loginWithPassword(email: email, password: password, completionHandler: { (success) in
@@ -64,6 +72,35 @@ class GameStore{
         }
     }
     
+    func getData(completionHandler: @escaping (Bool)->Void) {
+    
+        let group = DispatchGroup()
+        group.enter()
+        
+        getGames(completionHandler: { (success) in
+            print(self.games.count)
+            group.leave()
+        })
+        
+        group.enter()
+        getDecks(completionHandler: { (decks) in
+            print("decks")
+            print(decks.count)
+
+            if decks.count != 0{
+                self.decks = decks
+            }
+            print(self.decks.count)
+            group.leave()
+        })
+        
+        group.notify(queue: DispatchQueue.main){
+            completionHandler(true)
+        }
+    }
+    
+    // MARK: GameStore - User
+
     func loginWithToken(completionHandler: @escaping (Bool)->Void) {
         guard let token = keychain.get("token"), let email = keychain.get("email") else{
             self.isLoggedIn = false
@@ -105,6 +142,14 @@ class GameStore{
         }
     }
     
+    // MARK: GameStore - Game
+
+    func createGame(name: String, boards: Int, deckId: String, completionHandler: @escaping (Game?)->Void){
+        apiManager.createGame(name: name, boards: boards, deckId: deckId, dispatch: dispatch) { (game) in
+            completionHandler(game)
+        }
+    }
+    
     func getGames(completionHandler: @escaping (Bool)->Void){
         apiManager.getGames(dispatch: dispatch) { (games) in
             self.games = games
@@ -112,90 +157,61 @@ class GameStore{
         }
     }
     
-    // Check token user
-//    func checkToken(email: String, token:String, socketId: String, completionHandler: @escaping (Bool)->Void){
-//        apiManager.checkToken(dispatch: dispatch, email: email, token: token, socketId: socketId) { (success) in
-//            if success {
-//                self.isLoggedIn = true
-//                self.dispatch.setToken(token: token)
-//            }else{
-//                self.isLoggedIn = false
-//            }
-//            completionHandler(success)
-//        }
-//    }
+    // MARK: GameStore - Deck
+
+    func getDecksData(completionHandler: @escaping (JSON?)->Void){
+        apiManager.getDecksData(dispatch: dispatch) { (deckData) in
+            completionHandler(deckData)
+        }
+    }
     
+    func getDeck(deckId: String, completionHandler: @escaping (Deck?)->Void){
+        apiManager.getDeck(deckId: deckId, dispatch: dispatch) { (deck) in
+            completionHandler(deck)
+        }
+    }
     
+    func getDecks(completionHandler: @escaping ([Deck])->Void){
+        var tempDecks:[Deck] = []
+        var decksData:JSON?
+        let group = DispatchGroup()
+
+        group.enter()
+        
+        getDecksData { (jsonData) in
+            decksData = jsonData
+            group.leave()
+        }
+        
+        group.notify(queue: DispatchQueue.main){
+            group.enter()
+            guard let decksDataArray = decksData?.array else {
+                group.leave()
+                return
+            }
+            
+            for d in decksDataArray{
+                group.enter()
+                if let id = d["id"].string{
+                    self.getDeck(deckId: id, completionHandler: { (deck) in
+                        if let deck = deck {
+                            print(id)
+                            print(deck.id)
+                            tempDecks.append(deck)
+                            group.leave()
+                        }else{
+                            group.leave()
+                        }
+                    })
+                }
+            }
+            group.leave()
+         
+            group.notify(queue: DispatchQueue.main){
+                completionHandler(tempDecks)
+            }
+        }
+    }
     
-//    func loginUser(email:String?, completionHandler: @escaping (Bool?, Error?) -> Void){
-//        if let email = email{
-//            print("Attempting loggin in user with no saved token....")
-//            self.apiManager.getUser(email: email, completionHandler:  { (token, error) in
-//                guard let token = token else {
-//                    print(error as Any)
-//                    return
-//                }
-//
-//                print("token login user")
-//                print(token)
-//
-//                self.keychain.set(token, forKey: "token")
-//                self.keychain.set(email, forKey: "email")
-//
-//                self.updateGames(completionHandler: { error in
-//                    completionHandler(self.isLoggedIn, error)
-//                })
-//            })
-//        }else{
-//            print("Attempting loggin in user with a saved token....")
-//            completionHandler(false, nil)
-//            return
-//            if keychain.get("token") != nil{
-//                print("found token")
-//                apiManager.token =  keychain.get("token")!
-//                print(apiManager.token)
-//                apiManager.socketId = "4313973413"
-//                self.updateGames(completionHandler: { error in
-//                    completionHandler(self.isLoggedIn, error)
-//                })
-//            }else{
-//                print("no token")
-//                completionHandler(false, nil)
-//            }
-//        }
-//    }
-//
-//    func updateGames(completionHandler: @escaping (Error?) -> Void){
-//        self.apiManager.getGames(completionHandler: { loggedIn, gameData, error in
-//            if let error = error {
-//                print(error as Any)
-//                return
-//            }
-//            self.isLoggedIn = loggedIn
-//            self.games = gameData
-//
-//            completionHandler(error)
-//        })
-//    }
-//
-//    func createDeck(completionHandler: @escaping (Error?) -> Void){
-//
-//        self.apiManager.createDeck(deckName: "TestName") { (data, error) in
-//            if let error = error {
-//                print(error as Any)
-//                return
-//            }
-//            completionHandler(error)
-//        }
-//    }
-//
-//    func getDecks(completionHandler: @escaping (Error?) -> Void){
-//        self.apiManager.getDecks { (data, error) in
-//            if let error = error {
-//                print(error as Any)
-//                return
-//            }
-//            completionHandler(error)
-//        }
-//    }
+    // MARK: GameStore - Card
 }

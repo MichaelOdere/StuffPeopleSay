@@ -29,7 +29,7 @@ struct APIManager{
         })
     }
     
-    // MARK: APIManager - APIManagerGame Operations
+    // MARK: APIManager - Game Operations
    
     func createGame(name: String, boards: Int, deckId: String, dispatch: NetworkDispatcher, completionHandler: @escaping (Game?)->Void){
         let operation = CreateGameOperation(name: name, boards: boards, deckId: deckId)
@@ -77,7 +77,7 @@ struct APIManager{
         }
     }
     
-    func getDecks(dispatch: NetworkDispatcher, completionHandler: @escaping (JSON?)->Void){
+    func getDecksData(dispatch: NetworkDispatcher, completionHandler: @escaping (JSON?)->Void){
         let operation = GetDecksOperation()
         operation.execute(in: dispatch) { (jsonData) in
             guard let jsonData = jsonData else{
@@ -120,6 +120,7 @@ struct APIManager{
             completionHandler(success)
         }
     }
+    
     // MARK: APIManager - Card Operations
 
 }

@@ -29,7 +29,6 @@ public class NetworkDispatcher: Dispatcher {
         var headers:[String:String] = [:]
         
         if request.needsAuthHeader {
-            print("yes needs header")
             headers = environment.authHeaders
         }
         
@@ -38,11 +37,6 @@ public class NetworkDispatcher: Dispatcher {
                 headers[key] = val
             }
         }
-        
-        print("headers")
-        print(request.path)
-        print(headers)
-        print(environment.authHeaders)
 
         let method:HTTPMethod = getMethod(httpCase: request.method)
         Alamofire.request(url,
@@ -55,6 +49,9 @@ public class NetworkDispatcher: Dispatcher {
                 completionHandler(NetworkResponse((r: response.response, data: response.data, error: nil)))
             } else {
                 print("Error while fetching: \(String(describing: response.result.error))")
+                print("headers!!   \(headers)")
+                print("url!!   \(url)")
+                print("parameters!!   \(request.parameters)")
                 completionHandler(NetworkResponse((r: response.response, data: nil, error: response.result.error)))
             }
         }
