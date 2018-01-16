@@ -1,4 +1,4 @@
-class GetDeck: Operation {
+class GetDeckOperation: Operation {
     
     typealias Output = Deck
     

@@ -1,6 +1,6 @@
 import SwiftyJSON
 
-class GetGames: Operation {
+class GetGamesOperation: Operation {
     
     typealias Output = [Game]
     

@@ -1,6 +1,6 @@
-class CreateUser: Operation {
+class CreateUserOperation: Operation {
     
-    typealias Output = Bool
+    typealias Output = String
     
     var email: String
     var password: String
@@ -31,7 +31,7 @@ class CreateUser: Operation {
             if case let NetworkResponse.json(jsonData) = response {
                 print("JSON")
                 print(jsonData)
-                completionHandler(true)
+                completionHandler("fake token")
                 return
             } else {
                 completionHandler(nil)

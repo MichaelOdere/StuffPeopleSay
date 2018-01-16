@@ -1,6 +1,6 @@
 import SwiftyJSON
 
-class GetToken: Operation {
+class GetTokenOperation: Operation {
     
     typealias Output = String
     

@@ -1,4 +1,4 @@
-class CheckToken: Operation {
+class CheckTokenOperation: Operation {
 
     typealias Output = Bool
 

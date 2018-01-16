@@ -13,6 +13,19 @@ class GameStore{
     var pushManager:PusherManager
     var dispatch:NetworkDispatcher
 
+    // Local
+    //    private let baseURL = "http://smfs.info:8000"
+    /*
+     
+     if local add to plist
+     
+     <key>NSAppTransportSecurity</key>
+     <dict>
+     <key>NSAllowsArbitraryLoads</key>
+     <true/>
+     </dict>
+     
+     */
 //    private let baseURL = "https://smfs.now.sh"
     private let baseURL = "http://smfs.info:8000"
 
@@ -58,7 +71,7 @@ class GameStore{
             return
         }
 
-        apiManager.checkToken(dispatch: dispatch, email: email, token: token, socketId: "123") { (success) in
+        apiManager.checkToken(email: email, token: token, socketId: "123", dispatch: dispatch) { (success) in
             if success {
                 self.isLoggedIn = true
                 let environment = NetworkEnvironment(host: self.baseURL, token: token, socketId: "123")
@@ -71,7 +84,7 @@ class GameStore{
     }
     
     func loginWithPassword(email: String, password: String, completionHandler: @escaping (Bool)->Void){
-        apiManager.login(dispatch: dispatch, email: email, password: password) { (token) in
+        apiManager.login(email: email, password: password, dispatch: dispatch) { (token) in
             guard let token = token else{
                 self.isLoggedIn = false
                 completionHandler(false)

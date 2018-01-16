@@ -1,8 +1,8 @@
 import SwiftyJSON
 
-class AddCards: Operation {
+class AddCardsOperation: Operation {
     
-    typealias Output = Game
+    typealias Output = Bool
     
     var deckId: String
     var cards: [String]
@@ -33,7 +33,7 @@ class AddCards: Operation {
             if case let NetworkResponse.json(jsonData) = response {
                 print("JSON")
                 print(jsonData)
-                completionHandler(nil)
+                completionHandler(true)
                 //                completionHandler(Game(gameId: "s", name: "s", status: "2", my: User(userId: "d", name: "d", boards: [] ), opponents: []))
                 return
             } else {

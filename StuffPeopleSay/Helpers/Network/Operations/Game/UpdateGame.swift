@@ -1,4 +1,4 @@
-class UpdateGame: Operation {
+class UpdateGameOperation: Operation {
     
     typealias Output = Bool
     

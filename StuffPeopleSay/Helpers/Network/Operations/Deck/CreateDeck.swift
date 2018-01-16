@@ -1,8 +1,8 @@
 import SwiftyJSON
 
-class CreateDeck: Operation {
+class CreateDeckOperation: Operation {
     
-    typealias Output = Game
+    typealias Output = Deck
     
     var name: String
     

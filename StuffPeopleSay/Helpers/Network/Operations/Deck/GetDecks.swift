@@ -1,6 +1,6 @@
 import SwiftyJSON
 
-class GetDecks: Operation {
+class GetDecksOperation: Operation {
     
     typealias Output = JSON
     
