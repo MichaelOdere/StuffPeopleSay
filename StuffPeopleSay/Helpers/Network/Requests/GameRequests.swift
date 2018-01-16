@@ -18,7 +18,7 @@ public enum GameRequests: Request {
     public var method: HTTPMethodCase {
         switch self {
         case .createGame(_,_,_):
-            return .put
+            return .post
         case .getGames():
             return .get
         case .updateGame(_):

@@ -195,8 +195,6 @@ class GameStore{
                 if let id = d["id"].string{
                     self.getDeck(deckId: id, completionHandler: { (deck) in
                         if let deck = deck {
-                            print(id)
-                            print(deck.id)
                             tempDecks.append(deck)
                             group.leave()
                         }else{
