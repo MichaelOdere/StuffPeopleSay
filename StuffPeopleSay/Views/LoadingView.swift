@@ -6,7 +6,7 @@ class LoadingView:UIActivityIndicatorView{
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        self.backgroundColor = UIColor.white
+        self.backgroundColor = UIColor.white// BingoPalette.bingoCellBackgroundColor
         self.color = UIColor.black
         self.layer.opacity = 1
         
@@ -16,7 +16,7 @@ class LoadingView:UIActivityIndicatorView{
         loadingTextLabel.font = UIFont(name: "Avenir Light", size: 10)
         loadingTextLabel.sizeToFit()
         loadingTextLabel.center = CGPoint(x: self.center.x, y: self.center.y + 30)
-
+        loadingTextLabel.backgroundColor = UIColor.clear
         self.addSubview(loadingTextLabel)
     }
     
