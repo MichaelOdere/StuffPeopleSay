@@ -29,7 +29,7 @@ public enum GameRequests: Request {
     public var parameters: [String : Any]? {
         switch self {
         case .createGame(let name, let boards, let deckId):
-            return ["name":name, "boards": boards, "deckId": deckId]
+            return ["name":name, "boardsCount": boards, "deckId": deckId]
         case .getGames():
             return nil
         case .updateGame(_):
