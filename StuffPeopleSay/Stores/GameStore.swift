@@ -168,7 +168,7 @@ class GameStore{
         }
     }
     
-    func updateBoard(gameId: String, completionHandler: @escaping (Bool)->Void) {
+    func updateBoard(boardCardId: String, completionHandler: @escaping (Bool)->Void) {
         apiManager.updateBoard(boardCardId: boardCardId, dispatch: dispatch) { (success) in
             completionHandler(success)
         }

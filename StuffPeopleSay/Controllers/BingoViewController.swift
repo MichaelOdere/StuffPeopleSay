@@ -130,7 +130,7 @@ extension BingoViewController:BingoCollectionViewDelegate{
             return
         }
         
-        self.gameStore.updateBoard(gameId: card.boardCardId) { (success) in
+        self.gameStore.updateBoard(boardCardId: card.boardCardId) { (success) in
             print("Success")
         }
         
