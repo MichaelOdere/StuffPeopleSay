@@ -43,6 +43,8 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
             if self.gameStore.isLoggedIn {
                 group.enter()
                 self.gameStore.getData(completionHandler: { (success) in
+                    print(self.gameStore.games.count)
+                    print(self.gameStore.decks.count)
                     group.leave()
                 })
             }

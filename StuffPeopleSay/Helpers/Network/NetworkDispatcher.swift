@@ -19,71 +19,56 @@ public class NetworkDispatcher: Dispatcher {
     }
     
     public func execute(request: Request, completionHandler: @escaping (NetworkResponse)->Void) {
-        let full_url = "\(environment.host)\(request.path)"
-        guard let url = URL(string: full_url) else{
-            print("Something went wrong with the URL")
-            print(full_url)
-            return
-        }
-
-        var headers:[String:String] = [:]
-        var parameters:[String:Any] = [:]
-
-        if request.needsAuthHeader {
-            headers = environment.authHeaders
-        }
+      
+        do{
         
-        if let requestHeaders = request.headers{
-            for (key,val) in requestHeaders {
-                headers[key] = val
-            }
-        }
-        
-        if let p = request.parameters {
-            parameters = p
-        }
+            let rq = try self.prepareURLRequest(for: request)
 
-        let method:HTTPMethod = getMethod(httpCase: request.method)
-        print("parameters!!   \(parameters)")
-        Alamofire.request(url,
-                          method: method,
-                          parameters: parameters,
-                          encoding: URLEncoding.httpBody,
-                          headers:headers)
-        .validate()
-        .responseData { (response) in
-            if response.result.isSuccess{
-                completionHandler(NetworkResponse((r: response.response, data: response.data, error: nil)))
-            } else {
-                print("Error while fetching: \(String(describing: response.result.error))")
-                print("url!!   \(url)")
-                print("method!!   \(method)")
-                print("headers!!   \(headers)")
-                completionHandler(NetworkResponse((r: response.response, data: nil, error: response.result.error)))
+            Alamofire.request(rq)
+                .validate()
+                .responseJSON { (response) in
+                    if response.result.isSuccess{
+                        completionHandler(NetworkResponse((r: response.response, data: response.data, error: nil)))
+                    } else {
+                        
+                        completionHandler(NetworkResponse((r: response.response, data: nil, error: response.result.error)))
+                    }
             }
+        } catch {
+            print(error)
+//            completionHandler(NetworkResponse()
         }
+       
     }
     
-    public func prepareURLRequest(for request: Request) throws -> URLRequest {
-        // Compose the url
+    private func prepareURLRequest(for request: Request) throws -> URLRequest {
+       
+        // Create URL
         let full_url = "\(environment.host)\(request.path)"
         var url_request = URLRequest(url: URL(string: full_url)!)
-        // Parameters are part of the body
-        url_request.httpBody = try JSONSerialization.data(withJSONObject: request.parameters, options: .init(rawValue: 0))
-   
-        print("body \(url_request.httpBody)")
-        // Add headers from enviornment and request
-        environment.authHeaders.forEach { url_request.addValue($0.value as! String, forHTTPHeaderField: $0.key) }
-        request.headers?.forEach { url_request.addValue($0.value as! String, forHTTPHeaderField: $0.key) }
+
+        if let p = request.parameters {
+            url_request.httpBody = try JSONSerialization.data(withJSONObject: p, options: .init(rawValue: 0))
+        }
+        // Populate the body as JSON
         
-        // Setup HTTP method
+        // Add auth headers if they are needed
+        if request.needsAuthHeader{
+            environment.authHeaders.forEach { url_request.addValue($0.value, forHTTPHeaderField: $0.key) }
+        }
+        
+        // Add request headers
+        request.headers?.forEach { url_request.addValue($0.value, forHTTPHeaderField: $0.key) }
+        
+        // Set http method
         url_request.httpMethod = getMethod(httpCase: request.method).rawValue
         
-//        return url_request
-        
-        Alamofire.request(url_request).responseJSON { (response) in
-            print(response)
-        }
+// Here for debugging
+//        print("parameters!!   \(request.parameters)")
+//        print("parameters!!   \(try JSONSerialization.data(withJSONObject: request.parameters, options: .init(rawValue: 0)))")
+//        print("url!!   \(full_url)")
+//        print("method!!   \(request.method)")
+//        print("headers!!   \(request.headers)")
         
         return url_request
     }

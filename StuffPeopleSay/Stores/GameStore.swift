@@ -73,24 +73,19 @@ class GameStore{
     }
     
     func getData(completionHandler: @escaping (Bool)->Void) {
-    
         let group = DispatchGroup()
         group.enter()
         
         getGames(completionHandler: { (success) in
             group.leave()
         })
-        
         group.enter()
         getDecks(completionHandler: { (decks) in
-
             if decks.count != 0{
                 self.decks = decks
             }
-
             group.leave()
         })
-        
         group.notify(queue: DispatchQueue.main){
             completionHandler(true)
         }

@@ -9,6 +9,7 @@ class GetDecksOperation: Operation {
     }
     
     func execute(in dispatcher: Dispatcher, completionHandler: @escaping (Output?)->Void) {
+
         dispatcher.execute(request: request) { (response) in
             if case let NetworkResponse.error(code, error) = response {
                 if let code = code {

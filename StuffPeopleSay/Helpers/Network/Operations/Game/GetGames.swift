@@ -23,9 +23,6 @@ class GetGamesOperation: Operation {
             }
             
             if case let NetworkResponse.json(jsonData) = response {
-//                print("JSON")
-//                print(jsonData)
-
                 var games:[Game] = []
                 
                 guard let gamesArray = jsonData["games"].array else {
