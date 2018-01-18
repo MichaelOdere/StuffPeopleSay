@@ -24,4 +24,6 @@ public struct NetworkEnvironment {
 public protocol Dispatcher {
     init(environment: NetworkEnvironment)
     func execute(request: Request, completionHandler: @escaping (NetworkResponse)->Void)
+    func prepareURLRequest(for request: Request) throws -> URLRequest 
+
 }

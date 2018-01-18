@@ -2,6 +2,7 @@ import UIKit
 
 class CardEditViewController: UIViewController{
     var cardEditView:CardEditView!
+    var gameStore:GameStore!
     var deck:Deck!
     let cardDataSource = CardCollectionViewDataSource()
 
@@ -47,9 +48,26 @@ extension CardEditViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! CardCell
         cell.cellSelected()
+
+        if let index = deck.cards.index(where: {$0.id == cell.id}) {
+            deck.cards[index].active = cell.state == .selected
+        
+            if deck.cards[index].active {
+                gameStore.addCards(deckId: deck.id, cards: [deck.cards[index].id], completionHandler: { (success) in
+                    print("Card added")
+                })
+            }else{
+                gameStore.removeCards(deckId: deck.id, cards: [deck.cards[index].id], completionHandler: { (success) in
+                    print("Card added")
+                })
+            }
+        }
     }
 }
-
+//        if let index = decks.index(where: {$0.id == deckId}) {
+//            return decks[index]
+//        }
+//        return nil
 //extension CardEditViewController: UISearchResultsUpdating, CardSearchCollectionViewDelegate{
 //    func updateSearchResults(for searchController: UISearchController) {
 //        filterContentForSearchText(searchController.searchBar.text!)

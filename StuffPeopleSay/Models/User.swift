@@ -16,7 +16,7 @@ struct User{
         let deck = self.boards[index].deck
         var count = 0
         for card in deck.cards{
-            if card.active == 1{
+            if card.active{
                 count += 1
             }
         }

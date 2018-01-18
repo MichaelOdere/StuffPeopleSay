@@ -22,7 +22,7 @@ class BingoBoard{
             let card = cards[index]
             let x = index % 5
             let y:Int = index / 5
-            if card.active == 1{
+            if card.active{
                 board[x][y] = 1
             }
         }

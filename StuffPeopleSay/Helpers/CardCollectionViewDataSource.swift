@@ -37,7 +37,8 @@ class CardCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             }
         }
         
-        cell.state = .selected
+        cell.id = card?.id
+        cell.state = (card?.active)! ? .selected : .deselected
         cell.name.isEnabled = false
         cell.name.id = card?.id
         cell.name.text = card?.name

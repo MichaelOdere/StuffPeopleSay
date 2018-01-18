@@ -44,9 +44,11 @@ public class NetworkDispatcher: Dispatcher {
         }
 
         let method:HTTPMethod = getMethod(httpCase: request.method)
+        print("parameters!!   \(parameters)")
         Alamofire.request(url,
                           method: method,
                           parameters: parameters,
+                          encoding: URLEncoding.httpBody,
                           headers:headers)
         .validate()
         .responseData { (response) in
@@ -56,11 +58,34 @@ public class NetworkDispatcher: Dispatcher {
                 print("Error while fetching: \(String(describing: response.result.error))")
                 print("url!!   \(url)")
                 print("method!!   \(method)")
-                print("parameters!!   \(parameters)")
                 print("headers!!   \(headers)")
                 completionHandler(NetworkResponse((r: response.response, data: nil, error: response.result.error)))
             }
         }
+    }
+    
+    public func prepareURLRequest(for request: Request) throws -> URLRequest {
+        // Compose the url
+        let full_url = "\(environment.host)\(request.path)"
+        var url_request = URLRequest(url: URL(string: full_url)!)
+        // Parameters are part of the body
+        url_request.httpBody = try JSONSerialization.data(withJSONObject: request.parameters, options: .init(rawValue: 0))
+   
+        print("body \(url_request.httpBody)")
+        // Add headers from enviornment and request
+        environment.authHeaders.forEach { url_request.addValue($0.value as! String, forHTTPHeaderField: $0.key) }
+        request.headers?.forEach { url_request.addValue($0.value as! String, forHTTPHeaderField: $0.key) }
+        
+        // Setup HTTP method
+        url_request.httpMethod = getMethod(httpCase: request.method).rawValue
+        
+//        return url_request
+        
+        Alamofire.request(url_request).responseJSON { (response) in
+            print(response)
+        }
+        
+        return url_request
     }
     
     func getMethod(httpCase: HTTPMethodCase) -> HTTPMethod {

@@ -12,13 +12,7 @@ class Deck{
         self.name = name
     }
     
-    func copyDeck()->Deck{
-        var newCards:[Card] = []
-        for c in cards{
-            newCards.append(c.copyCard())
-        }
-        return Deck(id: id, name: name, cards: newCards)
-    }
+   
 }
 
 extension Deck {
@@ -44,7 +38,7 @@ extension Deck {
             }
         }
         
-        allCards = allCards.sorted(by: { $0.order > $1.order })
+//        allCards = allCards.sorted(by: { $0.order > $1.order })
         self.init(id: id, name: name, cards: allCards)
     }
 }

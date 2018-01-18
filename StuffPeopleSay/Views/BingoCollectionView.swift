@@ -22,7 +22,7 @@ class BingoCollectionView: NSObject, UICollectionViewDataSource, UICollectionVie
         cell.title.text = card.name
         cell.xIndex = indexPath.row / 5
         cell.yIndex = indexPath.row % 5
-        if card.active == 1{
+        if card.active{
             cell.pieceView.alpha = pieceTransparency
             bingoGame.board[cell.xIndex][cell.yIndex] = 1
 
@@ -39,10 +39,10 @@ class BingoCollectionView: NSObject, UICollectionViewDataSource, UICollectionVie
 
         if let didSelectDelegate = didSelectDelegate {
             didSelectDelegate.specificDidSelectRow(card: card, cell: cell)
-            if card.active == 0{
-               deck.cards[indexPath.row].active = 1
+            if card.active{
+               deck.cards[indexPath.row].active = true
             }else{
-                deck.cards[indexPath.row].active = 0
+                deck.cards[indexPath.row].active = false
             }
         }
     }

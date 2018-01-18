@@ -47,6 +47,7 @@ extension DeckEditViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "CardEditViewController") as! CardEditViewController
+        vc.gameStore = gameStore
         vc.deck = gameStore.decks[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }

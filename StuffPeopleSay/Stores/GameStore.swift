@@ -27,8 +27,8 @@ class GameStore{
      </dict>
      
      */
-    private let baseURL = "https://smfs.now.sh"
-//    private let baseURL = "http://smfs.info:8000"
+//    private let baseURL = "https://smfs.now.sh"
+    private let baseURL = "http://smfs.info:8000"
 
     // User Variables
     var isLoggedIn:Bool
@@ -78,19 +78,16 @@ class GameStore{
         group.enter()
         
         getGames(completionHandler: { (success) in
-            print(self.games.count)
             group.leave()
         })
         
         group.enter()
         getDecks(completionHandler: { (decks) in
-            print("decks")
-            print(decks.count)
 
             if decks.count != 0{
                 self.decks = decks
             }
-            print(self.decks.count)
+
             group.leave()
         })
         
