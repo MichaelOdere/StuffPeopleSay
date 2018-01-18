@@ -14,7 +14,7 @@ public enum GameRequests: Request {
         case .updateGame(let gameId):
             return "/games/" + gameId
         case .updateBoard(let boardCardId):
-            return "/games/" + boardCardId
+            return "/boards/" + boardCardId
         }
     }
     

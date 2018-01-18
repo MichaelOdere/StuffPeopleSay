@@ -29,8 +29,6 @@ class CreateUserOperation: Operation {
             }
             
             if case let NetworkResponse.json(jsonData) = response {
-                print("JSON")
-                print(jsonData)
                 completionHandler("fake token")
                 return
             } else {
