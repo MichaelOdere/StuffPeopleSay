@@ -23,6 +23,7 @@
 		F92DBEDA1FBB8D5300B4566F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92DBED91FBB8D5300B4566F /* User.swift */; };
 		F932BD002011190000CD1DE0 /* BoardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = F932BCFF2011190000CD1DE0 /* BoardDeck.swift */; };
 		F932BD0220111AF100CD1DE0 /* BoardDeckCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F932BD0120111AF100CD1DE0 /* BoardDeckCard.swift */; };
+		F932BD0420111E0F00CD1DE0 /* UpdateBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F932BD0320111E0F00CD1DE0 /* UpdateBoard.swift */; };
 		F9341C0F1FD1ECA0009CD301 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9341C0E1FD1ECA0009CD301 /* Board.swift */; };
 		F93D1C11200BD77900B0107D /* CardRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93D1C10200BD77900B0107D /* CardRequests.swift */; };
 		F93D1C13200BD80000B0107D /* NetworkEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93D1C12200BD80000B0107D /* NetworkEnvironment.swift */; };
@@ -95,6 +96,7 @@
 		F92DBED91FBB8D5300B4566F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F932BCFF2011190000CD1DE0 /* BoardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDeck.swift; sourceTree = "<group>"; };
 		F932BD0120111AF100CD1DE0 /* BoardDeckCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDeckCard.swift; sourceTree = "<group>"; };
+		F932BD0320111E0F00CD1DE0 /* UpdateBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBoard.swift; sourceTree = "<group>"; };
 		F9341C0E1FD1ECA0009CD301 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		F93D1C10200BD77900B0107D /* CardRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRequests.swift; sourceTree = "<group>"; };
 		F93D1C12200BD80000B0107D /* NetworkEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEnvironment.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				F9BDD319200D732500FD320E /* CreateGame.swift */,
 				F9BDD317200D731900FD320E /* GetGames.swift */,
 				F9BDD31B200D733700FD320E /* UpdateGame.swift */,
+				F932BD0320111E0F00CD1DE0 /* UpdateBoard.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -568,6 +571,7 @@
 				F96AA6151FBAB999001E7CCD /* BingoCollectionViewLayout.swift in Sources */,
 				F932BD0220111AF100CD1DE0 /* BoardDeckCard.swift in Sources */,
 				F96AA6011FBAB4F4001E7CCD /* AppDelegate.swift in Sources */,
+				F932BD0420111E0F00CD1DE0 /* UpdateBoard.swift in Sources */,
 				F99A2F791FD4AA3000B2CEC6 /* LoadingView.swift in Sources */,
 				F9BDD320200D838400FD320E /* CreateDeck.swift in Sources */,
 				F9707CE9200B325D001F4D17 /* GameRequests.swift in Sources */,

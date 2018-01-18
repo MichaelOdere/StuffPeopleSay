@@ -3,6 +3,7 @@ public enum GameRequests: Request {
     case createGame(name: String, boards: Int, deckId: String)
     case getGames()
     case updateGame(gameId: String)
+    case updateBoard(boardCardId: String)
 
     public var path: String {
         switch self {
@@ -11,7 +12,9 @@ public enum GameRequests: Request {
         case .getGames():
             return "/games"
         case .updateGame(let gameId):
-            return "/games/{" + gameId + "}"
+            return "/games/" + gameId
+        case .updateBoard(let boardCardId):
+            return "/games/" + boardCardId
         }
     }
     
@@ -22,6 +25,8 @@ public enum GameRequests: Request {
         case .getGames():
             return .get
         case .updateGame(_):
+            return .put
+        case .updateBoard(_):
             return .put
         }
     }
@@ -34,6 +39,8 @@ public enum GameRequests: Request {
             return nil
         case .updateGame(_):
             return ["winner":"true"]
+        case .updateBoard(_):
+            return nil
         }
     }
     
@@ -44,6 +51,8 @@ public enum GameRequests: Request {
         case .getGames():
             return nil
         case .updateGame(_):
+            return nil
+        case .updateBoard(_):
             return nil
         }
     }

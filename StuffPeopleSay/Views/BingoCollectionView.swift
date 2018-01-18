@@ -25,11 +25,9 @@ class BingoCollectionView: NSObject, UICollectionViewDataSource, UICollectionVie
         if card.active{
             cell.pieceView.alpha = pieceTransparency
             bingoGame.board[cell.xIndex][cell.yIndex] = 1
-
         }else{
             cell.pieceView.alpha = 0.0
         }
-
         return cell
     }
     
