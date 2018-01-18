@@ -25,7 +25,7 @@ extension BoardDeck {
             }
         }
         
-//        allCards = allCards.sorted(by: { $0.order > $1.order })
+        allCards = allCards.sorted(by: { $0.order > $1.order })
         self.init(cards: allCards)
     }
 }
