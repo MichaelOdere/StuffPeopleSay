@@ -49,7 +49,7 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
         let vc = sb.instantiateViewController(withIdentifier: "BoardCollectionViewController") as! BoardCollectionViewController
 
         vc.game = self.gameStore.games[indexPath.row]
-        vc.apiManager = self.gameStore.apiManager
+        vc.gameStore = self.gameStore
         
         self.navigationController?.pushViewController(vc, animated: true)
     }

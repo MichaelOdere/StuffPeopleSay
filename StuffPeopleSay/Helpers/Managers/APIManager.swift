@@ -64,6 +64,17 @@ struct APIManager{
         }
     }
     
+    func updateBoard(boardCardId: String, dispatch: NetworkDispatcher, completionHandler: @escaping (Bool)->Void){
+        let operation = UpdateBoardOperation(boardCardId: boardCardId)
+        operation.execute(in: dispatch) { (success) in
+            guard let success = success else{
+                completionHandler(false)
+                return
+            }
+            completionHandler(success)
+        }
+    }
+    
     // MARK: APIManager - Deck Operations
     
     func createDeck(name: String, dispatch: NetworkDispatcher, completionHandler: @escaping (Deck?)->Void){

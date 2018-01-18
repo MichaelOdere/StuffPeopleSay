@@ -168,6 +168,12 @@ class GameStore{
         }
     }
     
+    func updateBoard(gameId: String, completionHandler: @escaping (Bool)->Void) {
+        apiManager.updateBoard(boardCardId: boardCardId, dispatch: dispatch) { (success) in
+            completionHandler(success)
+        }
+    }
+    
     // MARK: GameStore - Deck
 
     func getDecksData(completionHandler: @escaping (JSON?)->Void){

@@ -9,7 +9,7 @@ class BingoViewController:UIViewController{
     var board:Board!
     var status:String!
     var gameId:String!
-    var apiManager:APIManager!
+    var gameStore:GameStore!
     var loadingView:LoadingView!
     let pieceTransparency:CGFloat = 0.2
     var bingoCollectionView:BingoCollectionView!
@@ -130,26 +130,31 @@ extension BingoViewController:BingoCollectionViewDelegate{
             return
         }
         
-//        self.apiManager.updateBoard(boardCardId: card.id)
-//        
-//        let x = cell.xIndex!
-//        let y = cell.yIndex!
-//        
-//        if card.active == 1{
-//            cell.pieceView.alpha = 0.0
-//            bingoGame.board[x][y] = 0
-//        }else{
-//            cell.pieceView.alpha = pieceTransparency
-//            bingoGame.board[x][y] = 1
-//        }
-//        
-//        if (bingoGame.checkVictory(x: x, y: y)){
-//            self.status = "ended"
-//            self.apiManager.updateGame(gameId: self.gameId)
-//            showAlert {
-//                self.bingoGame.boardReset()
-//                self.collectionView.reloadData()
-//            }
-//        }
+        self.gameStore.updateBoard(gameId: card.boardCardId) { (success) in
+            print("Success")
+        }
+        
+        let x = cell.xIndex!
+        let y = cell.yIndex!
+        
+        if card.active{
+            cell.pieceView.alpha = 0.0
+            bingoGame.board[x][y] = 0
+        }else{
+            cell.pieceView.alpha = pieceTransparency
+            bingoGame.board[x][y] = 1
+        }
+        
+        if (bingoGame.checkVictory(x: x, y: y)){
+            self.status = "ended"
+
+            self.gameStore.updateGame(gameId: gameId, completionHandler: { (success) in
+                print("success")
+            })
+            showAlert {
+                self.bingoGame.boardReset()
+                self.collectionView.reloadData()
+            }
+        }
     }
 }

@@ -4,7 +4,7 @@ class BoardCollectionViewController:UIViewController, UICollectionViewDelegate, 
     @IBOutlet weak var collectionView: UICollectionView!
     
     var game:Game!
-    var apiManager:APIManager!
+    var gameStore:GameStore!
     var selectedIndexPath:IndexPath!
 
     override func viewDidLoad() {
@@ -37,7 +37,7 @@ class BoardCollectionViewController:UIViewController, UICollectionViewDelegate, 
         vc.board = self.game.my.boards[indexPath.row]
         vc.status = self.game.status
         vc.gameId = self.game.gameId
-        vc.apiManager = self.apiManager
+        vc.gameStore = self.gameStore
         
         self.navigationController?.pushViewController(vc, animated: true)
     }
