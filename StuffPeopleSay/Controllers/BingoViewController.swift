@@ -125,7 +125,7 @@ extension BingoViewController : ZoomViewController{
 }
 
 extension BingoViewController:BingoCollectionViewDelegate{
-    func specificDidSelectRow(card: Card, cell: BingoCollectionCell) {
+    func specificDidSelectRow(card: BoardDeckCard, cell: BingoCollectionCell) {
         if self.self.status.lowercased() != "playing"{
             return
         }

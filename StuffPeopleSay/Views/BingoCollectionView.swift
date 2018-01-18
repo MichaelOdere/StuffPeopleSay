@@ -1,7 +1,7 @@
 import UIKit
 
 protocol BingoCollectionViewDelegate: class {
-    func specificDidSelectRow(card: Card, cell: BingoCollectionCell)
+    func specificDidSelectRow(card: BoardDeckCard, cell: BingoCollectionCell)
 }
 
 class BingoCollectionView: NSObject, UICollectionViewDataSource, UICollectionViewDelegate{

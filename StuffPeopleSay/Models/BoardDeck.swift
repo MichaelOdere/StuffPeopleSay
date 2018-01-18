@@ -2,9 +2,9 @@ import Foundation
 import SwiftyJSON
 
 class BoardDeck{
-    var cards:[Card]
+    var cards:[BoardDeckCard]
     
-    init(cards: [Card]) {
+    init(cards: [BoardDeckCard]) {
         self.cards = cards
     }
     
@@ -18,9 +18,9 @@ extension BoardDeck {
             return nil
         }
         
-        var allCards:[Card] = []
+        var allCards:[BoardDeckCard] = []
         for c in coardData {
-            if let card = Card(json: c){
+            if let card = BoardDeckCard(json: c){
                 allCards.append(card)
             }
         }

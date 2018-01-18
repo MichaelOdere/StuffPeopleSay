@@ -7,17 +7,18 @@ class BoardDeckCard {
     var active:Bool
     var order:Int
 
-    init(id: String, name: String, active: Bool) {
-        self.id = id
+    init(boardCardId: String, name: String, active: Bool, order: Int) {
+        self.boardCardId = boardCardId
         self.name = name
         self.active = active
+        self.order = order
     }
 }
 
 extension BoardDeckCard {
     convenience init?(json: JSON) {
-        guard let id = json["id"].string else {
-            print("Error parsing Card object for key: id")
+        guard let boardCardId = json["boardCardId"].string else {
+            print("Error parsing Card object for key: boardCardId")
             return nil
         }
         
@@ -31,7 +32,12 @@ extension BoardDeckCard {
             return nil
         }
         
-        self.init(id: id, name: name, active: active)
+        guard let order = json["order"].int else {
+            print("Error parsing Card object for key: order")
+            return nil
+        }
+        
+        self.init(boardCardId: boardCardId, name: name, active: active, order: order)
     }
 }
 
