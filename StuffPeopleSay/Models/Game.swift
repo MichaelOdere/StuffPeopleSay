@@ -3,14 +3,13 @@ import SwiftyJSON
 
 class Game {
     var gameId: String
-    var name:String
+//    var name:String
     var status: String
     var my: User
     var opponents: [User]
-    
-    init(gameId:String, name:String, status:String, my:User, opponents:[User]) {
+
+    init(gameId:String, status:String, my: User, opponents:[User]) {
         self.gameId = gameId
-        self.name = name
         self.status = status
         self.my = my
         self.opponents = opponents
@@ -28,33 +27,37 @@ extension Game {
             print("Error parsing game object for key: status")
             return nil
         }
-        
+
         guard let usersData = json["users"].dictionary else {
             print("Error parsing game object for key: users")
             return nil
         }
         
-        let myUserData =  usersData["my"]
-        
-        guard let opponentsUserData =  usersData["opponents"]?.array else {
+        guard let myData = usersData["my"] else {
+            print("Error parsing game object for key: my")
+            return nil
+        }
+
+        var myUser:User!
+        if let aUser = User(json: myData) {
+            myUser = aUser
+        }else{
+            return nil
+        }
+
+        guard let allOpponentsData = usersData["opponents"]?.arrayValue else {
             print("Error parsing game object for key: opponents")
             return nil
         }
         
-        guard let myUser = User(json: myUserData!) else {
-            print("My user was nil")
-            return nil
-            
-        }
-        
         var allOpponents:[User] = []
-        for opponentData in opponentsUserData {
+        for opponentData in allOpponentsData {
             if let opponent = User(json: opponentData){
                 allOpponents.append(opponent)
             }
         }
 
-        self.init(gameId: gameId, name:"String", status: status, my: myUser, opponents: allOpponents)
+        self.init(gameId: gameId, status: status, my: myUser, opponents: allOpponents)
     }
     
     func getOpponents()->String{

@@ -3,12 +3,12 @@ import SwiftyJSON
 
 class Board{
     var boardId:String
-    var deck: Deck
+    var boardDeck: BoardDeck
     var count:Int
     
-    init( boardId:String, deck: Deck, count:Int) {
+    init( boardId:String, boardDeck: BoardDeck, count:Int) {
         self.boardId = boardId
-        self.deck = deck
+        self.boardDeck = boardDeck
         self.count = count
     }
 }
@@ -16,20 +16,20 @@ class Board{
 extension Board {
     convenience init?(json: JSON) {
         guard let boardId = json["boardId"].string else {
-            print("Error parsing user object for key: boardId")
+            print("Error parsing board object for key: boardId")
             return nil
         }
         
-        guard let deckData = Deck(json: json) else {
-            print("Error parsing Deck")
+        guard let deck = BoardDeck(json: json) else {
+            print("Error parsing board object for key: boardDeck")
             return nil
         }
 
         guard let count = json["count"].int else {
-            print("Error parsing user object for key: count")
+            print("Error parsing board object for key: count")
             return nil
         }
         
-        self.init(boardId: boardId, deck: deckData, count: count)
+        self.init(boardId: boardId, boardDeck: deck, count: count)
     }
 }

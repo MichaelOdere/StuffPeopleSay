@@ -19,7 +19,7 @@ class BingoViewController:UIViewController{
         
         bingoCollectionView = BingoCollectionView()
         bingoCollectionView.bingoGame = bingoGame
-        bingoCollectionView.deck = board.deck
+        bingoCollectionView.deck = board.boardDeck
         bingoCollectionView.didSelectDelegate = self
         
         collectionView.dataSource = bingoCollectionView

@@ -13,7 +13,7 @@ struct User{
     }
     
     func getCardsActive(index: Int)->Int{       
-        let deck = self.boards[index].deck
+        let deck = self.boards[index].boardDeck
         var count = 0
         for card in deck.cards{
             if card.active{

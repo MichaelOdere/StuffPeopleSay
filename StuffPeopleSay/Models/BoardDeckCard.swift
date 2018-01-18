@@ -1,23 +1,20 @@
 import Foundation
 import SwiftyJSON
 
-class Card {
-    var id:String
+class BoardDeckCard {
+    var boardCardId:String
     var name:String
     var active:Bool
+    var order:Int
 
     init(id: String, name: String, active: Bool) {
         self.id = id
         self.name = name
         self.active = active
     }
-    
-    func copyCard()->Card{
-        return Card(id: id, name: name, active: active)
-    }
 }
 
-extension Card {
+extension BoardDeckCard {
     convenience init?(json: JSON) {
         guard let id = json["id"].string else {
             print("Error parsing Card object for key: id")
@@ -37,3 +34,4 @@ extension Card {
         self.init(id: id, name: name, active: active)
     }
 }
+

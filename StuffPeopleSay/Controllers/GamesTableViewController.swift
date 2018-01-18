@@ -36,7 +36,7 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell") as! GameViewCell
         
         let game = gameStore.games[indexPath.row]
-        cell.deckTypeLabel.text = game.name
+        cell.deckTypeLabel.text = "game.name"
         cell.oppponentsLabel.text = game.getOpponents()
         cell.statusLabel.text = game.status
         cell.statusView.backgroundColor = game.getSatusColor()

@@ -21,7 +21,7 @@ class BoardCollectionViewController:UIViewController, UICollectionViewDelegate, 
         let cardCount = game.my.getCardsActive(index: indexPath.row)
         let cardString = cardCount == 1 ? "card" : "cards"
         cell.titleLabel.text = String(cardCount) + " \(cardString) active"
-        cell.bingoDataSource.deck = game.my.boards[indexPath.row].deck
+        cell.bingoDataSource.deck = game.my.boards[indexPath.row].boardDeck
         cell.setDelegation()
 
         return cell

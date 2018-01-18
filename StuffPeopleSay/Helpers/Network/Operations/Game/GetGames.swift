@@ -35,9 +35,6 @@ class GetGamesOperation: Operation {
                         games.append(game)
                     }
                 }
-                
-//                User()
-                
                 completionHandler(games)
                 return
             } else {
