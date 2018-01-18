@@ -6,6 +6,10 @@ enum SelectedState {
 }
 
 class SPSCollectionViewCell:UICollectionViewCell{
+    
+    // LEAK TEXTFIELD
+    // https://forums.developer.apple.com/message/285482#285482
+    // https://forums.developer.apple.com/thread/94323
     var name: CardTextfield!
     var id:String!
     var indexPath:IndexPath!

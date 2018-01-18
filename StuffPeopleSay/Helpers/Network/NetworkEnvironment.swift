@@ -7,9 +7,9 @@ public struct NetworkEnvironment {
     public var token: String
     public var socketId: String
     public var authHeaders: [String:String] {
-        return ["Authorization": token, "SocketId": socketId]
+        return ["Authorization": token, "SocketId": socketId, "Content-Type": "application/json"]
     }
-    
+
     // Cache policy
 //    public var cachePolicy: URLRequest.CachePolicy = .reloadIgnoringLocalAndRemoteCacheData
 
