@@ -38,7 +38,6 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
         group.enter()
         
         gameStore.login(loginType: loginType) { (success) in
-            print("completed")
             switch loginType {
             case .password(email: _, password: _):
                 if self.gameStore.isLoggedIn {
@@ -49,7 +48,6 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
                 }
                 group.leave()
             case .token:
-                print("case token")
                 group.leave()
             }
         }
