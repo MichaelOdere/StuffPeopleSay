@@ -28,7 +28,7 @@ class ZoomTransitioningDelegate:NSObject{
             foregroundViewController.view.transform =  CGAffineTransform(translationX: 0, y: foregroundViewController.view.frame.height)
             foregroundViewController.view.alpha = 0
             snapshotViews.collectionView.frame = containerView.convert(viewsInBackground.collectionView.frame, from: viewsInBackground.collectionView.superview)
-        
+
         case .final:
             backgroundViewController.view.transform = CGAffineTransform(scaleX: backgroundScale, y: backgroundScale)
             backgroundViewController.view.alpha = 0
@@ -37,6 +37,9 @@ class ZoomTransitioningDelegate:NSObject{
             foregroundViewController.view.alpha = 1
             
             snapshotViews.collectionView.frame = containerView.convert(viewsInForeground.collectionView.frame, from: viewsInForeground.collectionView.superview)
+
+            // Update collection view because it may have changed
+            viewsInBackground.collectionView.reloadData()
         }
     }
 }

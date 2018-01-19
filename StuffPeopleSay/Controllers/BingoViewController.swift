@@ -140,9 +140,11 @@ extension BingoViewController:BingoCollectionViewDelegate{
         if card.active{
             cell.pieceView.alpha = 0.0
             bingoGame.board[x][y] = 0
+            card.active = false
         }else{
             cell.pieceView.alpha = pieceTransparency
             bingoGame.board[x][y] = 1
+            card.active = true
         }
         
         if (bingoGame.checkVictory(x: x, y: y)){
