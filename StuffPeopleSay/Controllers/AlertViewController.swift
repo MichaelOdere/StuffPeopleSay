@@ -41,9 +41,11 @@ class AlertView: UIViewController{
 
     override func viewWillAppear(_ animated: Bool) {
         if !hasLoaded{
-            contentView.center.y += view.bounds.height
-            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
-                self.contentView.center.y -= self.view.bounds.height
+            self.view.alpha = 0.3
+            self.contentView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+            UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: {
+                self.view.alpha = 1
+                self.contentView.transform = .identity
             })
             hasLoaded = true
         }
@@ -201,7 +203,6 @@ class AlertView: UIViewController{
 
             gameStore.createGame(name: gameNameTextField.text!, boards: boardsCount, deckId: (selectedDeck?.id)!, completionHandler: { (game) in
                 if game != nil{
-                    print("should reload")
                     self.addedDeckProtocol?.addedANewDeck()
                 }
             })
@@ -210,8 +211,8 @@ class AlertView: UIViewController{
     }
 
     func animateDissmiss(){
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
-            self.contentView.center.y += self.view.bounds.height
+        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: {
+            self.view.alpha = 0.0
         }, completion: {  (finished: Bool) in
             self.dismiss(animated: false, completion: nil)
         })

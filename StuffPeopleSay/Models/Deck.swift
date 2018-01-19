@@ -12,7 +12,10 @@ class Deck{
         self.name = name
     }
     
-   
+    // Returns amount of active cards
+    func activeCards()->Int {
+        return cards.reduce(0){ $0 + ($1.active ? 1 : 0)}
+    }
 }
 
 extension Deck {

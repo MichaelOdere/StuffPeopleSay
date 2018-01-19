@@ -82,7 +82,7 @@ class GameStore{
         group.enter()
         getDecks(completionHandler: { (decks) in
             if decks.count != 0{
-                self.decks = decks
+                self.decks = decks.reversed()
             }
             group.leave()
         })
@@ -152,7 +152,7 @@ class GameStore{
     func createGame(name: String, boards: Int, deckId: String, completionHandler: @escaping (Game?)->Void){
         apiManager.createGame(name: name, boards: boards, deckId: deckId, dispatch: dispatch) { (game) in
             if let game = game {
-                self.games.insert(game, at: 0)
+                self.games.append(game)
             }
             completionHandler(game)
         }
