@@ -1,9 +1,14 @@
 import UIKit
 
+protocol AddedDeckProtocol: class {
+    func addedANewDeck()
+}
+
 class AlertView: UIViewController{
     private var verticalPadding:CGFloat!
     private var verticleSpaceBetweenElements:CGFloat!
     private var horizontalPadding:CGFloat!
+    var addedDeckProtocol:AddedDeckProtocol?
     var contentView = UIView()
     var gameNameTextField = UITextField()
     var gameTextFieldLine = UILabel()
@@ -195,10 +200,10 @@ class AlertView: UIViewController{
             let boardsCount = pickerData[numberPicker.selectedRow(inComponent: 0)]
 
             gameStore.createGame(name: gameNameTextField.text!, boards: boardsCount, deckId: (selectedDeck?.id)!, completionHandler: { (game) in
-                print("this worked")
-                print(game)
+                if game != nil{
+                    self.addedDeckProtocol?.addedANewDeck()
+                }
             })
-
             animateDissmiss()
         }
     }

@@ -37,9 +37,8 @@ public class NetworkDispatcher: Dispatcher {
             }
         } catch {
             print(error)
-//            completionHandler(NetworkResponse()
+            completionHandler(NetworkResponse((r: nil, data: nil, error: error)))
         }
-       
     }
     
     private func prepareURLRequest(for request: Request) throws -> URLRequest {
@@ -50,8 +49,7 @@ public class NetworkDispatcher: Dispatcher {
         if let p = request.parameters {
             url_request.httpBody = try JSONSerialization.data(withJSONObject: p)
         }
-        // Populate the body as JSON
-        
+
         // Add auth headers if they are needed
         if request.needsAuthHeader{
             environment.authHeaders.forEach { url_request.addValue($0.value, forHTTPHeaderField: $0.key) }
@@ -64,14 +62,14 @@ public class NetworkDispatcher: Dispatcher {
         url_request.httpMethod = getMethod(httpCase: request.method).rawValue
         
 // Here for debugging
-        print("parameters!!   \(request.parameters)")
-        if let p = request.parameters {
-            print("parameters!!   \(try JSONSerialization.data(withJSONObject: request.parameters))")
-        }
-        print("url!!   \(full_url)")
-        print("method!!   \(request.method)")
-        print("headers!!   \(request.headers)")
-        print("headers!!   \(url_request.allHTTPHeaderFields)")
+//        print("parameters!!   \(request.parameters)")
+//        if let p = request.parameters {
+//            print("parameters!!   \(try JSONSerialization.data(withJSONObject: request.parameters))")
+//        }
+//        print("url!!   \(full_url)")
+//        print("method!!   \(request.method)")
+//        print("headers!!   \(request.headers)")
+//        print("headers!!   \(url_request.allHTTPHeaderFields)")
 
         return url_request
     }

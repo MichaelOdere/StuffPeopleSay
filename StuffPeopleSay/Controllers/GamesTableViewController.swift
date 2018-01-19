@@ -125,3 +125,9 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
     }
 }
 
+extension GamesTableViewController:AddedDeckProtocol{
+    func addedANewDeck() {
+        tableview.reloadData()
+    }
+}
+

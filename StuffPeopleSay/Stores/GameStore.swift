@@ -151,6 +151,9 @@ class GameStore{
     
     func createGame(name: String, boards: Int, deckId: String, completionHandler: @escaping (Game?)->Void){
         apiManager.createGame(name: name, boards: boards, deckId: deckId, dispatch: dispatch) { (game) in
+            if let game = game {
+                self.games.insert(game, at: 0)
+            }
             completionHandler(game)
         }
     }

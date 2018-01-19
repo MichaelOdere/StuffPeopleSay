@@ -32,10 +32,7 @@ class CreateGameOperation: Operation {
             }
             
             if case let NetworkResponse.json(jsonData) = response {
-                print("JSON")
-                print(jsonData)
-                completionHandler(nil)
-//                completionHandler(Game(gameId: "s", name: "s", status: "2", my: User(userId: "d", name: "d", boards: [] ), opponents: []))
+                completionHandler(Game(json: jsonData))
                 return
             } else {
                 completionHandler(nil)
