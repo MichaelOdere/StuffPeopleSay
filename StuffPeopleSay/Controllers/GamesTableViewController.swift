@@ -66,6 +66,7 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
         let alertView = AlertView()
         alertView.modalPresentationStyle = .overCurrentContext
         alertView.gameStore = gameStore
+        alertView.addedDeckProtocol = self
         present(alertView, animated: false, completion: nil)
         
         return
@@ -127,6 +128,7 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
 
 extension GamesTableViewController:AddedDeckProtocol{
     func addedANewDeck() {
+        print("reload")
         tableview.reloadData()
     }
 }

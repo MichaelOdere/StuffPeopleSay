@@ -201,6 +201,7 @@ class AlertView: UIViewController{
 
             gameStore.createGame(name: gameNameTextField.text!, boards: boardsCount, deckId: (selectedDeck?.id)!, completionHandler: { (game) in
                 if game != nil{
+                    print("should reload")
                     self.addedDeckProtocol?.addedANewDeck()
                 }
             })
