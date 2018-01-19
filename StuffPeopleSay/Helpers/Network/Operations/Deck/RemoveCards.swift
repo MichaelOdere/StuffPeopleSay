@@ -31,10 +31,7 @@ class RemoveCardsOperation: Operation {
             }
             
             if case let NetworkResponse.json(jsonData) = response {
-                print("JSON")
-                print(jsonData)
                 completionHandler(true)
-                //                completionHandler(Game(gameId: "s", name: "s", status: "2", my: User(userId: "d", name: "d", boards: [] ), opponents: []))
                 return
             } else {
                 completionHandler(nil)

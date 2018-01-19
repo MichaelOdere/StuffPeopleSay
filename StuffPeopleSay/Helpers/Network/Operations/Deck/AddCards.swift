@@ -31,8 +31,6 @@ class AddCardsOperation: Operation {
             }
 
             if case let NetworkResponse.json(jsonData) = response {
-                print("JSON")
-                print(jsonData)
                 completionHandler(true)
                 return
             } else {

@@ -1,7 +1,7 @@
 import UIKit
 
 // TODO make textfield when strong reference cycle is fixed
-class CardTextfield:UITextField{
+class CardTextfield:UILabel{
     var id:String!
     var indexPath:IndexPath!
     
@@ -16,7 +16,7 @@ class CardTextfield:UITextField{
     
     func setup(){
         textAlignment = .center
-        returnKeyType = .done
+//        returnKeyType = .done
         isEnabled = false
     }
 }

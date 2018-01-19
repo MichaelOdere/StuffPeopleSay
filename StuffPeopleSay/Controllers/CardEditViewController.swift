@@ -58,7 +58,7 @@ extension CardEditViewController: UICollectionViewDelegate {
                 })
             }else{
                 gameStore.removeCards(deckId: deck.id, cards: [deck.cards[index].id], completionHandler: { (success) in
-                    print("Card added")
+                    print("Card removed")
                 })
             }
         }

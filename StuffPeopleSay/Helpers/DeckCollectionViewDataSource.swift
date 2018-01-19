@@ -38,7 +38,7 @@ class DeckCollectionViewDataSource: NSObject, UICollectionViewDataSource{
         }
         
         cell.name.text = deck?.name
-        cell.name.delegate = delegate?.deckView
+//        cell.name.delegate = delegate?.deckView
         cell.id = deck?.id
         
 //        if selectedObjects.contains(cell.deckId){

@@ -44,7 +44,7 @@ class CardCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         cell.name.text = card?.name
         cell.name.indexPath = indexPath
         //        cell.name.addTarget(self, action: #selector(textChanged(sender:)), for: UIControlEvents.editingChanged)
-        cell.name.delegate = delegate?.cardView
+//        cell.name.delegate = delegate?.cardView
         return cell
     }
 }

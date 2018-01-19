@@ -34,6 +34,7 @@ extension Deck {
             print("Error parsing user object for key: cards")
             return nil
         }
+        
         var allCards:[Card] = []
         for c in coardData {
             if let card = Card(json: c){
@@ -41,7 +42,6 @@ extension Deck {
             }
         }
         
-//        allCards = allCards.sorted(by: { $0.order > $1.order })
         self.init(id: id, name: name, cards: allCards)
     }
 }

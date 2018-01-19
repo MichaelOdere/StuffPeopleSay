@@ -27,8 +27,8 @@ class GameStore{
      </dict>
      
      */
-//    private let baseURL = "https://smfs.now.sh"
-    private let baseURL = "http://smfs.info:8000"
+    private let baseURL = "https://smfs.now.sh"
+//    private let baseURL = "http://smfs.info:8000"
 
     // User Variables
     var isLoggedIn:Bool
