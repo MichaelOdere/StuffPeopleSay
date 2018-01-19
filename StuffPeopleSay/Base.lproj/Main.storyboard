@@ -763,7 +763,46 @@
                     <view key="view" contentMode="scaleToFill" id="HJJ-nR-Erq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yA4-yu-bR6">
+                                <rect key="frame" x="0.0" y="622" width="375" height="45"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5wv-ec-eUK">
+                                        <rect key="frame" x="291" y="7" width="76" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="76" id="tg4-jA-xbz"/>
+                                        </constraints>
+                                        <state key="normal" title="New Game"/>
+                                        <connections>
+                                            <action selector="newGame:" destination="muM-I1-wH0" eventType="touchUpInside" id="u4X-TV-3B5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9pF-Oe-NB2" userLabel="Manage Decks">
+                                        <rect key="frame" x="8" y="8" width="76" height="30"/>
+                                        <state key="normal" title="Decks"/>
+                                        <connections>
+                                            <action selector="showDecks:" destination="muM-I1-wH0" eventType="touchUpInside" id="6EJ-qX-g26"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.97636479139999999" green="0.97653168440000004" blue="0.9763541818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="5wv-ec-eUK" secondAttribute="trailing" constant="8" id="0T7-fG-SJ7"/>
+                                    <constraint firstItem="5wv-ec-eUK" firstAttribute="width" secondItem="9pF-Oe-NB2" secondAttribute="width" id="4iU-8b-yX9"/>
+                                    <constraint firstItem="9pF-Oe-NB2" firstAttribute="centerY" secondItem="yA4-yu-bR6" secondAttribute="centerY" id="6JR-8y-CZZ"/>
+                                    <constraint firstAttribute="height" constant="45" id="DXF-NP-xRp"/>
+                                    <constraint firstItem="5wv-ec-eUK" firstAttribute="centerY" secondItem="yA4-yu-bR6" secondAttribute="centerY" id="GPl-zY-EtK"/>
+                                    <constraint firstItem="5wv-ec-eUK" firstAttribute="height" secondItem="9pF-Oe-NB2" secondAttribute="height" id="MRM-0b-VAA"/>
+                                    <constraint firstItem="9pF-Oe-NB2" firstAttribute="leading" secondItem="yA4-yu-bR6" secondAttribute="leading" constant="8" id="hh6-4U-nCk"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yA4-yu-bR6" firstAttribute="leading" secondItem="9Kk-yZ-Bx7" secondAttribute="leading" id="Wsf-bN-DmG"/>
+                            <constraint firstItem="yA4-yu-bR6" firstAttribute="trailing" secondItem="9Kk-yZ-Bx7" secondAttribute="trailing" id="eRI-13-lp7"/>
+                            <constraint firstItem="yA4-yu-bR6" firstAttribute="bottom" secondItem="9Kk-yZ-Bx7" secondAttribute="bottom" id="feU-jJ-XE2"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="9Kk-yZ-Bx7"/>
                     </view>
                 </viewController>

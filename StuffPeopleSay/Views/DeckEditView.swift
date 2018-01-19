@@ -28,7 +28,6 @@ extension DeckEditView: CollectionViewType{
 
 extension DeckEditView {
     @objc func handleLongPress(gestureReconizer: UILongPressGestureRecognizer) {
-        print("long press")
         let p = gestureReconizer.location(in: collectionView)
         let indexPath = collectionView.indexPathForItem(at: p)
         if let index = indexPath {

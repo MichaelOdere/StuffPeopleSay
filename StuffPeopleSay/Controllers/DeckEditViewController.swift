@@ -13,6 +13,7 @@ class DeckEditViewController: UIViewController{
         super.viewDidLoad()
 
         deckEditView = DeckEditView(frame: view.frame)
+
         deckEditView.collectionView.delegate = self
         view.addSubview(deckEditView)
         
