@@ -15,7 +15,6 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
     var loadingView:LoadingView!
 
     override func viewDidLoad() {
-
         self.updateEmailTextField()
         emailTextField.delegate = self
         emailTextField.returnKeyType = UIReturnKeyType.done
@@ -39,14 +38,20 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
         group.enter()
         
         gameStore.login(loginType: loginType) { (success) in
-
-            if self.gameStore.isLoggedIn {
-                group.enter()
-                self.gameStore.getData(completionHandler: { (success) in
-                    group.leave()
-                })
+            print("completed")
+            switch loginType {
+            case .password(email: _, password: _):
+                if self.gameStore.isLoggedIn {
+                    group.enter()
+                    self.gameStore.getData(completionHandler: { (success) in
+                        group.leave()
+                    })
+                }
+                group.leave()
+            case .token:
+                print("case token")
+                group.leave()
             }
-            group.leave()
         }
         
         group.notify(queue: DispatchQueue.main){
@@ -76,7 +81,6 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.emailTextField.resignFirstResponder()
-        
         if !(textField.text?.isEmpty)!{
             LoginButton(nil)
         }

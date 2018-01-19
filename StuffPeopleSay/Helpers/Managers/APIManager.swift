@@ -42,11 +42,11 @@ struct APIManager{
         }
     }
 
-    func getGames(dispatch: NetworkDispatcher, completionHandler: @escaping ([Game])->Void){
+    func getGames(dispatch: NetworkDispatcher, completionHandler: @escaping ([Game]?)->Void){
         let operation = GetGamesOperation()
         operation.execute(in: dispatch) { (games) in
             guard let games = games else{
-                completionHandler([])
+                completionHandler(nil)
                 return
             }
             completionHandler(games)

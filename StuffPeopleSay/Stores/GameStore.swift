@@ -58,12 +58,7 @@ class GameStore{
         switch loginType {
         case .token:
             loginWithToken(completionHandler: { (success) in
-                
-                if success {
-                    
-                }else{
-                    completionHandler(success)
-                }
+                completionHandler(success)
             })
         case .password(let email, let password):
             loginWithPassword(email: email, password: password, completionHandler: { (success) in
@@ -74,20 +69,29 @@ class GameStore{
     
     func getData(completionHandler: @escaping (Bool)->Void) {
         let group = DispatchGroup()
-        group.enter()
         
+        var didGetGames = false
+        var didGetDecks = false
+        
+        group.enter()
         getGames(completionHandler: { (success) in
+            didGetGames = success
             group.leave()
         })
+        
         group.enter()
         getDecks(completionHandler: { (decks) in
-            if decks.count != 0{
-                self.decks = decks.reversed()
+            if let decks = decks {
+                if decks.count != 0{
+                    self.decks = decks.reversed()
+                }
+                didGetDecks = true
             }
             group.leave()
         })
+        
         group.notify(queue: DispatchQueue.main){
-            completionHandler(true)
+            completionHandler(didGetGames && didGetDecks)
         }
     }
     
@@ -113,11 +117,28 @@ class GameStore{
             return
         }
 
-        apiManager.checkToken(email: email, token: token, socketId: "123", dispatch: dispatch) { (success) in
+//        apiManager.checkToken(email: email, token: token, socketId: "123", dispatch: dispatch) { (success) in
+//            if success {
+//                self.isLoggedIn = true
+//                let environment = NetworkEnvironment(host: self.baseURL, token: token, socketId: "123")
+//                self.dispatch.setEnvironment(environment: environment)
+//            }else{
+//                self.isLoggedIn = false
+//            }
+//
+//            print("checked token", success)
+//            completionHandler(success)
+//        }
+        
+        let environment = NetworkEnvironment(host: self.baseURL, token: token, socketId: "123")
+        self.dispatch.setEnvironment(environment: environment)
+        
+        print(token)
+        print(baseURL)
+        self.getData { (success) in
             if success {
                 self.isLoggedIn = true
-                let environment = NetworkEnvironment(host: self.baseURL, token: token, socketId: "123")
-                self.dispatch.setEnvironment(environment: environment)
+                
             }else{
                 self.isLoggedIn = false
             }
@@ -160,8 +181,12 @@ class GameStore{
     
     func getGames(completionHandler: @escaping (Bool)->Void){
         apiManager.getGames(dispatch: dispatch) { (games) in
-            self.games = games
-            completionHandler(true)
+            if let games = games {
+                self.games = games
+                completionHandler(true)
+                return
+            }
+            completionHandler(false)
         }
     }
     
@@ -191,7 +216,7 @@ class GameStore{
         }
     }
     
-    func getDecks(completionHandler: @escaping ([Deck])->Void){
+    func getDecks(completionHandler: @escaping ([Deck]?)->Void){
         var tempDecks:[Deck] = []
         var decksData:JSON?
         let group = DispatchGroup()
@@ -199,6 +224,10 @@ class GameStore{
         group.enter()
         
         getDecksData { (jsonData) in
+            guard let jsonData = jsonData else{
+                completionHandler(nil)
+                return
+            }
             decksData = jsonData
             group.leave()
         }
@@ -206,7 +235,7 @@ class GameStore{
         group.notify(queue: DispatchQueue.main){
             group.enter()
             guard let decksDataArray = decksData?.array else {
-                group.leave()
+                completionHandler(nil)
                 return
             }
             

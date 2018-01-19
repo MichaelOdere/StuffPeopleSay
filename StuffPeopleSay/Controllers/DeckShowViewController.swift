@@ -14,7 +14,7 @@ class DeckShowViewController:UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 10, width: self.view.frame.width, height: 44))
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 10, width: self.view.frame.width, height: 75))
         self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "Decks");
         let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action:  #selector(DeckShowViewController.dismissVC))
