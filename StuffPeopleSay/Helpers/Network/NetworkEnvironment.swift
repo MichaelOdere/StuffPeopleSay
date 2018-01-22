@@ -1,3 +1,7 @@
+// Much of the network layer structure modeled after Network Layers in Swift by Daniele Margutti.
+// Source: https://medium.com/@danielemargutti/network-layers-in-swift-7fc5628ff789
+
+
 import Foundation
 
 public struct NetworkEnvironment {
@@ -9,9 +13,6 @@ public struct NetworkEnvironment {
     public var authHeaders: [String:String] {
         return ["Authorization": token, "SocketId": socketId, "Content-Type": "application/json"]
     }
-
-    // Cache policy
-//    public var cachePolicy: URLRequest.CachePolicy = .reloadIgnoringLocalAndRemoteCacheData
 
     public init(host: String, token: String, socketId:String) {
         self.host = host

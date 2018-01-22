@@ -1,3 +1,6 @@
+// Much of the network layer structure modeled after Network Layers in Swift by Daniele Margutti.
+// Source: https://medium.com/@danielemargutti/network-layers-in-swift-7fc5628ff789
+
 import Alamofire
 
 
