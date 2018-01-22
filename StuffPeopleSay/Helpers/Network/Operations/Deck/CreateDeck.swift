@@ -2,7 +2,7 @@ import SwiftyJSON
 
 class CreateDeckOperation: Operation {
     
-    typealias Output = Deck
+    typealias Output = JSON
     
     var name: String
     
@@ -29,10 +29,7 @@ class CreateDeckOperation: Operation {
             }
             
             if case let NetworkResponse.json(jsonData) = response {
-                print("JSON")
-                print(jsonData)
-                completionHandler(nil)
-                //                completionHandler(Game(gameId: "s", name: "s", status: "2", my: User(userId: "d", name: "d", boards: [] ), opponents: []))
+                completionHandler(jsonData)
                 return
             } else {
                 completionHandler(nil)

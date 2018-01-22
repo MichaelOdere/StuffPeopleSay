@@ -200,6 +200,21 @@ class GameStore{
     
     // MARK: GameStore - Deck
 
+    func createDeck(name:String, completionHandler: @escaping (Deck?)->Void){
+        apiManager.createDeck(name:name, dispatch: dispatch) { (jsonData) in
+            
+            guard let json = jsonData as? JSON, let id = json["id"].string else {
+                print("Error parsing user object for key: id")
+                completionHandler(nil)
+                return
+            }
+            
+            self.getDeck(deckId: id, completionHandler: { (deck) in
+                completionHandler(deck)
+            })
+        }
+    }
+    
     func getDecksData(completionHandler: @escaping (JSON?)->Void){
         apiManager.getDecksData(dispatch: dispatch) { (deckData) in
             completionHandler(deckData)

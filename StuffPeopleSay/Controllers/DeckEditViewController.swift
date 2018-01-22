@@ -12,6 +12,8 @@ class DeckEditViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.rightBarButtonItem =  UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action:  #selector(DeckEditViewController.newCard))
+
         deckEditView = DeckEditView(frame: view.frame)
 
         deckEditView.collectionView.delegate = self
@@ -31,6 +33,35 @@ class DeckEditViewController: UIViewController{
 //        navigationItem.searchController = searchController
 //        navigationItem.hidesSearchBarWhenScrolling = false
 //        definesPresentationContext = true
+    }
+    
+    @objc func newCard() {
+        let alert = UIAlertController(title: "Type in the name of the Deck you'd like to add",
+                                      message: nil,
+                                      preferredStyle: .alert)
+    
+        alert.addTextField(configurationHandler: nil)
+    
+        let add = UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+            guard let cardText = textField?.text else {return}
+            if !cardText.isEmpty{
+                self.gameStore.createDeck(name: cardText, completionHandler: { (deck) in
+                    if let deck = deck {
+                        self.gameStore.decks.append(deck)
+                        self.deckEditView.collectionView.reloadData()
+                        let indexPath = IndexPath(row: self.deckEditView.collectionView.numberOfItems(inSection: 0)-1, section: 0)
+                        self.deckEditView.collectionView.scrollToItem(at:indexPath, at: .bottom, animated: true)
+                    }
+                })
+            }
+        })
+        alert.addAction(add)
+    
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alert.addAction(cancel)
+    
+        present(alert, animated: true, completion: nil)
     }
 }
 

@@ -77,14 +77,10 @@ struct APIManager{
     
     // MARK: APIManager - Deck Operations
     
-    func createDeck(name: String, dispatch: NetworkDispatcher, completionHandler: @escaping (Deck?)->Void){
+    func createDeck(name: String, dispatch: NetworkDispatcher, completionHandler: @escaping (JSON?)->Void){
         let operation = CreateDeckOperation(name: name)
-        operation.execute(in: dispatch) { (deck) in
-            guard let deck = deck else{
-                completionHandler(nil)
-                return
-            }
-            completionHandler(deck)
+        operation.execute(in: dispatch) { (jsonData) in
+            completionHandler(jsonData)
         }
     }
     
@@ -131,7 +127,4 @@ struct APIManager{
             completionHandler(success)
         }
     }
-    
-    // MARK: APIManager - Card Operations
-
 }

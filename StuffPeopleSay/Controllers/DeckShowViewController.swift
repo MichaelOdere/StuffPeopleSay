@@ -15,11 +15,11 @@ class DeckShowViewController:UIViewController{
         super.viewDidLoad()
         
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 10, width: self.view.frame.width, height: 75))
-        self.view.addSubview(navBar);
-        let navItem = UINavigationItem(title: "Decks");
+        self.view.addSubview(navBar)
+        let navItem = UINavigationItem(title: "Decks")
         let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action:  #selector(DeckShowViewController.dismissVC))
         navItem.rightBarButtonItem = doneItem
-        navBar.setItems([navItem], animated: false);
+        navBar.setItems([navItem], animated: false)
         
         deckEditView = DeckEditView(frame: CGRect(x: 0, y: navBar.frame.height, width: self.view.frame.width, height: self.view.frame.height))
 
