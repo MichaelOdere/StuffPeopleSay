@@ -84,6 +84,13 @@ struct APIManager{
         }
     }
     
+    func createCard(name: String, dispatch: NetworkDispatcher, completionHandler: @escaping (Card?)->Void){
+        let operation = CreateCardOperation(name: name)
+        operation.execute(in: dispatch) { (card) in
+            completionHandler(card)
+        }
+    }
+    
     func getDecksData(dispatch: NetworkDispatcher, completionHandler: @escaping (JSON?)->Void){
         let operation = GetDecksOperation()
         operation.execute(in: dispatch) { (jsonData) in

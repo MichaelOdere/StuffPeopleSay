@@ -1,6 +1,7 @@
 public enum DeckRequests: Request {
 
     case createDeck(name:String)
+    case createCard(name:String)
     case getDecks()
     case getDeck(deckId:String)
     case addCardsToDeck(deckId:String, cards:[String])
@@ -10,6 +11,8 @@ public enum DeckRequests: Request {
         switch self {
         case .createDeck(_):
             return "/decks"
+        case .createCard(_):
+            return "/cards"
         case .getDecks():
             return "/decks"
         case .getDeck(let deckId):
@@ -24,6 +27,8 @@ public enum DeckRequests: Request {
     public var method: HTTPMethodCase {
         switch self {
         case .createDeck(_):
+            return .post
+        case .createCard(_):
             return .post
         case .getDecks():
             return .get
@@ -40,6 +45,8 @@ public enum DeckRequests: Request {
         switch self {
         case .createDeck(let name):
             return ["name": name]
+        case .createCard(let name):
+            return ["name": name]
         case .getDecks():
             return nil
         case .getDeck(_):
@@ -54,6 +61,8 @@ public enum DeckRequests: Request {
     public var headers: [String : String]? {
         switch self {
         case .createDeck(_):
+            return nil
+        case .createCard(_):
             return nil
         case .getDecks():
             return nil
