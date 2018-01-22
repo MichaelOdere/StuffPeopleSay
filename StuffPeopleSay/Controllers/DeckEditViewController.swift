@@ -12,7 +12,7 @@ class DeckEditViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.rightBarButtonItem =  UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action:  #selector(DeckEditViewController.newCard))
+        navigationItem.rightBarButtonItem =  UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action:  #selector(DeckEditViewController.newDeck))
 
         deckEditView = DeckEditView(frame: view.frame)
 
@@ -35,7 +35,7 @@ class DeckEditViewController: UIViewController{
 //        definesPresentationContext = true
     }
     
-    @objc func newCard() {
+    @objc func newDeck() {
         let alert = UIAlertController(title: "Type in the name of the Deck you'd like to add",
                                       message: nil,
                                       preferredStyle: .alert)
@@ -51,7 +51,6 @@ class DeckEditViewController: UIViewController{
             if !cardText.isEmpty{
                 self.gameStore.createDeck(name: cardText, completionHandler: { (deck) in
                     if let deck = deck {
-                        self.gameStore.decks.append(deck)
                         self.deckEditView.collectionView.reloadData()
                         let indexPath = IndexPath(row: self.deckEditView.collectionView.numberOfItems(inSection: 0)-1, section: 0)
                         self.deckEditView.collectionView.scrollToItem(at:indexPath, at: .bottom, animated: true)

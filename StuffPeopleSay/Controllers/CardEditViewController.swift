@@ -13,6 +13,8 @@ class CardEditViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.rightBarButtonItem =  UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action:  #selector(CardEditViewController.newCard))
+
         cardEditView = CardEditView(frame: view.frame)
         cardEditView.collectionView.delegate = self
         view.addSubview(cardEditView)
@@ -20,6 +22,7 @@ class CardEditViewController: UIViewController{
 //        cardDataSource.searchDelegate = self
         cardDataSource.delegate = self
         cardEditView.setDataSource(dataSource: cardDataSource)
+        
         
 //        setupSearch()
     }
@@ -31,6 +34,34 @@ class CardEditViewController: UIViewController{
 //        navigationItem.searchController = searchController
 //        navigationItem.hidesSearchBarWhenScrolling = false
 //        definesPresentationContext = true
+    }
+    
+    @objc func newCard() {
+        let alert = UIAlertController(title: "Type in the name of the Card you'd like to add",
+                                      message: nil,
+                                      preferredStyle: .alert)
+        
+        alert.addTextField(configurationHandler: nil)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alert.addAction(cancel)
+        
+        let add = UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+            guard let cardText = textField?.text else {return}
+            if !cardText.isEmpty{
+                self.gameStore.createCard(name: cardText, completionHandler: { (card) in
+                    if let card = card {
+                        self.cardEditView.collectionView.reloadData()
+                        let indexPath = IndexPath(row: self.cardEditView.collectionView.numberOfItems(inSection: 0)-1, section: 0)
+                        self.cardEditView.collectionView.scrollToItem(at:indexPath, at: .bottom, animated: true)
+                    }
+                })
+            }
+        })
+        alert.addAction(add)
+        
+        present(alert, animated: true, completion: nil)
     }
 }
 
