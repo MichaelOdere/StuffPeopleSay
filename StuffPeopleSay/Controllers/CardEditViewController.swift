@@ -51,7 +51,7 @@ class CardEditViewController: UIViewController{
             guard let cardText = textField?.text else {return}
             if !cardText.isEmpty{
                 self.gameStore.createCard(name: cardText, completionHandler: { (card) in
-                    if let card = card {
+                    if card != nil {
                         self.cardEditView.collectionView.reloadData()
                         let indexPath = IndexPath(row: self.cardEditView.collectionView.numberOfItems(inSection: 0)-1, section: 0)
                         self.cardEditView.collectionView.scrollToItem(at:indexPath, at: .bottom, animated: true)

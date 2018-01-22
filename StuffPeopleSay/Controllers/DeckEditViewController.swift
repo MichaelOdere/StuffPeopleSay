@@ -50,7 +50,7 @@ class DeckEditViewController: UIViewController{
             guard let cardText = textField?.text else {return}
             if !cardText.isEmpty{
                 self.gameStore.createDeck(name: cardText, completionHandler: { (deck) in
-                    if let deck = deck {
+                    if deck != nil {
                         self.deckEditView.collectionView.reloadData()
                         let indexPath = IndexPath(row: self.deckEditView.collectionView.numberOfItems(inSection: 0)-1, section: 0)
                         self.deckEditView.collectionView.scrollToItem(at:indexPath, at: .bottom, animated: true)
