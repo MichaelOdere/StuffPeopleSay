@@ -52,7 +52,7 @@ class GameStore{
         decks = []
     }
     
-    // MARK: GameStore - Multiple
+    // MARK: GameStore - Login
 
     func login(loginType: LoginType, completionHandler: @escaping (Bool)->Void) {
         switch loginType {

@@ -23,7 +23,6 @@ class CardEditViewController: UIViewController{
         cardDataSource.delegate = self
         cardEditView.setDataSource(dataSource: cardDataSource)
         
-        
 //        setupSearch()
     }
     
