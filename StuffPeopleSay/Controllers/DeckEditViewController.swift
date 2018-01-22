@@ -42,6 +42,9 @@ class DeckEditViewController: UIViewController{
     
         alert.addTextField(configurationHandler: nil)
     
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alert.addAction(cancel)
+        
         let add = UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
             guard let cardText = textField?.text else {return}
@@ -57,10 +60,7 @@ class DeckEditViewController: UIViewController{
             }
         })
         alert.addAction(add)
-    
-        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-        alert.addAction(cancel)
-    
+
         present(alert, animated: true, completion: nil)
     }
 }
