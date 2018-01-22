@@ -25,7 +25,6 @@
 		F932BD0220111AF100CD1DE0 /* BoardDeckCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F932BD0120111AF100CD1DE0 /* BoardDeckCard.swift */; };
 		F932BD0420111E0F00CD1DE0 /* UpdateBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F932BD0320111E0F00CD1DE0 /* UpdateBoard.swift */; };
 		F9341C0F1FD1ECA0009CD301 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9341C0E1FD1ECA0009CD301 /* Board.swift */; };
-		F93D1C11200BD77900B0107D /* CardRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93D1C10200BD77900B0107D /* CardRequests.swift */; };
 		F93D1C13200BD80000B0107D /* NetworkEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93D1C12200BD80000B0107D /* NetworkEnvironment.swift */; };
 		F93D1C16200C0C6000B0107D /* NetworkDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93D1C15200C0C6000B0107D /* NetworkDispatcher.swift */; };
 		F950F3601FF3561800DF578F /* DeckCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F950F35F1FF3561800DF578F /* DeckCollectionViewLayout.swift */; };
@@ -98,7 +97,6 @@
 		F932BD0120111AF100CD1DE0 /* BoardDeckCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDeckCard.swift; sourceTree = "<group>"; };
 		F932BD0320111E0F00CD1DE0 /* UpdateBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBoard.swift; sourceTree = "<group>"; };
 		F9341C0E1FD1ECA0009CD301 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
-		F93D1C10200BD77900B0107D /* CardRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRequests.swift; sourceTree = "<group>"; };
 		F93D1C12200BD80000B0107D /* NetworkEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEnvironment.swift; sourceTree = "<group>"; };
 		F93D1C15200C0C6000B0107D /* NetworkDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDispatcher.swift; sourceTree = "<group>"; };
 		F950F35F1FF3561800DF578F /* DeckCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCollectionViewLayout.swift; sourceTree = "<group>"; };
@@ -230,7 +228,6 @@
 				F9707CE6200B2C49001F4D17 /* UserRequests.swift */,
 				F9707CE8200B325D001F4D17 /* GameRequests.swift */,
 				F9707CEA200B36DA001F4D17 /* DeckRequests.swift */,
-				F93D1C10200BD77900B0107D /* CardRequests.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -545,7 +542,6 @@
 				F9BDD318200D731900FD320E /* GetGames.swift in Sources */,
 				F9707CE4200B0008001F4D17 /* RequestProtocol.swift in Sources */,
 				F9707CEB200B36DA001F4D17 /* DeckRequests.swift in Sources */,
-				F93D1C11200BD77900B0107D /* CardRequests.swift in Sources */,
 				F90CFDE3200D32570028F6D7 /* GetDeck.swift in Sources */,
 				F91230DD1FF1972F00182B55 /* Deck.swift in Sources */,
 				F96C58061FBB69F600D49481 /* BingoGame.swift in Sources */,

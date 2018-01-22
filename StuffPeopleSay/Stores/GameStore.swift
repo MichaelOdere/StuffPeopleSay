@@ -133,8 +133,6 @@ class GameStore{
         let environment = NetworkEnvironment(host: self.baseURL, token: token, socketId: "123")
         self.dispatch.setEnvironment(environment: environment)
         
-        print(token)
-        print(baseURL)
         self.getData { (success) in
             if success {
                 self.isLoggedIn = true
@@ -162,8 +160,6 @@ class GameStore{
             self.keychain.set(token, forKey: "token")
             self.keychain.set(email, forKey: "email")
             
-            print("THIS IS THE TOKEN IN LOGIN")
-            print(token)
             completionHandler(true)
         }
     }
@@ -262,57 +258,13 @@ class GameStore{
     
     func addCards(deckId: String, cards: [String], completionHandler: @escaping (Bool)->Void) {
         apiManager.addCards(deckId: deckId, cards: cards, dispatch: dispatch) { (success) in
-//            if success {
-//                if let deck = self.findDeck(deckId: deckId){
-//                    self.addCards(deck: deck, cards: cards)
-//                    completionHandler(success)
-//                    return
-//                }
-//                completionHandler(false)
-//                return
-//            }
             completionHandler(success)
         }
     }
     
     func removeCards(deckId: String, cards: [String], completionHandler: @escaping (Bool)->Void) {
         apiManager.removeCards(deckId: deckId, cards: cards, dispatch: dispatch) { (success) in
-//            if success {
-//                if let deck = self.findDeck(deckId: deckId){
-//                    self.removeCards(deck: deck, cards: cards)
-//                    completionHandler(success)
-//                    return
-//                }
-//                completionHandler(false)
-//                return
-//            }
             completionHandler(success)
         }
     }
-    
-//    func findDeck(deckId: String)->Deck? {
-//        if let index = decks.index(where: {$0.id == deckId}) {
-//            return decks[index]
-//        }
-//        return nil
-//    }
-//
-//
-//    func addCards(deck: Deck, cards: [String]) {
-//        for id in cards {
-//            if !deck.cards.contains(id) {
-//                deck.cards.append(id)
-//            }
-//        }
-//    }
-//
-//    func removeCards(deck: Deck, cards: [String]) {
-//        for id in cards {
-//            if let index = deck.cards.index(of: id) {
-//                deck.cards.remove(at: index)
-//            }
-//        }
-//    }
-    
-    // MARK: GameStore - Card
 }
