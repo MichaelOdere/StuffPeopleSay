@@ -62,7 +62,13 @@ class GameStore{
             })
         case .password(let email, let password):
             loginWithPassword(email: email, password: password, completionHandler: { (success) in
-                completionHandler(success)
+                if self.isLoggedIn{
+                    self.getData(completionHandler: { (success) in
+                        completionHandler(success)
+                    })
+                }else{
+                    completionHandler(success)
+                }
             })
         }
     }

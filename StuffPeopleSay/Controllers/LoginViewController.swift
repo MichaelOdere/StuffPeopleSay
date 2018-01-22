@@ -38,18 +38,7 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
         group.enter()
         
         gameStore.login(loginType: loginType) { (success) in
-            switch loginType {
-            case .password(email: _, password: _):
-                if self.gameStore.isLoggedIn {
-                    group.enter()
-                    self.gameStore.getData(completionHandler: { (success) in
-                        group.leave()
-                    })
-                }
-                group.leave()
-            case .token:
-                group.leave()
-            }
+            group.leave()
         }
         
         group.notify(queue: DispatchQueue.main){
