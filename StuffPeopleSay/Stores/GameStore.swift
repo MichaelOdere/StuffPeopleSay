@@ -215,6 +215,20 @@ class GameStore{
         }
     }
     
+    func createCard(name:String, completionHandler: @escaping (Deck?)->Void){
+        apiManager.createCard(name:name, dispatch: dispatch) { (card) in
+            guard let card = card else {
+                completionHandler(nil)
+                return
+            }
+            
+            // Add card to every deck
+            for deck in self.decks {
+                deck.cards.append(card)
+            }
+        }
+    }
+    
     func getDecksData(completionHandler: @escaping (JSON?)->Void){
         apiManager.getDecksData(dispatch: dispatch) { (deckData) in
             completionHandler(deckData)
