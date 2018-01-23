@@ -28,7 +28,6 @@ class GameStore{
      
      */
     private let baseURL = "https://smfs.now.sh"
-//    private let baseURL = "http://smfs.info:8000"
 
     // User Variables
     var isLoggedIn:Bool
@@ -122,7 +121,7 @@ class GameStore{
             completionHandler(false)
             return
         }
-
+// Call no working yet
 //        apiManager.checkToken(email: email, token: token, socketId: "123", dispatch: dispatch) { (success) in
 //            if success {
 //                self.isLoggedIn = true
