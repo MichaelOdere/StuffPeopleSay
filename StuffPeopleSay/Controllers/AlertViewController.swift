@@ -12,12 +12,12 @@ class AlertViewController: UIViewController{
     var hasLoaded:Bool = false
 
     override func viewDidLoad() {
-        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-
+        self.view.backgroundColor = UIColor.clear
         alertView = AlertView(frame: self.view.frame)
         self.view.addSubview(alertView)
-
         setupAlertView()
+        
+        alertView.initialAnimation()
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -25,12 +25,7 @@ class AlertViewController: UIViewController{
 
     override func viewWillAppear(_ animated: Bool) {
         if !hasLoaded{
-            self.view.alpha = 0.3
-            alertView.contentView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-            UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: {
-                self.view.alpha = 1
-                self.alertView.contentView.transform = .identity
-            })
+
             hasLoaded = true
         }
         if let deck = selectedDeck {

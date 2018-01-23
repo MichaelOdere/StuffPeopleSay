@@ -23,7 +23,7 @@ class DeckEditViewController: UIViewController{
         deckDataSource.delegate = self
         deckEditView.setDataSource(dataSource: deckDataSource)
         
-        setupSearch()
+//        setupSearch()
     }
     
     func setupSearch(){

@@ -18,7 +18,8 @@ class AlertView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        self.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+
         verticalPadding = self.frame.height * 0.1
         verticleSpaceBetweenElements = 10
         horizontalPadding = self.frame.width * 0.05
@@ -30,12 +31,24 @@ class AlertView: UIView {
         setupDeckButton()
     }
     
+    func initialAnimation() {
+        print("Initial")
+        contentView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        self.alpha = 0.3
+        UIView.animate(withDuration: 10, delay: 0, options: .curveEaseOut, animations: {
+            self.contentView.transform = .identity
+            self.alpha = 1
+            print("Done")
+        })
+    }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func setupContentView(){
         contentView.backgroundColor = UIColor.white
+        contentView.layer.cornerRadius = self.frame.width * 0.08
+        contentView.layer.masksToBounds = true
         contentView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(contentView)
         
@@ -148,6 +161,7 @@ class AlertView: UIView {
     
     func setupDeckButton(){
         deckButton.backgroundColor = UIColor.lightGray
+        deckButton.layer.cornerRadius = 10
         deckButton.setTitle("Select a Deck", for: .normal)
         deckButton.isEnabled = true
         deckButton.translatesAutoresizingMaskIntoConstraints = false

@@ -6,9 +6,9 @@ class CardEditViewController: UIViewController{
     var deck:Deck!
     let cardDataSource = CardCollectionViewDataSource()
 
-    var filteredCards = [Card]()
-    var selectedCards = [String]()
-    let searchController = UISearchController(searchResultsController: nil)
+//    var filteredCards = [Card]()
+//    var selectedCards = [String]()
+//    let searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,10 +94,7 @@ extension CardEditViewController: UICollectionViewDelegate {
         }
     }
 }
-//        if let index = decks.index(where: {$0.id == deckId}) {
-//            return decks[index]
-//        }
-//        return nil
+
 //extension CardEditViewController: UISearchResultsUpdating, CardSearchCollectionViewDelegate{
 //    func updateSearchResults(for searchController: UISearchController) {
 //        filterContentForSearchText(searchController.searchBar.text!)
