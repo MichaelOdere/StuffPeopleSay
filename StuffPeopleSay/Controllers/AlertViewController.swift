@@ -45,7 +45,7 @@ class AlertViewController: UIViewController{
     }
 
     @objc func save(sender:UIButton) {
-        if !(alertView.gameNameTextField.text?.isEmpty)! && selectedDeck != nil{
+        if alertView.gameNameTextField.text?.isEmpty == false && selectedDeck != nil{
             let boardsCount = alertView.pickerData[alertView.numberPicker.selectedRow(inComponent: 0)]
             gameStore.createGame(name: alertView.gameNameTextField.text!, boards: boardsCount, deckId: (selectedDeck?.id)!, completionHandler: { (game) in
                 if game != nil{
@@ -76,4 +76,3 @@ extension AlertViewController:SelectDeckProtocol {
         self.selectedDeck = valueSent
     }
 }
-
