@@ -7,13 +7,14 @@ protocol AddedDeckProtocol: class {
 class AlertViewController: UIViewController{
    
     var addedDeckProtocol:AddedDeckProtocol?
-    var alertView = AlertView()
+    var alertView:AlertView!
     var gameStore:GameStore!
     var selectedDeck:Deck?
     var hasLoaded:Bool = false
 
     override func viewDidLoad() {
-        
+        alertView = AlertView(frame: self.view.frame)
+        self.view.addSubview(alertView)
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
 
         alertView.gameNameTextField.delegate = self
