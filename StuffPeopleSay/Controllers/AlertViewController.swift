@@ -66,6 +66,10 @@ class AlertViewController: UIViewController{
                 }
             })
             animateDissmiss()
+        }else{
+            let alert = UIAlertController(title: "Not Enough Information!", message: "Make sure you have filled out all of the required fields", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
 
