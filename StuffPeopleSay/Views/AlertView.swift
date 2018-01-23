@@ -1,3 +1,6 @@
+// TODO BRING BACK ADD TARGET FUNCTIONALITY!
+// TODO WRAP INTO PROTOCAL?
+
 import UIKit
 
 class AlertView: UIView {
