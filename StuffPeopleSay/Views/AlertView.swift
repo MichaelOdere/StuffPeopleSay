@@ -26,6 +26,9 @@ class AlertView: UIView {
         setupTextView()
         setupNumberPicker()
         setupDeckButton()
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.addGestureRecognizer(tap)
     }
     
     func animateShow() {
@@ -105,6 +108,7 @@ class AlertView: UIView {
     }
     
     func setupTextView(){
+        gameNameTextField.delegate = self
         gameNameTextField.placeholder = "Enter A Game Name"
         gameNameTextField.backgroundColor = UIColor.white
         gameNameTextField.textAlignment = .center
@@ -178,5 +182,16 @@ class AlertView: UIView {
         
         let deckBottom = NSLayoutConstraint(item: deckButton, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: cancelButton, attribute: NSLayoutAttribute.top, multiplier: 1, constant: -verticleSpaceBetweenElements)
         deckBottom.isActive = true
+    }
+}
+
+extension AlertView:UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    @objc func dismissKeyboard() {
+        self.endEditing(true)
     }
 }

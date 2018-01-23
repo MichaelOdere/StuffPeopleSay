@@ -16,9 +16,6 @@ class AlertViewController: UIViewController{
         alertView = AlertView(frame: self.view.frame)
         self.view.addSubview(alertView)
         setupAlertView()
-        
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -36,8 +33,6 @@ class AlertViewController: UIViewController{
     }
 
     func setupAlertView() {
-        alertView.gameNameTextField.delegate = self
-
         alertView.numberPicker.delegate = self
         alertView.numberPicker.dataSource = self
         
@@ -99,24 +94,11 @@ extension AlertViewController:UIPickerViewDelegate, UIPickerViewDataSource {
         }
         return NSAttributedString(string: String(alertView.pickerData[row]) + " Boards")
     }
-
-
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
 }
 
 extension AlertViewController:SelectDeckProtocol {
     func sendSelectedDeck(valueSent: Deck) {
         self.selectedDeck = valueSent
     }
-}
-
-extension AlertViewController:UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-
 }
 
