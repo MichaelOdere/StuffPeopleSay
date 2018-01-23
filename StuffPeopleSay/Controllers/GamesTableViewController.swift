@@ -63,7 +63,7 @@ class GamesTableViewController:UIViewController, UITableViewDelegate, UITableVie
 
     @IBAction func newGame(_ sender: Any) {
         
-        let alertView = AlertView()
+        let alertView = AlertViewController()
         alertView.modalPresentationStyle = .overCurrentContext
         alertView.gameStore = gameStore
         alertView.addedDeckProtocol = self

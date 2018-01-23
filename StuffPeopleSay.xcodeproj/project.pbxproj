@@ -46,6 +46,7 @@
 		F9792C5E1FD75D4400ADE88C /* ZoomTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9792C5D1FD75D4400ADE88C /* ZoomTransitioningDelegate.swift */; };
 		F97E63841FF1A81700CBA256 /* DeckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97E63831FF1A81700CBA256 /* DeckCell.swift */; };
 		F97E63861FF1D66100CBA256 /* BingoPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97E63851FF1D66100CBA256 /* BingoPalette.swift */; };
+		F9932A2F2017A1300037A293 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9932A2E2017A1300037A293 /* AlertView.swift */; };
 		F993AC0C1FD6229000433689 /* BoardCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F993AC0B1FD6229000433689 /* BoardCollectionViewController.swift */; };
 		F99A2F791FD4AA3000B2CEC6 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99A2F781FD4AA3000B2CEC6 /* LoadingView.swift */; };
 		F9AAF1CE1FD62F5E008A618F /* BoardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AAF1CD1FD62F5E008A618F /* BoardCollectionViewCell.swift */; };
@@ -121,6 +122,7 @@
 		F9792C5D1FD75D4400ADE88C /* ZoomTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomTransitioningDelegate.swift; sourceTree = "<group>"; };
 		F97E63831FF1A81700CBA256 /* DeckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCell.swift; sourceTree = "<group>"; };
 		F97E63851FF1D66100CBA256 /* BingoPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoPalette.swift; sourceTree = "<group>"; };
+		F9932A2E2017A1300037A293 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		F993AC0B1FD6229000433689 /* BoardCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCollectionViewController.swift; sourceTree = "<group>"; };
 		F99A2F781FD4AA3000B2CEC6 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		F9AAF1CD1FD62F5E008A618F /* BoardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 		F9FEA8A11FFEBD4800CEFE30 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F9932A2E2017A1300037A293 /* AlertView.swift */,
 				F9DC7C931FD0C66A0097D4B5 /* BingoCollectionView.swift */,
 				F96AA6141FBAB999001E7CCD /* BingoCollectionViewLayout.swift */,
 				F9EB8CAB2007D9C5004F04D0 /* CardEditView.swift */,
@@ -577,6 +580,7 @@
 				F9707CE9200B325D001F4D17 /* GameRequests.swift in Sources */,
 				F96F1DB41FF4CC7A00C06E9C /* CardCell.swift in Sources */,
 				F9B7CE9E200C3CC500E6C5BC /* NetworkOperation.swift in Sources */,
+				F9932A2F2017A1300037A293 /* AlertView.swift in Sources */,
 				F90CFDDD200C8C6C0028F6D7 /* GetToken.swift in Sources */,
 				F9BDD31A200D732500FD320E /* CreateGame.swift in Sources */,
 			);
