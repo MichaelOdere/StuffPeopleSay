@@ -184,7 +184,7 @@ class GameStore{
     func getGames(completionHandler: @escaping (Bool)->Void){
         apiManager.getGames(dispatch: dispatch) { (games) in
             if let games = games {
-                self.games = games
+                self.games = games.reversed()
                 completionHandler(true)
                 return
             }

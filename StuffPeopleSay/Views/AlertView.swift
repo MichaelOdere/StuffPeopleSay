@@ -143,6 +143,9 @@ class AlertView: UIView {
     }
     
     func setupNumberPicker(){
+        numberPicker.delegate = self
+        numberPicker.dataSource = self
+        
         numberPicker.backgroundColor = UIColor.white
         numberPicker.layer.cornerRadius = 10
         numberPicker.layer.borderColor = UIColor.lightGray.cgColor
@@ -182,6 +185,28 @@ class AlertView: UIView {
         
         let deckBottom = NSLayoutConstraint(item: deckButton, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: cancelButton, attribute: NSLayoutAttribute.top, multiplier: 1, constant: -verticleSpaceBetweenElements)
         deckBottom.isActive = true
+    }
+}
+
+extension AlertView:UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return String(pickerData[row])
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        
+        if pickerData[row] == 1 {
+            return NSAttributedString(string: String(pickerData[row]) + " Board")
+        }
+        return NSAttributedString(string: String(pickerData[row]) + " Boards")
     }
 }
 

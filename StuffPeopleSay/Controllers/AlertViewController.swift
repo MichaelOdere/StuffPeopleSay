@@ -33,9 +33,6 @@ class AlertViewController: UIViewController{
     }
 
     func setupAlertView() {
-        alertView.numberPicker.delegate = self
-        alertView.numberPicker.dataSource = self
-        
         alertView.deckButton.addTarget(self, action: #selector(showDecks(sender:)), for: .touchUpInside)
         alertView.cancelButton.addTarget(self, action: #selector(cancel(sender:)), for: .touchUpInside)
         alertView.saveButton.addTarget(self, action: #selector(save(sender:)), for: .touchUpInside)
@@ -71,28 +68,6 @@ class AlertViewController: UIViewController{
         vc.gameStore = gameStore
         vc.selectDeck = self
         present(vc, animated: true, completion: nil)
-    }
-}
-
-extension AlertViewController:UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return alertView.pickerData.count
-    }
-
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(alertView.pickerData[row])
-    }
-
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-
-        if alertView.pickerData[row] == 1 {
-            return NSAttributedString(string: String(alertView.pickerData[row]) + " Board")
-        }
-        return NSAttributedString(string: String(alertView.pickerData[row]) + " Boards")
     }
 }
 
