@@ -17,15 +17,13 @@ class AlertViewController: UIViewController{
         self.view.addSubview(alertView)
         setupAlertView()
         
-        alertView.initialAnimation()
-        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         if !hasLoaded{
-
+            alertView.animateShow()
             hasLoaded = true
         }
         if let deck = selectedDeck {
@@ -49,7 +47,9 @@ class AlertViewController: UIViewController{
     }
     
     @objc func cancel(sender:UIButton) {
-        animateDissmiss()
+        alertView.animateDissmiss {
+            self.dismiss(animated: false, completion: nil)
+        }
     }
 
     @objc func save(sender:UIButton) {
@@ -60,20 +60,14 @@ class AlertViewController: UIViewController{
                     self.addedDeckProtocol?.addedANewDeck()
                 }
             })
-            animateDissmiss()
+            alertView.animateDissmiss {
+                self.dismiss(animated: false, completion: nil)
+            }
         }else{
             let alert = UIAlertController(title: "Not Enough Information!", message: "Make sure you have filled out all of the required fields", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
-    }
-
-    func animateDissmiss() {
-        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: {
-            self.view.alpha = 0.0
-        }, completion: {  (finished: Bool) in
-            self.dismiss(animated: false, completion: nil)
-        })
     }
 
     @objc func showDecks(sender:UIButton) {

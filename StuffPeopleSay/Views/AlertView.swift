@@ -1,6 +1,3 @@
-// TODO BRING BACK ADD TARGET FUNCTIONALITY!
-// TODO WRAP INTO PROTOCAL?
-
 import UIKit
 
 class AlertView: UIView {
@@ -31,16 +28,23 @@ class AlertView: UIView {
         setupDeckButton()
     }
     
-    func initialAnimation() {
-        print("Initial")
+    func animateShow() {
         contentView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
         self.alpha = 0.3
-        UIView.animate(withDuration: 10, delay: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: {
             self.contentView.transform = .identity
             self.alpha = 1
-            print("Done")
         })
     }
+    
+    func animateDissmiss(completionHandler: @escaping ()->()) {
+        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: {
+            self.alpha = 0.0
+        }, completion: {  (finished: Bool) in
+            completionHandler()
+        })
+    }
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -132,7 +136,6 @@ class AlertView: UIView {
         
         let gameNameTextFieldWidth = NSLayoutConstraint(item: gameTextFieldLine, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: gameNameTextField, attribute: NSLayoutAttribute.width, multiplier: 1, constant: 0)
         gameNameTextFieldWidth.isActive = true
-        
     }
     
     func setupNumberPicker(){
@@ -176,5 +179,4 @@ class AlertView: UIView {
         let deckBottom = NSLayoutConstraint(item: deckButton, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: cancelButton, attribute: NSLayoutAttribute.top, multiplier: 1, constant: -verticleSpaceBetweenElements)
         deckBottom.isActive = true
     }
-
 }
