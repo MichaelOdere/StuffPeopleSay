@@ -47,10 +47,6 @@ class AlertView: UIView {
             completionHandler()
         })
     }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     func setupContentView(){
         contentView.backgroundColor = UIColor.white
@@ -185,6 +181,10 @@ class AlertView: UIView {
         
         let deckBottom = NSLayoutConstraint(item: deckButton, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: cancelButton, attribute: NSLayoutAttribute.top, multiplier: 1, constant: -verticleSpaceBetweenElements)
         deckBottom.isActive = true
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
