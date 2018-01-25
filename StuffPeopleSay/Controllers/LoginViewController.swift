@@ -7,19 +7,6 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
     var loadingView:LoadingView!
     var loginView:LoginView!
     override func viewDidLoad() {
-
-
-        let colorTop = UIColor.white.cgColor
-        let colorBottom = BingoPalette.bingoCellBackgroundColor.cgColor
-
-        let gl = CAGradientLayer()
-        gl.colors = [colorTop, colorBottom]
-        gl.locations = [0.0, 1.0]
-        gl.startPoint = CGPoint(x: 0.5, y: 0)
-        gl.endPoint = CGPoint(x: 0.5, y: 1)
-
-        gl.frame = view.frame
-        view.layer.addSublayer(gl)
         
         loginView = LoginView(frame: view.frame)
         view.addSubview(loginView)
@@ -77,7 +64,4 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
             self.present(navigationController, animated: false, completion: completionHandler)
         }
     }
-
-  
-
 }

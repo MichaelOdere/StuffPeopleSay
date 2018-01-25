@@ -6,16 +6,19 @@ enum ButtonState{
 }
 
 class LoginView: UIView {
+    var logoView = UIImageView()
     var loginButton = UIButton()
     var emailTextField = LoginInputView()
     var passwordTextField = LoginInputView()
-
+    
     var verticlePadding:CGFloat = 10
     var horizontalPadding:CGFloat = 50
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
+        backgroundColor = BingoPalette.bingoCellBackgroundColor
+        
         self.addSubview(emailTextField)
         self.addSubview(passwordTextField)
         self.addSubview(loginButton)
@@ -35,7 +38,6 @@ class LoginView: UIView {
         emailTextField.textField.addTarget(self, action: #selector(LoginView.textFieldDidChange(_:)),
                                            for: UIControlEvents.editingChanged)
         
-        emailTextField.backgroundColor = BingoPalette.bingoCellBackgroundColor //.withAlphaComponent(0.8)
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         
         let bottom = NSLayoutConstraint(item: emailTextField, attribute: .bottom, relatedBy: .equal, toItem: passwordTextField, attribute: .top, multiplier: 1, constant: -verticlePadding)
@@ -55,7 +57,6 @@ class LoginView: UIView {
         passwordTextField.textField.addTarget(self, action: #selector(LoginView.textFieldDidChange(_:)),
                                               for: UIControlEvents.editingChanged)
 
-        passwordTextField.backgroundColor = BingoPalette.bingoCellBackgroundColor//.withAlphaComponent(0.8)
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
 
         let centerY = NSLayoutConstraint(item: passwordTextField, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
@@ -82,7 +83,7 @@ class LoginView: UIView {
 
         configureButton(for: .inactive)
         
-        let top = NSLayoutConstraint(item: loginButton, attribute: .top, relatedBy: .equal, toItem: passwordTextField, attribute: .bottom, multiplier: 1, constant: verticlePadding)
+        let top = NSLayoutConstraint(item: loginButton, attribute: .top, relatedBy: .equal, toItem: passwordTextField, attribute: .bottom, multiplier: 1, constant: verticlePadding * 1.5)
         top.isActive = true
         
         let leading = NSLayoutConstraint(item: loginButton, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: horizontalPadding)

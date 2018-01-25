@@ -7,10 +7,13 @@ class LoginInputView: UIView {
 
     var verticlePadding:CGFloat = 1
     var horizontalPadding:CGFloat = 1
+    var height:CGFloat = 30
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        backgroundColor = UIColor.white.withAlphaComponent(0.2)
+
         self.addSubview(imageView)
         self.addSubview(borderLabel)
         self.addSubview(textField)
@@ -34,7 +37,7 @@ class LoginInputView: UIView {
         let leading = NSLayoutConstraint(item: imageView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: horizontalPadding)
         leading.isActive = true
         
-        let height = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 25)
+        let height = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: self.height)
         height.isActive = true
         
         let aspect = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: imageView, attribute: .width, multiplier: 1, constant: 0)
