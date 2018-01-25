@@ -72,7 +72,7 @@ class LoginInputView: UIView {
         let bottom = NSLayoutConstraint(item: textField, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -verticlePadding)
         bottom.isActive = true
         
-        let leading = NSLayoutConstraint(item: textField, attribute: .leading, relatedBy: .equal, toItem: borderLabel, attribute: .trailing, multiplier: 1, constant: horizontalPadding)
+        let leading = NSLayoutConstraint(item: textField, attribute: .leading, relatedBy: .equal, toItem: borderLabel, attribute: .trailing, multiplier: 1, constant: 4 * horizontalPadding)
         leading.isActive = true
         
         let trailing = NSLayoutConstraint(item: textField, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -horizontalPadding)

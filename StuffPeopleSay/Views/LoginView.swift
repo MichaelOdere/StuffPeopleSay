@@ -19,16 +19,36 @@ class LoginView: UIView {
 
         backgroundColor = BingoPalette.bingoCellBackgroundColor
         
+        self.addSubview(logoView)
         self.addSubview(emailTextField)
         self.addSubview(passwordTextField)
         self.addSubview(loginButton)
 
+        setupLogoView()
         setupEmailTextField()
         setupPasswordTextField()
         setupLoginButton()
         
         // tap to remove keyboard
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing(_:))))
+    }
+    
+    func setupLogoView() {
+        logoView.image  = UIImage(named: "login-person")
+        logoView.contentMode = .scaleAspectFit
+        logoView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let bottom = NSLayoutConstraint(item: logoView, attribute: .bottom, relatedBy: .equal, toItem: emailTextField, attribute: .top, multiplier: 1, constant: -3 * verticlePadding)
+        bottom.isActive = true
+        
+        let leading = NSLayoutConstraint(item: logoView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: horizontalPadding)
+        leading.isActive = true
+        
+        let trailing = NSLayoutConstraint(item: logoView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -horizontalPadding)
+        trailing.isActive = true
+        
+        let height = NSLayoutConstraint(item: logoView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 100)
+        height.isActive = true
     }
     
     func setupEmailTextField() {
@@ -53,6 +73,7 @@ class LoginView: UIView {
     func setupPasswordTextField() {
         passwordTextField.imageView.image = UIImage(named: "login-lock")
         passwordTextField.textField.placeholder = "Password"
+        passwordTextField.textField.isSecureTextEntry = true
         passwordTextField.textField.delegate = self
         passwordTextField.textField.addTarget(self, action: #selector(LoginView.textFieldDidChange(_:)),
                                               for: UIControlEvents.editingChanged)
@@ -134,7 +155,7 @@ extension LoginView: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.superview?.layer.borderColor = UIColor.green.cgColor
+        textField.superview?.layer.borderColor = UIColor.white.cgColor
         textField.superview?.layer.borderWidth = 1
     }
     
