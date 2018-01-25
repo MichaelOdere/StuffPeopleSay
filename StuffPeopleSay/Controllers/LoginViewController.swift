@@ -7,7 +7,8 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
     var loadingView:LoadingView!
     var loginView:LoginView!
     override func viewDidLoad() {
-        
+        view.backgroundColor = BingoPalette.bingoCellBackgroundColor
+
         loginView = LoginView(frame: view.frame)
         view.addSubview(loginView)
         loginView.loginButton.addTarget(self, action: #selector(LoginViewController.LoginButton), for: .touchUpInside)

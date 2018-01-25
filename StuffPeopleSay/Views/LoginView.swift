@@ -16,8 +16,8 @@ class LoginView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-        backgroundColor = BingoPalette.bingoCellBackgroundColor
+        
+        self.backgroundColor = UIColor.clear
         
         self.addSubview(logoView)
         self.addSubview(emailTextField)
