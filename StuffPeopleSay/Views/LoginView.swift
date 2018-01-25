@@ -16,7 +16,6 @@ class LoginView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        backgroundColor = UIColor.flatBlue()
         self.addSubview(emailTextField)
         self.addSubview(passwordTextField)
         self.addSubview(loginButton)
@@ -24,11 +23,19 @@ class LoginView: UIView {
         setupEmailTextField()
         setupPasswordTextField()
         setupLoginButton()
+        
+        // tap to remove keyboard
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing(_:))))
     }
     
     func setupEmailTextField() {
-//        emailTextField.imageView.image = UIImage(named: "login-person")
-        emailTextField.backgroundColor = UIColor.white
+        emailTextField.imageView.image = UIImage(named: "login-person")
+        emailTextField.textField.placeholder = "Email"
+        emailTextField.textField.delegate = self
+        emailTextField.textField.addTarget(self, action: #selector(LoginView.textFieldDidChange(_:)),
+                                           for: UIControlEvents.editingChanged)
+        
+        emailTextField.backgroundColor = BingoPalette.bingoCellBackgroundColor //.withAlphaComponent(0.8)
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         
         let bottom = NSLayoutConstraint(item: emailTextField, attribute: .bottom, relatedBy: .equal, toItem: passwordTextField, attribute: .top, multiplier: 1, constant: -verticlePadding)
@@ -42,10 +49,15 @@ class LoginView: UIView {
     }
     
     func setupPasswordTextField() {
-//        emailTextField.imageView.image = UIImage(named: "login-lock")
-        passwordTextField.backgroundColor = UIColor.flatPink()
+        passwordTextField.imageView.image = UIImage(named: "login-lock")
+        passwordTextField.textField.placeholder = "Password"
+        passwordTextField.textField.delegate = self
+        passwordTextField.textField.addTarget(self, action: #selector(LoginView.textFieldDidChange(_:)),
+                                              for: UIControlEvents.editingChanged)
+
+        passwordTextField.backgroundColor = BingoPalette.bingoCellBackgroundColor//.withAlphaComponent(0.8)
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
-        
+
         let centerY = NSLayoutConstraint(item: passwordTextField, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
         centerY.isActive = true
         
@@ -60,8 +72,15 @@ class LoginView: UIView {
     }
     
     func setupLoginButton() {
-        loginButton.backgroundColor = UIColor.flatBrown()
+        loginButton.adjustsImageWhenHighlighted = true
+        loginButton.backgroundColor = BingoPalette.vanillaBackgroundColor
+        loginButton.setTitle("Login", for: .normal)
+        loginButton.setTitleColor(UIColor.blue, for: .selected)
+        loginButton.setTitleColor(UIColor.flatPink(), for: .normal)
+        loginButton.isSelected = true
         loginButton.translatesAutoresizingMaskIntoConstraints = false
+
+        configureButton(for: .inactive)
         
         let top = NSLayoutConstraint(item: loginButton, attribute: .top, relatedBy: .equal, toItem: passwordTextField, attribute: .bottom, multiplier: 1, constant: verticlePadding)
         top.isActive = true
@@ -75,28 +94,50 @@ class LoginView: UIView {
         let height = NSLayoutConstraint(item: loginButton, attribute: .height, relatedBy: .equal, toItem: passwordTextField, attribute: .height, multiplier: 1, constant: 0)
         height.isActive = true
     }
-//    func updateEmailTextField(){
-//        if gameStore.keychain.get("email") != nil{
-//            print("here is email ", gameStore.keychain.get("email"))
-//            emailTextField.text = gameStore.keychain.get("email")
-//            configureButton(for: .active)
-//        }else{
-//            configureButton(for: .inactive)
-//        }
-//    }
-//
-//    func configureButton(for state: ButtonState){
-//        switch state{
-//        case .active:
-//            self.loginButton.alpha = 1.0
-//            self.loginButton.isEnabled = true
-//        case .inactive:
-//            self.loginButton.alpha = 0.6
-//            self.loginButton.isEnabled = false
-//        }
-//    }
+  
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if areTextFieldsEmpty(){
+            configureButton(for: .inactive)
+        }else{
+            configureButton(for: .active)
+        }
+    }
+
+    func configureButton(for state: ButtonState){
+        switch state{
+        case .active:
+            self.loginButton.alpha = 1.0
+            self.loginButton.isEnabled = true
+        case .inactive:
+            self.loginButton.alpha = 0.6
+            self.loginButton.isEnabled = false
+        }
+    }
+    
+    func areTextFieldsEmpty()->Bool {
+        guard let email = emailTextField.textField.text?.isEmpty, let password = passwordTextField.textField.text?.isEmpty else {
+            return false
+        }
+        return email || password
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension LoginView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.superview?.layer.borderColor = UIColor.green.cgColor
+        textField.superview?.layer.borderWidth = 1
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.superview?.layer.borderWidth = 0
     }
 }
