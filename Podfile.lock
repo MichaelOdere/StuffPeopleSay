@@ -1,10 +1,10 @@
 PODS:
-  - Alamofire (4.5.1)
+  - Alamofire (4.6.0)
   - ChameleonFramework (2.1.0):
     - ChameleonFramework/Default (= 2.1.0)
   - ChameleonFramework/Default (2.1.0)
   - KeychainSwift (10.0.0)
-  - PusherSwift (5.0.1)
+  - PusherSwift (5.1.1)
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
@@ -15,10 +15,10 @@ DEPENDENCIES:
   - SwiftyJSON (~> 4.0)
 
 SPEC CHECKSUMS:
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   KeychainSwift: f9f7910449a0c0fd2cabc889121530dd2c477c33
-  PusherSwift: f2e209d3c88ab95153bdc1cdda7a3e5c892127f2
+  PusherSwift: de9238b6b9faec5275d452e5f43ce9c82b78731e
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
 PODFILE CHECKSUM: 151927fa59379ee1e16705e8159a54321a0ac647
