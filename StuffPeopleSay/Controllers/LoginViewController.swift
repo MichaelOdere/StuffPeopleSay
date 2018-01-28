@@ -6,18 +6,18 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
     var gameStore:GameStore!
     var loadingView:LoadingView!
     var loginView:LoginView!
+    
     override func viewDidLoad() {
-        view.backgroundColor = BingoPalette.bingoCellBackgroundColor
-
+        loadingView = LoadingView(frame: self.view.frame)
         loginView = LoginView(frame: view.frame)
+
+        view.backgroundColor = BingoPalette.bingoCellBackgroundColor
         view.addSubview(loginView)
-        loginView.loginButton.addTarget(self, action: #selector(LoginViewController.LoginButton), for: .touchUpInside)
         
+        loginView.loginButton.addTarget(self, action: #selector(LoginViewController.LoginButton), for: .touchUpInside)
         updateEmailTextField()
 
-        loadingView = LoadingView(frame: self.view.frame)
-
-//        login(loginType: .token)
+        login(loginType: .token)
     }
 
     func login(loginType:LoginType) {
@@ -49,7 +49,6 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
 
     func updateEmailTextField(){
         if gameStore.keychain.get("email") != nil{
-            print("here is email ", gameStore.keychain.get("email"))
             loginView.emailTextField.textField.text = gameStore.keychain.get("email")
             loginView.configureButton(for: .active)
         }
