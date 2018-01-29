@@ -9,6 +9,7 @@ class BingoBoard{
     }
     
     var board:[[Int]]!
+    var size = 5
     
     init() {
         boardReset()
@@ -20,8 +21,8 @@ class BingoBoard{
                 break
             }
             let card = cards[index]
-            let x = index % 5
-            let y:Int = index / 5
+            let x = index % size
+            let y:Int = index / size
             if card.active{
                 board[x][y] = 1
             }
@@ -44,14 +45,14 @@ class BingoBoard{
     
     func boardReset(){
         board = []
-        for _ in 0..<5{
-            let row = Array(repeatElement(0, count: 5))
+        for _ in 0..<size{
+            let row = Array(repeatElement(0, count: size))
             board.append(row)
         }
     }
     
     private func checkHorizontal(x:Int)->Bool{
-        for elem in 0..<5{
+        for elem in 0..<size{
             if board[x][elem] != 1{
                 return false
             }
@@ -60,7 +61,7 @@ class BingoBoard{
     }
     
     private func checkVertical(y: Int)->Bool{
-        for elem in 0..<5{
+        for elem in 0..<size{
             if board[elem][y] != 1{
                 return false
             }
@@ -88,7 +89,7 @@ class BingoBoard{
     }
     
     private func checkRightSlant()->Bool{
-        for elem in 0..<5{
+        for elem in 0..<size{
             let x = 4 - elem
             let y = elem
             if board[x][y] != 1{
@@ -99,7 +100,7 @@ class BingoBoard{
     }
 
     private func checkLeftSlant()->Bool{
-        for elem in 0..<5{
+        for elem in 0..<size{
             if board[elem][elem] != 1{
                 return false
             }

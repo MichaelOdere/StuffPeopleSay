@@ -48,7 +48,7 @@
 		F9792C5E1FD75D4400ADE88C /* ZoomTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9792C5D1FD75D4400ADE88C /* ZoomTransitioningDelegate.swift */; };
 		F97E63841FF1A81700CBA256 /* DeckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97E63831FF1A81700CBA256 /* DeckCell.swift */; };
 		F97E63861FF1D66100CBA256 /* BingoPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97E63851FF1D66100CBA256 /* BingoPalette.swift */; };
-		F97F3CDF201DA94E00F1FE48 /* StuffPeopleSayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F3CDE201DA94E00F1FE48 /* StuffPeopleSayTests.swift */; };
+		F97F3CDF201DA94E00F1FE48 /* BingoBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F3CDE201DA94E00F1FE48 /* BingoBoardTests.swift */; };
 		F9932A2F2017A1300037A293 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9932A2E2017A1300037A293 /* AlertView.swift */; };
 		F993AC0C1FD6229000433689 /* BoardCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F993AC0B1FD6229000433689 /* BoardCollectionViewController.swift */; };
 		F99A2F791FD4AA3000B2CEC6 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99A2F781FD4AA3000B2CEC6 /* LoadingView.swift */; };
@@ -138,7 +138,7 @@
 		F97E63831FF1A81700CBA256 /* DeckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckCell.swift; sourceTree = "<group>"; };
 		F97E63851FF1D66100CBA256 /* BingoPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoPalette.swift; sourceTree = "<group>"; };
 		F97F3CDC201DA94E00F1FE48 /* StuffPeopleSayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StuffPeopleSayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F97F3CDE201DA94E00F1FE48 /* StuffPeopleSayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StuffPeopleSayTests.swift; sourceTree = "<group>"; };
+		F97F3CDE201DA94E00F1FE48 /* BingoBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoBoardTests.swift; sourceTree = "<group>"; };
 		F97F3CE0201DA94E00F1FE48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9932A2E2017A1300037A293 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		F993AC0B1FD6229000433689 /* BoardCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCollectionViewController.swift; sourceTree = "<group>"; };
@@ -314,7 +314,7 @@
 		F97F3CDD201DA94E00F1FE48 /* StuffPeopleSayTests */ = {
 			isa = PBXGroup;
 			children = (
-				F97F3CDE201DA94E00F1FE48 /* StuffPeopleSayTests.swift */,
+				F97F3CDE201DA94E00F1FE48 /* BingoBoardTests.swift */,
 				F97F3CE0201DA94E00F1FE48 /* Info.plist */,
 			);
 			path = StuffPeopleSayTests;
@@ -661,7 +661,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F97F3CDF201DA94E00F1FE48 /* StuffPeopleSayTests.swift in Sources */,
+				F97F3CDF201DA94E00F1FE48 /* BingoBoardTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
