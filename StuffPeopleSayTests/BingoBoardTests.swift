@@ -23,10 +23,10 @@ class StuffPeopleSayTests: XCTestCase {
                 bingoBoard.board[row][col] = 1
                 if col == bingoBoard.size - 1 {
                     // 3. then when we reach the end of the row we should have a win
-                    XCTAssertEqual(bingoBoard.checkVictory(x: row, y: col), true, "Win condition failed")
+                    XCTAssertTrue(bingoBoard.checkVictory(x: row, y: col), "Win condition failed")
                 } else {
                     // 4. then when we have not reached the end of the row we should not have a win
-                    XCTAssertEqual(bingoBoard.checkVictory(x: row, y: col), false, "No win condition failed")
+                    XCTAssertFalse(bingoBoard.checkVictory(x: row, y: col), "No win condition failed")
                 }
             }
             // 5. clear the board so we can check the next row
@@ -43,10 +43,10 @@ class StuffPeopleSayTests: XCTestCase {
                 bingoBoard.board[row][col] = 1
                 if row == bingoBoard.size - 1 {
                     // 3. then when we reach the end of the column we should have a win
-                    XCTAssertEqual(bingoBoard.checkVictory(x: row, y: col), true, "Win condition failed")
+                    XCTAssertTrue(bingoBoard.checkVictory(x: row, y: col), "Win condition failed")
                 } else {
                     // 4. then when we have not reached the end of the column we should not have a win
-                    XCTAssertEqual(bingoBoard.checkVictory(x: row, y: col), false, "No win condition failed")
+                    XCTAssertFalse(bingoBoard.checkVictory(x: row, y: col), "No win condition failed")
                 }
             }
             // 5. clear the board so we can check the next column
@@ -60,11 +60,11 @@ class StuffPeopleSayTests: XCTestCase {
         // 2. when we create slant left win conditions
         for index in 0..<bingoBoard.size {
             // 3. then when we have not reached the end of the slant we should not have a win
-            XCTAssertEqual(bingoBoard.checkVictory(x: index, y: index), false, "No win condition failed")
+            XCTAssertFalse(bingoBoard.checkVictory(x: index, y: index), "No win condition failed")
             bingoBoard.board[index][index] = 1
         }
         // 4. then when we reach the end of the slant we should have a win
-        XCTAssertEqual(bingoBoard.checkVictory(x: bingoBoard.size - 1, y: bingoBoard.size - 1), true, "Win condition failed")
+        XCTAssertTrue(bingoBoard.checkVictory(x: bingoBoard.size - 1, y: bingoBoard.size - 1), "Win condition failed")
     }
     
     func testSlantRightConditions() {
@@ -73,11 +73,11 @@ class StuffPeopleSayTests: XCTestCase {
         // 2. when we create slant right win conditions
         for index in 0..<bingoBoard.size {
             // 3. then when we have not reached the end of the slant we should not have a win
-            XCTAssertEqual(bingoBoard.checkVictory(x: index, y: index), false, "No win condition failed")
+            XCTAssertFalse(bingoBoard.checkVictory(x: index, y: index), "No win condition failed")
             bingoBoard.board[bingoBoard.size - index - 1][index] = 1
         }
         // 4. then when we reach the end of the slant we should have a win
-        XCTAssertEqual(bingoBoard.checkVictory(x: 0, y: bingoBoard.size - 1), true, "Win condition failed")
+        XCTAssertTrue(bingoBoard.checkVictory(x: 0, y: bingoBoard.size - 1), "Win condition failed")
     }
 }
 

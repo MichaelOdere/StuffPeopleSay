@@ -10,5 +10,9 @@ target 'StuffPeopleSay' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'Alamofire', '~> 4.5'
   pod 'KeychainSwift', '~> 10.0'
+  
+  target 'StuffPeopleSayTests' do
+    inherit! :search_paths
+  end
 
 end

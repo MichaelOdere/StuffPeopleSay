@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		21A460F98FF1CCF3F16E5B3F /* Pods_StuffPeopleSay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51FA5B8480CBA27CE3AE29CC /* Pods_StuffPeopleSay.framework */; };
+		4FB31D4BDF226552072E8FC6 /* Pods_StuffPeopleSayTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279D18A5A83094380360ED53 /* Pods_StuffPeopleSayTests.framework */; };
 		F905D6D61FF5C30600A0CFD5 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F905D6D51FF5C30600A0CFD5 /* AlertViewController.swift */; };
 		F9066DA21FD5F637003BF133 /* GameViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9066DA11FD5F637003BF133 /* GameViewCell.swift */; };
 		F90B4B7A1FBBA232002FEBF0 /* PusherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90B4B791FBBA232002FEBF0 /* PusherManager.swift */; };
@@ -25,6 +26,7 @@
 		F932BD0220111AF100CD1DE0 /* BoardDeckCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F932BD0120111AF100CD1DE0 /* BoardDeckCard.swift */; };
 		F932BD0420111E0F00CD1DE0 /* UpdateBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F932BD0320111E0F00CD1DE0 /* UpdateBoard.swift */; };
 		F9341C0F1FD1ECA0009CD301 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9341C0E1FD1ECA0009CD301 /* Board.swift */; };
+		F93C760C201FE566008061C4 /* FakeGameData.json in Resources */ = {isa = PBXBuildFile; fileRef = F9E2EEE9201FDC540084F2F7 /* FakeGameData.json */; };
 		F93D1C13200BD80000B0107D /* NetworkEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93D1C12200BD80000B0107D /* NetworkEnvironment.swift */; };
 		F93D1C16200C0C6000B0107D /* NetworkDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93D1C15200C0C6000B0107D /* NetworkDispatcher.swift */; };
 		F94F3F8B201903A600467824 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94F3F8A201903A600467824 /* LoginView.swift */; };
@@ -68,6 +70,8 @@
 		F9DC7C941FD0C66A0097D4B5 /* BingoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC7C931FD0C66A0097D4B5 /* BingoCollectionView.swift */; };
 		F9DC7C961FD0C8370097D4B5 /* OpponentBingoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC7C951FD0C8370097D4B5 /* OpponentBingoViewController.swift */; };
 		F9DC7C9A1FD1259D0097D4B5 /* PieceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC7C991FD1259D0097D4B5 /* PieceView.swift */; };
+		F9E2EEE8201FD97D0084F2F7 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E2EEE7201FD97D0084F2F7 /* ModelTests.swift */; };
+		F9E2EEEA201FDC540084F2F7 /* FakeGameData.json in Resources */ = {isa = PBXBuildFile; fileRef = F9E2EEE9201FDC540084F2F7 /* FakeGameData.json */; };
 		F9E7B39A1FC3A63500B81872 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E7B3991FC3A63500B81872 /* APIManager.swift */; };
 		F9E7B39C1FC3D28E00B81872 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E7B39B1FC3D28E00B81872 /* Game.swift */; };
 		F9E7B39E1FC3E4F600B81872 /* GamesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E7B39D1FC3E4F600B81872 /* GamesTableViewController.swift */; };
@@ -76,7 +80,6 @@
 		F9EB8CB02007DC91004F04D0 /* CardCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB8CAF2007DC91004F04D0 /* CardCollectionView.swift */; };
 		F9EB8CB22007DE68004F04D0 /* CardEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB8CB12007DE68004F04D0 /* CardEditViewController.swift */; };
 		F9EB8CB42007EFF0004F04D0 /* DeckShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB8CB32007EFF0004F04D0 /* DeckShowViewController.swift */; };
-		F9EFD5541FF58BB400C99D72 /* Decks.json in Resources */ = {isa = PBXBuildFile; fileRef = F9EFD5531FF58BB400C99D72 /* Decks.json */; };
 		F9F708542016608700D5492D /* CreateCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F708532016608700D5492D /* CreateCard.swift */; };
 		F9FA25D12007D5CA001D7E3A /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FA25D02007D5CA001D7E3A /* EditView.swift */; };
 /* End PBXBuildFile section */
@@ -92,8 +95,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		279D18A5A83094380360ED53 /* Pods_StuffPeopleSayTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StuffPeopleSayTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51FA5B8480CBA27CE3AE29CC /* Pods_StuffPeopleSay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StuffPeopleSay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B08EC9A8A8A9DD2D6DDDF97 /* Pods-StuffPeopleSayTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StuffPeopleSayTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StuffPeopleSayTests/Pods-StuffPeopleSayTests.release.xcconfig"; sourceTree = "<group>"; };
 		969F576DC84CC8784B284975 /* Pods-StuffPeopleSay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StuffPeopleSay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StuffPeopleSay/Pods-StuffPeopleSay.debug.xcconfig"; sourceTree = "<group>"; };
+		AD5A81BA999C4B27C0232DE3 /* Pods-StuffPeopleSayTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StuffPeopleSayTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StuffPeopleSayTests/Pods-StuffPeopleSayTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B82C6D91C9AF9E86158C2F3E /* Pods-StuffPeopleSay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StuffPeopleSay.release.xcconfig"; path = "Pods/Target Support Files/Pods-StuffPeopleSay/Pods-StuffPeopleSay.release.xcconfig"; sourceTree = "<group>"; };
 		F905D6D51FF5C30600A0CFD5 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		F9066DA11FD5F637003BF133 /* GameViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewCell.swift; sourceTree = "<group>"; };
@@ -159,6 +165,8 @@
 		F9DC7C931FD0C66A0097D4B5 /* BingoCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoCollectionView.swift; sourceTree = "<group>"; };
 		F9DC7C951FD0C8370097D4B5 /* OpponentBingoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpponentBingoViewController.swift; sourceTree = "<group>"; };
 		F9DC7C991FD1259D0097D4B5 /* PieceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceView.swift; sourceTree = "<group>"; };
+		F9E2EEE7201FD97D0084F2F7 /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
+		F9E2EEE9201FDC540084F2F7 /* FakeGameData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FakeGameData.json; sourceTree = "<group>"; };
 		F9E7B3991FC3A63500B81872 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		F9E7B39B1FC3D28E00B81872 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		F9E7B39D1FC3E4F600B81872 /* GamesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesTableViewController.swift; sourceTree = "<group>"; };
@@ -167,7 +175,6 @@
 		F9EB8CAF2007DC91004F04D0 /* CardCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionView.swift; sourceTree = "<group>"; };
 		F9EB8CB12007DE68004F04D0 /* CardEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEditViewController.swift; sourceTree = "<group>"; };
 		F9EB8CB32007EFF0004F04D0 /* DeckShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckShowViewController.swift; sourceTree = "<group>"; };
-		F9EFD5531FF58BB400C99D72 /* Decks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Decks.json; sourceTree = "<group>"; };
 		F9F708532016608700D5492D /* CreateCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCard.swift; sourceTree = "<group>"; };
 		F9FA25D02007D5CA001D7E3A /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,6 +192,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FB31D4BDF226552072E8FC6 /* Pods_StuffPeopleSayTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +204,8 @@
 			children = (
 				969F576DC84CC8784B284975 /* Pods-StuffPeopleSay.debug.xcconfig */,
 				B82C6D91C9AF9E86158C2F3E /* Pods-StuffPeopleSay.release.xcconfig */,
+				AD5A81BA999C4B27C0232DE3 /* Pods-StuffPeopleSayTests.debug.xcconfig */,
+				5B08EC9A8A8A9DD2D6DDDF97 /* Pods-StuffPeopleSayTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -204,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				51FA5B8480CBA27CE3AE29CC /* Pods_StuffPeopleSay.framework */,
+				279D18A5A83094380360ED53 /* Pods_StuffPeopleSayTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -212,7 +223,6 @@
 			isa = PBXGroup;
 			children = (
 				F97E63851FF1D66100CBA256 /* BingoPalette.swift */,
-				F9EFD5531FF58BB400C99D72 /* Decks.json */,
 				F95B17141FBBBBEF00AA000B /* GameStore.swift */,
 			);
 			path = Stores;
@@ -255,9 +265,9 @@
 			isa = PBXGroup;
 			children = (
 				F9707CE3200B0008001F4D17 /* RequestProtocol.swift */,
-				F9707CE6200B2C49001F4D17 /* UserRequests.swift */,
-				F9707CE8200B325D001F4D17 /* GameRequests.swift */,
 				F9707CEA200B36DA001F4D17 /* DeckRequests.swift */,
+				F9707CE8200B325D001F4D17 /* GameRequests.swift */,
+				F9707CE6200B2C49001F4D17 /* UserRequests.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -315,6 +325,8 @@
 			isa = PBXGroup;
 			children = (
 				F97F3CDE201DA94E00F1FE48 /* BingoBoardTests.swift */,
+				F9E2EEE7201FD97D0084F2F7 /* ModelTests.swift */,
+				F9E2EEE9201FDC540084F2F7 /* FakeGameData.json */,
 				F97F3CE0201DA94E00F1FE48 /* Info.plist */,
 			);
 			path = StuffPeopleSayTests;
@@ -324,9 +336,9 @@
 			isa = PBXGroup;
 			children = (
 				F9B7CE9D200C3CC500E6C5BC /* NetworkOperation.swift */,
-				F90CFDE0200D323B0028F6D7 /* User */,
-				F9BDD316200D72DF00FD320E /* Game */,
 				F90CFDE1200D32420028F6D7 /* Deck */,
+				F9BDD316200D72DF00FD320E /* Game */,
+				F90CFDE0200D323B0028F6D7 /* User */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -446,9 +458,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F97F3CE5201DA94E00F1FE48 /* Build configuration list for PBXNativeTarget "StuffPeopleSayTests" */;
 			buildPhases = (
+				B2C620B9619966A92730507C /* [CP] Check Pods Manifest.lock */,
 				F97F3CD8201DA94E00F1FE48 /* Sources */,
 				F97F3CD9201DA94E00F1FE48 /* Frameworks */,
 				F97F3CDA201DA94E00F1FE48 /* Resources */,
+				7F5F6F3A3F06E51C3F019762 /* [CP] Embed Pods Frameworks */,
+				EF7292D052C1EE48F80846EA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -505,7 +520,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9EFD5541FF58BB400C99D72 /* Decks.json in Resources */,
+				F93C760C201FE566008061C4 /* FakeGameData.json in Resources */,
 				F96AA60B1FBAB4F4001E7CCD /* LaunchScreen.storyboard in Resources */,
 				F96AA6081FBAB4F4001E7CCD /* Assets.xcassets in Resources */,
 				F96AA6061FBAB4F4001E7CCD /* Main.storyboard in Resources */,
@@ -516,6 +531,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9E2EEEA201FDC540084F2F7 /* FakeGameData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,6 +556,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		7F5F6F3A3F06E51C3F019762 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StuffPeopleSayTests/Pods-StuffPeopleSayTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8A3EDCE4ECFC91EB7569289B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -553,6 +584,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StuffPeopleSay/Pods-StuffPeopleSay-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B2C620B9619966A92730507C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StuffPeopleSayTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C68D4FFB6F696BEA654551A5 /* [CP] Embed Pods Frameworks */ = {
@@ -579,6 +628,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StuffPeopleSay/Pods-StuffPeopleSay-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF7292D052C1EE48F80846EA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StuffPeopleSayTests/Pods-StuffPeopleSayTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -662,6 +726,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F97F3CDF201DA94E00F1FE48 /* BingoBoardTests.swift in Sources */,
+				F9E2EEE8201FD97D0084F2F7 /* ModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -840,6 +905,7 @@
 		};
 		F97F3CE3201DA94E00F1FE48 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD5A81BA999C4B27C0232DE3 /* Pods-StuffPeopleSayTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -857,6 +923,7 @@
 		};
 		F97F3CE4201DA94E00F1FE48 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B08EC9A8A8A9DD2D6DDDF97 /* Pods-StuffPeopleSayTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
