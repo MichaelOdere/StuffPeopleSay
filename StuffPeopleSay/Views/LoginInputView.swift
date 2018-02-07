@@ -12,7 +12,7 @@ class LoginInputView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.white.withAlphaComponent(0.2)
+        backgroundColor = UIColor.white.withAlphaComponent(0.0)
 
         self.addSubview(imageView)
         self.addSubview(borderLabel)
@@ -45,7 +45,7 @@ class LoginInputView: UIView {
     }
     
     func setupBorderLabel() {
-        borderLabel.backgroundColor = UIColor.black
+        borderLabel.backgroundColor = UIColor.white
         borderLabel.translatesAutoresizingMaskIntoConstraints = false
 
         let top = NSLayoutConstraint(item: borderLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: verticlePadding+1)

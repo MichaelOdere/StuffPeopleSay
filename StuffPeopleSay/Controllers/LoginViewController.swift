@@ -6,18 +6,31 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
     var gameStore:GameStore!
     var loadingView:LoadingView!
     var loginView:LoginView!
-    
+    var gl: CAGradientLayer!
+
     override func viewDidLoad() {
         loadingView = LoadingView(frame: self.view.frame)
         loginView = LoginView(frame: view.frame)
+        let colorTop = UIColor(red: 97.0/255.0, green: 169/255.0, blue: 207/255.0, alpha: 1.0).cgColor
+        let colorBottom = UIColor(red: 221/255.0, green: 126/255.0, blue: 166/255.0, alpha: 1.0).cgColor
+        
+        
+        gl = CAGradientLayer()
+        gl.colors = [colorTop, colorBottom]
+        gl.locations = [ 0.0, 1.0]
+        gl.startPoint = CGPoint(x: 1.0, y: 0.0)
+        gl.endPoint = CGPoint(x: 0.0, y: 1.0)
+        gl.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width, height: self.view.frame.size.height)
 
-        view.backgroundColor = BingoPalette.bingoCellBackgroundColor
+        view.layer.addSublayer(gl)
+        
+//        view.backgroundColor = BingoPalette.bingoCellBackgroundColor
         view.addSubview(loginView)
         
         loginView.loginButton.addTarget(self, action: #selector(LoginViewController.LoginButton), for: .touchUpInside)
         updateEmailTextField()
 
-        login(loginType: .token)
+//        login(loginType: .token)
     }
 
     func login(loginType:LoginType) {
@@ -44,12 +57,16 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
     }
 
     @objc func LoginButton() {
-        login(loginType: .password(email: loginView.emailTextField.textField.text!, password: "pw"))
+
+        loginView.emailView.textField.resignFirstResponder()
+        loginView.passwordView.textField.resignFirstResponder()
+
+        login(loginType: .password(email: loginView.emailView.textField.text!, password: "pw"))
     }
 
     func updateEmailTextField(){
         if gameStore.keychain.get("email") != nil{
-            loginView.emailTextField.textField.text = gameStore.keychain.get("email")
+            loginView.emailView.textField.text = gameStore.keychain.get("email")
             loginView.configureButton(for: .active)
         }
     }

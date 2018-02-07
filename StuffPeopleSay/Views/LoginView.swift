@@ -8,8 +8,8 @@ enum ButtonState{
 class LoginView: UIView {
     var logoView = UIImageView()
     var loginButton = UIButton()
-    var emailTextField = LoginInputView()
-    var passwordTextField = LoginInputView()
+    var emailView = LoginInputView()
+    var passwordView = LoginInputView()
     
     var verticlePadding:CGFloat = 10
     var horizontalPadding:CGFloat = 50
@@ -20,13 +20,13 @@ class LoginView: UIView {
         self.backgroundColor = UIColor.clear
         
         self.addSubview(logoView)
-        self.addSubview(emailTextField)
-        self.addSubview(passwordTextField)
+        self.addSubview(emailView)
+        self.addSubview(passwordView)
         self.addSubview(loginButton)
 
         setupLogoView()
-        setupEmailTextField()
-        setupPasswordTextField()
+        setupemailView()
+        setuppasswordView()
         setupLoginButton()
         
         // tap to remove keyboard
@@ -34,11 +34,11 @@ class LoginView: UIView {
     }
     
     func setupLogoView() {
-        logoView.image  = UIImage(named: "login-person")
+        logoView.image  = UIImage(named: "login-person2")
         logoView.contentMode = .scaleAspectFit
         logoView.translatesAutoresizingMaskIntoConstraints = false
         
-        let bottom = NSLayoutConstraint(item: logoView, attribute: .bottom, relatedBy: .equal, toItem: emailTextField, attribute: .top, multiplier: 1, constant: -3 * verticlePadding)
+        let bottom = NSLayoutConstraint(item: logoView, attribute: .bottom, relatedBy: .equal, toItem: emailView, attribute: .top, multiplier: 1, constant: -3 * verticlePadding)
         bottom.isActive = true
         
         let leading = NSLayoutConstraint(item: logoView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: horizontalPadding)
@@ -51,45 +51,45 @@ class LoginView: UIView {
         height.isActive = true
     }
     
-    func setupEmailTextField() {
-        emailTextField.imageView.image = UIImage(named: "login-person")
-        emailTextField.textField.placeholder = "Email"
-        emailTextField.textField.delegate = self
-        emailTextField.textField.addTarget(self, action: #selector(LoginView.textFieldDidChange(_:)),
+    func setupemailView() {
+        emailView.imageView.image = UIImage(named: "login-person2")
+        emailView.textField.placeholder = "Email"
+        emailView.textField.delegate = self
+        emailView.textField.addTarget(self, action: #selector(LoginView.textFieldDidChange(_:)),
                                            for: UIControlEvents.editingChanged)
         
-        emailTextField.translatesAutoresizingMaskIntoConstraints = false
+        emailView.translatesAutoresizingMaskIntoConstraints = false
         
-        let bottom = NSLayoutConstraint(item: emailTextField, attribute: .bottom, relatedBy: .equal, toItem: passwordTextField, attribute: .top, multiplier: 1, constant: -verticlePadding)
+        let bottom = NSLayoutConstraint(item: emailView, attribute: .bottom, relatedBy: .equal, toItem: passwordView, attribute: .top, multiplier: 1, constant: -verticlePadding)
         bottom.isActive = true
         
-        let leading = NSLayoutConstraint(item: emailTextField, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: horizontalPadding)
+        let leading = NSLayoutConstraint(item: emailView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: horizontalPadding)
         leading.isActive = true
         
-        let trailing = NSLayoutConstraint(item: emailTextField, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -horizontalPadding)
+        let trailing = NSLayoutConstraint(item: emailView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -horizontalPadding)
         trailing.isActive = true
     }
     
-    func setupPasswordTextField() {
-        passwordTextField.imageView.image = UIImage(named: "login-lock")
-        passwordTextField.textField.placeholder = "Password"
-        passwordTextField.textField.isSecureTextEntry = true
-        passwordTextField.textField.delegate = self
-        passwordTextField.textField.addTarget(self, action: #selector(LoginView.textFieldDidChange(_:)),
+    func setuppasswordView() {
+        passwordView.imageView.image = UIImage(named: "login-lock2")
+        passwordView.textField.placeholder = "Password"
+        passwordView.textField.isSecureTextEntry = true
+        passwordView.textField.delegate = self
+        passwordView.textField.addTarget(self, action: #selector(LoginView.textFieldDidChange(_:)),
                                               for: UIControlEvents.editingChanged)
 
-        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+        passwordView.translatesAutoresizingMaskIntoConstraints = false
 
-        let centerY = NSLayoutConstraint(item: passwordTextField, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
+        let centerY = NSLayoutConstraint(item: passwordView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
         centerY.isActive = true
         
-        let leading = NSLayoutConstraint(item: passwordTextField, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: horizontalPadding)
+        let leading = NSLayoutConstraint(item: passwordView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: horizontalPadding)
         leading.isActive = true
         
-        let trailing = NSLayoutConstraint(item: passwordTextField, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -horizontalPadding)
+        let trailing = NSLayoutConstraint(item: passwordView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -horizontalPadding)
         trailing.isActive = true
         
-        let height = NSLayoutConstraint(item: passwordTextField, attribute: .height, relatedBy: .equal, toItem: emailTextField, attribute: .height, multiplier: 1, constant: 0)
+        let height = NSLayoutConstraint(item: passwordView, attribute: .height, relatedBy: .equal, toItem: emailView, attribute: .height, multiplier: 1, constant: 0)
         height.isActive = true
     }
     
@@ -104,7 +104,7 @@ class LoginView: UIView {
 
         configureButton(for: .inactive)
         
-        let top = NSLayoutConstraint(item: loginButton, attribute: .top, relatedBy: .equal, toItem: passwordTextField, attribute: .bottom, multiplier: 1, constant: verticlePadding * 1.5)
+        let top = NSLayoutConstraint(item: loginButton, attribute: .top, relatedBy: .equal, toItem: passwordView, attribute: .bottom, multiplier: 1, constant: verticlePadding * 1.5)
         top.isActive = true
         
         let leading = NSLayoutConstraint(item: loginButton, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: horizontalPadding)
@@ -113,7 +113,7 @@ class LoginView: UIView {
         let trailing = NSLayoutConstraint(item: loginButton, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -horizontalPadding)
         trailing.isActive = true
         
-        let height = NSLayoutConstraint(item: loginButton, attribute: .height, relatedBy: .equal, toItem: passwordTextField, attribute: .height, multiplier: 1, constant: 0)
+        let height = NSLayoutConstraint(item: loginButton, attribute: .height, relatedBy: .equal, toItem: passwordView, attribute: .height, multiplier: 1, constant: 0)
         height.isActive = true
     }
   
@@ -137,7 +137,7 @@ class LoginView: UIView {
     }
     
     func areTextFieldsEmpty()->Bool {
-        guard let email = emailTextField.textField.text?.isEmpty, let password = passwordTextField.textField.text?.isEmpty else {
+        guard let email = emailView.textField.text?.isEmpty, let password = passwordView.textField.text?.isEmpty else {
             return false
         }
         return email || password
