@@ -37,7 +37,8 @@ class DeckCollectionViewDataSource: NSObject, UICollectionViewDataSource{
             }
         }
         
-        cell.name.text = deck?.name
+        cell.name.text = deck?.name        
+        cell.cardsLabel.text = "\(deck?.activeCards() ?? 0)/\(deck?.cards.count ?? 0)"
 //        cell.name.delegate = delegate?.deckView
         cell.id = deck?.id
         
