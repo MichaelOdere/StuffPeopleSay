@@ -53,7 +53,8 @@ class LoginView: UIView {
     
     func setupemailView() {
         emailView.imageView.image = UIImage(named: "login-person2")
-        emailView.textField.placeholder = "Email"
+        emailView.textField.attributedPlaceholder = NSAttributedString(string: "Email",
+                                                            attributes: [NSAttributedStringKey.foregroundColor: UIColor.white.withAlphaComponent(0.2)])
         emailView.textField.delegate = self
         emailView.textField.addTarget(self, action: #selector(LoginView.textFieldDidChange(_:)),
                                            for: UIControlEvents.editingChanged)
@@ -72,7 +73,8 @@ class LoginView: UIView {
     
     func setuppasswordView() {
         passwordView.imageView.image = UIImage(named: "login-lock2")
-        passwordView.textField.placeholder = "Password"
+        passwordView.textField.attributedPlaceholder = NSAttributedString(string: "Password",
+                                                               attributes: [NSAttributedStringKey.foregroundColor: UIColor.white.withAlphaComponent(0.2)])
         passwordView.textField.isSecureTextEntry = true
         passwordView.textField.delegate = self
         passwordView.textField.addTarget(self, action: #selector(LoginView.textFieldDidChange(_:)),
@@ -98,7 +100,7 @@ class LoginView: UIView {
         loginButton.backgroundColor = BingoPalette.SPSred
         loginButton.setTitle("Login", for: .normal)
         loginButton.translatesAutoresizingMaskIntoConstraints = false
-
+        loginButton.setTitleColor(UIColor.white, for: .normal)
         configureButton(for: .inactive)
         
         let top = NSLayoutConstraint(item: loginButton, attribute: .top, relatedBy: .equal, toItem: passwordView, attribute: .bottom, multiplier: 1, constant: verticlePadding * 1.5)
@@ -157,7 +159,7 @@ extension LoginView: UITextFieldDelegate {
 //        textField.superview?.layer.borderWidth = 1
 //        self.layoutIfNeeded()
 //    }
-//    
+//
 //    func textFieldDidEndEditing(_ textField: UITextField) {
 //        textField.superview?.layer.borderWidth = 0
 //    }
