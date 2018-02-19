@@ -65,6 +65,7 @@ class LoginInputView: UIView {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.returnKeyType = .done
         textField.textColor = UIColor.white
+        textField.setBottomBorder()
         
         textField.font = UIFont.systemFont(ofSize: 20, weight: .thin)
         let top = NSLayoutConstraint(item: textField, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: verticlePadding)
@@ -87,12 +88,12 @@ class LoginInputView: UIView {
 extension UITextField {
     func setBottomBorder() {
         self.borderStyle = .none
-//        self.layer.backgroundColor = UIColor.white.cgColor
-        
+        self.layer.backgroundColor = BingoPalette.bingoCellBackgroundColor.cgColor
         self.layer.masksToBounds = false
         self.layer.shadowColor = UIColor.white.cgColor
         self.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
         self.layer.shadowOpacity = 1.0
         self.layer.shadowRadius = 0.0
+        
     }
 }
