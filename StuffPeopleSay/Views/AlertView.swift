@@ -27,8 +27,9 @@ class AlertView: UIView {
         setupNumberPicker()
         setupDeckButton()
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        self.addGestureRecognizer(tap)
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
+        gameNameTextField.becomeFirstResponder()
+
     }
     
     func animateShow() {
