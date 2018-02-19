@@ -152,14 +152,14 @@ extension LoginView: UITextFieldDelegate {
         return true
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.superview?.layer.borderColor = UIColor.white.cgColor
-        textField.superview?.layer.borderWidth = 1
-        self.layoutIfNeeded()
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.superview?.layer.borderWidth = 0
-    }
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        textField.superview?.layer.borderColor = UIColor.white.cgColor
+//        textField.superview?.layer.borderWidth = 1
+//        self.layoutIfNeeded()
+//    }
+//    
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        textField.superview?.layer.borderWidth = 0
+//    }
 }
 
