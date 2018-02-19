@@ -7,7 +7,7 @@ enum ButtonState{
 
 class LoginView: UIView {
     var logoView = UIImageView()
-    var loginButton = UIButton()
+    var loginButton = UIButton(type: .system)
     var emailView = LoginInputView()
     var passwordView = LoginInputView()
     
@@ -95,11 +95,8 @@ class LoginView: UIView {
     
     func setupLoginButton() {
         loginButton.adjustsImageWhenHighlighted = true
-        loginButton.backgroundColor = BingoPalette.vanillaBackgroundColor
+        loginButton.backgroundColor = BingoPalette.SPSred
         loginButton.setTitle("Login", for: .normal)
-        loginButton.setTitleColor(UIColor.blue, for: .selected)
-        loginButton.setTitleColor(UIColor.flatPink(), for: .normal)
-        loginButton.isSelected = true
         loginButton.translatesAutoresizingMaskIntoConstraints = false
 
         configureButton(for: .inactive)
@@ -113,7 +110,8 @@ class LoginView: UIView {
         let trailing = NSLayoutConstraint(item: loginButton, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -horizontalPadding)
         trailing.isActive = true
         
-        let height = NSLayoutConstraint(item: loginButton, attribute: .height, relatedBy: .equal, toItem: passwordView, attribute: .height, multiplier: 1, constant: 0)
+        let height = NSLayoutConstraint(item: loginButton, attribute: .height, relatedBy: .equal, toItem: passwordView, attribute: .height, multiplier: 1.2
+            , constant: 0)
         height.isActive = true
     }
   
@@ -164,3 +162,4 @@ extension LoginView: UITextFieldDelegate {
         textField.superview?.layer.borderWidth = 0
     }
 }
+

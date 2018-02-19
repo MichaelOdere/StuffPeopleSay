@@ -3,7 +3,6 @@
 
 import Alamofire
 
-
 public enum NetworkErrors: Error {
     case unauthorized
     case noData
