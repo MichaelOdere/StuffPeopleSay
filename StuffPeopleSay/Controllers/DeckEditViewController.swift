@@ -26,6 +26,10 @@ class DeckEditViewController: UIViewController{
 //        setupSearch()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        deckEditView.collectionView.reloadData()
+    }
+    
     func setupSearch(){
 //        searchController.searchResultsUpdater = self
 //        searchController.obscuresBackgroundDuringPresentation = false
