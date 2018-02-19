@@ -12,10 +12,16 @@ class AlertViewController: UIViewController{
     var hasLoaded:Bool = false
 
     override func viewDidLoad() {
-        self.view.backgroundColor = UIColor.clear
+        view.backgroundColor = UIColor.clear
+        
+        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .regular ))
+        blurView.frame = view.bounds
+        view.addSubview(blurView)
+        
         alertView = AlertView(frame: self.view.frame)
-        self.view.addSubview(alertView)
+        view.addSubview(alertView)
         setupAlertView()
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
