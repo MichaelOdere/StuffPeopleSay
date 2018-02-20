@@ -9,24 +9,24 @@ class DeckCell:SPSCollectionViewCell{
     
     func setupCardsLabel(){
         cardsLabel.font =  UIFont.systemFont(ofSize: 10)
-        cardsLabel.textColor = name.textColor
-        cardsLabel.textAlignment = .center
+        cardsLabel.textColor = UIColor.gray
+        cardsLabel.textAlignment = .right
         cardsLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(cardsLabel)
 
         
-        let padding:CGFloat = frame.width * 5/6
+        let padding:CGFloat = frame.width * 3/4
         
-        let top = NSLayoutConstraint(item: cardsLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: padding)
-        top.isActive = true
+        let height = NSLayoutConstraint(item: cardsLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 16)
+        height.isActive = true
         
-        let bottom = NSLayoutConstraint(item: cardsLabel, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
+        let bottom = NSLayoutConstraint(item: cardsLabel, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -2)
         bottom.isActive = true
         
         let leading = NSLayoutConstraint(item: cardsLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: padding)
         leading.isActive = true
         
-        let trailing = NSLayoutConstraint(item: cardsLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
+        let trailing = NSLayoutConstraint(item: cardsLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -2)
         trailing.isActive = true
     }
     
