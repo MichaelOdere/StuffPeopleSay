@@ -21,10 +21,10 @@ class CardCell:SPSCollectionViewCell{
         switch state {
         case .selected:
             alpha = selectedAlphaValue
-            layer.borderColor = UIColor.green.cgColor
+            layer.borderColor = BingoPalette.SPSgreen.cgColor
         case .deselected:
             alpha = deSelectedAlphaValue
-            layer.borderColor = UIColor.red.cgColor
+            layer.borderColor = BingoPalette.SPSred.cgColor
         }
     }
     
