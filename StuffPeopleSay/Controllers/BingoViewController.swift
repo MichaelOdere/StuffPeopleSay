@@ -41,13 +41,13 @@ class BingoViewController: UIViewController {
         }
     }
 
-    func showAlert(completion: @escaping ()->Void) {
+    func showAlert(completion: @escaping () -> Void) {
         let alert = UIAlertController(title: "Congratulations You Won!",
                                       message: "We're sorry you had to hear all that!!",
                                       preferredStyle: .alert)
 
         let action = UIAlertAction(title: "I'm The Best", style: .default,
-                                         handler: { (action) -> Void in
+                                         handler: { (_) -> Void in
                                completion()
         })
         alert.addAction(action)
@@ -107,10 +107,12 @@ extension BingoViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "OpponentBingoViewController") as! OpponentBingoViewController
-
+        let id = "OpponentBingoViewController"
+        let vcOptional = sb.instantiateViewController(withIdentifier: id) as? OpponentBingoViewController
+        guard let vc = vcOptional else {
+            fatalError("OpponentBingoViewController not found.")
+        }
         vc.user = self.users[indexPath.row]
-
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -129,9 +131,8 @@ extension BingoViewController: BingoCollectionViewDelegate {
         if self.self.status.lowercased() != "playing"{
             return
         }
-
         self.gameStore.updateBoard(boardCardId: card.boardCardId) { (success) in
-            print("Success")
+            print(success)
         }
 
         let x = cell.xIndex!
@@ -151,7 +152,7 @@ extension BingoViewController: BingoCollectionViewDelegate {
             self.status = "ended"
 
             self.gameStore.updateGame(gameId: gameId, completionHandler: { (success) in
-                print("success")
+                print(success)
             })
             showAlert {
                 self.bingoGame.boardReset()

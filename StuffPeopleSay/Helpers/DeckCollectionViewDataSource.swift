@@ -28,7 +28,9 @@ class DeckCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DeckCell", for: indexPath) as! DeckCell
+        guard let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "DeckCell", for: indexPath) as? DeckCell else {
+            fatalError("DeckCell not found")
+        }
         var deck = delegate?.gs.decks[indexPath.row]
 
         if let sd = searchDelegate {

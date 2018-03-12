@@ -22,7 +22,8 @@ class AlertView: UIView {
         horizontalPadding = self.frame.width * 0.05
 
         setupContentView()
-        setupButtons()
+        setupCancelButton()
+        setupSaveButton()
         setupTextView()
         setupNumberPicker()
         setupDeckButton()
@@ -89,7 +90,8 @@ class AlertView: UIView {
                                           constant: -horizontalPadding)
         trailing.isActive = true
     }
-    func setupButtons() {
+    
+    func setupCancelButton() {
         cancelButton.backgroundColor = contentView.backgroundColor
         cancelButton.setTitle("Cancel", for: .normal)
         cancelButton.setTitleColor(UIColor.gray, for: .normal)
@@ -97,14 +99,6 @@ class AlertView: UIView {
         cancelButton.layer.borderWidth = 0.8
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(cancelButton)
-
-        saveButton.backgroundColor = contentView.backgroundColor
-        saveButton.setTitle("Save", for: .normal)
-        saveButton.setTitleColor(UIColor.gray, for: .normal)
-        saveButton.layer.borderColor = UIColor.lightGray.cgColor
-        saveButton.layer.borderWidth = 0.8
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(saveButton)
 
         let cancelBottom = NSLayoutConstraint(item: cancelButton,
                                               attribute: NSLayoutAttribute.bottom,
@@ -122,6 +116,16 @@ class AlertView: UIView {
                                                multiplier: 1,
                                                constant: 0)
         cancelLeading.isActive = true
+    }
+    
+    func setupSaveButton() {
+        saveButton.backgroundColor = contentView.backgroundColor
+        saveButton.setTitle("Save", for: .normal)
+        saveButton.setTitleColor(UIColor.gray, for: .normal)
+        saveButton.layer.borderColor = UIColor.lightGray.cgColor
+        saveButton.layer.borderWidth = 0.8
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(saveButton)
 
         let saveBottom = NSLayoutConstraint(item: saveButton,
                                             attribute: NSLayoutAttribute.bottom,
@@ -131,7 +135,7 @@ class AlertView: UIView {
                                             multiplier: 1,
                                             constant: 0)
         saveBottom.isActive = true
-
+        
         let saveTrailing = NSLayoutConstraint(item: saveButton,
                                               attribute: NSLayoutAttribute.trailing,
                                               relatedBy: NSLayoutRelation.equal,
@@ -140,7 +144,7 @@ class AlertView: UIView {
                                               multiplier: 1,
                                               constant: 0)
         saveTrailing.isActive = true
-
+        
         let widths = NSLayoutConstraint(item: saveButton,
                                         attribute: NSLayoutAttribute.leading,
                                         relatedBy: NSLayoutRelation.equal,
@@ -149,7 +153,7 @@ class AlertView: UIView {
                                         multiplier: 1,
                                         constant: -1)
         widths.isActive = true
-
+        
         let equalWidths = NSLayoutConstraint(item: saveButton,
                                              attribute: NSLayoutAttribute.width,
                                              relatedBy: NSLayoutRelation.equal,
@@ -227,7 +231,6 @@ class AlertView: UIView {
     func setupNumberPicker() {
         numberPicker.delegate = self
         numberPicker.dataSource = self
-
         numberPicker.backgroundColor = UIColor.white
         numberPicker.layer.cornerRadius = 10
         numberPicker.layer.borderColor = UIColor.lightGray.cgColor
@@ -235,16 +238,40 @@ class AlertView: UIView {
         numberPicker.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(numberPicker)
 
-        let pickerCenterX = NSLayoutConstraint(item: numberPicker, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+        let pickerCenterX = NSLayoutConstraint(item: numberPicker,
+                                               attribute: NSLayoutAttribute.centerX,
+                                               relatedBy: NSLayoutRelation.equal,
+                                               toItem: contentView,
+                                               attribute: NSLayoutAttribute.centerX,
+                                               multiplier: 1,
+                                               constant: 0)
         pickerCenterX.isActive = true
 
-        let pickerTop = NSLayoutConstraint(item: numberPicker, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: gameNameTextField, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: verticleSpaceBetweenElements)
+        let pickerTop = NSLayoutConstraint(item: numberPicker,
+                                           attribute: NSLayoutAttribute.top,
+                                           relatedBy: NSLayoutRelation.equal,
+                                           toItem: gameNameTextField,
+                                           attribute: NSLayoutAttribute.bottom,
+                                           multiplier: 1,
+                                           constant: verticleSpaceBetweenElements)
         pickerTop.isActive = true
 
-        let pickerLeading = NSLayoutConstraint(item: numberPicker, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: horizontalPadding)
+        let pickerLeading = NSLayoutConstraint(item: numberPicker,
+                                               attribute: NSLayoutAttribute.leading,
+                                               relatedBy: NSLayoutRelation.equal,
+                                               toItem: contentView,
+                                               attribute: NSLayoutAttribute.leading,
+                                               multiplier: 1,
+                                               constant: horizontalPadding)
         pickerLeading.isActive = true
 
-        let pickerTrailing = NSLayoutConstraint(item: numberPicker, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -horizontalPadding)
+        let pickerTrailing = NSLayoutConstraint(item: numberPicker,
+                                                attribute: NSLayoutAttribute.trailing,
+                                                relatedBy: NSLayoutRelation.equal,
+                                                toItem: contentView,
+                                                attribute: NSLayoutAttribute.trailing,
+                                                multiplier: 1,
+                                                constant: -horizontalPadding)
         pickerTrailing.isActive = true
 
         numberPicker.setContentCompressionResistancePriority(.init(1), for: .vertical)
@@ -259,13 +286,31 @@ class AlertView: UIView {
         deckButton.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(deckButton)
 
-        let deckCenterX = NSLayoutConstraint(item: deckButton, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+        let deckCenterX = NSLayoutConstraint(item: deckButton,
+                                             attribute: NSLayoutAttribute.centerX,
+                                             relatedBy: NSLayoutRelation.equal,
+                                             toItem: contentView,
+                                             attribute: NSLayoutAttribute.centerX,
+                                             multiplier: 1,
+                                             constant: 0)
         deckCenterX.isActive = true
 
-        let deckTop = NSLayoutConstraint(item: deckButton, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: numberPicker, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: verticleSpaceBetweenElements)
+        let deckTop = NSLayoutConstraint(item: deckButton,
+                                         attribute: NSLayoutAttribute.top,
+                                         relatedBy: NSLayoutRelation.equal,
+                                         toItem: numberPicker,
+                                         attribute: NSLayoutAttribute.bottom,
+                                         multiplier: 1,
+                                         constant: verticleSpaceBetweenElements)
         deckTop.isActive = true
 
-        let deckBottom = NSLayoutConstraint(item: deckButton, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: cancelButton, attribute: NSLayoutAttribute.top, multiplier: 1, constant: -verticleSpaceBetweenElements)
+        let deckBottom = NSLayoutConstraint(item: deckButton,
+                                            attribute: NSLayoutAttribute.bottom,
+                                            relatedBy: NSLayoutRelation.equal,
+                                            toItem: cancelButton,
+                                            attribute: NSLayoutAttribute.top,
+                                            multiplier: 1,
+                                            constant: -verticleSpaceBetweenElements)
         deckBottom.isActive = true
     }
 
@@ -287,7 +332,8 @@ extension AlertView: UIPickerViewDelegate, UIPickerViewDataSource {
         return String(pickerData[row])
     }
 
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int,
+                    forComponent component: Int) -> NSAttributedString? {
 
         if pickerData[row] == 1 {
             return NSAttributedString(string: String(pickerData[row]) + " Board")

@@ -15,8 +15,10 @@ class EditView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        NotificationCenter.default.addObserver(self, selector: #selector(EditView.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(EditView.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(EditView.keyboardWillShow),
+                                               name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(EditView.keyboardWillHide),
+                                               name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -30,13 +32,35 @@ class EditView: UIView {
 
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
-        let top = NSLayoutConstraint(item: collectionView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0)
+        let top = NSLayoutConstraint(item: collectionView,
+                                     attribute: NSLayoutAttribute.top,
+                                     relatedBy: NSLayoutRelation.equal,
+                                     toItem: self,
+                                     attribute: NSLayoutAttribute.top,
+                                     multiplier: 1,
+                                     constant: 0)
         top.isActive = true
-        bottomCollectionLayoutConstraint = NSLayoutConstraint(item: collectionView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
+        bottomCollectionLayoutConstraint = NSLayoutConstraint(item: collectionView,
+                                                              attribute: NSLayoutAttribute.bottom,
+                                                              relatedBy: NSLayoutRelation.equal,
+                                                              toItem: self,
+                                                              attribute: NSLayoutAttribute.bottom,
+                                                              multiplier: 1,
+                                                              constant: 0)
         bottomCollectionLayoutConstraint.isActive = true
-        let trailing = NSLayoutConstraint(item: collectionView, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0)
+        let trailing = NSLayoutConstraint(item: collectionView,
+                                          attribute: NSLayoutAttribute.trailing,
+                                          relatedBy: NSLayoutRelation.equal,
+                                          toItem: self,
+                                          attribute: NSLayoutAttribute.trailing,
+                                          multiplier: 1, constant: 0)
         trailing.isActive = true
-        let leading = NSLayoutConstraint(item: collectionView, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0)
+        let leading = NSLayoutConstraint(item: collectionView,
+                                         attribute: NSLayoutAttribute.leading,
+                                         relatedBy: NSLayoutRelation.equal,
+                                         toItem: self,
+                                         attribute: NSLayoutAttribute.leading,
+                                         multiplier: 1, constant: 0)
         leading.isActive = true
     }
 

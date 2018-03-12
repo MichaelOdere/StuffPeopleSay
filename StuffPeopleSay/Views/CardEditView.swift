@@ -16,7 +16,8 @@ extension CardEditView: CollectionViewType {
         let layout = DeckCollectionViewLayout()
         let cv = CardCollectionView(frame: frame, collectionViewLayout: layout)
 
-        let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(DeckEditView.handleLongPress(gestureReconizer:)))
+        let lpgr = UILongPressGestureRecognizer(target: self,
+                                                action: #selector(DeckEditView.handleLongPress(gestureReconizer:)))
         lpgr.minimumPressDuration = 0.5
         lpgr.delaysTouchesBegan = true
         cv.addGestureRecognizer(lpgr)
@@ -30,7 +31,9 @@ extension CardEditView {
         let p = gestureReconizer.location(in: collectionView)
         let indexPath = collectionView.indexPathForItem(at: p)
         if let index = indexPath {
-            let cell = collectionView.cellForItem(at: index) as! CardCell
+            guard  let cell = collectionView.cellForItem(at: index) as? CardCell else {
+                fatalError("Cell at index path not found.")
+            }
             cell.name.isEnabled = true
             cell.name.becomeFirstResponder()
         } else {

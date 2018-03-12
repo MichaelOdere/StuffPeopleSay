@@ -18,7 +18,11 @@ class ZoomTransitioningDelegate: NSObject {
 
     typealias ZoomingViews = (collectionView: UICollectionView, imageView: UIView)
 
-    func configureViews(for state: TransitionState, containerView: UIView, backgroundViewController: UIViewController, foregroundViewController: UIViewController, viewsInBackground: ZoomingViews, viewsInForeground: ZoomingViews, snapshotViews: ZoomingViews) {
+    func configureViews(for state: TransitionState, containerView: UIView,
+                        backgroundViewController: UIViewController,
+                        foregroundViewController: UIViewController,
+                        viewsInBackground: ZoomingViews,
+                        viewsInForeground: ZoomingViews, snapshotViews: ZoomingViews) {
 
         switch state {
         case .initial:
@@ -102,13 +106,25 @@ extension ZoomTransitioningDelegate: UIViewControllerAnimatedTransitioning {
 
         }
 
-       configureViews(for: preTransitionState, containerView: containerView, backgroundViewController: backgroundVC, foregroundViewController: foregroundVC, viewsInBackground: (backgroundView, backgroundView), viewsInForeground: (foregroundView, foregroundView), snapshotViews: (viewSnapshot, viewSnapshot))
+       configureViews(for: preTransitionState, containerView: containerView,
+                      backgroundViewController: backgroundVC, foregroundViewController: foregroundVC,
+                      viewsInBackground: (backgroundView, backgroundView),
+                      viewsInForeground: (foregroundView, foregroundView),
+                      snapshotViews: (viewSnapshot, viewSnapshot))
 
         foregroundVC.view.layoutIfNeeded()
 
-        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: [], animations: {
+        UIView.animate(withDuration: duration,
+                       delay: 0,
+                       usingSpringWithDamping: 1.0,
+                       initialSpringVelocity:
+            0, options: [], animations: {
 
-            self.configureViews(for: postTransitionState, containerView: containerView, backgroundViewController: backgroundVC, foregroundViewController: foregroundVC, viewsInBackground: (backgroundView, backgroundView), viewsInForeground: (foregroundView, foregroundView), snapshotViews: (viewSnapshot, viewSnapshot))
+            self.configureViews(for: postTransitionState, containerView: containerView,
+                            backgroundViewController: backgroundVC, foregroundViewController: foregroundVC,
+                            viewsInBackground: (backgroundView, backgroundView),
+                            viewsInForeground: (foregroundView, foregroundView),
+                            snapshotViews: (viewSnapshot, viewSnapshot))
 
         }) { (finished) in
             backgroundVC.view.transform = CGAffineTransform.identity
@@ -126,7 +142,10 @@ extension ZoomTransitioningDelegate: UIViewControllerAnimatedTransitioning {
 
 extension ZoomTransitioningDelegate: UINavigationControllerDelegate {
 
-    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func navigationController(_ navigationController: UINavigationController,
+                              animationControllerFor operation: UINavigationControllerOperation,
+                              from fromVC: UIViewController,
+                              to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
         if fromVC is ZoomViewController && toVC is ZoomViewController {
             self.operation = operation

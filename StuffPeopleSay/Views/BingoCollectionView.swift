@@ -14,8 +14,13 @@ class BingoCollectionView: NSObject, UICollectionViewDataSource, UICollectionVie
         return min(deck.cards.count, 25)
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BingoCell", for: indexPath) as! BingoCollectionCell
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let optionalCell = collectionView.dequeueReusableCell(withReuseIdentifier: "BingoCell",
+                                                              for: indexPath) as? BingoCollectionCell
+        guard let cell = optionalCell else {
+            fatalError("BingoCell not found.")
+        }
         let card = deck.cards[indexPath.row]
         cell.backgroundColor = BingoPalette.bingoCellBackgroundColor
         cell.pieceView.backgroundColor = UIColor.clear
@@ -32,7 +37,9 @@ class BingoCollectionView: NSObject, UICollectionViewDataSource, UICollectionVie
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! BingoCollectionCell
+        guard let cell = collectionView.cellForItem(at: indexPath) as? BingoCollectionCell else {
+            fatalError("Cell at index path not found.")
+        }
         let card = deck.cards[indexPath.row]
 
         if let didSelectDelegate = didSelectDelegate {

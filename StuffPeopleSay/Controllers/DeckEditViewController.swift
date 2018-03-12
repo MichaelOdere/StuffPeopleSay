@@ -12,7 +12,9 @@ class DeckEditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.rightBarButtonItem =  UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(DeckEditViewController.newDeck))
+        navigationItem.rightBarButtonItem =  UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add,
+                                                             target: self,
+                                                             action: #selector(DeckEditViewController.newDeck))
 
         deckEditView = DeckEditView(frame: view.frame)
 
@@ -56,7 +58,8 @@ class DeckEditViewController: UIViewController {
                 self.gameStore.createDeck(name: cardText, completionHandler: { (deck) in
                     if deck != nil {
                         self.deckEditView.collectionView.reloadData()
-                        let indexPath = IndexPath(row: self.deckEditView.collectionView.numberOfItems(inSection: 0)-1, section: 0)
+                        let row = self.deckEditView.collectionView.numberOfItems(inSection: 0)-1
+                        let indexPath = IndexPath(row: row, section: 0)
                         self.deckEditView.collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
                     }
                 })
@@ -81,7 +84,11 @@ extension DeckEditViewController: DeckCollectionViewDelegate {
 extension DeckEditViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "CardEditViewController") as! CardEditViewController
+        let id = "CardEditViewController"
+        let vcOptional = sb.instantiateViewController(withIdentifier: id) as? CardEditViewController
+        guard let vc = vcOptional else {
+            fatalError("CardEditViewController not found.")
+        }
         vc.gameStore = gameStore
         vc.deck = gameStore.decks[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
