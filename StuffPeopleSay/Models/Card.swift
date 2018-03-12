@@ -2,17 +2,17 @@ import Foundation
 import SwiftyJSON
 
 class Card {
-    var id:String
-    var name:String
-    var active:Bool
+    var id: String
+    var name: String
+    var active: Bool
 
     init(id: String, name: String, active: Bool) {
         self.id = id
         self.name = name
         self.active = active
     }
-    
-    func copyCard()->Card{
+
+    func copyCard() ->Card {
         return Card(id: id, name: name, active: active)
     }
 }
@@ -28,12 +28,12 @@ extension Card {
             print("Error parsing Card object for key: name")
             return nil
         }
-        
+
         guard let active = json["active"].bool else {
             print("Error parsing Card object for key: active")
             return nil
         }
-        
+
         self.init(id: id, name: name, active: active)
     }
 }
