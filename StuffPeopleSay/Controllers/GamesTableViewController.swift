@@ -17,24 +17,22 @@ class GamesTableViewController: UIViewController, UITableViewDelegate, UITableVi
                                                  name: Notification.Name("didBecomeActive"),
                                                  object: nil)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         if let selectionIndexPath = tableview.indexPathForSelectedRow {
             tableview.deselectRow(at: selectionIndexPath, animated: animated)
         }
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return gameStore.games.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell") as? GameViewCell else {
             fatalError("The dequeued cell is not an instance of GameTable.")
         }
-        
         let game = gameStore.games[indexPath.row]
         cell.deckTypeLabel.text = "game.name"
         cell.oppponentsLabel.text = game.getOpponents()
@@ -48,9 +46,11 @@ class GamesTableViewController: UIViewController, UITableViewDelegate, UITableVi
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let id = "BoardCollectionViewController"
         let vcOptional = sb.instantiateViewController(withIdentifier: id) as? BoardCollectionViewController
+
         guard let vc = vcOptional else {
             fatalError("BoardCollectionViewController not found.")
         }
+
         vc.game = self.gameStore.games[indexPath.row]
         vc.gameStore = self.gameStore
         self.navigationController?.pushViewController(vc, animated: true)
@@ -60,9 +60,11 @@ class GamesTableViewController: UIViewController, UITableViewDelegate, UITableVi
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let id = "DeckEditViewController"
         let vcOptional = sb.instantiateViewController(withIdentifier: id) as? DeckEditViewController
+
         guard let vc = vcOptional else {
             fatalError("DeckEditViewController not found.")
         }
+
         vc.gameStore = gameStore
         self.navigationController?.pushViewController(vc, animated: true)
     }
