@@ -5,7 +5,7 @@ class Board {
     var boardId: String
     var boardDeck: BoardDeck
     var count: Int
-    
+
     init(boardId: String, boardDeck: BoardDeck, count: Int) {
         self.boardId = boardId
         self.boardDeck = boardDeck
@@ -19,7 +19,7 @@ extension Board {
             print("Error parsing board object for key: boardId")
             return nil
         }
-        
+
         guard let deck = BoardDeck(json: json) else {
             print("Error parsing board object for key: boardDeck")
             return nil
@@ -29,7 +29,7 @@ extension Board {
             print("Error parsing board object for key: count")
             return nil
         }
-        
+
         self.init(boardId: boardId, boardDeck: deck, count: count)
     }
 }
