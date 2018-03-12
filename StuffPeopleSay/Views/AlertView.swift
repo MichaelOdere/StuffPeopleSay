@@ -90,7 +90,7 @@ class AlertView: UIView {
                                           constant: -horizontalPadding)
         trailing.isActive = true
     }
-    
+
     func setupCancelButton() {
         cancelButton.backgroundColor = contentView.backgroundColor
         cancelButton.setTitle("Cancel", for: .normal)
@@ -117,7 +117,7 @@ class AlertView: UIView {
                                                constant: 0)
         cancelLeading.isActive = true
     }
-    
+
     func setupSaveButton() {
         saveButton.backgroundColor = contentView.backgroundColor
         saveButton.setTitle("Save", for: .normal)
@@ -135,7 +135,7 @@ class AlertView: UIView {
                                             multiplier: 1,
                                             constant: 0)
         saveBottom.isActive = true
-        
+
         let saveTrailing = NSLayoutConstraint(item: saveButton,
                                               attribute: NSLayoutAttribute.trailing,
                                               relatedBy: NSLayoutRelation.equal,
@@ -144,7 +144,7 @@ class AlertView: UIView {
                                               multiplier: 1,
                                               constant: 0)
         saveTrailing.isActive = true
-        
+
         let widths = NSLayoutConstraint(item: saveButton,
                                         attribute: NSLayoutAttribute.leading,
                                         relatedBy: NSLayoutRelation.equal,
@@ -153,7 +153,7 @@ class AlertView: UIView {
                                         multiplier: 1,
                                         constant: -1)
         widths.isActive = true
-        
+
         let equalWidths = NSLayoutConstraint(item: saveButton,
                                              attribute: NSLayoutAttribute.width,
                                              relatedBy: NSLayoutRelation.equal,

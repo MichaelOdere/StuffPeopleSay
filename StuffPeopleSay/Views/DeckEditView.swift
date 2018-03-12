@@ -32,7 +32,7 @@ extension DeckEditView {
         let p = gestureReconizer.location(in: collectionView)
         let indexPath = collectionView.indexPathForItem(at: p)
         if let index = indexPath {
-            guard let cell = collectionView.cellForItem(at: index) as? DeckCell else{
+            guard let cell = collectionView.cellForItem(at: index) as? DeckCell else {
                 fatalError("Cell at index path not found.")
             }
             cell.name.isEnabled = true
