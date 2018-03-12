@@ -1,12 +1,12 @@
 import Foundation
 import SwiftyJSON
 
-class Board{
-    var boardId:String
+class Board {
+    var boardId: String
     var boardDeck: BoardDeck
-    var count:Int
+    var count: Int
     
-    init( boardId:String, boardDeck: BoardDeck, count:Int) {
+    init(boardId: String, boardDeck: BoardDeck, count: Int) {
         self.boardId = boardId
         self.boardDeck = boardDeck
         self.count = count
