@@ -12,8 +12,10 @@ class CardEditViewController: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationItem.rightBarButtonItem =  UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action:  #selector(CardEditViewController.newCard))
+
+        navigationItem.rightBarButtonItem =  UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add,
+                                                             target: self,
+                                                             action: #selector(CardEditViewController.newCard))
 
         cardEditView = CardEditView(frame: view.frame)
         cardEditView.collectionView.delegate = self
@@ -22,11 +24,11 @@ class CardEditViewController: UIViewController{
 //        cardDataSource.searchDelegate = self
         cardDataSource.delegate = self
         cardEditView.setDataSource(dataSource: cardDataSource)
-        
+
 //        setupSearch()
     }
-    
-    func setupSearch(){
+
+    func setupSearch() {
 //        searchController.searchResultsUpdater = self
 //        searchController.obscuresBackgroundDuringPresentation = false
 //        searchController.searchBar.placeholder = "Search"
@@ -41,25 +43,25 @@ class CardEditViewController: UIViewController{
                                       preferredStyle: .alert)
         
         alert.addTextField(configurationHandler: nil)
-        
+
         let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         alert.addAction(cancel)
-        
+
         let add = UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
             guard let cardText = textField?.text else {return}
-            if !cardText.isEmpty{
+            if !cardText.isEmpty {
                 self.gameStore.createCard(name: cardText, completionHandler: { (card) in
                     if card != nil {
                         self.cardEditView.collectionView.reloadData()
                         let indexPath = IndexPath(row: self.cardEditView.collectionView.numberOfItems(inSection: 0)-1, section: 0)
-                        self.cardEditView.collectionView.scrollToItem(at:indexPath, at: .bottom, animated: true)
+                        self.cardEditView.collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
                     }
                 })
             }
         })
         alert.addAction(add)
-        
+
         present(alert, animated: true, completion: nil)
     }
 }
@@ -76,17 +78,19 @@ extension CardEditViewController: CardCollectionViewDelegate {
 
 extension CardEditViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! CardCell
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CardCell else {
+            fatalError("Cell at index path not found")
+        }
         cell.cellSelected()
 
         if let index = deck.cards.index(where: {$0.id == cell.id}) {
             deck.cards[index].active = cell.state == .selected
-        
+
             if deck.cards[index].active {
-                gameStore.addCards(deckId: deck.id, cards: [deck.cards[index].id], completionHandler: { (success) in
+                gameStore.addCards(deckId: deck.id, cards: [deck.cards[index].id], completionHandler: { (_) in
                 })
-            }else{
-                gameStore.removeCards(deckId: deck.id, cards: [deck.cards[index].id], completionHandler: { (success) in
+            } else {
+                gameStore.removeCards(deckId: deck.id, cards: [deck.cards[index].id], completionHandler: { (_) in
                 })
             }
         }

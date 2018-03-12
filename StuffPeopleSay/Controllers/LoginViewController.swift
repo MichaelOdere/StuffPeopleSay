@@ -1,7 +1,7 @@
 import UIKit
 import Foundation
 
-class LoginViewController:UIViewController, UITextFieldDelegate{
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     var gameStore:GameStore!
     var loadingView:LoadingView!
@@ -14,37 +14,37 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
  
         view.backgroundColor = BingoPalette.bingoCellBackgroundColor
         view.addSubview(loginView)
-        
-        loginView.loginButton.addTarget(self, action: #selector(LoginViewController.LoginButton), for: .touchUpInside)
+
+        loginView.loginButton.addTarget(self, action: #selector(LoginViewController.loginButton), for: .touchUpInside)
         updateEmailTextField()
 
-//        login(loginType: .token)
+        login(loginType: .token)
     }
 
-    func login(loginType:LoginType) {
+    func login(loginType: LoginType) {
         loadingView.startAnimating()
         self.view.addSubview(loadingView)
         let group = DispatchGroup()
         group.enter()
 
-        gameStore.login(loginType: loginType) { (success) in
+        gameStore.login(loginType: loginType) { (_) in
             group.leave()
         }
 
-        group.notify(queue: DispatchQueue.main){
+        group.notify(queue: DispatchQueue.main) {
             if self.gameStore.isLoggedIn {
                 self.showGameScreen {
                     self.loadingView.stopAnimating()
                     self.loadingView.removeFromSuperview()
                 }
-            }else{
+            } else {
                 self.loadingView.stopAnimating()
                 self.loadingView.removeFromSuperview()
             }
         }
     }
 
-    @objc func LoginButton() {
+    @objc func loginButton() {
 
         loginView.emailView.textField.resignFirstResponder()
         loginView.passwordView.textField.resignFirstResponder()
@@ -52,18 +52,21 @@ class LoginViewController:UIViewController, UITextFieldDelegate{
         login(loginType: .password(email: loginView.emailView.textField.text!, password: "pw"))
     }
 
-    func updateEmailTextField(){
-        if gameStore.keychain.get("email") != nil{
+    func updateEmailTextField() {
+        if gameStore.keychain.get("email") != nil {
             loginView.emailView.textField.text = gameStore.keychain.get("email")
             loginView.configureButton(for: .active)
         }
     }
 
-    func showGameScreen(completionHandler: @escaping () -> Void){
-        if self.gameStore.isLoggedIn{
+    func showGameScreen(completionHandler: @escaping () -> Void) {
+        if self.gameStore.isLoggedIn {
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let navigationController = sb.instantiateViewController(withIdentifier: "nav")
-            let vc = navigationController.childViewControllers.first as! GamesTableViewController
+            let vcOptional = navigationController.childViewControllers.first as? GamesTableViewController
+            guard let vc = vcOptional else {
+                fatalError("GamesTableViewController not found.")
+            }
             vc.gameStore = self.gameStore
             self.dismiss(animated: false, completion: nil)
             self.present(navigationController, animated: false, completion: completionHandler)
