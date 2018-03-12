@@ -1,14 +1,11 @@
 import Foundation
 import SwiftyJSON
 
-class BoardDeck{
-    var cards:[BoardDeckCard]
-    
+class BoardDeck {
+    var cards: [BoardDeckCard]
     init(cards: [BoardDeckCard]) {
         self.cards = cards
     }
-    
-    
 }
 
 extension BoardDeck {
@@ -17,16 +14,15 @@ extension BoardDeck {
             print("Error parsing boarddeck object for key: cards")
             return nil
         }
-        
-        var allCards:[BoardDeckCard] = []
+
+        var allCards: [BoardDeckCard] = []
         for c in coardData {
-            if let card = BoardDeckCard(json: c){
+            if let card = BoardDeckCard(json: c) {
                 allCards.append(card)
             }
         }
-        
+
         allCards = allCards.sorted(by: { $0.order > $1.order })
         self.init(cards: allCards)
     }
 }
-
