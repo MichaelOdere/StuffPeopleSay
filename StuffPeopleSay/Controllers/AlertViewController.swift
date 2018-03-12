@@ -45,7 +45,7 @@ class AlertViewController: UIViewController{
     }
     
     @objc func cancel(sender:UIButton) {
-        alertView.animateDissmiss {
+        alertView.animateDismiss {
             self.dismiss(animated: false, completion: nil)
         }
     }
@@ -58,7 +58,7 @@ class AlertViewController: UIViewController{
                     self.addedDeckProtocol?.addedANewDeck()
                 }
             })
-            alertView.animateDissmiss {
+            alertView.animateDismiss {
                 self.dismiss(animated: false, completion: nil)
             }
         }else{

@@ -41,7 +41,7 @@ class AlertView: UIView {
         })
     }
     
-    func animateDissmiss(completionHandler: @escaping ()->()) {
+    func animateDismiss(completionHandler: @escaping ()->()) {
         UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: {
             self.alpha = 0.0
         }, completion: {  (finished: Bool) in
