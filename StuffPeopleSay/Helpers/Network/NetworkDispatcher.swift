@@ -9,7 +9,7 @@ public enum NetworkErrors: Error {
 }
 
 public class NetworkDispatcher: Dispatcher {
-    
+
     private var environment: NetworkEnvironment
 
     required public init(environment: NetworkEnvironment) {
@@ -19,17 +19,17 @@ public class NetworkDispatcher: Dispatcher {
     func setEnvironment(environment: NetworkEnvironment) {
         self.environment = environment
     }
-    
-    public func execute(request: Request, completionHandler: @escaping (NetworkResponse)->Void) {
-      
-        do{
-        
+
+    public func execute(request: Request, completionHandler: @escaping (NetworkResponse) -> Void) {
+
+        do {
+
             let rq = try self.prepareURLRequest(for: request)
 
             Alamofire.request(rq)
                 .validate()
                 .responseJSON { (response) in
-                    if response.result.isSuccess{
+                    if response.result.isSuccess {
                         completionHandler(NetworkResponse((r: response.response, data: response.data, error: nil)))
                     } else {
                         print(String(data: response.data!, encoding: String.Encoding.utf8) as String!
@@ -42,9 +42,9 @@ public class NetworkDispatcher: Dispatcher {
             completionHandler(NetworkResponse((r: nil, data: nil, error: error)))
         }
     }
-    
+
     private func prepareURLRequest(for request: Request) throws -> URLRequest {
-       
+
         // Create URL
         let full_url = "\(environment.host)\(request.path)"
         var url_request = URLRequest(url: URL(string: full_url)!)
@@ -53,16 +53,16 @@ public class NetworkDispatcher: Dispatcher {
         }
 
         // Add auth headers if they are needed
-        if request.needsAuthHeader{
+        if request.needsAuthHeader {
             environment.authHeaders.forEach { url_request.addValue($0.value, forHTTPHeaderField: $0.key) }
         }
-        
+
         // Add request headers
         request.headers?.forEach { url_request.addValue($0.value, forHTTPHeaderField: $0.key) }
-        
+
         // Set http method
         url_request.httpMethod = getMethod(httpCase: request.method).rawValue
-        
+
 // Here for debugging
 //        print("parameters!!   \(request.parameters)")
 //        if let p = request.parameters {
@@ -75,9 +75,9 @@ public class NetworkDispatcher: Dispatcher {
 
         return url_request
     }
-    
+
     func getMethod(httpCase: HTTPMethodCase) -> HTTPMethod {
-        switch httpCase{
+        switch httpCase {
         case .post:
             return .post
         case .put:

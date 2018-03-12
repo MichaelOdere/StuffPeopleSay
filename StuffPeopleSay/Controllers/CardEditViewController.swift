@@ -1,9 +1,9 @@
 import UIKit
 
-class CardEditViewController: UIViewController{
-    var cardEditView:CardEditView!
-    var gameStore:GameStore!
-    var deck:Deck!
+class CardEditViewController: UIViewController {
+    var cardEditView: CardEditView!
+    var gameStore: GameStore!
+    var deck: Deck!
     let cardDataSource = CardCollectionViewDataSource()
 
 //    var filteredCards = [Card]()
@@ -36,12 +36,12 @@ class CardEditViewController: UIViewController{
 //        navigationItem.hidesSearchBarWhenScrolling = false
 //        definesPresentationContext = true
     }
-    
+
     @objc func newCard() {
         let alert = UIAlertController(title: "Type in the name of the Card you'd like to add",
                                       message: nil,
                                       preferredStyle: .alert)
-        
+
         alert.addTextField(configurationHandler: nil)
 
         let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
@@ -70,7 +70,7 @@ extension CardEditViewController: CardCollectionViewDelegate {
     var d: Deck {
         return deck
     }
-    
+
     var cardView: CardEditView {
         return cardEditView
     }

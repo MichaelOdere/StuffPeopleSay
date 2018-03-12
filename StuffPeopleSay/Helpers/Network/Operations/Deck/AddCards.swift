@@ -1,9 +1,9 @@
 import SwiftyJSON
 
 class AddCardsOperation: Operation {
-    
+
     typealias Output = Bool
-    
+
     var deckId: String
     var cards: [String]
 
@@ -11,12 +11,12 @@ class AddCardsOperation: Operation {
         self.deckId = deckId
         self.cards = cards
     }
-    
+
     var request: Request {
         return DeckRequests.addCardsToDeck(deckId: deckId, cards: cards)
     }
-    
-    func execute(in dispatcher: Dispatcher, completionHandler: @escaping (Output?)->Void) {
+
+    func execute(in dispatcher: Dispatcher, completionHandler: @escaping (Output?) -> Void) {
         dispatcher.execute(request: request) { (response) in
             if case let NetworkResponse.error(code, error) = response {
                 if let code = code {

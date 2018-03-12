@@ -1,27 +1,27 @@
 import UIKit
 
-class DeckEditView:EditView {
+class DeckEditView: EditView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         collectionViewTypeDelegate = self
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
-extension DeckEditView: CollectionViewType{
+extension DeckEditView: CollectionViewType {
     func getCollectionView() -> UICollectionView {
         let layout = DeckCollectionViewLayout()
         let cv = DeckCollectionView(frame: frame, collectionViewLayout: layout)
-        
-        let lpgr = UILongPressGestureRecognizer(target: self, action:  #selector(DeckEditView.handleLongPress(gestureReconizer:)))
+
+        let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(DeckEditView.handleLongPress(gestureReconizer:)))
         lpgr.minimumPressDuration = 0.5
         lpgr.delaysTouchesBegan = true
         cv.addGestureRecognizer(lpgr)
-     
+
         return cv
     }
 }

@@ -3,15 +3,15 @@ import Foundation
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
-    var gameStore:GameStore!
-    var loadingView:LoadingView!
-    var loginView:LoginView!
+    var gameStore: GameStore!
+    var loadingView: LoadingView!
+    var loginView: LoginView!
     var gl: CAGradientLayer!
 
     override func viewDidLoad() {
         loadingView = LoadingView(frame: self.view.frame)
         loginView = LoginView(frame: view.frame)
- 
+
         view.backgroundColor = BingoPalette.bingoCellBackgroundColor
         view.addSubview(loginView)
 

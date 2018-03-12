@@ -54,7 +54,7 @@ class AlertView: UIView {
         contentView.layer.masksToBounds = true
         contentView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(contentView)
-        
+
         let top = NSLayoutConstraint(item: contentView,
                                      attribute: NSLayoutAttribute.top,
                                      relatedBy: NSLayoutRelation.equal,
@@ -113,7 +113,7 @@ class AlertView: UIView {
                                               attribute: NSLayoutAttribute.bottom,
                                               multiplier: 1, constant: 0)
         cancelBottom.isActive = true
-        
+
         let cancelLeading = NSLayoutConstraint(item: cancelButton,
                                                attribute: NSLayoutAttribute.leading,
                                                relatedBy: NSLayoutRelation.equal,
@@ -122,7 +122,7 @@ class AlertView: UIView {
                                                multiplier: 1,
                                                constant: 0)
         cancelLeading.isActive = true
-        
+
         let saveBottom = NSLayoutConstraint(item: saveButton,
                                             attribute: NSLayoutAttribute.bottom,
                                             relatedBy: NSLayoutRelation.equal,
@@ -131,7 +131,7 @@ class AlertView: UIView {
                                             multiplier: 1,
                                             constant: 0)
         saveBottom.isActive = true
-        
+
         let saveTrailing = NSLayoutConstraint(item: saveButton,
                                               attribute: NSLayoutAttribute.trailing,
                                               relatedBy: NSLayoutRelation.equal,
@@ -140,7 +140,7 @@ class AlertView: UIView {
                                               multiplier: 1,
                                               constant: 0)
         saveTrailing.isActive = true
-        
+
         let widths = NSLayoutConstraint(item: saveButton,
                                         attribute: NSLayoutAttribute.leading,
                                         relatedBy: NSLayoutRelation.equal,
@@ -149,7 +149,7 @@ class AlertView: UIView {
                                         multiplier: 1,
                                         constant: -1)
         widths.isActive = true
-        
+
         let equalWidths = NSLayoutConstraint(item: saveButton,
                                              attribute: NSLayoutAttribute.width,
                                              relatedBy: NSLayoutRelation.equal,
@@ -159,8 +159,8 @@ class AlertView: UIView {
                                              constant: 0)
         equalWidths.isActive = true
     }
-    
-    func setupTextView(){
+
+    func setupTextView() {
         gameNameTextField.delegate = self
         gameNameTextField.placeholder = "Enter A Game Name"
         gameNameTextField.backgroundColor = UIColor.white
@@ -171,8 +171,7 @@ class AlertView: UIView {
         gameNameTextField.layer.cornerRadius = 5
         gameNameTextField.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(gameNameTextField)
-        
-        
+
         let gameNameTextFieldTop = NSLayoutConstraint(item: gameNameTextField,
                                                       attribute: NSLayoutAttribute.top,
                                                       relatedBy: NSLayoutRelation.equal,
@@ -181,7 +180,7 @@ class AlertView: UIView {
                                                       multiplier: 1,
                                                       constant: verticleSpaceBetweenElements)
         gameNameTextFieldTop.isActive = true
-        
+
         let gameNameTextFieldLeading = NSLayoutConstraint(item: gameNameTextField,
                                                           attribute: NSLayoutAttribute.leading,
                                                           relatedBy: NSLayoutRelation.equal,
@@ -190,7 +189,7 @@ class AlertView: UIView {
                                                           multiplier: 1,
                                                           constant: horizontalPadding)
         gameNameTextFieldLeading.isActive = true
-        
+
         let gameNameTextFieldTrailing = NSLayoutConstraint(item: gameNameTextField,
                                                            attribute: NSLayoutAttribute.trailing,
                                                            relatedBy: NSLayoutRelation.equal,
@@ -200,12 +199,12 @@ class AlertView: UIView {
                                                            constant: -horizontalPadding)
         gameNameTextFieldTrailing.isActive = true
     }
-    
-    func setupTextLine(){
+
+    func setupTextLine() {
         gameTextFieldLine.backgroundColor = UIColor.black
         gameTextFieldLine.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(gameTextFieldLine)
-        
+
         let gameNameTextFieldTop = NSLayoutConstraint(item: gameTextFieldLine,
                                                       attribute: NSLayoutAttribute.top,
                                                       relatedBy: NSLayoutRelation.equal,
@@ -214,7 +213,7 @@ class AlertView: UIView {
                                                       multiplier: 1,
                                                       constant: 0)
         gameNameTextFieldTop.isActive = true
-        
+
         let gameNameTextFieldWidth = NSLayoutConstraint(item: gameTextFieldLine,
                                                         attribute: NSLayoutAttribute.width,
                                                         relatedBy: NSLayoutRelation.equal,
@@ -224,34 +223,34 @@ class AlertView: UIView {
                                                         constant: 0)
         gameNameTextFieldWidth.isActive = true
     }
-    
+
     func setupNumberPicker() {
         numberPicker.delegate = self
         numberPicker.dataSource = self
-        
+
         numberPicker.backgroundColor = UIColor.white
         numberPicker.layer.cornerRadius = 10
         numberPicker.layer.borderColor = UIColor.lightGray.cgColor
         numberPicker.layer.borderWidth = 0.8
         numberPicker.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(numberPicker)
-        
+
         let pickerCenterX = NSLayoutConstraint(item: numberPicker, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
         pickerCenterX.isActive = true
-        
+
         let pickerTop = NSLayoutConstraint(item: numberPicker, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: gameNameTextField, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: verticleSpaceBetweenElements)
         pickerTop.isActive = true
-        
+
         let pickerLeading = NSLayoutConstraint(item: numberPicker, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: horizontalPadding)
         pickerLeading.isActive = true
-        
+
         let pickerTrailing = NSLayoutConstraint(item: numberPicker, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -horizontalPadding)
         pickerTrailing.isActive = true
-        
+
         numberPicker.setContentCompressionResistancePriority(.init(1), for: .vertical)
         numberPicker.setContentHuggingPriority(.init(1), for: .vertical)
     }
-    
+
     func setupDeckButton() {
         deckButton.backgroundColor = UIColor.lightGray
         deckButton.layer.cornerRadius = 10
@@ -259,37 +258,37 @@ class AlertView: UIView {
         deckButton.isEnabled = true
         deckButton.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(deckButton)
-        
+
         let deckCenterX = NSLayoutConstraint(item: deckButton, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
         deckCenterX.isActive = true
-        
+
         let deckTop = NSLayoutConstraint(item: deckButton, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: numberPicker, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: verticleSpaceBetweenElements)
         deckTop.isActive = true
-        
+
         let deckBottom = NSLayoutConstraint(item: deckButton, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: cancelButton, attribute: NSLayoutAttribute.top, multiplier: 1, constant: -verticleSpaceBetweenElements)
         deckBottom.isActive = true
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
-extension AlertView:UIPickerViewDelegate, UIPickerViewDataSource {
+extension AlertView: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerData.count
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return String(pickerData[row])
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        
+
         if pickerData[row] == 1 {
             return NSAttributedString(string: String(pickerData[row]) + " Board")
         }
@@ -297,12 +296,12 @@ extension AlertView:UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 
-extension AlertView:UITextFieldDelegate {
+extension AlertView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-    
+
     @objc func dismissKeyboard() {
         self.endEditing(true)
     }

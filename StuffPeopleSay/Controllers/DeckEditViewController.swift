@@ -1,8 +1,8 @@
 import UIKit
 
-class DeckEditViewController: UIViewController{
-    var deckEditView:DeckEditView!
-    var gameStore:GameStore!
+class DeckEditViewController: UIViewController {
+    var deckEditView: DeckEditView!
+    var gameStore: GameStore!
     let deckDataSource = DeckCollectionViewDataSource()
 
 //    var filteredDecks = [Deck]()
@@ -12,25 +12,25 @@ class DeckEditViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.rightBarButtonItem =  UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action:  #selector(DeckEditViewController.newDeck))
+        navigationItem.rightBarButtonItem =  UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(DeckEditViewController.newDeck))
 
         deckEditView = DeckEditView(frame: view.frame)
 
         deckEditView.collectionView.delegate = self
         view.addSubview(deckEditView)
-        
+
 //        deckDataSource.searchDelegate = self
         deckDataSource.delegate = self
         deckEditView.setDataSource(dataSource: deckDataSource)
-        
+
 //        setupSearch()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         deckEditView.collectionView.reloadData()
     }
-    
-    func setupSearch(){
+
+    func setupSearch() {
 //        searchController.searchResultsUpdater = self
 //        searchController.obscuresBackgroundDuringPresentation = false
 //        searchController.searchBar.placeholder = "Search"
@@ -38,26 +38,26 @@ class DeckEditViewController: UIViewController{
 //        navigationItem.hidesSearchBarWhenScrolling = false
 //        definesPresentationContext = true
     }
-    
+
     @objc func newDeck() {
         let alert = UIAlertController(title: "Type in the name of the Deck you'd like to add",
                                       message: nil,
                                       preferredStyle: .alert)
-    
+
         alert.addTextField(configurationHandler: nil)
-    
+
         let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         alert.addAction(cancel)
-        
+
         let add = UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
             guard let cardText = textField?.text else {return}
-            if !cardText.isEmpty{
+            if !cardText.isEmpty {
                 self.gameStore.createDeck(name: cardText, completionHandler: { (deck) in
                     if deck != nil {
                         self.deckEditView.collectionView.reloadData()
                         let indexPath = IndexPath(row: self.deckEditView.collectionView.numberOfItems(inSection: 0)-1, section: 0)
-                        self.deckEditView.collectionView.scrollToItem(at:indexPath, at: .bottom, animated: true)
+                        self.deckEditView.collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
                     }
                 })
             }

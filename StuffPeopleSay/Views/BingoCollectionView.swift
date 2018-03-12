@@ -4,10 +4,10 @@ protocol BingoCollectionViewDelegate: class {
     func specificDidSelectRow(card: BoardDeckCard, cell: BingoCollectionCell)
 }
 
-class BingoCollectionView: NSObject, UICollectionViewDataSource, UICollectionViewDelegate{
-    var deck:BoardDeck!
-    var bingoGame:BingoBoard = BingoBoard()
-    var pieceTransparency:CGFloat = 0.2
+class BingoCollectionView: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
+    var deck: BoardDeck!
+    var bingoGame: BingoBoard = BingoBoard()
+    var pieceTransparency: CGFloat = 0.2
     weak var didSelectDelegate: BingoCollectionViewDelegate?
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -22,27 +22,26 @@ class BingoCollectionView: NSObject, UICollectionViewDataSource, UICollectionVie
         cell.title.text = card.name
         cell.xIndex = indexPath.row / 5
         cell.yIndex = indexPath.row % 5
-        if card.active{
+        if card.active {
             cell.pieceView.alpha = pieceTransparency
             bingoGame.board[cell.xIndex][cell.yIndex] = 1
-        }else{
+        } else {
             cell.pieceView.alpha = 0.0
         }
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! BingoCollectionCell
         let card = deck.cards[indexPath.row]
 
         if let didSelectDelegate = didSelectDelegate {
             didSelectDelegate.specificDidSelectRow(card: card, cell: cell)
-            if card.active{
+            if card.active {
                deck.cards[indexPath.row].active = true
-            }else{
+            } else {
                 deck.cards[indexPath.row].active = false
             }
         }
     }
 }
-

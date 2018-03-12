@@ -27,13 +27,13 @@ class BoardCollectionViewController: UIViewController, UICollectionViewDelegate,
         cell.titleLabel.text = String(cardCount) + " \(cardString) active"
         cell.bingoDataSource.deck = game.my.boards[indexPath.row].boardDeck
         cell.setDelegation()
-        
+
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.selectedIndexPath = indexPath
-        
+
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vcOptional = sb.instantiateViewController(withIdentifier: "BingoController") as? BingoViewController
         guard let vc = vcOptional else {
@@ -44,7 +44,7 @@ class BoardCollectionViewController: UIViewController, UICollectionViewDelegate,
         vc.status = self.game.status
         vc.gameId = self.game.gameId
         vc.gameStore = self.gameStore
-        
+
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -5,18 +5,18 @@ enum SelectedState {
     case deselected
 }
 
-class SPSCollectionViewCell:UICollectionViewCell{
-    
+class SPSCollectionViewCell: UICollectionViewCell {
+
     // LEAK TEXTFIELD
     // https://forums.developer.apple.com/message/285482#285482
     // https://forums.developer.apple.com/thread/94323
     var name: CardTextfield!
-    var id:String!
-    var indexPath:IndexPath!
+    var id: String!
+    var indexPath: IndexPath!
 
-    var deSelectedAlphaValue:CGFloat = 0.5
-    var selectedAlphaValue:CGFloat = 1.0
-    var hasBeenSelected:Bool = false
+    var deSelectedAlphaValue: CGFloat = 0.5
+    var selectedAlphaValue: CGFloat = 1.0
+    var hasBeenSelected: Bool = false
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,15 +24,15 @@ class SPSCollectionViewCell:UICollectionViewCell{
         backgroundColor = UIColor.white
 //        print(#function, "name ", CFGetRetainCount(name))
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func setupNameTextfield(frame: CGRect){
+
+    func setupNameTextfield(frame: CGRect) {
         name = CardTextfield(frame: frame)
         contentView.addSubview(name)
-        
+
         name.translatesAutoresizingMaskIntoConstraints = false
 
         let top = NSLayoutConstraint(item: name, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0)

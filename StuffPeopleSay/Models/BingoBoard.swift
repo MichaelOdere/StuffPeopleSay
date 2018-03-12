@@ -29,7 +29,7 @@ class BingoBoard {
             }
         }
     }
-    
+
     func checkVictory(x: Int, y: Int) -> Bool {
         var victory = false
         if checkVertical(y: y) || checkHorizontal(x: x) {

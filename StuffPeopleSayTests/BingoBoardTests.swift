@@ -3,17 +3,17 @@ import XCTest
 
 class StuffPeopleSayTests: XCTestCase {
     var bingoBoard: BingoBoard!
-    
+
     override func setUp() {
         super.setUp()
         bingoBoard = BingoBoard()
     }
-    
+
     override func tearDown() {
         super.tearDown()
         bingoBoard = nil
     }
-    
+
     func testHorizontalWinConditions() {
         // 1. given clear board
         bingoBoard.boardReset()
@@ -33,7 +33,7 @@ class StuffPeopleSayTests: XCTestCase {
             bingoBoard.boardReset()
         }
     }
-    
+
     func testVerticalWinConditions() {
         // 1. given clear board
         bingoBoard.boardReset()
@@ -53,7 +53,7 @@ class StuffPeopleSayTests: XCTestCase {
             bingoBoard.boardReset()
         }
     }
-    
+
     func testSlantLeftConditions() {
         // 1. given clear board
         bingoBoard.boardReset()
@@ -66,7 +66,7 @@ class StuffPeopleSayTests: XCTestCase {
         // 4. then when we reach the end of the slant we should have a win
         XCTAssertTrue(bingoBoard.checkVictory(x: bingoBoard.size - 1, y: bingoBoard.size - 1), "Win condition failed")
     }
-    
+
     func testSlantRightConditions() {
         // 1. given clear board
         bingoBoard.boardReset()
@@ -80,4 +80,3 @@ class StuffPeopleSayTests: XCTestCase {
         XCTAssertTrue(bingoBoard.checkVictory(x: 0, y: bingoBoard.size - 1), "Win condition failed")
     }
 }
-

@@ -1,30 +1,30 @@
 import UIKit
 
-class BingoViewController:UIViewController{
+class BingoViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableview: UITableView!
-    
-    var bingoGame:BingoBoard = BingoBoard()
-    var users:[User]!
-    var board:Board!
-    var status:String!
-    var gameId:String!
-    var gameStore:GameStore!
-    var loadingView:LoadingView!
-    let pieceTransparency:CGFloat = 0.2
-    var bingoCollectionView:BingoCollectionView!
+
+    var bingoGame: BingoBoard = BingoBoard()
+    var users: [User]!
+    var board: Board!
+    var status: String!
+    var gameId: String!
+    var gameStore: GameStore!
+    var loadingView: LoadingView!
+    let pieceTransparency: CGFloat = 0.2
+    var bingoCollectionView: BingoCollectionView!
 
     override func viewDidLoad() {
         loadingView = LoadingView(frame: self.view.frame)
-        
+
         bingoCollectionView = BingoCollectionView()
         bingoCollectionView.bingoGame = bingoGame
         bingoCollectionView.deck = board.boardDeck
         bingoCollectionView.didSelectDelegate = self
-        
+
         collectionView.dataSource = bingoCollectionView
         collectionView.delegate = bingoCollectionView
-        
+
         tableview.dataSource = self
         tableview.delegate = self
 
@@ -40,8 +40,8 @@ class BingoViewController:UIViewController{
             tableview.deselectRow(at: selectionIndexPath, animated: animated)
         }
     }
-    
-    func showAlert(completion: @escaping ()->()){
+
+    func showAlert(completion: @escaping ()->Void) {
         let alert = UIAlertController(title: "Congratulations You Won!",
                                       message: "We're sorry you had to hear all that!!",
                                       preferredStyle: .alert)
@@ -54,9 +54,9 @@ class BingoViewController:UIViewController{
         present(alert, animated: true, completion: nil)
 
     }
-    
+
     // for this to work need to change updateGames to physically update each game instead of wiping the games
-    @objc func didBecomeActive(){
+    @objc func didBecomeActive() {
 //        let oldGameId = self.game.gameId
 //        if self.gameStore.isLoggedIn{
 //            self.loadingView.startAnimating()
@@ -90,64 +90,64 @@ class BingoViewController:UIViewController{
         print("active!")
     }
 }
-extension BingoViewController: UITableViewDelegate, UITableViewDataSource{
+extension BingoViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.self.users.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let user =  self.self.users[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell")
-        
+
         cell?.textLabel?.text = user.name
         cell?.detailTextLabel?.text =  "Cards active: " //+ String(user.boards[i] count)
-        
+
         return cell!
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "OpponentBingoViewController") as! OpponentBingoViewController
-        
+
         vc.user = self.users[indexPath.row]
 
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
-extension BingoViewController : ZoomViewController{
+extension BingoViewController: ZoomViewController {
     func zoomingCollectionView(for transition: ZoomTransitioningDelegate) -> UICollectionView? {
-        if let cv = collectionView{
+        if let cv = collectionView {
           return cv
         }
         return nil
     }
 }
 
-extension BingoViewController:BingoCollectionViewDelegate{
+extension BingoViewController: BingoCollectionViewDelegate {
     func specificDidSelectRow(card: BoardDeckCard, cell: BingoCollectionCell) {
         if self.self.status.lowercased() != "playing"{
             return
         }
-        
+
         self.gameStore.updateBoard(boardCardId: card.boardCardId) { (success) in
             print("Success")
         }
-        
+
         let x = cell.xIndex!
         let y = cell.yIndex!
-        
-        if card.active{
+
+        if card.active {
             cell.pieceView.alpha = 0.0
             bingoGame.board[x][y] = 0
             card.active = false
-        }else{
+        } else {
             cell.pieceView.alpha = pieceTransparency
             bingoGame.board[x][y] = 1
             card.active = true
         }
-        
-        if (bingoGame.checkVictory(x: x, y: y)){
+
+        if (bingoGame.checkVictory(x: x, y: y)) {
             self.status = "ended"
 
             self.gameStore.updateGame(gameId: gameId, completionHandler: { (success) in

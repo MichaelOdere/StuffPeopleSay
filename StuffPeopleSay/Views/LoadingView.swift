@@ -1,6 +1,6 @@
 import UIKit
 
-class LoadingView:UIActivityIndicatorView{
+class LoadingView: UIActivityIndicatorView {
     let loadingTextLabel = UILabel()
 
     override init(frame: CGRect) {
@@ -9,7 +9,7 @@ class LoadingView:UIActivityIndicatorView{
         self.backgroundColor = UIColor.white// BingoPalette.bingoCellBackgroundColor
         self.color = UIColor.black
         self.layer.opacity = 1
-        
+
         loadingTextLabel.text = "Loading..."
         loadingTextLabel.textAlignment = .center
         loadingTextLabel.textColor = UIColor.black
@@ -19,7 +19,7 @@ class LoadingView:UIActivityIndicatorView{
         loadingTextLabel.backgroundColor = UIColor.clear
         self.addSubview(loadingTextLabel)
     }
-    
+
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

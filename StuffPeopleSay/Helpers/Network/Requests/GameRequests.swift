@@ -1,5 +1,5 @@
 public enum GameRequests: Request {
-    
+
     case createGame(name: String, boards: Int, deckId: String)
     case getGames()
     case updateGame(gameId: String)
@@ -7,7 +7,7 @@ public enum GameRequests: Request {
 
     public var path: String {
         switch self {
-        case .createGame(_,_,_):
+        case .createGame(_, _, _):
             return "/games"
         case .getGames():
             return "/games"
@@ -17,10 +17,10 @@ public enum GameRequests: Request {
             return "/boards/" + boardCardId
         }
     }
-    
+
     public var method: HTTPMethodCase {
         switch self {
-        case .createGame(_,_,_):
+        case .createGame(_, _, _):
             return .post
         case .getGames():
             return .get
@@ -30,8 +30,8 @@ public enum GameRequests: Request {
             return .put
         }
     }
-    
-    public var parameters: [String : Any]? {
+
+    public var parameters: [String: Any]? {
         switch self {
         case .createGame(let name, let boardsCount, let deckId):
             return ["name":name, "boardsCount": boardsCount, "deckId": deckId]
@@ -43,10 +43,10 @@ public enum GameRequests: Request {
             return nil
         }
     }
-    
-    public var headers: [String : String]? {
+
+    public var headers: [String: String]? {
         switch self {
-        case .createGame(_,_,_):
+        case .createGame(_, _, _):
             return nil
         case .getGames():
             return nil
@@ -56,7 +56,7 @@ public enum GameRequests: Request {
             return nil
         }
     }
-    
+
     public var needsAuthHeader: Bool {
         return true
     }
