@@ -1,9 +1,9 @@
 import UIKit
 
 class AlertView: UIView {
-    private var verticalPadding:CGFloat!
-    private var verticleSpaceBetweenElements:CGFloat!
-    private var horizontalPadding:CGFloat!
+    private var verticalPadding: CGFloat!
+    private var verticleSpaceBetweenElements: CGFloat!
+    private var horizontalPadding: CGFloat!
     var contentView = UIView()
     var gameNameTextField = UITextField()
     var gameTextFieldLine = UILabel()
@@ -12,7 +12,7 @@ class AlertView: UIView {
     var deckButton = UIButton()
     var cancelButton = UIButton()
     var saveButton = UIButton()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.black.withAlphaComponent(0.5)
@@ -20,18 +20,17 @@ class AlertView: UIView {
         verticalPadding = self.frame.height * 0.1
         verticleSpaceBetweenElements = 10
         horizontalPadding = self.frame.width * 0.05
-        
+
         setupContentView()
         setupButtons()
         setupTextView()
         setupNumberPicker()
         setupDeckButton()
-        
+
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
         gameNameTextField.becomeFirstResponder()
-
     }
-    
+
     func animateShow() {
         contentView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
         self.alpha = 0.3
@@ -40,35 +39,57 @@ class AlertView: UIView {
             self.alpha = 1
         })
     }
-    
-    func animateDismiss(completionHandler: @escaping ()->()) {
+
+    func animateDismiss(completionHandler: @escaping () -> Void ) {
         UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: {
             self.alpha = 0.0
-        }, completion: {  (finished: Bool) in
+        }, completion: {  (_: Bool) in
             completionHandler()
         })
     }
-    
-    func setupContentView(){
+
+    func setupContentView() {
         contentView.backgroundColor = UIColor.white
         contentView.layer.cornerRadius = self.frame.width * 0.08
         contentView.layer.masksToBounds = true
         contentView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(contentView)
         
-        let top = NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.top, multiplier: 1, constant: verticalPadding)
+        let top = NSLayoutConstraint(item: contentView,
+                                     attribute: NSLayoutAttribute.top,
+                                     relatedBy: NSLayoutRelation.equal,
+                                     toItem: self, attribute: NSLayoutAttribute.top,
+                                     multiplier: 1,
+                                     constant: verticalPadding)
         top.isActive = true
-        let bottom = NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: -5 * verticalPadding)
+
+        let bottom = NSLayoutConstraint(item: contentView,
+                                        attribute: NSLayoutAttribute.bottom,
+                                        relatedBy: NSLayoutRelation.equal,
+                                        toItem: self, attribute: NSLayoutAttribute.bottom,
+                                        multiplier: 1,
+                                        constant: -5 * verticalPadding)
         bottom.isActive = true
-        
-        let leading = NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: horizontalPadding)
+
+        let leading = NSLayoutConstraint(item: contentView,
+                                         attribute: NSLayoutAttribute.leading,
+                                         relatedBy: NSLayoutRelation.equal,
+                                         toItem: self,
+                                         attribute: NSLayoutAttribute.leading,
+                                         multiplier: 1,
+                                         constant: horizontalPadding)
         leading.isActive = true
-        
-        let trailing = NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -horizontalPadding)
+
+        let trailing = NSLayoutConstraint(item: contentView,
+                                          attribute: NSLayoutAttribute.trailing,
+                                          relatedBy: NSLayoutRelation.equal,
+                                          toItem: self,
+                                          attribute: NSLayoutAttribute.trailing,
+                                          multiplier: 1,
+                                          constant: -horizontalPadding)
         trailing.isActive = true
     }
-    
-    func setupButtons(){
+    func setupButtons() {
         cancelButton.backgroundColor = contentView.backgroundColor
         cancelButton.setTitle("Cancel", for: .normal)
         cancelButton.setTitleColor(UIColor.gray, for: .normal)
@@ -76,7 +97,7 @@ class AlertView: UIView {
         cancelButton.layer.borderWidth = 0.8
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(cancelButton)
-        
+
         saveButton.backgroundColor = contentView.backgroundColor
         saveButton.setTitle("Save", for: .normal)
         saveButton.setTitleColor(UIColor.gray, for: .normal)
@@ -84,23 +105,58 @@ class AlertView: UIView {
         saveButton.layer.borderWidth = 0.8
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(saveButton)
-        
-        let cancelBottom = NSLayoutConstraint(item: cancelButton, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
+
+        let cancelBottom = NSLayoutConstraint(item: cancelButton,
+                                              attribute: NSLayoutAttribute.bottom,
+                                              relatedBy: NSLayoutRelation.equal,
+                                              toItem: contentView,
+                                              attribute: NSLayoutAttribute.bottom,
+                                              multiplier: 1, constant: 0)
         cancelBottom.isActive = true
         
-        let cancelLeading = NSLayoutConstraint(item: cancelButton, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0)
+        let cancelLeading = NSLayoutConstraint(item: cancelButton,
+                                               attribute: NSLayoutAttribute.leading,
+                                               relatedBy: NSLayoutRelation.equal,
+                                               toItem: contentView,
+                                               attribute: NSLayoutAttribute.leading,
+                                               multiplier: 1,
+                                               constant: 0)
         cancelLeading.isActive = true
         
-        let saveBottom = NSLayoutConstraint(item: saveButton, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
+        let saveBottom = NSLayoutConstraint(item: saveButton,
+                                            attribute: NSLayoutAttribute.bottom,
+                                            relatedBy: NSLayoutRelation.equal,
+                                            toItem: contentView,
+                                            attribute: NSLayoutAttribute.bottom,
+                                            multiplier: 1,
+                                            constant: 0)
         saveBottom.isActive = true
         
-        let saveTrailing = NSLayoutConstraint(item: saveButton, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0)
+        let saveTrailing = NSLayoutConstraint(item: saveButton,
+                                              attribute: NSLayoutAttribute.trailing,
+                                              relatedBy: NSLayoutRelation.equal,
+                                              toItem: contentView,
+                                              attribute: NSLayoutAttribute.trailing,
+                                              multiplier: 1,
+                                              constant: 0)
         saveTrailing.isActive = true
         
-        let widths = NSLayoutConstraint(item: saveButton, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: cancelButton, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -1)
+        let widths = NSLayoutConstraint(item: saveButton,
+                                        attribute: NSLayoutAttribute.leading,
+                                        relatedBy: NSLayoutRelation.equal,
+                                        toItem: cancelButton,
+                                        attribute: NSLayoutAttribute.trailing,
+                                        multiplier: 1,
+                                        constant: -1)
         widths.isActive = true
         
-        let equalWidths = NSLayoutConstraint(item: saveButton, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: cancelButton, attribute: NSLayoutAttribute.width, multiplier: 1, constant: 0)
+        let equalWidths = NSLayoutConstraint(item: saveButton,
+                                             attribute: NSLayoutAttribute.width,
+                                             relatedBy: NSLayoutRelation.equal,
+                                             toItem: cancelButton,
+                                             attribute: NSLayoutAttribute.width,
+                                             multiplier: 1,
+                                             constant: 0)
         equalWidths.isActive = true
     }
     
@@ -117,13 +173,31 @@ class AlertView: UIView {
         contentView.addSubview(gameNameTextField)
         
         
-        let gameNameTextFieldTop = NSLayoutConstraint(item: gameNameTextField, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.top, multiplier: 1, constant: verticleSpaceBetweenElements)
+        let gameNameTextFieldTop = NSLayoutConstraint(item: gameNameTextField,
+                                                      attribute: NSLayoutAttribute.top,
+                                                      relatedBy: NSLayoutRelation.equal,
+                                                      toItem: contentView,
+                                                      attribute: NSLayoutAttribute.top,
+                                                      multiplier: 1,
+                                                      constant: verticleSpaceBetweenElements)
         gameNameTextFieldTop.isActive = true
         
-        let gameNameTextFieldLeading = NSLayoutConstraint(item: gameNameTextField, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: horizontalPadding)
+        let gameNameTextFieldLeading = NSLayoutConstraint(item: gameNameTextField,
+                                                          attribute: NSLayoutAttribute.leading,
+                                                          relatedBy: NSLayoutRelation.equal,
+                                                          toItem: contentView,
+                                                          attribute: NSLayoutAttribute.leading,
+                                                          multiplier: 1,
+                                                          constant: horizontalPadding)
         gameNameTextFieldLeading.isActive = true
         
-        let gameNameTextFieldTrailing = NSLayoutConstraint(item: gameNameTextField, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: contentView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -horizontalPadding)
+        let gameNameTextFieldTrailing = NSLayoutConstraint(item: gameNameTextField,
+                                                           attribute: NSLayoutAttribute.trailing,
+                                                           relatedBy: NSLayoutRelation.equal,
+                                                           toItem: contentView,
+                                                           attribute: NSLayoutAttribute.trailing,
+                                                           multiplier: 1,
+                                                           constant: -horizontalPadding)
         gameNameTextFieldTrailing.isActive = true
     }
     
@@ -132,14 +206,26 @@ class AlertView: UIView {
         gameTextFieldLine.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(gameTextFieldLine)
         
-        let gameNameTextFieldTop = NSLayoutConstraint(item: gameTextFieldLine, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: gameNameTextField, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
+        let gameNameTextFieldTop = NSLayoutConstraint(item: gameTextFieldLine,
+                                                      attribute: NSLayoutAttribute.top,
+                                                      relatedBy: NSLayoutRelation.equal,
+                                                      toItem: gameNameTextField,
+                                                      attribute: NSLayoutAttribute.bottom,
+                                                      multiplier: 1,
+                                                      constant: 0)
         gameNameTextFieldTop.isActive = true
         
-        let gameNameTextFieldWidth = NSLayoutConstraint(item: gameTextFieldLine, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: gameNameTextField, attribute: NSLayoutAttribute.width, multiplier: 1, constant: 0)
+        let gameNameTextFieldWidth = NSLayoutConstraint(item: gameTextFieldLine,
+                                                        attribute: NSLayoutAttribute.width,
+                                                        relatedBy: NSLayoutRelation.equal,
+                                                        toItem: gameNameTextField,
+                                                        attribute: NSLayoutAttribute.width,
+                                                        multiplier: 1,
+                                                        constant: 0)
         gameNameTextFieldWidth.isActive = true
     }
     
-    func setupNumberPicker(){
+    func setupNumberPicker() {
         numberPicker.delegate = self
         numberPicker.dataSource = self
         
@@ -166,7 +252,7 @@ class AlertView: UIView {
         numberPicker.setContentHuggingPriority(.init(1), for: .vertical)
     }
     
-    func setupDeckButton(){
+    func setupDeckButton() {
         deckButton.backgroundColor = UIColor.lightGray
         deckButton.layer.cornerRadius = 10
         deckButton.setTitle("Select a Deck", for: .normal)

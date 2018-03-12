@@ -1,38 +1,44 @@
 import UIKit
 
-class BoardCollectionViewController:UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
+class BoardCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    var game:Game!
-    var gameStore:GameStore!
-    var selectedIndexPath:IndexPath!
+    var game: Game!
+    var gameStore: GameStore!
+    var selectedIndexPath: IndexPath!
 
     override func viewDidLoad() {
         collectionView.dataSource = self
         collectionView.delegate = self
     }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return game.my.boards.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "boardCell", for: indexPath) as! BoardCollectionViewCell
+
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let id = "BoardCollectionViewCell"
+        let cellOptional = collectionView.dequeueReusableCell(withReuseIdentifier: id,
+                                                              for: indexPath) as? BoardCollectionViewCell
+        guard let cell =  cellOptional else {
+            fatalError("BoardCollectionViewCell not found.")
+        }
         let cardCount = game.my.getCardsActive(index: indexPath.row)
         let cardString = cardCount == 1 ? "card" : "cards"
         cell.titleLabel.text = String(cardCount) + " \(cardString) active"
         cell.bingoDataSource.deck = game.my.boards[indexPath.row].boardDeck
         cell.setDelegation()
-
+        
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.selectedIndexPath = indexPath
         
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "BingoController") as! BingoViewController
-        
+        let vcOptional = sb.instantiateViewController(withIdentifier: "BingoController") as? BingoViewController
+        guard let vc = vcOptional else {
+            fatalError("BingoController not found.")
+        }
         vc.users = self.game.opponents
         vc.board = self.game.my.boards[indexPath.row]
         vc.status = self.game.status
@@ -43,10 +49,12 @@ class BoardCollectionViewController:UIViewController, UICollectionViewDelegate, 
     }
 }
 
-extension BoardCollectionViewController : ZoomViewController{
+extension BoardCollectionViewController: ZoomViewController {
     func zoomingCollectionView(for transition: ZoomTransitioningDelegate) -> UICollectionView? {
-        if let indexPath = selectedIndexPath{
-            let cell = collectionView?.cellForItem(at: indexPath) as! BoardCollectionViewCell
+        if let indexPath = selectedIndexPath {
+            guard let cell = collectionView?.cellForItem(at: indexPath) as? BoardCollectionViewCell else {
+                fatalError("Cell at index path not found.")
+            }
             return cell.board
         }
         return nil

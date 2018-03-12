@@ -194,7 +194,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewLayout key="collectionViewLayout" id="HhN-Nq-4Tv" customClass="DeckCollectionViewLayout" customModule="StuffPeopleSay" customModuleProvider="target"/>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="boardCell" id="oZU-mz-yKe" customClass="BoardCollectionViewCell" customModule="StuffPeopleSay" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BoardCollectionViewCell" id="oZU-mz-yKe" customClass="BoardCollectionViewCell" customModule="StuffPeopleSay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
