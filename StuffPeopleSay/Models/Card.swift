@@ -12,7 +12,7 @@ class Card {
         self.active = active
     }
 
-    func copyCard() ->Card {
+    func copyCard() -> Card {
         return Card(id: id, name: name, active: active)
     }
 }
@@ -23,7 +23,7 @@ extension Card {
             print("Error parsing Card object for key: id")
             return nil
         }
-        
+
         guard let name = json["name"].string else {
             print("Error parsing Card object for key: name")
             return nil
