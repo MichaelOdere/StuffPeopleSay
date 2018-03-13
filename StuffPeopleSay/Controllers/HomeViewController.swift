@@ -1,20 +1,70 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    var iconImage: UIImage = UIImage()
-    var loginButton: UIButton = HomeButton(type: .system)
-    var signUpButton: UIButton = HomeButton(type: .system)
+    var loginViewController = LoginViewController()
+    var gameStore:GameStore!
+    var iconImageView: UIImageView = UIImageView()
+    let loginButton: UIButton = HomeButton(type: .system)
+    let signUpButton: UIButton = HomeButton(type: .system)
 
     var horizontalPadding: CGFloat!
 
     override func viewDidLoad() {
         horizontalPadding = view.frame.width * 0.05
         view.backgroundColor = BingoPalette.bingoCellBackgroundColor
+        setupIconImage()
         setupLoginButton()
         setupSignUpButton()
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     func setupIconImage() {
+        view.addSubview(iconImageView)
+        iconImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        iconImageView.image = UIImage(named: "login-person2")
+        iconImageView.contentMode = .scaleAspectFit
+        
+        let centerY = NSLayoutConstraint(item: iconImageView,
+                                     attribute: NSLayoutAttribute.centerY,
+                                     relatedBy: NSLayoutRelation.equal,
+                                     toItem: self.view,
+                                     attribute: NSLayoutAttribute.centerY,
+                                     multiplier: 1,
+                                     constant: 0)
+        centerY.isActive = true
+        
+        let leading = NSLayoutConstraint(item: iconImageView,
+                                         attribute: NSLayoutAttribute.leading,
+                                         relatedBy: NSLayoutRelation.equal,
+                                         toItem: self.view,
+                                         attribute: NSLayoutAttribute.leading,
+                                         multiplier: 1,
+                                         constant: horizontalPadding)
+        leading.isActive = true
+        
+        let trailing = NSLayoutConstraint(item: iconImageView,
+                                         attribute: NSLayoutAttribute.trailing,
+                                         relatedBy: NSLayoutRelation.equal,
+                                         toItem: self.view,
+                                         attribute: NSLayoutAttribute.trailing,
+                                         multiplier: 1,
+                                         constant: -horizontalPadding)
+        trailing.isActive = true
+        
+        let height = NSLayoutConstraint(item: iconImageView,
+                                          attribute: NSLayoutAttribute.height,
+                                          relatedBy: NSLayoutRelation.equal,
+                                          toItem: nil,
+                                          attribute: NSLayoutAttribute.height,
+                                          multiplier: 1,
+                                          constant: view.frame.height * 0.25)
+        height.isActive = true
 
     }
 
@@ -23,6 +73,8 @@ class HomeViewController: UIViewController {
         view.addSubview(loginButton)
         loginButton.translatesAutoresizingMaskIntoConstraints = false
 
+        loginButton.addTarget(self, action: #selector(HomeViewController.goToLoginViewController), for: .touchUpInside)
+        
         let leading = NSLayoutConstraint(item: loginButton,
                                          attribute: NSLayoutAttribute.leading,
                                          relatedBy: NSLayoutRelation.equal,
@@ -40,6 +92,14 @@ class HomeViewController: UIViewController {
                                           multiplier: 1,
                                           constant: -horizontalPadding)
         bottom.isActive = true
+    }
+    
+    @objc func goToLoginViewController() {
+//        initialViewController.gameStore = gameStore
+//        let nav = UINavigationController(rootViewController: initialViewController)
+
+        loginViewController.gameStore = gameStore
+        self.navigationController?.pushViewController(loginViewController, animated: true)
     }
 
     func setupSignUpButton() {
@@ -100,6 +160,5 @@ class HomeViewController: UIViewController {
                                         multiplier: 1,
                                         constant: 0)
         width.isActive = true
-
     }
 }
