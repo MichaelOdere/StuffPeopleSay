@@ -3,7 +3,7 @@ import UIKit
 public struct BingoPalette {
     static public let backgroundColor = UIColor(red: 0, green: 0, blue: 0)
     static public let vanillaBackgroundColor = UIColor(red: 242, green: 242, blue: 235)
-    static public let silverBackgroundColor = UIColor(red: 214, green: 215, blue: 216)
+    static public let silverBackgroundColor = UIColor(red: 245, green: 245, blue: 245)
     static public let bingoCellBackgroundColor = UIColor(red: 54, green: 80, blue: 98)
 
     static public let SPSred = UIColor(red: 240, green: 93, blue: 94)
