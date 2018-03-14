@@ -6,10 +6,9 @@ enum ButtonState {
 }
 
 class LoginView: UIView {
-    var logoView = UIImageView()
     var loginButton = UIButton(type: .system)
-    var emailView = LoginInputView()
-    var passwordView = LoginInputView()
+    var emailView = TitleInputView()
+    var passwordView = TitleInputView()
 
     var verticlePadding: CGFloat = 10
     var horizontalPadding: CGFloat = 50
@@ -17,14 +16,12 @@ class LoginView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = BingoPalette.silverBackgroundColor
 
-        self.addSubview(logoView)
         self.addSubview(emailView)
         self.addSubview(passwordView)
         self.addSubview(loginButton)
 
-        setupLogoView()
         setupemailView()
         setuppasswordView()
         setupLoginButton()
@@ -33,28 +30,8 @@ class LoginView: UIView {
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing(_:))))
     }
 
-    func setupLogoView() {
-        logoView.image  = UIImage(named: "login-person2")
-        logoView.contentMode = .scaleAspectFit
-        logoView.translatesAutoresizingMaskIntoConstraints = false
-
-        let bottom = NSLayoutConstraint(item: logoView, attribute: .bottom, relatedBy: .equal, toItem: emailView, attribute: .top, multiplier: 1, constant: -3 * verticlePadding)
-        bottom.isActive = true
-
-        let leading = NSLayoutConstraint(item: logoView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: horizontalPadding)
-        leading.isActive = true
-
-        let trailing = NSLayoutConstraint(item: logoView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -horizontalPadding)
-        trailing.isActive = true
-
-        let height = NSLayoutConstraint(item: logoView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 100)
-        height.isActive = true
-    }
-
     func setupemailView() {
-        emailView.imageView.image = UIImage(named: "login-person2")
-        emailView.textField.attributedPlaceholder = NSAttributedString(string: "Email",
-                                                            attributes: [NSAttributedStringKey.foregroundColor: UIColor.white.withAlphaComponent(0.2)])
+        emailView.titleLabel.text = "Email"
         emailView.textField.delegate = self
         emailView.textField.addTarget(self, action: #selector(LoginView.textFieldDidChange(_:)),
                                            for: UIControlEvents.editingChanged)
@@ -69,12 +46,12 @@ class LoginView: UIView {
 
         let trailing = NSLayoutConstraint(item: emailView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -horizontalPadding)
         trailing.isActive = true
+        
+        emailView.layoutSubviews()
     }
 
     func setuppasswordView() {
-        passwordView.imageView.image = UIImage(named: "login-lock2")
-        passwordView.textField.attributedPlaceholder = NSAttributedString(string: "Password",
-                                                               attributes: [NSAttributedStringKey.foregroundColor: UIColor.white.withAlphaComponent(0.2)])
+        passwordView.titleLabel.text = "Password"
         passwordView.textField.isSecureTextEntry = true
         passwordView.textField.delegate = self
         passwordView.textField.addTarget(self, action: #selector(LoginView.textFieldDidChange(_:)),
@@ -91,7 +68,10 @@ class LoginView: UIView {
         let trailing = NSLayoutConstraint(item: passwordView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -horizontalPadding)
         trailing.isActive = true
 
-        let height = NSLayoutConstraint(item: passwordView, attribute: .height, relatedBy: .equal, toItem: emailView, attribute: .height, multiplier: 1, constant: 0)
+        let equalHeight = NSLayoutConstraint(item: passwordView, attribute: .height, relatedBy: .equal, toItem: emailView, attribute: .height, multiplier: 1, constant: 0)
+        equalHeight.isActive = true
+        
+        let height = NSLayoutConstraint(item: passwordView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: self.frame.height * 0.07)
         height.isActive = true
     }
 
@@ -112,7 +92,7 @@ class LoginView: UIView {
         let trailing = NSLayoutConstraint(item: loginButton, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -horizontalPadding)
         trailing.isActive = true
 
-        let height = NSLayoutConstraint(item: loginButton, attribute: .height, relatedBy: .equal, toItem: passwordView, attribute: .height, multiplier: 1.2, constant: 0)
+        let height = NSLayoutConstraint(item: loginButton, attribute: .height, relatedBy: .equal, toItem: passwordView, attribute: .height, multiplier: 0.8, constant: 0)
         height.isActive = true
     }
 
@@ -153,13 +133,15 @@ extension LoginView: UITextFieldDelegate {
         return true
     }
 
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        textField.superview?.layer.borderColor = UIColor.white.cgColor
-//        textField.superview?.layer.borderWidth = 1
-//        self.layoutIfNeeded()
-//    }
-//
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        textField.superview?.layer.borderWidth = 0
-//    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.superview?.layer.borderColor = UIColor.red.cgColor
+        textField.superview?.layer.shadowOpacity = 0.5
+        self.layoutIfNeeded()
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.superview?.layer.borderColor = UIColor.lightGray.cgColor
+        textField.superview?.layer.shadowOpacity = 0.0
+    }
 }
+
