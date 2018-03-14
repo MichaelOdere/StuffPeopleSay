@@ -11,16 +11,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         gameStore = GameStore()
 
-//        let rootOptional = window!.rootViewController as? HomeViewController
-//        guard let root = rootOptional else {
-//            fatalError("HomeViewController not found.")
-//        }
+        let initialViewController = HomeViewController()
+        initialViewController.gameStore = gameStore
+        let nav = UINavigationController(rootViewController: initialViewController)
+        self.window?.rootViewController = nav
+        self.window?.makeKeyAndVisible()
 
-//        let rootOptional = window!.rootViewController as? LoginViewController
-//        guard let root = rootOptional else {
-//            fatalError("LoginViewController not found.")
-//        }
-//        root.gameStore = gameStore
         return true
     }
 
