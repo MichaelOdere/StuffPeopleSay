@@ -93,7 +93,7 @@ class TitleInputView: UIView {
                                           multiplier: 1,
                                           constant: 0)
         trailing.isActive = true
-        
+
         let height = NSLayoutConstraint(item: textFieldView,
                                         attribute: NSLayoutAttribute.bottom,
                                         relatedBy: NSLayoutRelation.equal,
@@ -103,13 +103,13 @@ class TitleInputView: UIView {
                                         constant: 0)
         height.isActive = true
     }
-    
+
     func setupTextField() {
         textFieldView.addSubview(textField)
         textField.translatesAutoresizingMaskIntoConstraints = false
 
-        let padding:CGFloat = 6.0
-        
+        let padding: CGFloat = 6.0
+
         let top = NSLayoutConstraint(item: textField,
                                      attribute: NSLayoutAttribute.top,
                                      relatedBy: NSLayoutRelation.equal,
@@ -118,7 +118,7 @@ class TitleInputView: UIView {
                                      multiplier: 1,
                                      constant: padding)
         top.isActive = true
-        
+
         let bottom = NSLayoutConstraint(item: textField,
                                         attribute: NSLayoutAttribute.bottom,
                                         relatedBy: NSLayoutRelation.equal,
@@ -127,7 +127,7 @@ class TitleInputView: UIView {
                                         multiplier: 1,
                                         constant: -padding)
         bottom.isActive = true
-        
+
         let leading = NSLayoutConstraint(item: textField,
                                          attribute: NSLayoutAttribute.leading,
                                          relatedBy: NSLayoutRelation.equal,
@@ -136,7 +136,7 @@ class TitleInputView: UIView {
                                          multiplier: 1,
                                          constant: padding)
         leading.isActive = true
-        
+
         let trailing = NSLayoutConstraint(item: textField,
                                           attribute: NSLayoutAttribute.trailing,
                                           relatedBy: NSLayoutRelation.equal,

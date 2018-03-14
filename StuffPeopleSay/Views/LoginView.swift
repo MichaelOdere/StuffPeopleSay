@@ -22,15 +22,15 @@ class LoginView: UIView {
         self.addSubview(passwordView)
         self.addSubview(loginButton)
 
-        setupemailView()
-        setuppasswordView()
+        setupEmailView()
+        setupPasswordView()
         setupLoginButton()
 
         // tap to remove keyboard
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing(_:))))
     }
 
-    func setupemailView() {
+    func setupEmailView() {
         emailView.titleLabel.text = "Email"
         emailView.textField.delegate = self
         emailView.textField.addTarget(self, action: #selector(LoginView.textFieldDidChange(_:)),
@@ -46,11 +46,11 @@ class LoginView: UIView {
 
         let trailing = NSLayoutConstraint(item: emailView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -horizontalPadding)
         trailing.isActive = true
-        
+
         emailView.layoutSubviews()
     }
 
-    func setuppasswordView() {
+    func setupPasswordView() {
         passwordView.titleLabel.text = "Password"
         passwordView.textField.isSecureTextEntry = true
         passwordView.textField.delegate = self
@@ -70,7 +70,7 @@ class LoginView: UIView {
 
         let equalHeight = NSLayoutConstraint(item: passwordView, attribute: .height, relatedBy: .equal, toItem: emailView, attribute: .height, multiplier: 1, constant: 0)
         equalHeight.isActive = true
-        
+
         let height = NSLayoutConstraint(item: passwordView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: self.frame.height * 0.07)
         height.isActive = true
     }
@@ -144,4 +144,3 @@ extension LoginView: UITextFieldDelegate {
         textField.superview?.layer.shadowOpacity = 0.0
     }
 }
-
