@@ -19,10 +19,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         updateEmailTextField()
 
         login(loginType: .token)
+
+        self.title = "Login"
     }
+
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
+
     func login(loginType: LoginType) {
         loadingView.startAnimating()
         self.view.addSubview(loadingView)

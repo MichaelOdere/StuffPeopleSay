@@ -2,7 +2,8 @@ import UIKit
 
 class HomeViewController: UIViewController {
     var loginViewController = LoginViewController()
-    var gameStore:GameStore!
+    var signUpViewController = SignUpViewController()
+    var gameStore: GameStore!
     var iconImageView: UIImageView = UIImageView()
     let loginButton: UIButton = HomeButton(type: .system)
     let signUpButton: UIButton = HomeButton(type: .system)
@@ -16,20 +17,19 @@ class HomeViewController: UIViewController {
         setupLoginButton()
         setupSignUpButton()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
-    
+
     func setupIconImage() {
         view.addSubview(iconImageView)
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         iconImageView.image = UIImage(named: "login-person2")
         iconImageView.contentMode = .scaleAspectFit
-        
+
         let centerY = NSLayoutConstraint(item: iconImageView,
                                      attribute: NSLayoutAttribute.centerY,
                                      relatedBy: NSLayoutRelation.equal,
@@ -38,7 +38,7 @@ class HomeViewController: UIViewController {
                                      multiplier: 1,
                                      constant: 0)
         centerY.isActive = true
-        
+
         let leading = NSLayoutConstraint(item: iconImageView,
                                          attribute: NSLayoutAttribute.leading,
                                          relatedBy: NSLayoutRelation.equal,
@@ -47,7 +47,7 @@ class HomeViewController: UIViewController {
                                          multiplier: 1,
                                          constant: horizontalPadding)
         leading.isActive = true
-        
+
         let trailing = NSLayoutConstraint(item: iconImageView,
                                          attribute: NSLayoutAttribute.trailing,
                                          relatedBy: NSLayoutRelation.equal,
@@ -56,7 +56,7 @@ class HomeViewController: UIViewController {
                                          multiplier: 1,
                                          constant: -horizontalPadding)
         trailing.isActive = true
-        
+
         let height = NSLayoutConstraint(item: iconImageView,
                                           attribute: NSLayoutAttribute.height,
                                           relatedBy: NSLayoutRelation.equal,
@@ -73,8 +73,8 @@ class HomeViewController: UIViewController {
         view.addSubview(loginButton)
         loginButton.translatesAutoresizingMaskIntoConstraints = false
 
-        loginButton.addTarget(self, action: #selector(HomeViewController.goToLoginViewController), for: .touchUpInside)
-        
+        loginButton.addTarget(self, action: #selector(HomeViewController.showLoginViewController), for: .touchUpInside)
+
         let leading = NSLayoutConstraint(item: loginButton,
                                          attribute: NSLayoutAttribute.leading,
                                          relatedBy: NSLayoutRelation.equal,
@@ -93,11 +93,8 @@ class HomeViewController: UIViewController {
                                           constant: -horizontalPadding)
         bottom.isActive = true
     }
-    
-    @objc func goToLoginViewController() {
-//        initialViewController.gameStore = gameStore
-//        let nav = UINavigationController(rootViewController: initialViewController)
 
+    @objc func showLoginViewController() {
         loginViewController.gameStore = gameStore
         self.navigationController?.pushViewController(loginViewController, animated: true)
     }
@@ -106,6 +103,7 @@ class HomeViewController: UIViewController {
         signUpButton.setTitle("Sign Up", for: .normal)
         view.addSubview(signUpButton)
         signUpButton.translatesAutoresizingMaskIntoConstraints = false
+        signUpButton.addTarget(self, action: #selector(HomeViewController.showSignUpViewController), for: .touchUpInside)
 
         let trailing = NSLayoutConstraint(item: signUpButton,
                                           attribute: NSLayoutAttribute.trailing,
@@ -160,5 +158,9 @@ class HomeViewController: UIViewController {
                                         multiplier: 1,
                                         constant: 0)
         width.isActive = true
+    }
+
+    @objc func showSignUpViewController() {
+        self.navigationController?.pushViewController(signUpViewController, animated: true)
     }
 }
